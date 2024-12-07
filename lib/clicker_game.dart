@@ -4,6 +4,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:stupig_proto/state_management/game_state/game_state_notifier.dart';
 import 'package:stupig_proto/widgets/click_counter.dart';
 import 'package:stupig_proto/widgets/flippable_card.dart';
+import 'package:stupig_proto/widgets/projects_list.dart';
 import 'widgets/xp_status.dart';
 import 'widgets/tap_area.dart';
 
@@ -31,10 +32,7 @@ class ClickerGame extends ConsumerWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               SizedBox(height: 20),
-              FlippableCard(
-                title: 'Project test 1',
-                backContent: Text('Back Content'),
-              ),
+              ProjectsList(),
               SizedBox(height: 20),
               TapArea(),
             ],

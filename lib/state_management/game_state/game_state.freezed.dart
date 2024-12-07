@@ -34,7 +34,7 @@ mixin _$GameState {
       throw _privateConstructorUsedError; // Affects the base clicking efficiency
   double get cpuSpeed => throw _privateConstructorUsedError;
   List<ActiveProject> get activeProjects => throw _privateConstructorUsedError;
-  List<InactiveProject> get inactiveProjects =>
+  List<(ActiveProject, Prerequisite)> get inactiveProjects =>
       throw _privateConstructorUsedError;
 
   /// Serializes this GameState to a JSON map.
@@ -61,7 +61,7 @@ abstract class $GameStateCopyWith<$Res> {
       double ram,
       double cpuSpeed,
       List<ActiveProject> activeProjects,
-      List<InactiveProject> inactiveProjects});
+      List<(ActiveProject, Prerequisite)> inactiveProjects});
 }
 
 /// @nodoc
@@ -125,7 +125,7 @@ class _$GameStateCopyWithImpl<$Res, $Val extends GameState>
       inactiveProjects: null == inactiveProjects
           ? _value.inactiveProjects
           : inactiveProjects // ignore: cast_nullable_to_non_nullable
-              as List<InactiveProject>,
+              as List<(ActiveProject, Prerequisite)>,
     ) as $Val);
   }
 }
@@ -147,7 +147,7 @@ abstract class _$$GameStateImplCopyWith<$Res>
       double ram,
       double cpuSpeed,
       List<ActiveProject> activeProjects,
-      List<InactiveProject> inactiveProjects});
+      List<(ActiveProject, Prerequisite)> inactiveProjects});
 }
 
 /// @nodoc
@@ -209,7 +209,7 @@ class __$$GameStateImplCopyWithImpl<$Res>
       inactiveProjects: null == inactiveProjects
           ? _value._inactiveProjects
           : inactiveProjects // ignore: cast_nullable_to_non_nullable
-              as List<InactiveProject>,
+              as List<(ActiveProject, Prerequisite)>,
     ));
   }
 }
@@ -226,7 +226,7 @@ class _$GameStateImpl extends _GameState {
       required this.ram,
       required this.cpuSpeed,
       required final List<ActiveProject> activeProjects,
-      required final List<InactiveProject> inactiveProjects})
+      required final List<(ActiveProject, Prerequisite)> inactiveProjects})
       : _activeProjects = activeProjects,
         _inactiveProjects = inactiveProjects,
         super._();
@@ -262,9 +262,9 @@ class _$GameStateImpl extends _GameState {
     return EqualUnmodifiableListView(_activeProjects);
   }
 
-  final List<InactiveProject> _inactiveProjects;
+  final List<(ActiveProject, Prerequisite)> _inactiveProjects;
   @override
-  List<InactiveProject> get inactiveProjects {
+  List<(ActiveProject, Prerequisite)> get inactiveProjects {
     if (_inactiveProjects is EqualUnmodifiableListView)
       return _inactiveProjects;
     // ignore: implicit_dynamic_type
@@ -336,7 +336,8 @@ abstract class _GameState extends GameState {
       required final double ram,
       required final double cpuSpeed,
       required final List<ActiveProject> activeProjects,
-      required final List<InactiveProject> inactiveProjects}) = _$GameStateImpl;
+      required final List<(ActiveProject, Prerequisite)>
+          inactiveProjects}) = _$GameStateImpl;
   const _GameState._() : super._();
 
   factory _GameState.fromJson(Map<String, dynamic> json) =
@@ -363,7 +364,7 @@ abstract class _GameState extends GameState {
   @override
   List<ActiveProject> get activeProjects;
   @override
-  List<InactiveProject> get inactiveProjects;
+  List<(ActiveProject, Prerequisite)> get inactiveProjects;
 
   /// Create a copy of GameState
   /// with the given fields replaced by the non-null parameter values.

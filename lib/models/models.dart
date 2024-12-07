@@ -50,21 +50,14 @@ class Prerequisite with _$Prerequisite {
   factory Prerequisite.fromJson(Map<String, Object?> json) => _$PrerequisiteFromJson(json);
 }
 
-@freezed
-class InactiveProject with _$InactiveProject {
-  const factory InactiveProject({
-    required Prerequisite pq,
-  }) = _InactiveProject;
-
-  factory InactiveProject.fromJson(Map<String, Object?> json) => _$InactiveProjectFromJson(json);
-}
+typedef InactiveProject = (ActiveProject, Prerequisite);
 
 @freezed
 class ActiveProject with _$ActiveProject {
   const factory ActiveProject({
     required String name,
     required String description,
-    required String theme,
+    required Theme theme,
     required double ram,
     required String subtheme,
     required Reward reward,

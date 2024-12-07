@@ -53,23 +53,11 @@ Map<String, dynamic> _$$PrerequisiteImplToJson(_$PrerequisiteImpl instance) =>
       'ram': instance.ram,
     };
 
-_$InactiveProjectImpl _$$InactiveProjectImplFromJson(
-        Map<String, dynamic> json) =>
-    _$InactiveProjectImpl(
-      pq: Prerequisite.fromJson(json['pq'] as Map<String, dynamic>),
-    );
-
-Map<String, dynamic> _$$InactiveProjectImplToJson(
-        _$InactiveProjectImpl instance) =>
-    <String, dynamic>{
-      'pq': instance.pq,
-    };
-
 _$ProjectImpl _$$ProjectImplFromJson(Map<String, dynamic> json) =>
     _$ProjectImpl(
       name: json['name'] as String,
       description: json['description'] as String,
-      theme: json['theme'] as String,
+      theme: $enumDecode(_$ThemeEnumMap, json['theme']),
       ram: (json['ram'] as num).toDouble(),
       subtheme: json['subtheme'] as String,
       reward: Reward.fromJson(json['reward'] as Map<String, dynamic>),
@@ -79,7 +67,7 @@ Map<String, dynamic> _$$ProjectImplToJson(_$ProjectImpl instance) =>
     <String, dynamic>{
       'name': instance.name,
       'description': instance.description,
-      'theme': instance.theme,
+      'theme': _$ThemeEnumMap[instance.theme]!,
       'ram': instance.ram,
       'subtheme': instance.subtheme,
       'reward': instance.reward,

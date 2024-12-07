@@ -526,172 +526,6 @@ abstract class _Prerequisite implements Prerequisite {
       throw _privateConstructorUsedError;
 }
 
-InactiveProject _$InactiveProjectFromJson(Map<String, dynamic> json) {
-  return _InactiveProject.fromJson(json);
-}
-
-/// @nodoc
-mixin _$InactiveProject {
-  Prerequisite get pq => throw _privateConstructorUsedError;
-
-  /// Serializes this InactiveProject to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of InactiveProject
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $InactiveProjectCopyWith<InactiveProject> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $InactiveProjectCopyWith<$Res> {
-  factory $InactiveProjectCopyWith(
-          InactiveProject value, $Res Function(InactiveProject) then) =
-      _$InactiveProjectCopyWithImpl<$Res, InactiveProject>;
-  @useResult
-  $Res call({Prerequisite pq});
-
-  $PrerequisiteCopyWith<$Res> get pq;
-}
-
-/// @nodoc
-class _$InactiveProjectCopyWithImpl<$Res, $Val extends InactiveProject>
-    implements $InactiveProjectCopyWith<$Res> {
-  _$InactiveProjectCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  /// Create a copy of InactiveProject
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? pq = null,
-  }) {
-    return _then(_value.copyWith(
-      pq: null == pq
-          ? _value.pq
-          : pq // ignore: cast_nullable_to_non_nullable
-              as Prerequisite,
-    ) as $Val);
-  }
-
-  /// Create a copy of InactiveProject
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $PrerequisiteCopyWith<$Res> get pq {
-    return $PrerequisiteCopyWith<$Res>(_value.pq, (value) {
-      return _then(_value.copyWith(pq: value) as $Val);
-    });
-  }
-}
-
-/// @nodoc
-abstract class _$$InactiveProjectImplCopyWith<$Res>
-    implements $InactiveProjectCopyWith<$Res> {
-  factory _$$InactiveProjectImplCopyWith(_$InactiveProjectImpl value,
-          $Res Function(_$InactiveProjectImpl) then) =
-      __$$InactiveProjectImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({Prerequisite pq});
-
-  @override
-  $PrerequisiteCopyWith<$Res> get pq;
-}
-
-/// @nodoc
-class __$$InactiveProjectImplCopyWithImpl<$Res>
-    extends _$InactiveProjectCopyWithImpl<$Res, _$InactiveProjectImpl>
-    implements _$$InactiveProjectImplCopyWith<$Res> {
-  __$$InactiveProjectImplCopyWithImpl(
-      _$InactiveProjectImpl _value, $Res Function(_$InactiveProjectImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of InactiveProject
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? pq = null,
-  }) {
-    return _then(_$InactiveProjectImpl(
-      pq: null == pq
-          ? _value.pq
-          : pq // ignore: cast_nullable_to_non_nullable
-              as Prerequisite,
-    ));
-  }
-}
-
-/// @nodoc
-@JsonSerializable()
-class _$InactiveProjectImpl implements _InactiveProject {
-  const _$InactiveProjectImpl({required this.pq});
-
-  factory _$InactiveProjectImpl.fromJson(Map<String, dynamic> json) =>
-      _$$InactiveProjectImplFromJson(json);
-
-  @override
-  final Prerequisite pq;
-
-  @override
-  String toString() {
-    return 'InactiveProject(pq: $pq)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$InactiveProjectImpl &&
-            (identical(other.pq, pq) || other.pq == pq));
-  }
-
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  int get hashCode => Object.hash(runtimeType, pq);
-
-  /// Create a copy of InactiveProject
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$InactiveProjectImplCopyWith<_$InactiveProjectImpl> get copyWith =>
-      __$$InactiveProjectImplCopyWithImpl<_$InactiveProjectImpl>(
-          this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$InactiveProjectImplToJson(
-      this,
-    );
-  }
-}
-
-abstract class _InactiveProject implements InactiveProject {
-  const factory _InactiveProject({required final Prerequisite pq}) =
-      _$InactiveProjectImpl;
-
-  factory _InactiveProject.fromJson(Map<String, dynamic> json) =
-      _$InactiveProjectImpl.fromJson;
-
-  @override
-  Prerequisite get pq;
-
-  /// Create a copy of InactiveProject
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$InactiveProjectImplCopyWith<_$InactiveProjectImpl> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
 ActiveProject _$ActiveProjectFromJson(Map<String, dynamic> json) {
   return _Project.fromJson(json);
 }
@@ -700,7 +534,7 @@ ActiveProject _$ActiveProjectFromJson(Map<String, dynamic> json) {
 mixin _$ActiveProject {
   String get name => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
-  String get theme => throw _privateConstructorUsedError;
+  Theme get theme => throw _privateConstructorUsedError;
   double get ram => throw _privateConstructorUsedError;
   String get subtheme => throw _privateConstructorUsedError;
   Reward get reward => throw _privateConstructorUsedError;
@@ -724,7 +558,7 @@ abstract class $ActiveProjectCopyWith<$Res> {
   $Res call(
       {String name,
       String description,
-      String theme,
+      Theme theme,
       double ram,
       String subtheme,
       Reward reward});
@@ -766,7 +600,7 @@ class _$ActiveProjectCopyWithImpl<$Res, $Val extends ActiveProject>
       theme: null == theme
           ? _value.theme
           : theme // ignore: cast_nullable_to_non_nullable
-              as String,
+              as Theme,
       ram: null == ram
           ? _value.ram
           : ram // ignore: cast_nullable_to_non_nullable
@@ -804,7 +638,7 @@ abstract class _$$ProjectImplCopyWith<$Res>
   $Res call(
       {String name,
       String description,
-      String theme,
+      Theme theme,
       double ram,
       String subtheme,
       Reward reward});
@@ -845,7 +679,7 @@ class __$$ProjectImplCopyWithImpl<$Res>
       theme: null == theme
           ? _value.theme
           : theme // ignore: cast_nullable_to_non_nullable
-              as String,
+              as Theme,
       ram: null == ram
           ? _value.ram
           : ram // ignore: cast_nullable_to_non_nullable
@@ -881,7 +715,7 @@ class _$ProjectImpl implements _Project {
   @override
   final String description;
   @override
-  final String theme;
+  final Theme theme;
   @override
   final double ram;
   @override
@@ -934,7 +768,7 @@ abstract class _Project implements ActiveProject {
   const factory _Project(
       {required final String name,
       required final String description,
-      required final String theme,
+      required final Theme theme,
       required final double ram,
       required final String subtheme,
       required final Reward reward}) = _$ProjectImpl;
@@ -946,7 +780,7 @@ abstract class _Project implements ActiveProject {
   @override
   String get description;
   @override
-  String get theme;
+  Theme get theme;
   @override
   double get ram;
   @override
