@@ -526,34 +526,34 @@ abstract class _Prerequisite implements Prerequisite {
       throw _privateConstructorUsedError;
 }
 
-ActiveProject _$ActiveProjectFromJson(Map<String, dynamic> json) {
+Project _$ProjectFromJson(Map<String, dynamic> json) {
   return _Project.fromJson(json);
 }
 
 /// @nodoc
-mixin _$ActiveProject {
+mixin _$Project {
   String get name => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
   Theme get theme => throw _privateConstructorUsedError;
   double get ram => throw _privateConstructorUsedError;
   String get subtheme => throw _privateConstructorUsedError;
   Reward get reward => throw _privateConstructorUsedError;
+  Prerequisite? get prerequisite => throw _privateConstructorUsedError;
+  ProjectStatus get status => throw _privateConstructorUsedError;
 
-  /// Serializes this ActiveProject to a JSON map.
+  /// Serializes this Project to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 
-  /// Create a copy of ActiveProject
+  /// Create a copy of Project
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $ActiveProjectCopyWith<ActiveProject> get copyWith =>
-      throw _privateConstructorUsedError;
+  $ProjectCopyWith<Project> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $ActiveProjectCopyWith<$Res> {
-  factory $ActiveProjectCopyWith(
-          ActiveProject value, $Res Function(ActiveProject) then) =
-      _$ActiveProjectCopyWithImpl<$Res, ActiveProject>;
+abstract class $ProjectCopyWith<$Res> {
+  factory $ProjectCopyWith(Project value, $Res Function(Project) then) =
+      _$ProjectCopyWithImpl<$Res, Project>;
   @useResult
   $Res call(
       {String name,
@@ -561,22 +561,25 @@ abstract class $ActiveProjectCopyWith<$Res> {
       Theme theme,
       double ram,
       String subtheme,
-      Reward reward});
+      Reward reward,
+      Prerequisite? prerequisite,
+      ProjectStatus status});
 
   $RewardCopyWith<$Res> get reward;
+  $PrerequisiteCopyWith<$Res>? get prerequisite;
 }
 
 /// @nodoc
-class _$ActiveProjectCopyWithImpl<$Res, $Val extends ActiveProject>
-    implements $ActiveProjectCopyWith<$Res> {
-  _$ActiveProjectCopyWithImpl(this._value, this._then);
+class _$ProjectCopyWithImpl<$Res, $Val extends Project>
+    implements $ProjectCopyWith<$Res> {
+  _$ProjectCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of ActiveProject
+  /// Create a copy of Project
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -587,6 +590,8 @@ class _$ActiveProjectCopyWithImpl<$Res, $Val extends ActiveProject>
     Object? ram = null,
     Object? subtheme = null,
     Object? reward = null,
+    Object? prerequisite = freezed,
+    Object? status = null,
   }) {
     return _then(_value.copyWith(
       name: null == name
@@ -613,10 +618,18 @@ class _$ActiveProjectCopyWithImpl<$Res, $Val extends ActiveProject>
           ? _value.reward
           : reward // ignore: cast_nullable_to_non_nullable
               as Reward,
+      prerequisite: freezed == prerequisite
+          ? _value.prerequisite
+          : prerequisite // ignore: cast_nullable_to_non_nullable
+              as Prerequisite?,
+      status: null == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as ProjectStatus,
     ) as $Val);
   }
 
-  /// Create a copy of ActiveProject
+  /// Create a copy of Project
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
@@ -625,11 +638,24 @@ class _$ActiveProjectCopyWithImpl<$Res, $Val extends ActiveProject>
       return _then(_value.copyWith(reward: value) as $Val);
     });
   }
+
+  /// Create a copy of Project
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $PrerequisiteCopyWith<$Res>? get prerequisite {
+    if (_value.prerequisite == null) {
+      return null;
+    }
+
+    return $PrerequisiteCopyWith<$Res>(_value.prerequisite!, (value) {
+      return _then(_value.copyWith(prerequisite: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
-abstract class _$$ProjectImplCopyWith<$Res>
-    implements $ActiveProjectCopyWith<$Res> {
+abstract class _$$ProjectImplCopyWith<$Res> implements $ProjectCopyWith<$Res> {
   factory _$$ProjectImplCopyWith(
           _$ProjectImpl value, $Res Function(_$ProjectImpl) then) =
       __$$ProjectImplCopyWithImpl<$Res>;
@@ -641,21 +667,25 @@ abstract class _$$ProjectImplCopyWith<$Res>
       Theme theme,
       double ram,
       String subtheme,
-      Reward reward});
+      Reward reward,
+      Prerequisite? prerequisite,
+      ProjectStatus status});
 
   @override
   $RewardCopyWith<$Res> get reward;
+  @override
+  $PrerequisiteCopyWith<$Res>? get prerequisite;
 }
 
 /// @nodoc
 class __$$ProjectImplCopyWithImpl<$Res>
-    extends _$ActiveProjectCopyWithImpl<$Res, _$ProjectImpl>
+    extends _$ProjectCopyWithImpl<$Res, _$ProjectImpl>
     implements _$$ProjectImplCopyWith<$Res> {
   __$$ProjectImplCopyWithImpl(
       _$ProjectImpl _value, $Res Function(_$ProjectImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of ActiveProject
+  /// Create a copy of Project
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -666,6 +696,8 @@ class __$$ProjectImplCopyWithImpl<$Res>
     Object? ram = null,
     Object? subtheme = null,
     Object? reward = null,
+    Object? prerequisite = freezed,
+    Object? status = null,
   }) {
     return _then(_$ProjectImpl(
       name: null == name
@@ -692,6 +724,14 @@ class __$$ProjectImplCopyWithImpl<$Res>
           ? _value.reward
           : reward // ignore: cast_nullable_to_non_nullable
               as Reward,
+      prerequisite: freezed == prerequisite
+          ? _value.prerequisite
+          : prerequisite // ignore: cast_nullable_to_non_nullable
+              as Prerequisite?,
+      status: null == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as ProjectStatus,
     ));
   }
 }
@@ -705,7 +745,9 @@ class _$ProjectImpl implements _Project {
       required this.theme,
       required this.ram,
       required this.subtheme,
-      required this.reward});
+      required this.reward,
+      this.prerequisite,
+      required this.status});
 
   factory _$ProjectImpl.fromJson(Map<String, dynamic> json) =>
       _$$ProjectImplFromJson(json);
@@ -722,10 +764,14 @@ class _$ProjectImpl implements _Project {
   final String subtheme;
   @override
   final Reward reward;
+  @override
+  final Prerequisite? prerequisite;
+  @override
+  final ProjectStatus status;
 
   @override
   String toString() {
-    return 'ActiveProject(name: $name, description: $description, theme: $theme, ram: $ram, subtheme: $subtheme, reward: $reward)';
+    return 'Project(name: $name, description: $description, theme: $theme, ram: $ram, subtheme: $subtheme, reward: $reward, prerequisite: $prerequisite, status: $status)';
   }
 
   @override
@@ -740,15 +786,18 @@ class _$ProjectImpl implements _Project {
             (identical(other.ram, ram) || other.ram == ram) &&
             (identical(other.subtheme, subtheme) ||
                 other.subtheme == subtheme) &&
-            (identical(other.reward, reward) || other.reward == reward));
+            (identical(other.reward, reward) || other.reward == reward) &&
+            (identical(other.prerequisite, prerequisite) ||
+                other.prerequisite == prerequisite) &&
+            (identical(other.status, status) || other.status == status));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, name, description, theme, ram, subtheme, reward);
+  int get hashCode => Object.hash(runtimeType, name, description, theme, ram,
+      subtheme, reward, prerequisite, status);
 
-  /// Create a copy of ActiveProject
+  /// Create a copy of Project
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
@@ -764,14 +813,16 @@ class _$ProjectImpl implements _Project {
   }
 }
 
-abstract class _Project implements ActiveProject {
+abstract class _Project implements Project {
   const factory _Project(
       {required final String name,
       required final String description,
       required final Theme theme,
       required final double ram,
       required final String subtheme,
-      required final Reward reward}) = _$ProjectImpl;
+      required final Reward reward,
+      final Prerequisite? prerequisite,
+      required final ProjectStatus status}) = _$ProjectImpl;
 
   factory _Project.fromJson(Map<String, dynamic> json) = _$ProjectImpl.fromJson;
 
@@ -787,8 +838,12 @@ abstract class _Project implements ActiveProject {
   String get subtheme;
   @override
   Reward get reward;
+  @override
+  Prerequisite? get prerequisite;
+  @override
+  ProjectStatus get status;
 
-  /// Create a copy of ActiveProject
+  /// Create a copy of Project
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)

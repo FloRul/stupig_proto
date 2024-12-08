@@ -108,17 +108,22 @@ class _FlippableCardState extends State<FlippableCard> with SingleTickerProvider
                     alignment: Alignment.center,
                     child: Card(
                       elevation: 4,
-                      child: Column(
-                        children: [
-                          widget.backContent,
-                          const SizedBox(height: 8),
-                          const Text(
-                            'Tap to flip back',
-                            style: TextStyle(
-                              fontSize: 12,
-                            ),
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: SingleChildScrollView(
+                          child: Column(
+                            children: [
+                              widget.backContent,
+                              const SizedBox(height: 8),
+                              const Text(
+                                'Tap to flip back',
+                                style: TextStyle(
+                                  fontSize: 12,
+                                ),
+                              ),
+                            ],
                           ),
-                        ],
+                        ),
                       ),
                     ),
                   ),

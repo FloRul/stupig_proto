@@ -50,18 +50,20 @@ class Prerequisite with _$Prerequisite {
   factory Prerequisite.fromJson(Map<String, Object?> json) => _$PrerequisiteFromJson(json);
 }
 
-typedef InactiveProject = (ActiveProject, Prerequisite);
+enum ProjectStatus { notStarted, inProgress, completed }
 
 @freezed
-class ActiveProject with _$ActiveProject {
-  const factory ActiveProject({
+class Project with _$Project {
+  const factory Project({
     required String name,
     required String description,
     required Theme theme,
     required double ram,
     required String subtheme,
     required Reward reward,
+    Prerequisite? prerequisite,
+    required ProjectStatus status,
   }) = _Project;
 
-  factory ActiveProject.fromJson(Map<String, Object?> json) => _$ActiveProjectFromJson(json);
+  factory Project.fromJson(Map<String, Object?> json) => _$ProjectFromJson(json);
 }

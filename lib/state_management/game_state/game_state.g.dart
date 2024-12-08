@@ -15,19 +15,8 @@ _$GameStateImpl _$$GameStateImplFromJson(Map<String, dynamic> json) =>
       gpuVram: (json['gpuVram'] as num).toDouble(),
       ram: (json['ram'] as num).toDouble(),
       cpuSpeed: (json['cpuSpeed'] as num).toDouble(),
-      activeProjects: (json['activeProjects'] as List<dynamic>)
-          .map((e) => ActiveProject.fromJson(e as Map<String, dynamic>))
-          .toList(),
-      inactiveProjects: (json['inactiveProjects'] as List<dynamic>)
-          .map((e) => _$recordConvert(
-                e,
-                ($jsonValue) => (
-                  ActiveProject.fromJson(
-                      $jsonValue[r'$1'] as Map<String, dynamic>),
-                  Prerequisite.fromJson(
-                      $jsonValue[r'$2'] as Map<String, dynamic>),
-                ),
-              ))
+      projects: (json['projects'] as List<dynamic>)
+          .map((e) => Project.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 
@@ -40,17 +29,5 @@ Map<String, dynamic> _$$GameStateImplToJson(_$GameStateImpl instance) =>
       'gpuVram': instance.gpuVram,
       'ram': instance.ram,
       'cpuSpeed': instance.cpuSpeed,
-      'activeProjects': instance.activeProjects,
-      'inactiveProjects': instance.inactiveProjects
-          .map((e) => <String, dynamic>{
-                r'$1': e.$1,
-                r'$2': e.$2,
-              })
-          .toList(),
+      'projects': instance.projects,
     };
-
-$Rec _$recordConvert<$Rec>(
-  Object? value,
-  $Rec Function(Map) convert,
-) =>
-    convert(value as Map<String, dynamic>);

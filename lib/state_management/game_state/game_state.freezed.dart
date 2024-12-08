@@ -33,9 +33,7 @@ mixin _$GameState {
   double get ram =>
       throw _privateConstructorUsedError; // Affects the base clicking efficiency
   double get cpuSpeed => throw _privateConstructorUsedError;
-  List<ActiveProject> get activeProjects => throw _privateConstructorUsedError;
-  List<(ActiveProject, Prerequisite)> get inactiveProjects =>
-      throw _privateConstructorUsedError;
+  List<Project> get projects => throw _privateConstructorUsedError;
 
   /// Serializes this GameState to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -60,8 +58,7 @@ abstract class $GameStateCopyWith<$Res> {
       double gpuVram,
       double ram,
       double cpuSpeed,
-      List<ActiveProject> activeProjects,
-      List<(ActiveProject, Prerequisite)> inactiveProjects});
+      List<Project> projects});
 }
 
 /// @nodoc
@@ -86,8 +83,7 @@ class _$GameStateCopyWithImpl<$Res, $Val extends GameState>
     Object? gpuVram = null,
     Object? ram = null,
     Object? cpuSpeed = null,
-    Object? activeProjects = null,
-    Object? inactiveProjects = null,
+    Object? projects = null,
   }) {
     return _then(_value.copyWith(
       xp: null == xp
@@ -118,14 +114,10 @@ class _$GameStateCopyWithImpl<$Res, $Val extends GameState>
           ? _value.cpuSpeed
           : cpuSpeed // ignore: cast_nullable_to_non_nullable
               as double,
-      activeProjects: null == activeProjects
-          ? _value.activeProjects
-          : activeProjects // ignore: cast_nullable_to_non_nullable
-              as List<ActiveProject>,
-      inactiveProjects: null == inactiveProjects
-          ? _value.inactiveProjects
-          : inactiveProjects // ignore: cast_nullable_to_non_nullable
-              as List<(ActiveProject, Prerequisite)>,
+      projects: null == projects
+          ? _value.projects
+          : projects // ignore: cast_nullable_to_non_nullable
+              as List<Project>,
     ) as $Val);
   }
 }
@@ -146,8 +138,7 @@ abstract class _$$GameStateImplCopyWith<$Res>
       double gpuVram,
       double ram,
       double cpuSpeed,
-      List<ActiveProject> activeProjects,
-      List<(ActiveProject, Prerequisite)> inactiveProjects});
+      List<Project> projects});
 }
 
 /// @nodoc
@@ -170,8 +161,7 @@ class __$$GameStateImplCopyWithImpl<$Res>
     Object? gpuVram = null,
     Object? ram = null,
     Object? cpuSpeed = null,
-    Object? activeProjects = null,
-    Object? inactiveProjects = null,
+    Object? projects = null,
   }) {
     return _then(_$GameStateImpl(
       xp: null == xp
@@ -202,14 +192,10 @@ class __$$GameStateImplCopyWithImpl<$Res>
           ? _value.cpuSpeed
           : cpuSpeed // ignore: cast_nullable_to_non_nullable
               as double,
-      activeProjects: null == activeProjects
-          ? _value._activeProjects
-          : activeProjects // ignore: cast_nullable_to_non_nullable
-              as List<ActiveProject>,
-      inactiveProjects: null == inactiveProjects
-          ? _value._inactiveProjects
-          : inactiveProjects // ignore: cast_nullable_to_non_nullable
-              as List<(ActiveProject, Prerequisite)>,
+      projects: null == projects
+          ? _value._projects
+          : projects // ignore: cast_nullable_to_non_nullable
+              as List<Project>,
     ));
   }
 }
@@ -225,10 +211,8 @@ class _$GameStateImpl extends _GameState {
       required this.gpuVram,
       required this.ram,
       required this.cpuSpeed,
-      required final List<ActiveProject> activeProjects,
-      required final List<(ActiveProject, Prerequisite)> inactiveProjects})
-      : _activeProjects = activeProjects,
-        _inactiveProjects = inactiveProjects,
+      required final List<Project> projects})
+      : _projects = projects,
         super._();
 
   factory _$GameStateImpl.fromJson(Map<String, dynamic> json) =>
@@ -254,26 +238,17 @@ class _$GameStateImpl extends _GameState {
 // Affects the base clicking efficiency
   @override
   final double cpuSpeed;
-  final List<ActiveProject> _activeProjects;
+  final List<Project> _projects;
   @override
-  List<ActiveProject> get activeProjects {
-    if (_activeProjects is EqualUnmodifiableListView) return _activeProjects;
+  List<Project> get projects {
+    if (_projects is EqualUnmodifiableListView) return _projects;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_activeProjects);
-  }
-
-  final List<(ActiveProject, Prerequisite)> _inactiveProjects;
-  @override
-  List<(ActiveProject, Prerequisite)> get inactiveProjects {
-    if (_inactiveProjects is EqualUnmodifiableListView)
-      return _inactiveProjects;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_inactiveProjects);
+    return EqualUnmodifiableListView(_projects);
   }
 
   @override
   String toString() {
-    return 'GameState(xp: $xp, level: $level, money: $money, cpuPower: $cpuPower, gpuVram: $gpuVram, ram: $ram, cpuSpeed: $cpuSpeed, activeProjects: $activeProjects, inactiveProjects: $inactiveProjects)';
+    return 'GameState(xp: $xp, level: $level, money: $money, cpuPower: $cpuPower, gpuVram: $gpuVram, ram: $ram, cpuSpeed: $cpuSpeed, projects: $projects)';
   }
 
   @override
@@ -290,25 +265,13 @@ class _$GameStateImpl extends _GameState {
             (identical(other.ram, ram) || other.ram == ram) &&
             (identical(other.cpuSpeed, cpuSpeed) ||
                 other.cpuSpeed == cpuSpeed) &&
-            const DeepCollectionEquality()
-                .equals(other._activeProjects, _activeProjects) &&
-            const DeepCollectionEquality()
-                .equals(other._inactiveProjects, _inactiveProjects));
+            const DeepCollectionEquality().equals(other._projects, _projects));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      xp,
-      level,
-      money,
-      cpuPower,
-      gpuVram,
-      ram,
-      cpuSpeed,
-      const DeepCollectionEquality().hash(_activeProjects),
-      const DeepCollectionEquality().hash(_inactiveProjects));
+  int get hashCode => Object.hash(runtimeType, xp, level, money, cpuPower,
+      gpuVram, ram, cpuSpeed, const DeepCollectionEquality().hash(_projects));
 
   /// Create a copy of GameState
   /// with the given fields replaced by the non-null parameter values.
@@ -335,9 +298,7 @@ abstract class _GameState extends GameState {
       required final double gpuVram,
       required final double ram,
       required final double cpuSpeed,
-      required final List<ActiveProject> activeProjects,
-      required final List<(ActiveProject, Prerequisite)>
-          inactiveProjects}) = _$GameStateImpl;
+      required final List<Project> projects}) = _$GameStateImpl;
   const _GameState._() : super._();
 
   factory _GameState.fromJson(Map<String, dynamic> json) =
@@ -362,9 +323,7 @@ abstract class _GameState extends GameState {
   @override
   double get cpuSpeed;
   @override
-  List<ActiveProject> get activeProjects;
-  @override
-  List<(ActiveProject, Prerequisite)> get inactiveProjects;
+  List<Project> get projects;
 
   /// Create a copy of GameState
   /// with the given fields replaced by the non-null parameter values.

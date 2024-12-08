@@ -23,8 +23,7 @@ class GameState with _$GameState {
     required double ram,
     // Affects the base clicking efficiency
     required double cpuSpeed,
-    required List<ActiveProject> activeProjects,
-    required List<InactiveProject> inactiveProjects,
+    required List<Project> projects,
   }) = _GameState;
 
   factory GameState.fromJson(Map<String, Object?> json) => _$GameStateFromJson(json);
@@ -37,31 +36,45 @@ class GameState with _$GameState {
         gpuVram: 1,
         ram: 1,
         cpuSpeed: 1,
-        activeProjects: [],
-        inactiveProjects: [
-          (
-            ActiveProject(
-              name: "Hello, World!",
-              description:
-                  """Your first programming assignment is a simple console application that prints 'Hello, World!'
+        projects: [
+          Project(
+            name: "Hello, World!",
+            description:
+                """Your first programming assignment is a simple console application that prints 'Hello, World!'
                - the legendary first step for every aspiring computer scientist. As you write and run this basic program, you begin to understand the fundamental mechanics of coding. 
                Unbeknownst to your professor, you secretly optimize the code with a few extra lines that give your program just a hint of... sentience. 
                As the words "Hello, World!" blink on the screen, you could swear the cursor winks back at you with an almost mischievous intelligence.""",
-              ram: 1,
-              reward: Reward(
-                xp: 1,
-              ),
-              theme: Theme.programmingFundamentals,
-              subtheme: "",
+            ram: 1,
+            reward: Reward(
+              xp: 1,
             ),
-            Prerequisite(cpuPower: 1, ram: 1),
-          )
+            theme: Theme.programmingFundamentals,
+            subtheme: "",
+            prerequisite: Prerequisite(cpuPower: 1, ram: 1),
+            status: ProjectStatus.notStarted,
+          ),
+          Project(
+            name: "Hello, World!",
+            description:
+                """Your first programming assignment is a simple console application that prints 'Hello, World!' - the legendary first step for every aspiring computer scientist. As you write and run this basic program, you begin to understand the fundamental mechanics of coding. Unbeknownst to your professor, you secretly optimize the code with a few extra lines that give your program just a hint of... sentience. As the words "Hello, World!" blink on the screen, you could swear the cursor winks back at you with an almost mischievous intelligence.""",
+            ram: 1,
+            reward: Reward(
+              xp: 1,
+            ),
+            theme: Theme.programmingFundamentals,
+            subtheme: "",
+            prerequisite: Prerequisite(cpuPower: 1, ram: 1),
+            status: ProjectStatus.notStarted,
+          ),
         ],
       );
 
   double get clickPower => cpuSpeed;
-  double get availableRam => activeProjects.fold(0, (p, e) => p + e.ram);
+  double get usedRam => projects.where((p) => p.status == ProjectStatus.inProgress).fold(0, (p, e) => p + e.ram);
   double get xpToNextLevel => kBaseXp * pow(level, kLevelUpFactor);
 
-  bool satisfyPrereq(Prerequisite pq) => cpuPower >= pq.cpuPower && availableRam >= pq.ram;
+  bool satisfyPrereq(Prerequisite? pq) {
+    if (pq == null) return true;
+    return pq.cpuPower <= cpuPower && (usedRam + pq.ram) <= ram;
+  }
 }
