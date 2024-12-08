@@ -1,10 +1,8 @@
 ﻿import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'package:stupig_proto/state_management/game_state/game_state_notifier.dart';
+import 'package:stupig_proto/widgets/active_projects_list.dart';
 import 'package:stupig_proto/widgets/click_counter.dart';
-import 'package:stupig_proto/widgets/flippable_card.dart';
-import 'package:stupig_proto/widgets/projects_list.dart';
+import 'package:stupig_proto/widgets/inactive_projects_list.dart';
 import 'widgets/xp_status.dart';
 import 'widgets/tap_area.dart';
 
@@ -27,16 +25,24 @@ class ClickerGame extends ConsumerWidget {
       ),
       body: const Padding(
         padding: EdgeInsets.all(8.0),
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              SizedBox(height: 20),
-              ProjectsList(),
-              SizedBox(height: 20),
-              TapArea(),
-            ],
-          ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Expanded(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Expanded(
+                    child: Placeholder(), // First section
+                  ),
+                  Expanded(
+                    child: InactiveProjectsList(), // Second section
+                  ),
+                ],
+              ),
+            ),
+            Expanded(child: TapArea()),
+          ],
         ),
       ),
     );

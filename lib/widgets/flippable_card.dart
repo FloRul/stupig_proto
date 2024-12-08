@@ -1,5 +1,4 @@
 ﻿import 'package:flutter/material.dart';
-import 'package:stupig_proto/utils/constants.dart';
 import 'dart:math';
 
 import 'package:stupig_proto/widgets/progress_section.dart';
@@ -63,7 +62,7 @@ class _FlippableCardState extends State<FlippableCard> with SingleTickerProvider
       onTap: _flipCard,
       child: AnimatedBuilder(
         animation: _animation,
-        builder: (context, child) {
+        builder: (_, __) {
           final angle = _animation.value * pi;
           final transform = Matrix4.identity()
             ..setEntry(3, 2, 0.001)
@@ -75,11 +74,10 @@ class _FlippableCardState extends State<FlippableCard> with SingleTickerProvider
             child: angle < pi / 2
                 ? Card(
                     elevation: 4,
-                    child: Container(
-                      width: kCardWidth,
-                      height: kCardHeight,
-                      padding: const EdgeInsets.all(16),
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
                       child: Column(
+                        mainAxisSize: MainAxisSize.min,
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: [
@@ -91,7 +89,6 @@ class _FlippableCardState extends State<FlippableCard> with SingleTickerProvider
                               fontWeight: FontWeight.bold,
                             ),
                           ),
-                          const Divider(),
                           const SizedBox(height: 16),
                           const ProgressSection(progress: 0.5),
                           const SizedBox(height: 8),
@@ -111,22 +108,17 @@ class _FlippableCardState extends State<FlippableCard> with SingleTickerProvider
                     alignment: Alignment.center,
                     child: Card(
                       elevation: 4,
-                      child: Container(
-                        width: kCardWidth,
-                        height: kCardHeight,
-                        padding: const EdgeInsets.all(16),
-                        child: Column(
-                          children: [
-                            widget.backContent,
-                            const SizedBox(height: 8),
-                            const Text(
-                              'Tap to flip back',
-                              style: TextStyle(
-                                fontSize: 12,
-                              ),
+                      child: Column(
+                        children: [
+                          widget.backContent,
+                          const SizedBox(height: 8),
+                          const Text(
+                            'Tap to flip back',
+                            style: TextStyle(
+                              fontSize: 12,
                             ),
-                          ],
-                        ),
+                          ),
+                        ],
                       ),
                     ),
                   ),

@@ -7,19 +7,17 @@ class TapArea extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return Expanded(
-      child: GestureDetector(
-        onTap: ref.read(clickStreamProvider.notifier).emitClick,
-        child: Container(
-          color: Colors.transparent,
-          child: const Center(
-            child: Text(
-              'TAP TO FILL',
-              style: TextStyle(
-                fontSize: 24,
-                fontWeight: FontWeight.bold,
-                color: Colors.grey,
-              ),
+    return GestureDetector(
+      onTap: ref.read(clickStreamProvider.notifier).emitClick,
+      child: Container(
+        color: Colors.transparent,
+        child: const Center(
+          child: Text(
+            'TAP TO FILL',
+            style: TextStyle(
+              fontSize: 24,
+              fontWeight: FontWeight.bold,
+              color: Colors.grey,
             ),
           ),
         ),

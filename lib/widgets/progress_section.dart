@@ -7,20 +7,17 @@ class ProgressSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20),
-      child: TweenAnimationBuilder<double>(
-        duration: const Duration(milliseconds: 250),
-        curve: Curves.linear,
-        tween: Tween<double>(
-          begin: 0,
-          end: progress,
-        ),
-        builder: (context, value, _) => LinearProgressIndicator(
-          value: value,
-          minHeight: 20,
-          borderRadius: BorderRadius.circular(10),
-        ),
+    return TweenAnimationBuilder<double>(
+      duration: const Duration(milliseconds: 250),
+      curve: Curves.linear,
+      tween: Tween<double>(
+        begin: 0,
+        end: progress,
+      ),
+      builder: (context, value, _) => LinearProgressIndicator(
+        value: value,
+        minHeight: 20,
+        borderRadius: BorderRadius.circular(10),
       ),
     );
   }
