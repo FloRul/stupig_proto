@@ -16,30 +16,39 @@ class ProjectsView extends ConsumerWidget {
             children: [
               Expanded(
                 child: DragTarget<Project>(
-                  onWillAcceptWithDetails: (d) => d.data.status == ProjectStatus.notStarted && gameState.satisfyPrereq(d.data.prerequisite),
-                  onAcceptWithDetails: (details) => ref.read(gameStateNotifierProvider.notifier).startProject(details.data),
-                  builder: (context, candidateData, rejectedData) => ListView.builder(
-                    shrinkWrap: true,
-                    itemCount: gameState.projects.where((p) => p.status == ProjectStatus.inProgress).length,
-                    itemBuilder: (context, index) => Draggable(
-                      feedback: SizedBox(
-                        height: kCardHeight,
-                        width: kCardWidth,
-                        child: FlippableCard(
-                          title: gameState.projects[index].name,
-                          backContent: Text(gameState.projects[index].description),
+                  onWillAcceptWithDetails: (d) {
+                    return d.data.status == ProjectStatus.notStarted && gameState.satisfyPrereq(d.data.prerequisite);
+                  },
+                  onAcceptWithDetails: (details) =>
+                      ref.read(gameStateNotifierProvider.notifier).startProject(details.data),
+                  builder: (context, candidateData, rejectedData) => candidateData.isNotEmpty
+                      ? Container(
+                          color: Colors.green,
+                        )
+                      : Placeholder(
+                          child: ListView.builder(
+                            // shrinkWrap: true,
+                            itemCount: gameState.projects.where((p) => p.status == ProjectStatus.inProgress).length,
+                            itemBuilder: (context, index) => Draggable(
+                              feedback: SizedBox(
+                                height: kCardHeight,
+                                width: kCardWidth,
+                                child: FlippableCard(
+                                  title: gameState.projects[index].name,
+                                  backContent: Text(gameState.projects[index].description),
+                                ),
+                              ),
+                              child: SizedBox(
+                                height: kCardHeight,
+                                width: kCardWidth,
+                                child: FlippableCard(
+                                  title: gameState.projects[index].name,
+                                  backContent: Text(gameState.projects[index].description),
+                                ),
+                              ),
+                            ),
+                          ),
                         ),
-                      ),
-                      child: SizedBox(
-                        height: kCardHeight,
-                        width: kCardWidth,
-                        child: FlippableCard(
-                          title: gameState.projects[index].name,
-                          backContent: Text(gameState.projects[index].description),
-                        ),
-                      ),
-                    ),
-                  ),
                 ), // First section
               ),
               Expanded(
@@ -48,6 +57,7 @@ class ProjectsView extends ConsumerWidget {
                   itemCount: gameState.projects.where((p) => p.status == ProjectStatus.notStarted).length,
                   itemExtent: kCardHeight,
                   itemBuilder: (context, index) => Draggable(
+                    data: gameState.projects[index],
                     feedback: SizedBox(
                       height: kCardHeight,
                       width: kCardWidth,

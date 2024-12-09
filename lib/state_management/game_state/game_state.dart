@@ -74,6 +74,7 @@ class GameState with _$GameState {
   double get xpToNextLevel => kBaseXp * pow(level, kLevelUpFactor);
 
   bool satisfyPrereq(Prerequisite? pq) {
+    print('checking prereq');
     if (pq == null) return true;
     return pq.cpuPower <= cpuPower && (usedRam + pq.ram) <= ram;
   }
