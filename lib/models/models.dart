@@ -60,6 +60,7 @@ class Project with _$Project {
     required Theme theme,
     required double ram,
     required String subtheme,
+    required double progress,
     required Reward reward,
     Prerequisite? prerequisite,
     required ProjectStatus status,

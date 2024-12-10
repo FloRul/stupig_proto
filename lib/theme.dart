@@ -3,10 +3,7 @@
 ThemeData themeData = ThemeData(
   // dividerTheme: DividerThemeData(color: Colors.white.withOpacity(0.2)),
   // scaffoldBackgroundColor: Colors.transparent,
-  colorScheme: const ColorScheme.light(
-    primary: Colors.green,
-    secondary: Colors.orange,
-  ),
+  colorScheme: const ColorScheme.dark(),
   // navigationRailTheme: NavigationRailThemeData(
   //   backgroundColor: Colors.transparent,
   //   useIndicator: true,
@@ -60,7 +57,9 @@ ThemeData themeData = ThemeData(
   //     return Colors.grey[700]!;
   //   }),
   // ),
-  // cardColor: const Color(0xFF2E7D32).withOpacity(0.5),
+  cardTheme: const CardTheme(
+    color: Color.fromARGB(255, 78, 70, 80),
+  ),
   // expansionTileTheme: ExpansionTileThemeData(
   //   iconColor: Colors.green[400],
   //   collapsedIconColor: Colors.green[400],

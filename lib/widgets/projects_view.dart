@@ -3,7 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:stupig_proto/models/models.dart';
 import 'package:stupig_proto/state_management/game_state/game_state_notifier.dart';
 import 'package:stupig_proto/utils/constants.dart';
-import 'package:stupig_proto/widgets/flippable_card.dart';
+import 'package:stupig_proto/widgets/project_card.dart';
 
 class ProjectsView extends ConsumerWidget {
   const ProjectsView({super.key});
@@ -11,72 +11,84 @@ class ProjectsView extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return ref.watch(gameStateNotifierProvider).when(
-          data: (gameState) => Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Expanded(
-                child: DragTarget<Project>(
-                  onWillAcceptWithDetails: (d) {
-                    return d.data.status == ProjectStatus.notStarted && gameState.satisfyPrereq(d.data.prerequisite);
-                  },
-                  onAcceptWithDetails: (details) =>
-                      ref.read(gameStateNotifierProvider.notifier).startProject(details.data),
-                  builder: (context, candidateData, rejectedData) => candidateData.isNotEmpty
-                      ? Container(
-                          color: Colors.green,
-                        )
-                      : Placeholder(
-                          child: ListView.builder(
-                            // shrinkWrap: true,
-                            itemCount: gameState.projects.where((p) => p.status == ProjectStatus.inProgress).length,
-                            itemBuilder: (context, index) => Draggable(
-                              feedback: SizedBox(
-                                height: kCardHeight,
-                                width: kCardWidth,
-                                child: FlippableCard(
-                                  title: gameState.projects[index].name,
-                                  backContent: Text(gameState.projects[index].description),
-                                ),
-                              ),
-                              child: SizedBox(
-                                height: kCardHeight,
-                                width: kCardWidth,
-                                child: FlippableCard(
-                                  title: gameState.projects[index].name,
-                                  backContent: Text(gameState.projects[index].description),
-                                ),
-                              ),
-                            ),
+          data: (gameState) {
+            final inProgressProjects = gameState.projects.where((p) => p.status == ProjectStatus.inProgress).toList();
+            final notStartedProjects = gameState.projects.where((p) => p.status == ProjectStatus.notStarted).toList();
+
+            return Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Expanded(
+                  child: Column(
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          const Text(
+                            'In progress',
+                            style: TextStyle(fontSize: 20),
                           ),
-                        ),
-                ), // First section
-              ),
-              Expanded(
-                child: ListView.builder(
-                  shrinkWrap: true,
-                  itemCount: gameState.projects.where((p) => p.status == ProjectStatus.notStarted).length,
-                  itemExtent: kCardHeight,
-                  itemBuilder: (context, index) => Draggable(
-                    data: gameState.projects[index],
-                    feedback: SizedBox(
-                      height: kCardHeight,
-                      width: kCardWidth,
-                      child: FlippableCard(
-                        title: gameState.projects[index].name,
-                        backContent: Text(gameState.projects[index].description),
+                          Text('${gameState.usedRam} / ${gameState.ram} GB (RAM)',
+                              style: const TextStyle(fontSize: 20)),
+                        ],
                       ),
-                    ),
-                    child: FlippableCard(
-                      title: gameState.projects[index].name,
-                      backContent: Text(gameState.projects[index].description),
-                    ),
+                      Expanded(
+                        child: DragTarget<Project>(
+                          onWillAcceptWithDetails: (d) {
+                            return d.data.status == ProjectStatus.notStarted &&
+                                gameState.satisfyPrereq(d.data.prerequisite);
+                          },
+                          onAcceptWithDetails: (details) =>
+                              ref.read(gameStateNotifierProvider.notifier).startProject(details.data),
+                          builder: (context, candidateData, rejectedData) {
+                            return Container(
+                              decoration: BoxDecoration(
+                                  border: Border.all(
+                                    color: candidateData.isNotEmpty ? Colors.green : Colors.red,
+                                    width: 2,
+                                    style: BorderStyle.solid,
+                                    strokeAlign: BorderSide.strokeAlignCenter,
+                                  ),
+                                  borderRadius: BorderRadius.circular(12)),
+                              child: ListView.builder(
+                                itemCount: inProgressProjects.length,
+                                itemBuilder: (context, index) {
+                                  final project = inProgressProjects[index];
+                                  return ProjectCard(
+                                    project: project,
+                                  );
+                                },
+                              ),
+                            );
+                          },
+                        ),
+                      ),
+                    ],
                   ),
-                ), // Second section
-              ),
-            ],
-          ),
+                ),
+                Expanded(
+                  child: ListView.builder(
+                    itemCount: notStartedProjects.length,
+                    itemExtent: kCardHeight,
+                    itemBuilder: (context, index) {
+                      final project = notStartedProjects[index];
+                      return Draggable(
+                        feedback: ProjectCard(
+                          project: project,
+                        ),
+                        data: project,
+                        child: ProjectCard(
+                          project: project,
+                        ),
+                      );
+                    },
+                  ),
+                ),
+              ],
+            );
+          },
           error: (error, stackTrace) => const Center(
-            child: Text('An error has occured'),
+            child: Text('An error has occurred'),
           ),
           loading: () => const Center(
             child: CircularProgressIndicator(),

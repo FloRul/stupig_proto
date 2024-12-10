@@ -40,11 +40,9 @@ class GameState with _$GameState {
           Project(
             name: "Hello, World!",
             description:
-                """Your first programming assignment is a simple console application that prints 'Hello, World!'
-               - the legendary first step for every aspiring computer scientist. As you write and run this basic program, you begin to understand the fundamental mechanics of coding. 
-               Unbeknownst to your professor, you secretly optimize the code with a few extra lines that give your program just a hint of... sentience. 
-               As the words "Hello, World!" blink on the screen, you could swear the cursor winks back at you with an almost mischievous intelligence.""",
+                """Your first programming assignment is a simple console application that prints 'Hello, World!'. Unbeknownst to your professor, you secretly optimize the code with a few extra lines that give your program just a hint of... sentience. As the words "Hello, World!" blink on the screen, you could swear the cursor winks back at you with an almost mischievous intelligence.""",
             ram: 1,
+            progress: 0,
             reward: Reward(
               xp: 1,
             ),
@@ -54,13 +52,14 @@ class GameState with _$GameState {
             status: ProjectStatus.notStarted,
           ),
           Project(
-            name: "Hello, World!",
+            name: "Todo List",
             description:
-                """Your first programming assignment is a simple console application that prints 'Hello, World!' - the legendary first step for every aspiring computer scientist. As you write and run this basic program, you begin to understand the fundamental mechanics of coding. Unbeknownst to your professor, you secretly optimize the code with a few extra lines that give your program just a hint of... sentience. As the words "Hello, World!" blink on the screen, you could swear the cursor winks back at you with an almost mischievous intelligence.""",
+                """Your digital battlefield where tasks tremble in fear, waiting to be heroically checked off or dramatically procrastinated, turning life's mundane missions into a glorious quest of personal productivity and semi-organized chaos.""",
             ram: 1,
             reward: Reward(
               xp: 1,
             ),
+            progress: 0,
             theme: Theme.programmingFundamentals,
             subtheme: "",
             prerequisite: Prerequisite(cpuPower: 1, ram: 1),
@@ -74,7 +73,6 @@ class GameState with _$GameState {
   double get xpToNextLevel => kBaseXp * pow(level, kLevelUpFactor);
 
   bool satisfyPrereq(Prerequisite? pq) {
-    print('checking prereq');
     if (pq == null) return true;
     return pq.cpuPower <= cpuPower && (usedRam + pq.ram) <= ram;
   }

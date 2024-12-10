@@ -537,6 +537,7 @@ mixin _$Project {
   Theme get theme => throw _privateConstructorUsedError;
   double get ram => throw _privateConstructorUsedError;
   String get subtheme => throw _privateConstructorUsedError;
+  double get progress => throw _privateConstructorUsedError;
   Reward get reward => throw _privateConstructorUsedError;
   Prerequisite? get prerequisite => throw _privateConstructorUsedError;
   ProjectStatus get status => throw _privateConstructorUsedError;
@@ -561,6 +562,7 @@ abstract class $ProjectCopyWith<$Res> {
       Theme theme,
       double ram,
       String subtheme,
+      double progress,
       Reward reward,
       Prerequisite? prerequisite,
       ProjectStatus status});
@@ -589,6 +591,7 @@ class _$ProjectCopyWithImpl<$Res, $Val extends Project>
     Object? theme = null,
     Object? ram = null,
     Object? subtheme = null,
+    Object? progress = null,
     Object? reward = null,
     Object? prerequisite = freezed,
     Object? status = null,
@@ -614,6 +617,10 @@ class _$ProjectCopyWithImpl<$Res, $Val extends Project>
           ? _value.subtheme
           : subtheme // ignore: cast_nullable_to_non_nullable
               as String,
+      progress: null == progress
+          ? _value.progress
+          : progress // ignore: cast_nullable_to_non_nullable
+              as double,
       reward: null == reward
           ? _value.reward
           : reward // ignore: cast_nullable_to_non_nullable
@@ -667,6 +674,7 @@ abstract class _$$ProjectImplCopyWith<$Res> implements $ProjectCopyWith<$Res> {
       Theme theme,
       double ram,
       String subtheme,
+      double progress,
       Reward reward,
       Prerequisite? prerequisite,
       ProjectStatus status});
@@ -695,6 +703,7 @@ class __$$ProjectImplCopyWithImpl<$Res>
     Object? theme = null,
     Object? ram = null,
     Object? subtheme = null,
+    Object? progress = null,
     Object? reward = null,
     Object? prerequisite = freezed,
     Object? status = null,
@@ -720,6 +729,10 @@ class __$$ProjectImplCopyWithImpl<$Res>
           ? _value.subtheme
           : subtheme // ignore: cast_nullable_to_non_nullable
               as String,
+      progress: null == progress
+          ? _value.progress
+          : progress // ignore: cast_nullable_to_non_nullable
+              as double,
       reward: null == reward
           ? _value.reward
           : reward // ignore: cast_nullable_to_non_nullable
@@ -745,6 +758,7 @@ class _$ProjectImpl implements _Project {
       required this.theme,
       required this.ram,
       required this.subtheme,
+      required this.progress,
       required this.reward,
       this.prerequisite,
       required this.status});
@@ -763,6 +777,8 @@ class _$ProjectImpl implements _Project {
   @override
   final String subtheme;
   @override
+  final double progress;
+  @override
   final Reward reward;
   @override
   final Prerequisite? prerequisite;
@@ -771,7 +787,7 @@ class _$ProjectImpl implements _Project {
 
   @override
   String toString() {
-    return 'Project(name: $name, description: $description, theme: $theme, ram: $ram, subtheme: $subtheme, reward: $reward, prerequisite: $prerequisite, status: $status)';
+    return 'Project(name: $name, description: $description, theme: $theme, ram: $ram, subtheme: $subtheme, progress: $progress, reward: $reward, prerequisite: $prerequisite, status: $status)';
   }
 
   @override
@@ -786,6 +802,8 @@ class _$ProjectImpl implements _Project {
             (identical(other.ram, ram) || other.ram == ram) &&
             (identical(other.subtheme, subtheme) ||
                 other.subtheme == subtheme) &&
+            (identical(other.progress, progress) ||
+                other.progress == progress) &&
             (identical(other.reward, reward) || other.reward == reward) &&
             (identical(other.prerequisite, prerequisite) ||
                 other.prerequisite == prerequisite) &&
@@ -795,7 +813,7 @@ class _$ProjectImpl implements _Project {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, name, description, theme, ram,
-      subtheme, reward, prerequisite, status);
+      subtheme, progress, reward, prerequisite, status);
 
   /// Create a copy of Project
   /// with the given fields replaced by the non-null parameter values.
@@ -820,6 +838,7 @@ abstract class _Project implements Project {
       required final Theme theme,
       required final double ram,
       required final String subtheme,
+      required final double progress,
       required final Reward reward,
       final Prerequisite? prerequisite,
       required final ProjectStatus status}) = _$ProjectImpl;
@@ -836,6 +855,8 @@ abstract class _Project implements Project {
   double get ram;
   @override
   String get subtheme;
+  @override
+  double get progress;
   @override
   Reward get reward;
   @override

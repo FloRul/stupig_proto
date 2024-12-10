@@ -60,6 +60,7 @@ _$ProjectImpl _$$ProjectImplFromJson(Map<String, dynamic> json) =>
       theme: $enumDecode(_$ThemeEnumMap, json['theme']),
       ram: (json['ram'] as num).toDouble(),
       subtheme: json['subtheme'] as String,
+      progress: (json['progress'] as num).toDouble(),
       reward: Reward.fromJson(json['reward'] as Map<String, dynamic>),
       prerequisite: json['prerequisite'] == null
           ? null
@@ -74,6 +75,7 @@ Map<String, dynamic> _$$ProjectImplToJson(_$ProjectImpl instance) =>
       'theme': _$ThemeEnumMap[instance.theme]!,
       'ram': instance.ram,
       'subtheme': instance.subtheme,
+      'progress': instance.progress,
       'reward': instance.reward,
       'prerequisite': instance.prerequisite,
       'status': _$ProjectStatusEnumMap[instance.status]!,
