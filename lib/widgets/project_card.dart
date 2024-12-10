@@ -79,25 +79,34 @@ class _ProjectCardState extends State<ProjectCard> with SingleTickerProviderStat
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           crossAxisAlignment: CrossAxisAlignment.stretch,
                           children: [
-                            Text(
-                              widget.project.name,
-                              textAlign: TextAlign.left,
-                              style: const TextStyle(
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold,
-                              ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  widget.project.name,
+                                  textAlign: TextAlign.left,
+                                  style: const TextStyle(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                RewardWidget(reward: widget.project.reward),
+                              ],
                             ),
-                            TweenAnimationBuilder<double>(
-                              duration: const Duration(milliseconds: 250),
-                              curve: Curves.linear,
-                              tween: Tween<double>(
-                                begin: 0,
-                                end: widget.project.progress,
-                              ),
-                              builder: (context, value, _) => LinearProgressIndicator(
-                                value: value,
-                                minHeight: 20,
-                                borderRadius: BorderRadius.circular(10),
+                            Visibility(
+                              visible: widget.project.status == ProjectStatus.inProgress,
+                              child: TweenAnimationBuilder<double>(
+                                duration: const Duration(milliseconds: 250),
+                                curve: Curves.linear,
+                                tween: Tween<double>(
+                                  begin: 0,
+                                  end: widget.project.progress,
+                                ),
+                                builder: (context, value, _) => LinearProgressIndicator(
+                                  value: value,
+                                  minHeight: 20,
+                                  borderRadius: BorderRadius.circular(10),
+                                ),
                               ),
                             ),
                             const Text(
@@ -120,6 +129,7 @@ class _ProjectCardState extends State<ProjectCard> with SingleTickerProviderStat
                           padding: const EdgeInsets.all(8.0),
                           child: SingleChildScrollView(
                             child: Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Text(widget.project.description),
                                 const SizedBox(height: 8),
@@ -138,6 +148,72 @@ class _ProjectCardState extends State<ProjectCard> with SingleTickerProviderStat
             );
           },
         ),
+      ),
+    );
+  }
+}
+
+class RewardWidget extends StatelessWidget {
+  const RewardWidget({super.key, required this.reward});
+  final Reward reward;
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.all(8),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(20),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.withOpacity(0.5),
+            spreadRadius: 2,
+            blurRadius: 5,
+            offset: const Offset(0, 3),
+          ),
+        ],
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: [
+          Text(
+            reward.xp.toString(),
+            textAlign: TextAlign.right,
+            style: const TextStyle(
+              fontSize: 14,
+              fontWeight: FontWeight.bold,
+              color: Colors.green,
+            ),
+          ),
+          const SizedBox(width: 4),
+          const Icon(
+            Icons.explore,
+            size: 18,
+            color: Colors.green,
+          ),
+          Visibility(
+            visible: (reward.money ?? 0) > 0,
+            child: Row(
+              children: [
+                const SizedBox(width: 8),
+                Text(
+                  reward.money.toString(),
+                  textAlign: TextAlign.right,
+                  style: const TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.green,
+                  ),
+                ),
+                const SizedBox(width: 4),
+                const Icon(
+                  Icons.attach_money,
+                  size: 18,
+                  color: Colors.green,
+                ),
+              ],
+            ),
+          )
+        ],
       ),
     );
   }

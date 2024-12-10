@@ -1,8 +1,10 @@
 ﻿import 'dart:convert';
+import 'dart:math';
 
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:stupig_proto/models/models.dart';
+import 'package:stupig_proto/state_management/click_stream/click_handling.dart';
 import 'package:stupig_proto/state_management/game_state/game_state.dart';
 import 'package:stupig_proto/utils/constants.dart';
 part 'game_state_notifier.g.dart';
@@ -14,7 +16,9 @@ class GameStateNotifier extends _$GameStateNotifier {
     SharedPreferencesAsync prefs = SharedPreferencesAsync();
 
     final existingSave = await prefs.getString(kGameStateKey);
-
+    ref.listen(clickStreamProvider, (previous, next) {
+      handleClick();
+    });
     if (existingSave == null) {
       return GameState.newGame();
     }
@@ -31,6 +35,18 @@ class GameStateNotifier extends _$GameStateNotifier {
   Future<void> save() async {
     SharedPreferencesAsync prefs = SharedPreferencesAsync();
     await prefs.setString(kGameStateKey, jsonEncode(state.value!.toJson()));
+  }
+
+  Future<void> handleClick() async {
+    // Update the progress
+    var projects = List<Project>.from(state.value!.projects);
+    for (int i = 0; i < projects.length; i++) {
+      if (projects[i].status == ProjectStatus.inProgress) {
+        projects[i] = projects[i].copyWith(progress: min(1, projects[i].progress + 0.1));
+      }
+    }
+
+    state = AsyncValue.data(state.value!.copyWith(projects: projects));
   }
 
   void startProject(Project project) {
