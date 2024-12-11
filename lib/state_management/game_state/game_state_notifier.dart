@@ -42,10 +42,16 @@ class GameStateNotifier extends _$GameStateNotifier {
     var projects = List<Project>.from(state.value!.projects);
     for (int i = 0; i < projects.length; i++) {
       if (projects[i].status == ProjectStatus.inProgress) {
-        projects[i] = projects[i].copyWith(progress: min(1, projects[i].progress + 0.1));
+        projects[i] = projects[i]
+            .copyWith(progress: min(1, projects[i].progress + state.value!.cpuSpeed / kClickPowerDenominator));
       }
     }
-
+    if (projects.any((p) => p.progress >= 1 && p.status == ProjectStatus.inProgress)) {
+      // save();
+      projects = projects
+          .map((p) => p.status == ProjectStatus.inProgress ? p.copyWith(status: ProjectStatus.completed) : p)
+          .toList();
+    }
     state = AsyncValue.data(state.value!.copyWith(projects: projects));
   }
 
