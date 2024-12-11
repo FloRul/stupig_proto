@@ -5,4 +5,4 @@
   - [X] drag area feedback
   - [X] modify the flippable card to handle project progression only in inprogress projects
   - [ ] add feedback when project cannot be started (unsufficient prereq etc...)
-  - [ ] Once a project is completed, it should be removed from the list and the reward should be given to the player.
+  - [X] Once a project is completed, it should be removed from the list and the reward should be given to the player.

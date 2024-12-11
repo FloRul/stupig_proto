@@ -17,8 +17,9 @@ class GameStateNotifier extends _$GameStateNotifier {
 
     final existingSave = await prefs.getString(kGameStateKey);
     ref.listen(clickStreamProvider, (previous, next) {
-      handleClick();
+      _handleClick();
     });
+
     if (existingSave == null) {
       return GameState.newGame();
     }
@@ -37,22 +38,48 @@ class GameStateNotifier extends _$GameStateNotifier {
     await prefs.setString(kGameStateKey, jsonEncode(state.value!.toJson()));
   }
 
-  Future<void> handleClick() async {
-    // Update the progress
-    var projects = List<Project>.from(state.value!.projects);
+  void _handleClick() {
+    // Get the current state and projects
+    var currentState = state.value!;
+    var projects = List<Project>.from(currentState.projects);
+
+    // Update the progress of projects that are in progress
     for (int i = 0; i < projects.length; i++) {
       if (projects[i].status == ProjectStatus.inProgress) {
-        projects[i] = projects[i]
-            .copyWith(progress: min(1, projects[i].progress + state.value!.cpuSpeed / kClickPowerDenominator));
+        projects[i] = projects[i].copyWith(
+          progress: min(1, projects[i].progress + currentState.cpuSpeed / kClickPowerDenominator),
+        );
       }
     }
-    if (projects.any((p) => p.progress >= 1 && p.status == ProjectStatus.inProgress)) {
-      // save();
-      projects = projects
-          .map((p) => p.status == ProjectStatus.inProgress ? p.copyWith(status: ProjectStatus.completed) : p)
-          .toList();
+
+    // Identify projects that are now completed
+    var newCompletedProjects = projects.where((p) => p.progress >= 1 && p.status == ProjectStatus.inProgress).toList();
+
+    var updatedXp = currentState.xp;
+    var updatedMoney = currentState.money;
+
+    if (newCompletedProjects.isNotEmpty) {
+      // Calculate total rewards from completed projects
+      for (var project in newCompletedProjects) {
+        updatedXp += project.reward.xp;
+        updatedMoney += (project.reward.money ?? 0);
+      }
+
+      // Update the status of completed projects in the projects list
+      projects = projects.map((p) {
+        if (p.status == ProjectStatus.inProgress && p.progress >= 1) {
+          return p.copyWith(status: ProjectStatus.completed);
+        }
+        return p;
+      }).toList();
     }
-    state = AsyncValue.data(state.value!.copyWith(projects: projects));
+
+    // Update the state with all changes at once
+    state = AsyncValue.data(currentState.copyWith(
+      projects: projects,
+      xp: updatedXp,
+      money: updatedMoney,
+    ));
   }
 
   void startProject(Project project) {
