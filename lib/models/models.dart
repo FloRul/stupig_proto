@@ -52,6 +52,8 @@ class Prerequisite with _$Prerequisite {
 
 enum ProjectStatus { notStarted, inProgress, completed }
 
+enum Rarity { common, uncommon, rare, epic, legendary }
+
 @freezed
 class Project with _$Project {
   const factory Project({
@@ -62,8 +64,9 @@ class Project with _$Project {
     required String subtheme,
     required double progress,
     required Reward reward,
-    Prerequisite? prerequisite,
+    required Prerequisite? prerequisite,
     required ProjectStatus status,
+    required Rarity rarity,
   }) = _Project;
 
   factory Project.fromJson(Map<String, Object?> json) => _$ProjectFromJson(json);

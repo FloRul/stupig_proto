@@ -1,0 +1,162 @@
+﻿openapi: 3.0.1
+info:
+  title: stupig
+  description: API for Stupig, to generate random projects and events with LLMs
+  version: 1.0.0
+paths:
+  /project:
+    get:
+      summary: Return a random project
+      security:
+        - ApiKey: []
+      parameters:
+        - in: query
+          name: theme
+          schema:
+            type: string
+        - in: query
+          name: subtheme
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Successful response
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: "string"
+            Access-Control-Allow-Headers:
+              schema:
+                type: "string"
+            Access-Control-Allow-Methods:
+              schema:
+                type: "string"
+            Access-Control-Allow-Credentials:
+              schema:
+                type: "boolean"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Project"
+      x-amazon-apigateway-integration:
+        uri: "arn:aws:apigateway:${aws_region}:lambda:path/2015-03-31/functions/${lambda_invoke_arn}/invocations"
+        httpMethod: POST
+        type: aws_proxy
+    options:
+      summary: CORS support
+      description: Enable CORS by returning correct headers
+      responses:
+        200:
+          description: Default response for CORS method
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: "string"
+            Access-Control-Allow-Headers:
+              schema:
+                type: "string"
+            Access-Control-Allow-Methods:
+              schema:
+                type: "string"
+            Access-Control-Allow-Credentials:
+              schema:
+                type: "boolean"
+          content: {}
+      x-amazon-apigateway-integration:
+        type: mock
+        requestTemplates:
+          application/json: '{"statusCode": 200}'
+        passthroughBehavior: "never"
+        responses:
+          default:
+            statusCode: "200"
+            responseParameters:
+              method.response.header.Access-Control-Allow-Headers: "'Content-Type,Authorization'"
+              method.response.header.Access-Control-Allow-Methods: "'GET,POST,PUT,DELETE,OPTIONS'"
+              method.response.header.Access-Control-Allow-Origin: "'*'"
+              method.response.header.Access-Control-Allow-Credentials: "'true'"
+  /event:
+    get:
+      summary: Return a random event
+      security:
+        - ApiKey: []
+      responses:
+        "200":
+          description: Successful response
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: "string"
+            Access-Control-Allow-Headers:
+              schema:
+                type: "string"
+            Access-Control-Allow-Methods:
+              schema:
+                type: "string"
+            Access-Control-Allow-Credentials:
+              schema:
+                type: "boolean"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Event"
+      x-amazon-apigateway-integration:
+        uri: "arn:aws:apigateway:${aws_region}:lambda:path/2015-03-31/functions/${lambda_invoke_arn}/invocations"
+        httpMethod: POST
+        type: aws_proxy
+    options:
+      summary: CORS support
+      description: Enable CORS by returning correct headers
+      responses:
+        200:
+          description: Default response for CORS method
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: "string"
+            Access-Control-Allow-Headers:
+              schema:
+                type: "string"
+            Access-Control-Allow-Methods:
+              schema:
+                type: "string"
+            Access-Control-Allow-Credentials:
+              schema:
+                type: "boolean"
+          content: {}
+      x-amazon-apigateway-integration:
+        type: mock
+        requestTemplates:
+          application/json: '{"statusCode": 200}'
+        passthroughBehavior: "never"
+        responses:
+          default:
+            statusCode: "200"
+            responseParameters:
+              method.response.header.Access-Control-Allow-Headers: "'Content-Type,Authorization'"
+              method.response.header.Access-Control-Allow-Methods: "'GET,POST,PUT,DELETE,OPTIONS'"
+              method.response.header.Access-Control-Allow-Origin: "'*'"
+              method.response.header.Access-Control-Allow-Credentials: "'true'"
+components:
+  schemas:
+    Project:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+    Event:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        baseSuccessRate:
+          type: number
+  securitySchemes:
+    ApiKey:
+      type: "apiKey"
+      name: "x-api-key"
+      in: "header"

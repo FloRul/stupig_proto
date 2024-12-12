@@ -66,6 +66,7 @@ _$ProjectImpl _$$ProjectImplFromJson(Map<String, dynamic> json) =>
           ? null
           : Prerequisite.fromJson(json['prerequisite'] as Map<String, dynamic>),
       status: $enumDecode(_$ProjectStatusEnumMap, json['status']),
+      rarity: $enumDecode(_$RarityEnumMap, json['rarity']),
     );
 
 Map<String, dynamic> _$$ProjectImplToJson(_$ProjectImpl instance) =>
@@ -79,10 +80,19 @@ Map<String, dynamic> _$$ProjectImplToJson(_$ProjectImpl instance) =>
       'reward': instance.reward,
       'prerequisite': instance.prerequisite,
       'status': _$ProjectStatusEnumMap[instance.status]!,
+      'rarity': _$RarityEnumMap[instance.rarity]!,
     };
 
 const _$ProjectStatusEnumMap = {
   ProjectStatus.notStarted: 'notStarted',
   ProjectStatus.inProgress: 'inProgress',
   ProjectStatus.completed: 'completed',
+};
+
+const _$RarityEnumMap = {
+  Rarity.common: 'common',
+  Rarity.uncommon: 'uncommon',
+  Rarity.rare: 'rare',
+  Rarity.epic: 'epic',
+  Rarity.legendary: 'legendary',
 };

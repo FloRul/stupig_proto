@@ -541,6 +541,7 @@ mixin _$Project {
   Reward get reward => throw _privateConstructorUsedError;
   Prerequisite? get prerequisite => throw _privateConstructorUsedError;
   ProjectStatus get status => throw _privateConstructorUsedError;
+  Rarity get rarity => throw _privateConstructorUsedError;
 
   /// Serializes this Project to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -565,7 +566,8 @@ abstract class $ProjectCopyWith<$Res> {
       double progress,
       Reward reward,
       Prerequisite? prerequisite,
-      ProjectStatus status});
+      ProjectStatus status,
+      Rarity rarity});
 
   $RewardCopyWith<$Res> get reward;
   $PrerequisiteCopyWith<$Res>? get prerequisite;
@@ -595,6 +597,7 @@ class _$ProjectCopyWithImpl<$Res, $Val extends Project>
     Object? reward = null,
     Object? prerequisite = freezed,
     Object? status = null,
+    Object? rarity = null,
   }) {
     return _then(_value.copyWith(
       name: null == name
@@ -633,6 +636,10 @@ class _$ProjectCopyWithImpl<$Res, $Val extends Project>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as ProjectStatus,
+      rarity: null == rarity
+          ? _value.rarity
+          : rarity // ignore: cast_nullable_to_non_nullable
+              as Rarity,
     ) as $Val);
   }
 
@@ -677,7 +684,8 @@ abstract class _$$ProjectImplCopyWith<$Res> implements $ProjectCopyWith<$Res> {
       double progress,
       Reward reward,
       Prerequisite? prerequisite,
-      ProjectStatus status});
+      ProjectStatus status,
+      Rarity rarity});
 
   @override
   $RewardCopyWith<$Res> get reward;
@@ -707,6 +715,7 @@ class __$$ProjectImplCopyWithImpl<$Res>
     Object? reward = null,
     Object? prerequisite = freezed,
     Object? status = null,
+    Object? rarity = null,
   }) {
     return _then(_$ProjectImpl(
       name: null == name
@@ -745,6 +754,10 @@ class __$$ProjectImplCopyWithImpl<$Res>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as ProjectStatus,
+      rarity: null == rarity
+          ? _value.rarity
+          : rarity // ignore: cast_nullable_to_non_nullable
+              as Rarity,
     ));
   }
 }
@@ -760,8 +773,9 @@ class _$ProjectImpl implements _Project {
       required this.subtheme,
       required this.progress,
       required this.reward,
-      this.prerequisite,
-      required this.status});
+      required this.prerequisite,
+      required this.status,
+      required this.rarity});
 
   factory _$ProjectImpl.fromJson(Map<String, dynamic> json) =>
       _$$ProjectImplFromJson(json);
@@ -784,10 +798,12 @@ class _$ProjectImpl implements _Project {
   final Prerequisite? prerequisite;
   @override
   final ProjectStatus status;
+  @override
+  final Rarity rarity;
 
   @override
   String toString() {
-    return 'Project(name: $name, description: $description, theme: $theme, ram: $ram, subtheme: $subtheme, progress: $progress, reward: $reward, prerequisite: $prerequisite, status: $status)';
+    return 'Project(name: $name, description: $description, theme: $theme, ram: $ram, subtheme: $subtheme, progress: $progress, reward: $reward, prerequisite: $prerequisite, status: $status, rarity: $rarity)';
   }
 
   @override
@@ -807,13 +823,14 @@ class _$ProjectImpl implements _Project {
             (identical(other.reward, reward) || other.reward == reward) &&
             (identical(other.prerequisite, prerequisite) ||
                 other.prerequisite == prerequisite) &&
-            (identical(other.status, status) || other.status == status));
+            (identical(other.status, status) || other.status == status) &&
+            (identical(other.rarity, rarity) || other.rarity == rarity));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, name, description, theme, ram,
-      subtheme, progress, reward, prerequisite, status);
+      subtheme, progress, reward, prerequisite, status, rarity);
 
   /// Create a copy of Project
   /// with the given fields replaced by the non-null parameter values.
@@ -840,8 +857,9 @@ abstract class _Project implements Project {
       required final String subtheme,
       required final double progress,
       required final Reward reward,
-      final Prerequisite? prerequisite,
-      required final ProjectStatus status}) = _$ProjectImpl;
+      required final Prerequisite? prerequisite,
+      required final ProjectStatus status,
+      required final Rarity rarity}) = _$ProjectImpl;
 
   factory _Project.fromJson(Map<String, dynamic> json) = _$ProjectImpl.fromJson;
 
@@ -863,6 +881,8 @@ abstract class _Project implements Project {
   Prerequisite? get prerequisite;
   @override
   ProjectStatus get status;
+  @override
+  Rarity get rarity;
 
   /// Create a copy of Project
   /// with the given fields replaced by the non-null parameter values.

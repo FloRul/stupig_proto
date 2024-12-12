@@ -49,6 +49,7 @@ class GameState with _$GameState {
           subtheme: "",
           prerequisite: Prerequisite(cpuPower: 1, ram: 1),
           status: ProjectStatus.notStarted,
+          rarity: Rarity.common,
         ),
         Project(
           name: "Todo List",
@@ -61,6 +62,7 @@ class GameState with _$GameState {
           subtheme: "",
           prerequisite: Prerequisite(cpuPower: 1, ram: 1),
           status: ProjectStatus.notStarted,
+          rarity: Rarity.common,
         ),
       ],
     );
