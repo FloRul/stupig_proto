@@ -1,9 +1,5 @@
-﻿import json
-import os
-from datetime import datetime, timedelta, timezone
+﻿import os
 from typing import Dict
-
-from pydantic import ValidationError
 
 
 import boto3
@@ -12,8 +8,6 @@ from aws_lambda_powertools.event_handler import APIGatewayRestResolver, Response
 from aws_lambda_powertools.utilities.typing import LambdaContext
 from aws_lambda_powertools.logging import correlation_paths
 
-from boto3.dynamodb.conditions import Key
-from botocore.exceptions import ClientError
 
 tracer = Tracer()
 logger = Logger()
@@ -47,7 +41,9 @@ def handle_http_error(error: HttpError):
 
 @app.get("/project")
 @tracer.capture_method
-def get_random_project(theme: str, subtheme: str):
+def get_random_project():
+    theme = app.current_event.query_string_parameters["theme"]
+    subtheme = app.current_event.query_string_parameters["subtheme"]
     try:
         return {
             "name": "Random Project",
@@ -58,7 +54,7 @@ def get_random_project(theme: str, subtheme: str):
         raise HttpError(500, str(e))
 
 
-@app.post("/event")
+@app.get("/event")
 @tracer.capture_method
 def get_random_event():
     try:

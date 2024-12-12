@@ -43,34 +43,13 @@ resource "aws_acm_certificate_validation" "cert" {
   validation_record_fqdns = [for record in aws_route53_record.cert_validation : record.fqdn]
 }
 
-# CloudFront Distribution
 resource "aws_cloudfront_distribution" "api_distribution" {
-  enabled             = true
-  is_ipv6_enabled    = true
-  comment            = "API Distribution"
-  price_class        = "PriceClass_100"
-  aliases            = [var.domain_name]
+  enabled          = true
+  is_ipv6_enabled = true
+  aliases         = [var.domain_name]  # "stupigame.com"
 
-  # Default behavior (dev)
-  default_cache_behavior {
-    allowed_methods        = ["DELETE", "GET", "HEAD", "OPTIONS", "PATCH", "POST", "PUT"]
-    cached_methods         = ["GET", "HEAD"]
-    target_origin_id      = "dev-api"
-    viewer_protocol_policy = "redirect-to-https"
-
-    forwarded_values {
-      query_string = true
-      headers      = ["*"]
-
-      cookies {
-        forward = "all"
-      }
-    }
-  }
-
-  # Dev origin
   origin {
-    domain_name = var.dev_api_domain
+    domain_name = "${var.dev_api_id}.execute-api.${var.region}.amazonaws.com"  # Will be something like "xxxxx.execute-api.region.amazonaws.com"
     origin_id   = "dev-api"
 
     custom_origin_config {
@@ -79,6 +58,29 @@ resource "aws_cloudfront_distribution" "api_distribution" {
       origin_protocol_policy = "https-only"
       origin_ssl_protocols   = ["TLSv1.2"]
     }
+
+    # If you need to include the stage path from API Gateway
+    origin_path = "/dev"  # or whatever your stage name is
+  }
+
+  default_cache_behavior {
+    allowed_methods  = ["DELETE", "GET", "HEAD", "OPTIONS", "PATCH", "POST", "PUT"]
+    cached_methods   = ["GET", "HEAD"]
+    target_origin_id = "dev-api"
+
+    forwarded_values {
+      query_string = true
+      headers      = ["Authorization", "Host"]  # Add any headers your API needs
+
+      cookies {
+        forward = "all"
+      }
+    }
+
+    viewer_protocol_policy = "redirect-to-https"
+    min_ttl                = 0
+    default_ttl            = 0  # Don't cache by default
+    max_ttl                = 0
   }
 
   viewer_certificate {

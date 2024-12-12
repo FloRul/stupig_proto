@@ -3,7 +3,12 @@
   nullable = false
 }
 
-variable "dev_api_domain" {
-  description = "Domain name for dev API"
+variable "dev_api_id" {
+  description = "Id name for dev API"
+  type        = string
+}
+
+variable "region" {
+  description = "AWS region"
   type        = string
 }
