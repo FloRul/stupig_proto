@@ -60,7 +60,7 @@ resource "aws_cloudfront_distribution" "api_distribution" {
     }
 
     # If you need to include the stage path from API Gateway
-    origin_path = "/dev"  # or whatever your stage name is
+    origin_path = "/dev"
   }
 
   default_cache_behavior {
@@ -68,19 +68,8 @@ resource "aws_cloudfront_distribution" "api_distribution" {
     cached_methods   = ["GET", "HEAD"]
     target_origin_id = "dev-api"
 
-    forwarded_values {
-      query_string = true
-      headers      = ["Authorization", "Host"]  # Add any headers your API needs
-
-      cookies {
-        forward = "all"
-      }
-    }
-
+    cache_policy_id ="4135ea2d-6df8-44a3-9df3-4b5a84be39ad" # 
     viewer_protocol_policy = "redirect-to-https"
-    min_ttl                = 0
-    default_ttl            = 0  # Don't cache by default
-    max_ttl                = 0
   }
 
   viewer_certificate {
