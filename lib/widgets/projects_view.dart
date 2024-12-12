@@ -15,7 +15,7 @@ class ProjectsView extends ConsumerWidget {
             final inProgressProjects = gameState.projects.where((p) => p.status == ProjectStatus.inProgress).toList();
             final notStartedProjects = gameState.projects.where((p) => p.status == ProjectStatus.notStarted).toList();
 
-            return Row(
+            return Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Expanded(

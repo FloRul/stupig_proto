@@ -48,7 +48,6 @@ def get_random_project():
         return {
             "name": "Random Project",
             "description": "This is a project",
-            "baseSuccessRate": 0.5,
         }
     except Exception as e:
         raise HttpError(500, str(e))
@@ -61,6 +60,7 @@ def get_random_event():
         return {
             "name": "Random Event",
             "description": "This is an event",
+            "baseSuccessRate": 0.5,
         }
     except Exception as e:
         raise HttpError(500, str(e))

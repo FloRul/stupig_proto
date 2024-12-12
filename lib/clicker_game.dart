@@ -10,29 +10,72 @@ class ClickerGame extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Row(
-          children: [
-            Expanded(
-              child: XpStatus(),
-            ),
-            Spacer(),
-            Expanded(child: ClickCounter()),
-          ],
-        ),
-      ),
-      body: const Padding(
+    return const Scaffold(
+      body: Padding(
         padding: EdgeInsets.all(8.0),
-        child: Column(
+        child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Expanded(
-              child: ProjectsView(),
+              child: GroupArea(
+                title: 'Resources',
+                child: Column(
+                  children: [
+                    XpStatus(),
+                    ClickCounter(),
+                  ],
+                ),
+              ),
             ),
-            Expanded(child: TapArea()),
+            Expanded(
+              flex: 2,
+              child: GroupArea(
+                title: 'Projects',
+                child: Column(
+                  children: [
+                    Expanded(flex: 2, child: ProjectsView()),
+                    Expanded(child: TapArea()),
+                  ],
+                ),
+              ),
+            ),
+            Expanded(
+              child: GroupArea(
+                title: 'Hardware upgrades',
+              ),
+            )
           ],
         ),
+      ),
+    );
+  }
+}
+
+class GroupArea extends StatelessWidget {
+  const GroupArea({
+    super.key,
+    this.title,
+    this.child,
+  });
+
+  final String? title;
+  final Widget? child;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        color: Colors.black26,
+        borderRadius: BorderRadius.circular(20),
+      ),
+      padding: const EdgeInsets.all(8.0),
+      margin: const EdgeInsets.all(8.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          if (title != null) Text(title!, style: const TextStyle(fontSize: 20)),
+          Expanded(child: child ?? const Placeholder()),
+        ],
       ),
     );
   }

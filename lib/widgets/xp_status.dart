@@ -14,7 +14,6 @@ class XpStatus extends ConsumerWidget {
         ))
         .when(
           data: (data) {
-            print(data);
             return Tooltip(
               message: '${data.$1} / ${data.$3}',
               child: Row(

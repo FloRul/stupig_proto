@@ -1,0 +1,484 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>AI Overlord Clicker</title>
+  <style>
+    /* Basic styling for layout visualization */
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 20px;
+      background-color: #1a1a1a;
+      color: #ffffff;
+    }
+
+    .container {
+      display: grid;
+      grid-template-columns: 250px 1fr 300px;
+      gap: 20px;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .stats-panel,
+    .main-panel,
+    .upgrade-panel {
+      background-color: #2a2a2a;
+      padding: 15px;
+      border-radius: 8px;
+    }
+
+    .resource {
+      margin: 10px 0;
+      padding: 10px;
+      background-color: #333;
+      border-radius: 4px;
+    }
+
+    .click-area {
+      height: 200px;
+      background-color: #333;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      margin-bottom: 20px;
+    }
+
+    .progress-section {
+      margin: 20px 0;
+    }
+
+    .upgrade-item {
+      margin: 10px 0;
+      padding: 10px;
+      background-color: #333;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .achievement {
+      margin: 5px 0;
+      padding: 5px;
+      background-color: #444;
+      border-radius: 4px;
+    }
+
+    .project-container {
+            display: grid;
+            grid-template-rows: auto auto;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .project-area {
+            background-color: #333;
+            padding: 15px;
+            border-radius: 8px;
+            min-height: 200px;
+        }
+
+        .project-card {
+            background-color: #444;
+            padding: 10px;
+            margin: 10px;
+            border-radius: 4px;
+            cursor: move;
+            user-select: none;
+        }
+
+        .project-card.dragging {
+            opacity: 0.5;
+        }
+
+        .project-requirements {
+            font-size: 0.8em;
+            color: #aaa;
+        }
+
+        .project-progress {
+            height: 5px;
+            background-color: #555;
+            margin-top: 5px;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background-color: #4CAF50;
+            width: 0%;
+        }
+
+        .hardware-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .hardware-stat {
+            background-color: #333;
+            padding: 10px;
+            border-radius: 4px;
+        }
+        .active-project-card {
+        background-color: #444;
+        padding: 15px;
+        margin: 10px;
+        border-radius: 4px;
+        position: relative;
+    }
+
+    .click-zone {
+        background-color: #2c3e50;
+        padding: 20px;
+        margin: 10px 0;
+        border-radius: 4px;
+        cursor: pointer;
+        text-align: center;
+        transition: background-color 0.1s;
+    }
+
+    .click-zone:hover {
+        background-color: #34495e;
+    }
+
+    .click-zone:active {
+        background-color: #2980b9;
+        transform: scale(0.98);
+    }
+
+    .click-particle {
+        position: absolute;
+        pointer-events: none;
+        animation: floatUp 0.8s ease-out forwards;
+        font-weight: bold;
+        color: #4CAF50;
+    }
+
+    @keyframes floatUp {
+        0% {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        100% {
+            opacity: 0;
+            transform: translateY(-50px);
+        }
+    }
+
+    .project-info {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 10px;
+        margin-bottom: 10px;
+    }
+
+    .progress-container {
+        margin-top: 10px;
+    }
+
+    .progress-bar {
+        height: 8px;
+        background-color: #555;
+        border-radius: 4px;
+        overflow: hidden;
+    }
+
+    .progress-fill {
+        height: 100%;
+        background-color: #4CAF50;
+        width: 0%;
+        transition: width 0.1s ease;
+    }
+
+    .project-stats {
+        font-size: 0.9em;
+        color: #aaa;
+        display: flex;
+        justify-content: space-between;
+        margin-top: 5px;
+    }
+
+    .auto-progress {
+        font-size: 0.8em;
+        color: #666;
+        text-align: right;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <!-- Left Panel - Stats & Resources -->
+    <div class="stats-panel">
+      <h2>Primary Resources</h2>
+      <div class="resource">
+        <div>Experience: <span id="xp">0</span> XP</div>
+        <div>XP/sec: <span id="xp-rate">0</span></div>
+      </div>
+      <div class="resource">
+        <div>Money: \$<span id="money">0</span></div>
+        <div>\$/sec: <span id="money-rate">0</span></div>
+      </div>
+
+      <h2>Hardware Stats</h2>
+      <div class="hardware-stats">
+        <div class="hardware-stat">
+          <div>CPU Power: <span id="cpu-power">1.0</span> GHz</div>
+          <div class="description">Unlocks advanced projects</div>
+        </div>
+        <div class="hardware-stat">
+          <div>GPU VRAM: <span id="gpu-vram">2</span> GB</div>
+          <div class="description">Auto-completion speed</div>
+        </div>
+        <div class="hardware-stat">
+          <div>RAM: <span id="ram">4</span> GB</div>
+          <div class="description">Active project slots</div>
+        </div>
+        <div class="hardware-stat">
+          <div>CPU Speed: <span id="cpu-speed">2.4</span> GHz</div>
+          <div class="description">Click efficiency</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Center Panel - Project Management -->
+    <div class="main-panel">
+      <h2>Project Management</h2>
+
+      <div class="project-container">
+        <div class="active-projects">
+          <h3>Active Projects (<span id="active-count">0</span>/<span id="max-active">2</span>)</h3>
+          <div class="project-area" id="active-project-area">
+            <!-- Example of an active project -->
+            <div class="active-project-card" data-project-id="1">
+              <div class="project-info">
+                <div>
+                  <h4>Basic Algorithm Implementation</h4>
+                  <div class="project-requirements">CPU Power: 1.0 GHz</div>
+                </div>
+                <div>
+                  <div class="reward">\$100, 50 XP</div>
+                </div>
+              </div>
+        
+              <div class="click-zone">
+                <div>CLICK TO PROCESS</div>
+                <div class="click-power">+<span class="power-value">1</span> progress per click</div>
+              </div>
+        
+              <div class="progress-container">
+                <div class="progress-bar">
+                  <div class="progress-fill"></div>
+                </div>
+                <div class="project-stats">
+                  <span class="progress-value">0 / 100</span>
+                  <span class="auto-progress">Auto: +<span class="auto-rate">0.1</span>/s</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="available-projects">
+          <h3>Available Projects</h3>
+          <div class="project-area" id="available-project-area">
+            <div class="project-card" draggable="true" data-project-id="1">
+              <h4>Basic Algorithm Implementation</h4>
+              <div class="project-requirements">
+                Requires: CPU Power 1.0 GHz
+              </div>
+              <div>Reward: \$100, 50 XP</div>
+              <div class="project-progress">
+                <div class="progress-bar"></div>
+              </div>
+            </div>
+            <!-- More project cards... -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right Panel - Upgrades -->
+    <div class="upgrade-panel">
+      <h2>Hardware Upgrades</h2>
+      <div class="upgrade-item">
+        CPU Power Upgrade - \$500
+        <div class="description">+0.5 GHz CPU Power</div>
+        <div class="effect">Unlocks more complex projects</div>
+      </div>
+      <div class="upgrade-item">
+        GPU VRAM Upgrade - \$800
+        <div class="description">+2 GB VRAM</div>
+        <div class="effect">Faster auto-completion</div>
+      </div>
+      <div class="upgrade-item">
+        RAM Upgrade - \$300
+        <div class="description">+4 GB RAM</div>
+        <div class="effect">+1 Active project slot</div>
+      </div>
+      <div class="upgrade-item">
+        CPU Speed Upgrade - \$400
+        <div class="description">+0.4 GHz Speed</div>
+        <div class="effect">Faster click processing</div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Basic drag and drop functionality
+    document.addEventListener('DOMContentLoaded', () => {
+      const projectCards = document.querySelectorAll('.project-card');
+      const dropAreas = document.querySelectorAll('.project-area');
+
+      projectCards.forEach(card => {
+        card.addEventListener('dragstart', (e) => {
+          card.classList.add('dragging');
+          e.dataTransfer.setData('text/plain', card.dataset.projectId);
+        });
+
+        card.addEventListener('dragend', () => {
+          card.classList.remove('dragging');
+        });
+      });
+
+      dropAreas.forEach(area => {
+        area.addEventListener('dragover', (e) => {
+          e.preventDefault();
+        });
+
+        area.addEventListener('drop', (e) => {
+          e.preventDefault();
+          const projectId = e.dataTransfer.getData('text/plain');
+          const card = document.querySelector(`[data-project-id="\${projectId}"]`);
+
+          if (area.id === 'active-project-area')
+          {
+            // Check if we can add more projects
+            const activeCount = area.children.length;
+            const maxActive = parseInt(document.getElementById('max-active').textContent);
+
+            if (activeCount < maxActive)
+            {
+              area.appendChild(card);
+              // Start progress on the project
+              startProjectProgress(card);
+            }
+          }
+        });
+      });
+    });
+
+    function startProjectProgress(projectCard) {
+      const progressBar = projectCard.querySelector('.progress-bar');
+      let progress = 0;
+
+      const interval = setInterval(() => {
+        progress += 1;
+        progressBar.style.width = `\${progress}%`;
+
+        if (progress >= 100)
+        {
+          clearInterval(interval);
+          completeProject(projectCard);
+        }
+      }, 100);
+    }
+
+    function completeProject(projectCard) {
+      // Add rewards and remove project
+      projectCard.remove();
+      // Update resources...
+    }
+    document.addEventListener('click', (e) => {
+        if (e.target.closest('.click-zone'))
+        {
+          const clickZone = e.target.closest('.click-zone');
+          const projectCard = clickZone.closest('.active-project-card');
+          const progressFill = projectCard.querySelector('.progress-fill');
+          const progressValue = projectCard.querySelector('.progress-value');
+          const powerValue = parseFloat(projectCard.querySelector('.power-value').textContent);
+
+          // Create click particle
+          const particle = document.createElement('div');
+          particle.className = 'click-particle';
+          particle.textContent = `+\${powerValue}`;
+          particle.style.left = `\${e.clientX - clickZone.getBoundingClientRect().left}px`;
+          particle.style.top = `\${e.clientY - clickZone.getBoundingClientRect().top}px`;
+          clickZone.appendChild(particle);
+
+          // Remove particle after animation
+          setTimeout(() => particle.remove(), 800);
+
+          // Update progress
+          const [current, max] = progressValue.textContent.split(' / ').map(Number);
+          const newProgress = Math.min(current + powerValue, max);
+          const percentage = (newProgress / max) * 100;
+
+          progressFill.style.width = `\${percentage}%`;
+          progressValue.textContent = `\${newProgress} / \${max}`;
+
+          // Check for completion
+          if (newProgress >= max)
+          {
+            completeProject(projectCard);
+          }
+        }
+      });
+
+      // Auto-progress system
+      function startAutoProgress() {
+        setInterval(() => {
+          document.querySelectorAll('.active-project-card').forEach(card => {
+            const autoRate = parseFloat(card.querySelector('.auto-rate').textContent);
+            const progressFill = card.querySelector('.progress-fill');
+            const progressValue = card.querySelector('.progress-value');
+
+            const [current, max] = progressValue.textContent.split(' / ').map(Number);
+            const newProgress = Math.min(current + autoRate, max);
+            const percentage = (newProgress / max) * 100;
+
+            progressFill.style.width = `\${percentage}%`;
+            progressValue.textContent = `\${newProgress} / \${max}`;
+
+            if (newProgress >= max)
+            {
+              completeProject(card);
+            }
+          });
+        }, 1000); // Update every second
+      }
+
+      function completeProject(projectCard) {
+        // Add completion animation
+        projectCard.style.animation = 'fadeOut 0.5s ease-out forwards';
+        setTimeout(() => {
+          projectCard.remove();
+          // Add rewards
+          updateResources(projectCard);
+        }, 500);
+      }
+
+      function updateResources(projectCard) {
+        // Parse and add rewards
+        const [money, xp] = projectCard.querySelector('.reward').textContent
+          .match(/\\$(\d+), (\d+) XP/).slice(1).map(Number);
+
+        // Update resource displays
+        const moneyDisplay = document.getElementById('money');
+        const xpDisplay = document.getElementById('xp');
+
+        moneyDisplay.textContent = (parseInt(moneyDisplay.textContent) + money).toString();
+        xpDisplay.textContent = (parseInt(xpDisplay.textContent) + xp).toString();
+      }
+
+      // Start auto-progress system
+      startAutoProgress();
+    
+  </script>
+</body>
+
+</html>

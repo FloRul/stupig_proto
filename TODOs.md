@@ -8,9 +8,11 @@
   - [X] Once a project is completed, it should be removed from the list and the reward should be given to the player.
 
 - [ ] Generate a new random projects when the player completes a project.
+  - [ ] Handle api call + project generation in the client
   - [ ] Create api to generate and cache projects
 
-- [ ] Add autoclicking mechanic
+- [ ] Change base layout
+- [ ] Add autoclicking mechanic -> player can use money to hire freelancer to complete projects for him
 - [ ] Add saving game state
 - [ ] Add loading game state
 - [ ] Add random event mechanic
