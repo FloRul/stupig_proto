@@ -33,7 +33,8 @@ class ClickerGame extends ConsumerWidget {
                 title: 'Projects',
                 child: Column(
                   children: [
-                    Expanded(flex: 2, child: ProjectsView()),
+                    Expanded(flex: 2, child: InprogressProjects()),
+                    Expanded(child: NotStartedProjects()),
                     Expanded(child: TapArea()),
                   ],
                 ),
@@ -68,7 +69,7 @@ class GroupArea extends StatelessWidget {
         color: Colors.black26,
         borderRadius: BorderRadius.circular(20),
       ),
-      padding: const EdgeInsets.all(8.0),
+      padding: const EdgeInsets.all(16.0),
       margin: const EdgeInsets.all(8.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

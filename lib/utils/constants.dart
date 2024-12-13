@@ -1,5 +1,5 @@
-﻿const double kCardHeight = 200;
-const double kCardWidth = 300;
+﻿const double kCardHeight = 300;
+const double kCardAspectRatio = 71 / 100;
 
 // save/load
 const String kGameStateKey = 'gameState';

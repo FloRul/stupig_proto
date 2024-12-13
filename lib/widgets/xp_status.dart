@@ -20,6 +20,8 @@ class XpStatus extends ConsumerWidget {
                 children: [
                   Expanded(
                     child: LinearProgressIndicator(
+                      minHeight: 16,
+                      borderRadius: BorderRadius.circular(8),
                       value: data.$1 / data.$3,
                       backgroundColor: Colors.grey,
                       color: Colors.green,
