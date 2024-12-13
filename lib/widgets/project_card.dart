@@ -2,7 +2,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:stupig_proto/models/models.dart';
-import 'package:stupig_proto/utils/constants.dart';
 import 'package:stupig_proto/widgets/reward_widget.dart';
 
 class ProjectCard extends StatefulWidget {
@@ -55,7 +54,7 @@ class _ProjectCardState extends State<ProjectCard> with SingleTickerProviderStat
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: _flipCard,
+      onTap: widget.project.status == ProjectStatus.inProgress ? _flipCard : null,
       child: AnimatedBuilder(
         animation: _animation,
         builder: (_, __) {
@@ -109,11 +108,14 @@ class _ProjectCardState extends State<ProjectCard> with SingleTickerProviderStat
                               ),
                             ],
                           ),
-                          const Text(
-                            'Tap to flip',
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              fontSize: 12,
+                          Visibility(
+                            visible: widget.project.status == ProjectStatus.inProgress,
+                            child: const Text(
+                              'Tap to flip',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontSize: 12,
+                              ),
                             ),
                           ),
                           RewardWidget(reward: widget.project.reward),

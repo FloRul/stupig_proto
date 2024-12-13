@@ -44,20 +44,34 @@ class GameStateNotifier extends _$GameStateNotifier {
     var projects = List<Project>.from(currentState.projects);
 
     // Update the progress of projects that are in progress
-    _updateProgressOfInProgressProjects(projects);
+    for (int i = 0; i < projects.length; i++) {
+      if (projects[i].status == ProjectStatus.inProgress) {
+        projects[i] = projects[i].copyWith(
+          progress: min(1, projects[i].progress + currentState.cpuSpeed / kClickPowerDenominator),
+        );
+      }
+    }
 
     // Identify projects that are now completed
-    var newCompletedProjects = _getNewlyCompletedProjects(projects);
+    var newCompletedProjects = projects.where((p) => p.progress >= 1 && p.status == ProjectStatus.inProgress).toList();
 
     var updatedXp = currentState.xp;
     var updatedMoney = currentState.money;
 
     if (newCompletedProjects.isNotEmpty) {
       // Calculate total rewards from completed projects
-      _applyRewardsFromCompletedProjects(newCompletedProjects, updatedXp, updatedMoney);
+      for (var project in newCompletedProjects) {
+        updatedXp += project.reward.xp;
+        updatedMoney += (project.reward.money ?? 0);
+      }
 
       // Update the status of completed projects in the projects list
-      projects = _updateStatusOfCompletedProjects(projects);
+      projects = projects.map((p) {
+        if (p.status == ProjectStatus.inProgress && p.progress >= 1) {
+          return p.copyWith(status: ProjectStatus.completed);
+        }
+        return p;
+      }).toList();
     }
 
     // Update the state with all changes at once
@@ -66,36 +80,6 @@ class GameStateNotifier extends _$GameStateNotifier {
       xp: updatedXp,
       money: updatedMoney,
     ));
-  }
-
-  void _updateProgressOfInProgressProjects(List<Project> projects) {
-    for (int i = 0; i < projects.length; i++) {
-      if (projects[i].status == ProjectStatus.inProgress) {
-        projects[i] = projects[i].copyWith(
-          progress: min(1, projects[i].progress + state.value!.cpuSpeed / kClickPowerDenominator),
-        );
-      }
-    }
-  }
-
-  List<Project> _getNewlyCompletedProjects(List<Project> projects) {
-    return projects.where((p) => p.progress >= 1 && p.status == ProjectStatus.inProgress).toList();
-  }
-
-  void _applyRewardsFromCompletedProjects(List<Project> newCompletedProjects, double updatedXp, double updatedMoney) {
-    for (var project in newCompletedProjects) {
-      updatedXp += project.reward.xp;
-      updatedMoney += (project.reward.money ?? 0);
-    }
-  }
-
-  List<Project> _updateStatusOfCompletedProjects(List<Project> projects) {
-    return projects.map((p) {
-      if (p.status == ProjectStatus.inProgress && p.progress >= 1) {
-        return p.copyWith(status: ProjectStatus.completed);
-      }
-      return p;
-    }).toList();
   }
 
   void startProject(Project project) {

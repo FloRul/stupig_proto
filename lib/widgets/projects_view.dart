@@ -47,8 +47,11 @@ class InprogressProjects extends ConsumerWidget {
                           itemCount: inProgressProjects.length,
                           itemBuilder: (context, index) {
                             final project = inProgressProjects[index];
-                            return ProjectCard(
-                              project: project,
+                            return AspectRatio(
+                              aspectRatio: kCardAspectRatio,
+                              child: ProjectCard(
+                                project: project,
+                              ),
                             );
                           },
                         ),
@@ -85,8 +88,12 @@ class NotStartedProjects extends ConsumerWidget {
                 return AspectRatio(
                   aspectRatio: kCardAspectRatio,
                   child: Draggable(
-                    feedback: ProjectCard(
-                      project: project,
+                    feedback: SizedBox(
+                      width: kCardHeight * kCardAspectRatio,
+                      height: kCardHeight,
+                      child: ProjectCard(
+                        project: project,
+                      ),
                     ),
                     data: project,
                     child: ProjectCard(
