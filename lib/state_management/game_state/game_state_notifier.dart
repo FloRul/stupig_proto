@@ -16,10 +16,13 @@ class GameStateNotifier extends _$GameStateNotifier {
     SharedPreferencesAsync prefs = SharedPreferencesAsync();
 
     final existingSave = await prefs.getString(kGameStateKey);
+    
     ref.listen(clickStreamProvider, (previous, next) {
       _handleClick();
     });
 
+    listenSelf((previous, next) => )
+    
     if (existingSave == null) {
       return GameState.newGame();
     }
@@ -37,6 +40,7 @@ class GameStateNotifier extends _$GameStateNotifier {
     SharedPreferencesAsync prefs = SharedPreferencesAsync();
     await prefs.setString(kGameStateKey, jsonEncode(state.value!.toJson()));
   }
+
 
   void _handleClick() {
     // Get the current state and projects
