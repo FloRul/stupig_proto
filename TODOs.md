@@ -63,39 +63,115 @@ graph LR
   FlashCard -->|boosts| ReputationLevel[Reputation level]
   FlashCard -->|boosts| Freelancer
   FlashCard -->|boosts| Employee
+```
 
+```mermaid
+graph LR
+    %% Core Project Loop
+    Projects -->|generates| Resources
+    Resources -->|splits into| Money
+    Resources -->|splits into| Experience
+    Resources -->|splits into| ReputationPoints[Reputation Points]
 
+    %% Hardware System
+    Money -->|upgrades| HardwareHub[Hardware Hub]
+    HardwareHub -->|contains| CPUSpeed
+    HardwareHub -->|contains| CPUPower
+    HardwareHub -->|contains| GPUWram
+    HardwareHub -->|contains| RAM
+    HardwareHub -->|improves| Projects
 
-%% graph LR
-%%     Player -->|improves clicking power| Experience
-%%     Projects -->|unlocks more rewarding| Experience
-%%     Projects -->|collects| Money
+    %% Skill System
+    Experience -->|increases| SkillLevel
+    SkillLevel -->|unlocks| AdvancedProjects[Advanced Projects]
+    SkillLevel -->|unlocks| FlashCards
+    FlashCards -->|boosts| HardwareHub
+    FlashCards -->|boosts| WorkforceHub
+
+    %% Reputation System
+    ReputationPoints -->|builds| ReputationLevel
+    ReputationLevel -->|triggers| StoryEvents
+    StoryEvents -->|unlocks| CompletionStrategies
+    ReputationLevel -->|improves| ProjectQuality
+
+    %% Workforce System
+    Money -->|hires| WorkforceHub[Workforce Hub]
+    WorkforceHub -->|manages| Freelancers
+    WorkforceHub -->|manages| Employees
+    Freelancers -->|completes| Projects
+    Employees -->|automates| Projects
+
+    %% New Suggested Systems
+    Projects -->|affected by| MarketConditions
+    MarketConditions -->|influences| ProjectRewards
+    MarketConditions -->|influences| ProjectAvailability
+
+    WorkforceHub -->|generates| TeamSynergy
+    TeamSynergy -->|improves| ProjectEfficiency
+
+    SkillLevel -->|unlocks| Research
+    Research -->|unlocks| NewTechnologies
+    NewTechnologies -->|enhances| Projects
+
+    %% Project Types
+    Projects -->|categorized as| ProjectTypes
+    ProjectTypes -->|requires specific| HardwareHub
+    ProjectTypes -->|requires specific| WorkforceSkills
+```
+
+```mermaid
+graph LR
+    %% Core Resource Generation
+    Projects -->|generates| Resources
+    Resources -->|splits into| Money
+    Resources -->|splits into| Experience
+    Resources -->|splits into| ReputationPoints
+
+    %% Progression Hub that enables specialization
+    Experience -->|increases| SkillLevel
+    ReputationPoints -->|increases| ReputationLevel
+    Money -->|enables| Investments
     
-%%     Experience --> SkillLevel[Skill level]
-%%     Experience --> CPUSpeed[CPU speed]
-%%     Experience --> CPUPower[CPU power]
-    
-%%     Money -->|upgrades| GPUWram[GPU/Wram]
-%%     Money -->|upgrades| RAM
-    
-%%     FlashCard --> Name
-%%     Name -->|belongs to| Subtheme
-%%     Subtheme -->|belongs to| Theme
-    
-%%     Player -->|collects for passive bonuses| FlashCard
-    
-%%     StoryEvent -->|rewards| ReputationAmount[Reputation amount]
-%%     ReputationAmount -->|upgrades| ReputationLevel[Reputation level]
-    
-%%     ReputationLevel --> ClickingStrategy[Clicking strategy]
-%%     ReputationLevel --> Freelancer
-%%     Freelancer -->|can be converted to| Employee
-    
-%%     Autoclicker -->|changes clicks distribution| Projects
-%%     Autoclicker -->|unlocks and improves power as well as passive progress| Projects
-    
-%%     RAM -->|enables multiples to be completed simultaneously| StoryEvent
-%%     RAM -->|augment chances of better outcome/rewards| StoryEvent
-    
-%%     StoryEvent -->|influence the next| Projects
+    SkillLevel & ReputationLevel & Investments -->|unlocks| Specialization[Specialization Choice]
+
+    %% Hardware Master Path
+    Specialization -->|hardware focus| HardwarePath[Hardware Master]
+    HardwarePath -->|enhances| HardwareHub
+    HardwareHub -->|unlocks| SuperComputer
+    HardwareHub -->|unlocks| QuantumComputing
+    SuperComputer & QuantumComputing -->|enables| TimeManipulation
+    TimeManipulation -->|leads to| HardwareVictory[Technological Singularity]
+
+    %% Startup CEO Path
+    Specialization -->|workforce focus| StartupPath[Startup CEO]
+    StartupPath -->|enhances| WorkforceHub
+    WorkforceHub -->|enables| OfficeExpansion
+    WorkforceHub -->|develops| TeamSynergy
+    OfficeExpansion & TeamSynergy -->|builds| CompanyCulture
+    CompanyCulture -->|leads to| StartupVictory[Tech Giant Acquisition]
+
+    %% Cloud Wizard Path
+    Specialization -->|cloud focus| CloudPath[Cloud Wizard]
+    CloudPath -->|unlocks| CloudInfra[Cloud Infrastructure]
+    CloudInfra -->|enables| ServerScaling
+    CloudInfra -->|enables| GlobalCDN
+    ServerScaling & GlobalCDN -->|achieves| CloudDominance
+    CloudDominance -->|leads to| CloudVictory[Global Cloud Dominance]
+
+    %% Core Systems Integration
+    HardwareHub -->|improves| Projects
+    WorkforceHub -->|completes| Projects
+    CloudInfra -->|processes| Projects
+
+    %% Shared Systems
+    FlashCards -->|boosts all paths| HardwareHub & WorkforceHub & CloudInfra
+    ReputationLevel -->|influences all| ProjectQuality
+    Money -->|maintains| CloudInfra
+    Money -->|upgrades| HardwareHub
+    Money -->|pays| WorkforceHub
+
+    %% Path-Specific Projects
+    Projects -->|hardware-specific| HardwarePath
+    Projects -->|team-specific| StartupPath
+    Projects -->|cloud-specific| CloudPath
 ```
