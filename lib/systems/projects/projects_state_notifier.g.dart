@@ -7,7 +7,7 @@ part of 'projects_state_notifier.dart';
 // **************************************************************************
 
 String _$activeProjectsStateNotifierHash() =>
-    r'132d9fd4b3a69f03d8d3ca03e57235b7a3b5588f';
+    r'59bbe903b6d0c2661664d1138cecf8928df6330b';
 
 /// See also [ActiveProjectsStateNotifier].
 @ProviderFor(ActiveProjectsStateNotifier)
@@ -23,5 +23,22 @@ final activeProjectsStateNotifierProvider =
 );
 
 typedef _$ActiveProjectsStateNotifier = Notifier<List<Project>>;
+String _$completedProjectsStateNotifierHash() =>
+    r'8050d8462b38d40a4903ea29621528dd51629ec0';
+
+/// See also [CompletedProjectsStateNotifier].
+@ProviderFor(CompletedProjectsStateNotifier)
+final completedProjectsStateNotifierProvider =
+    NotifierProvider<CompletedProjectsStateNotifier, List<Project>>.internal(
+  CompletedProjectsStateNotifier.new,
+  name: r'completedProjectsStateNotifierProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$completedProjectsStateNotifierHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef _$CompletedProjectsStateNotifier = Notifier<List<Project>>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

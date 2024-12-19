@@ -24,6 +24,8 @@
 ```mermaid
 graph LR
   Projects -->|rewards| Experience
+  Projects -->|may have| Milestone
+  Milestone -->|has a| FailureChance[Failure chance]
   Projects -->|rewards| Money
   Projects -->|eventually triggers| StoryEvent[Story event]
   Projects -->|requires certain amount| CPUPower
@@ -46,6 +48,9 @@ graph LR
   Freelancer -->|complete but only once| Projects
   Employee -->|consumes per project completion| Projects
   Employee -->|automatically take on new| Projects
+  Employee -->|has| EmployeeLevel[Employee level]
+  EmployeeLevel -->|reduces completion time| Projects
+  EmployeeLevel -->|reduces| FailureChance[Failure chance]
 
   StoryEvent -->|rewards| ReputationAmount[Reputation amount]
   ReputationAmount -->|upgrades| ReputationLevel[Reputation level]

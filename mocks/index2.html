@@ -1,0 +1,349 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+  <style>
+    body {
+      margin: 0;
+      padding: 20px;
+      font-family: 'Arial', sans-serif;
+      background: #1a1a1a;
+      color: #fff;
+    }
+
+    .container {
+      display: grid;
+      grid-template-columns: 250px 1fr 300px;
+      gap: 20px;
+      height: 100vh;
+    }
+
+    .stats-panel {
+      background: #2a2a2a;
+      border-radius: 10px;
+      padding: 15px;
+    }
+
+    .resource {
+      display: flex;
+      justify-content: space-between;
+      margin: 10px 0;
+      padding: 8px;
+      background: #333;
+      border-radius: 5px;
+    }
+
+    .main-area {
+      background: #2a2a2a;
+      border-radius: 10px;
+      padding: 20px;
+      display: grid;
+      grid-template-rows: auto 1fr;
+      gap: 20px;
+    }
+
+    .project-card {
+      width: 200px;
+      height: 280px;
+      background: linear-gradient(45deg, #4a90e2, #357abd);
+      border-radius: 10px;
+      padding: 15px;
+      margin: 10px;
+      display: inline-block;
+      cursor: move;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      position: relative;
+    }
+
+    .project-area {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      align-content: flex-start;
+      overflow-y: auto;
+      padding: 10px;
+      background: #333;
+      border-radius: 8px;
+    }
+
+    .progress-bar {
+      position: absolute;
+      bottom: 10px;
+      left: 10px;
+      right: 10px;
+      height: 8px;
+      background: #1a1a1a;
+      border-radius: 4px;
+    }
+
+    .progress {
+      width: 60%;
+      height: 100%;
+      background: #2ecc71;
+      border-radius: 4px;
+    }
+
+    .upgrades-panel {
+      background: #2a2a2a;
+      border-radius: 10px;
+      padding: 15px;
+      overflow-y: auto;
+    }
+
+    .upgrade-item {
+      background: #333;
+      margin: 10px 0;
+      padding: 12px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .upgrade-item:hover {
+      background: #444;
+    }
+
+    .employee-section {
+      margin-top: 20px;
+      padding-top: 20px;
+      border-top: 1px solid #444;
+    }
+
+    .milestone-badge {
+      position: absolute;
+      top: -5px;
+      right: -5px;
+      background: #f1c40f;
+      color: black;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: bold;
+    }
+
+    .project-card[draggable="true"] {
+  transition: transform 0.2s, opacity 0.2s;
+}
+
+.project-card[draggable="true"]:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+}
+
+.project-card[draggable="true"].dragging {
+  opacity: 0.5;
+}
+
+.proposed-projects {
+  scrollbar-width: thin;
+  scrollbar-color: #666 #333;
+}
+
+.proposed-projects::-webkit-scrollbar {
+  height: 8px;
+}
+
+.proposed-projects::-webkit-scrollbar-track {
+  background: #333;
+  border-radius: 4px;
+}
+
+.proposed-projects::-webkit-scrollbar-thumb {
+  background: #666;
+  border-radius: 4px;
+}
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <!-- Left Panel - Stats -->
+    <div class="stats-panel">
+      <h2>Resources</h2>
+      <div class="resource">
+        <span>Money</span>
+        <span>$1,234,567</span>
+      </div>
+      <div class="resource">
+        <span>Experience</span>
+        <span>5,432 XP</span>
+      </div>
+      <div class="resource">
+        <span>CPU Power</span>
+        <span>2.4 GHz</span>
+      </div>
+      <div class="resource">
+        <span>RAM</span>
+        <span>16 GB</span>
+      </div>
+      <div class="resource">
+        <span>Reputation</span>
+        <span>Level 5</span>
+      </div>
+
+      <div class="employee-section">
+        <h3>Workforce</h3>
+        <div class="resource">
+          <span>Employees</span>
+          <span>3</span>
+        </div>
+        <div class="resource">
+          <span>Freelancers</span>
+          <span>2</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Area - Projects -->
+    <div class="main-area">
+      <div style="display: flex; justify-content: space-between; align-items: center;">
+        <h2>Active Projects</h2>
+        <span>4/8 Projects Running</span>
+      </div>
+      
+      <div class="project-area">
+        <!-- Example Project Cards -->
+        <div class="project-card" draggable="true">
+          <h3>Web Development</h3>
+          <p>Build a responsive website</p>
+          <p>Reward: $500</p>
+          <div class="milestone-badge">!</div>
+          <div class="progress-bar">
+            <div class="progress"></div>
+          </div>
+        </div>
+
+        <div class="project-card" style="background: linear-gradient(45deg, #e74c3c, #c0392b);">
+          <h3>AI Integration</h3>
+          <p>Machine learning model deployment</p>
+          <p>Reward: 1000 XP</p>
+          <div class="progress-bar">
+            <div class="progress" style="width: 30%;"></div>
+          </div>
+        </div>
+
+        <div class="project-card" style="background: linear-gradient(45deg, #2ecc71, #27ae60);">
+          <h3>Mobile App</h3>
+          <p>Cross-platform development</p>
+          <p>Reward: $1,200</p>
+          <div class="progress-bar">
+            <div class="progress" style="width: 85%;"></div>
+          </div>
+        </div>
+      </div>
+      <div style="margin-top: 20px; margin-bottom: 20px;">
+        <h3>Proposed Projects</h3>
+        <div class="proposed-projects" style="
+          background: #333;
+          border-radius: 8px;
+          padding: 10px;
+          margin-top: 10px;
+          overflow-x: auto;
+          white-space: nowrap;
+        ">
+          <div class="project-card" draggable="true" style="background: linear-gradient(45deg, #95a5a6, #7f8c8d);">
+            <div class="requirements-tag" style="
+              position: absolute;
+              top: 5px;
+              right: 5px;
+              background: rgba(0,0,0,0.5);
+              padding: 3px 8px;
+              border-radius: 10px;
+              font-size: 12px;
+            ">
+              CPU: 2.0 GHz
+            </div>
+            <h3>Database Migration</h3>
+            <p>Legacy system upgrade</p>
+            <p>Reward: \$800</p>
+            <div class="requirements" style="
+              font-size: 12px;
+              margin-top: 10px;
+              color: #ddd;
+            ">
+              <div>📊 RAM: 8GB</div>
+              <div>👤 Staff: 2</div>
+              <div>⭐ Rep: Level 3</div>
+            </div>
+            <div class="difficulty" style="
+              position: absolute;
+              bottom: 30px;
+              left: 15px;
+              font-size: 12px;
+            ">
+              Difficulty: ⭐⭐⭐
+            </div>
+          </div>
+      
+          <div class="project-card" draggable="true" style="background: linear-gradient(45deg, #9b59b6, #8e44ad);">
+            <div class="requirements-tag" style="
+              position: absolute;
+              top: 5px;
+              right: 5px;
+              background: rgba(0,0,0,0.5);
+              padding: 3px 8px;
+              border-radius: 10px;
+              font-size: 12px;
+            ">
+              CPU: 1.8 GHz
+            </div>
+            <h3>Security Audit</h3>
+            <p>Network infrastructure review</p>
+            <p>Reward: \$650</p>
+            <div class="requirements" style="
+              font-size: 12px;
+              margin-top: 10px;
+              color: #ddd;
+            ">
+              <div>📊 RAM: 4GB</div>
+              <div>👤 Staff: 1</div>
+              <div>⭐ Rep: Level 2</div>
+            </div>
+            <div class="difficulty" style="
+              position: absolute;
+              bottom: 30px;
+              left: 15px;
+              font-size: 12px;
+            ">
+              Difficulty: ⭐⭐
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right Panel - Upgrades -->
+    <div class="upgrades-panel">
+      <h2>Upgrades</h2>
+      <div class="upgrade-item">
+        <h4>CPU Speed Boost</h4>
+        <p>+0.4 GHz</p>
+        <p>Cost: $5,000</p>
+      </div>
+
+      <div class="upgrade-item">
+        <h4>RAM Expansion</h4>
+        <p>+8 GB</p>
+        <p>Cost: $3,000</p>
+      </div>
+
+      <div class="upgrade-item">
+        <h4>GPU Upgrade</h4>
+        <p>+4 GB VRAM</p>
+        <p>Cost: $8,000</p>
+      </div>
+
+      <h3 style="margin-top: 20px;">Active Boosters</h3>
+      <div class="upgrade-item" style="background: #2c3e50;">
+        <h4>CPU Flash Card</h4>
+        <p>+25% Speed</p>
+        <p>Time left: 5:23</p>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

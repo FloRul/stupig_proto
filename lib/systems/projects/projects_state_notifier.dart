@@ -15,5 +15,27 @@ class ActiveProjectsStateNotifier extends _$ActiveProjectsStateNotifier {
     state = [...state, project];
   }
 
-  void completeProject(Project project) => state = state.where((p) => p != project).toList();
+  void completeProject(Project project) {
+    ref.read(eventBusProvider.notifier).publish(GameEvent.projectCompleted(project));
+    state = state.where((p) => p != project).toList();
+  }
+}
+
+@Riverpod(keepAlive: true)
+class CompletedProjectsStateNotifier extends _$CompletedProjectsStateNotifier {
+  @override
+  List<Project> build() {
+    ref.listen(
+      eventBusProvider,
+      (previous, next) => next.whenData(_handleProjectCompleted),
+    );
+    return [];
+  }
+
+  void _handleProjectCompleted(GameEvent event) {
+    event.maybeMap(
+      projectCompleted: (event) => state = [...state, event.project],
+      orElse: () {},
+    );
+  }
 }
