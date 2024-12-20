@@ -16,22 +16,22 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$GameEvent {
-  Project get project => throw _privateConstructorUsedError;
+  Object get project => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(Project project) projectCompleted,
+    required TResult Function(ProjectState project) projectCompleted,
     required TResult Function(Project project) projectStarted,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(Project project)? projectCompleted,
+    TResult? Function(ProjectState project)? projectCompleted,
     TResult? Function(Project project)? projectStarted,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Project project)? projectCompleted,
+    TResult Function(ProjectState project)? projectCompleted,
     TResult Function(Project project)? projectStarted,
     required TResult orElse(),
   }) =>
@@ -55,22 +55,12 @@ mixin _$GameEvent {
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
-
-  /// Create a copy of GameEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $GameEventCopyWith<GameEvent> get copyWith =>
-      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class $GameEventCopyWith<$Res> {
   factory $GameEventCopyWith(GameEvent value, $Res Function(GameEvent) then) =
       _$GameEventCopyWithImpl<$Res, GameEvent>;
-  @useResult
-  $Res call({Project project});
-
-  $ProjectCopyWith<$Res> get project;
 }
 
 /// @nodoc
@@ -85,42 +75,17 @@ class _$GameEventCopyWithImpl<$Res, $Val extends GameEvent>
 
   /// Create a copy of GameEvent
   /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? project = null,
-  }) {
-    return _then(_value.copyWith(
-      project: null == project
-          ? _value.project
-          : project // ignore: cast_nullable_to_non_nullable
-              as Project,
-    ) as $Val);
-  }
-
-  /// Create a copy of GameEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $ProjectCopyWith<$Res> get project {
-    return $ProjectCopyWith<$Res>(_value.project, (value) {
-      return _then(_value.copyWith(project: value) as $Val);
-    });
-  }
 }
 
 /// @nodoc
-abstract class _$$ProjectCompletedImplCopyWith<$Res>
-    implements $GameEventCopyWith<$Res> {
+abstract class _$$ProjectCompletedImplCopyWith<$Res> {
   factory _$$ProjectCompletedImplCopyWith(_$ProjectCompletedImpl value,
           $Res Function(_$ProjectCompletedImpl) then) =
       __$$ProjectCompletedImplCopyWithImpl<$Res>;
-  @override
   @useResult
-  $Res call({Project project});
+  $Res call({ProjectState project});
 
-  @override
-  $ProjectCopyWith<$Res> get project;
+  $ProjectStateCopyWith<$Res> get project;
 }
 
 /// @nodoc
@@ -142,8 +107,18 @@ class __$$ProjectCompletedImplCopyWithImpl<$Res>
       null == project
           ? _value.project
           : project // ignore: cast_nullable_to_non_nullable
-              as Project,
+              as ProjectState,
     ));
+  }
+
+  /// Create a copy of GameEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ProjectStateCopyWith<$Res> get project {
+    return $ProjectStateCopyWith<$Res>(_value.project, (value) {
+      return _then(_value.copyWith(project: value));
+    });
   }
 }
 
@@ -153,7 +128,7 @@ class _$ProjectCompletedImpl implements ProjectCompleted {
   const _$ProjectCompletedImpl(this.project);
 
   @override
-  final Project project;
+  final ProjectState project;
 
   @override
   String toString() {
@@ -183,7 +158,7 @@ class _$ProjectCompletedImpl implements ProjectCompleted {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(Project project) projectCompleted,
+    required TResult Function(ProjectState project) projectCompleted,
     required TResult Function(Project project) projectStarted,
   }) {
     return projectCompleted(project);
@@ -192,7 +167,7 @@ class _$ProjectCompletedImpl implements ProjectCompleted {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(Project project)? projectCompleted,
+    TResult? Function(ProjectState project)? projectCompleted,
     TResult? Function(Project project)? projectStarted,
   }) {
     return projectCompleted?.call(project);
@@ -201,7 +176,7 @@ class _$ProjectCompletedImpl implements ProjectCompleted {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Project project)? projectCompleted,
+    TResult Function(ProjectState project)? projectCompleted,
     TResult Function(Project project)? projectStarted,
     required TResult orElse(),
   }) {
@@ -244,31 +219,27 @@ class _$ProjectCompletedImpl implements ProjectCompleted {
 }
 
 abstract class ProjectCompleted implements GameEvent {
-  const factory ProjectCompleted(final Project project) =
+  const factory ProjectCompleted(final ProjectState project) =
       _$ProjectCompletedImpl;
 
   @override
-  Project get project;
+  ProjectState get project;
 
   /// Create a copy of GameEvent
   /// with the given fields replaced by the non-null parameter values.
-  @override
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ProjectCompletedImplCopyWith<_$ProjectCompletedImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$ProjectStartedImplCopyWith<$Res>
-    implements $GameEventCopyWith<$Res> {
+abstract class _$$ProjectStartedImplCopyWith<$Res> {
   factory _$$ProjectStartedImplCopyWith(_$ProjectStartedImpl value,
           $Res Function(_$ProjectStartedImpl) then) =
       __$$ProjectStartedImplCopyWithImpl<$Res>;
-  @override
   @useResult
   $Res call({Project project});
 
-  @override
   $ProjectCopyWith<$Res> get project;
 }
 
@@ -293,6 +264,16 @@ class __$$ProjectStartedImplCopyWithImpl<$Res>
           : project // ignore: cast_nullable_to_non_nullable
               as Project,
     ));
+  }
+
+  /// Create a copy of GameEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ProjectCopyWith<$Res> get project {
+    return $ProjectCopyWith<$Res>(_value.project, (value) {
+      return _then(_value.copyWith(project: value));
+    });
   }
 }
 
@@ -332,7 +313,7 @@ class _$ProjectStartedImpl implements ProjectStarted {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(Project project) projectCompleted,
+    required TResult Function(ProjectState project) projectCompleted,
     required TResult Function(Project project) projectStarted,
   }) {
     return projectStarted(project);
@@ -341,7 +322,7 @@ class _$ProjectStartedImpl implements ProjectStarted {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(Project project)? projectCompleted,
+    TResult? Function(ProjectState project)? projectCompleted,
     TResult? Function(Project project)? projectStarted,
   }) {
     return projectStarted?.call(project);
@@ -350,7 +331,7 @@ class _$ProjectStartedImpl implements ProjectStarted {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Project project)? projectCompleted,
+    TResult Function(ProjectState project)? projectCompleted,
     TResult Function(Project project)? projectStarted,
     required TResult orElse(),
   }) {
@@ -400,7 +381,6 @@ abstract class ProjectStarted implements GameEvent {
 
   /// Create a copy of GameEvent
   /// with the given fields replaced by the non-null parameter values.
-  @override
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ProjectStartedImplCopyWith<_$ProjectStartedImpl> get copyWith =>
       throw _privateConstructorUsedError;

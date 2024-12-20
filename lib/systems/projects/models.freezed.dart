@@ -23,7 +23,6 @@ mixin _$Project {
   String get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
-  double get progress => throw _privateConstructorUsedError;
 
   /// Serializes this Project to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -39,7 +38,7 @@ abstract class $ProjectCopyWith<$Res> {
   factory $ProjectCopyWith(Project value, $Res Function(Project) then) =
       _$ProjectCopyWithImpl<$Res, Project>;
   @useResult
-  $Res call({String id, String name, String description, double progress});
+  $Res call({String id, String name, String description});
 }
 
 /// @nodoc
@@ -60,7 +59,6 @@ class _$ProjectCopyWithImpl<$Res, $Val extends Project>
     Object? id = null,
     Object? name = null,
     Object? description = null,
-    Object? progress = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -75,10 +73,6 @@ class _$ProjectCopyWithImpl<$Res, $Val extends Project>
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String,
-      progress: null == progress
-          ? _value.progress
-          : progress // ignore: cast_nullable_to_non_nullable
-              as double,
     ) as $Val);
   }
 }
@@ -90,7 +84,7 @@ abstract class _$$ProjectImplCopyWith<$Res> implements $ProjectCopyWith<$Res> {
       __$$ProjectImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String id, String name, String description, double progress});
+  $Res call({String id, String name, String description});
 }
 
 /// @nodoc
@@ -109,7 +103,6 @@ class __$$ProjectImplCopyWithImpl<$Res>
     Object? id = null,
     Object? name = null,
     Object? description = null,
-    Object? progress = null,
   }) {
     return _then(_$ProjectImpl(
       id: null == id
@@ -124,10 +117,6 @@ class __$$ProjectImplCopyWithImpl<$Res>
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String,
-      progress: null == progress
-          ? _value.progress
-          : progress // ignore: cast_nullable_to_non_nullable
-              as double,
     ));
   }
 }
@@ -136,10 +125,7 @@ class __$$ProjectImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$ProjectImpl implements _Project {
   const _$ProjectImpl(
-      {required this.id,
-      required this.name,
-      required this.description,
-      required this.progress});
+      {required this.id, required this.name, required this.description});
 
   factory _$ProjectImpl.fromJson(Map<String, dynamic> json) =>
       _$$ProjectImplFromJson(json);
@@ -150,12 +136,10 @@ class _$ProjectImpl implements _Project {
   final String name;
   @override
   final String description;
-  @override
-  final double progress;
 
   @override
   String toString() {
-    return 'Project(id: $id, name: $name, description: $description, progress: $progress)';
+    return 'Project(id: $id, name: $name, description: $description)';
   }
 
   @override
@@ -166,14 +150,12 @@ class _$ProjectImpl implements _Project {
             (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.description, description) ||
-                other.description == description) &&
-            (identical(other.progress, progress) ||
-                other.progress == progress));
+                other.description == description));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, id, name, description, progress);
+  int get hashCode => Object.hash(runtimeType, id, name, description);
 
   /// Create a copy of Project
   /// with the given fields replaced by the non-null parameter values.
@@ -195,8 +177,7 @@ abstract class _Project implements Project {
   const factory _Project(
       {required final String id,
       required final String name,
-      required final String description,
-      required final double progress}) = _$ProjectImpl;
+      required final String description}) = _$ProjectImpl;
 
   factory _Project.fromJson(Map<String, dynamic> json) = _$ProjectImpl.fromJson;
 
@@ -206,8 +187,6 @@ abstract class _Project implements Project {
   String get name;
   @override
   String get description;
-  @override
-  double get progress;
 
   /// Create a copy of Project
   /// with the given fields replaced by the non-null parameter values.
