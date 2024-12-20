@@ -7,7 +7,7 @@ part of 'projects_state_notifier.dart';
 // **************************************************************************
 
 String _$activeProjectsStateNotifierHash() =>
-    r'77ce5920e3bf292760df3ffec69f3b778607ebbe';
+    r'91dfa290f2b5d4da671d011e55a3720e5cfc3371';
 
 /// See also [ActiveProjectsStateNotifier].
 @ProviderFor(ActiveProjectsStateNotifier)
@@ -40,7 +40,7 @@ final completedProjectsStateNotifierProvider = NotifierProvider<
 );
 
 typedef _$CompletedProjectsStateNotifier = Notifier<List<ProjectState>>;
-String _$projectNotifierHash() => r'b782972b041b0fbdd83dd7c7a3e37cbb4f1956f4';
+String _$projectNotifierHash() => r'fc6d08029dd767972a9c34aca5b6245ba73cb281';
 
 /// Copied from Dart SDK
 class _SystemHash {

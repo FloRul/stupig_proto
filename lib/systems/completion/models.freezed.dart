@@ -128,7 +128,7 @@ class __$$CompletionImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$CompletionImpl extends _Completion {
+class _$CompletionImpl extends _Completion with DiagnosticableTreeMixin {
   const _$CompletionImpl(
       {required this.baseAmount,
       required this.completedAmount,
@@ -152,8 +152,18 @@ class _$CompletionImpl extends _Completion {
   }
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'Completion(baseAmount: $baseAmount, completedAmount: $completedAmount, multipliers: $multipliers)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'Completion'))
+      ..add(DiagnosticsProperty('baseAmount', baseAmount))
+      ..add(DiagnosticsProperty('completedAmount', completedAmount))
+      ..add(DiagnosticsProperty('multipliers', multipliers));
   }
 
   @override

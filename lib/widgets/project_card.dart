@@ -2,11 +2,12 @@
 
 import 'package:flutter/material.dart';
 import 'package:stupig_proto/models/models.dart';
+import 'package:stupig_proto/systems/projects/project_state.dart';
 import 'package:stupig_proto/widgets/reward_widget.dart';
 
 class ProjectCard extends StatefulWidget {
   const ProjectCard({super.key, required this.project});
-  final Project project;
+  final ProjectState project;
 
   @override
   State<ProjectCard> createState() => _ProjectCardState();
@@ -54,7 +55,7 @@ class _ProjectCardState extends State<ProjectCard> with SingleTickerProviderStat
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: widget.project.status == ProjectStatus.inProgress ? _flipCard : null,
+      onTap: _flipCard,
       child: AnimatedBuilder(
         animation: _animation,
         builder: (_, __) {

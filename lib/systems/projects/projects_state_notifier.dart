@@ -17,7 +17,7 @@ class ActiveProjectsStateNotifier extends _$ActiveProjectsStateNotifier {
       globalTickerProvider,
       (previous, next) {
         for (int i = 0; i < state.length; i++) {
-          ref.read(projectNotifierProvider(state[i].project.id).notifier).tick();
+          ref.read(projectNotifierProvider(state[i]).notifier).tick();
         }
       },
     );
@@ -60,8 +60,10 @@ class ProjectNotifier extends _$ProjectNotifier {
   @override
   ProjectState build(ProjectState projectState) => projectState;
 
-
   void tick() {
     state = state.copyWith(completion: state.completion.tick());
+    if (state.completion.isComplete) {
+      ref.read(activeProjectsStateNotifierProvider.notifier).completeProject(state);
+    }
   }
 }
