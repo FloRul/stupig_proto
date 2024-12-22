@@ -26,7 +26,6 @@ class ActiveProjectsStateNotifier extends _$ActiveProjectsStateNotifier {
 
   void activateProject(Project project) {
     ref.read(eventBusProvider.notifier).publish(GameEvent.projectStarted(project));
-
     state = [...state, ProjectState.fromProject(project, Random().nextInt(50))];
   }
 
@@ -65,5 +64,21 @@ class ProjectNotifier extends _$ProjectNotifier {
     if (state.completion.isComplete) {
       ref.read(activeProjectsStateNotifierProvider.notifier).completeProject(state);
     }
+  }
+}
+
+@Riverpod(keepAlive: true)
+class InactiveProjectsNotifier extends _$InactiveProjectsNotifier {
+  @override
+  List<Project> build() => [
+        const Project(id: '1', name: 'Project 1', description: 'Description 1'),
+        const Project(id: '2', name: 'Project 2', description: 'Description 2'),
+        const Project(id: '3', name: 'Project 3', description: 'Description 3'),
+      ];
+
+  void startProject(Project project) {
+    state = [for (var p in state.where((p) => p != project)) p];
+    // generate new project
+    // ...
   }
 }

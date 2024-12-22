@@ -206,5 +206,23 @@ class _ProjectNotifierProviderElement
   ProjectState get projectState =>
       (origin as ProjectNotifierProvider).projectState;
 }
+
+String _$inactiveProjectsNotifierHash() =>
+    r'2eaa3e5cc74da43a2b46290ca5399201fd954ccf';
+
+/// See also [InactiveProjectsNotifier].
+@ProviderFor(InactiveProjectsNotifier)
+final inactiveProjectsNotifierProvider =
+    NotifierProvider<InactiveProjectsNotifier, List<Project>>.internal(
+  InactiveProjectsNotifier.new,
+  name: r'inactiveProjectsNotifierProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$inactiveProjectsNotifierHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef _$InactiveProjectsNotifier = Notifier<List<Project>>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

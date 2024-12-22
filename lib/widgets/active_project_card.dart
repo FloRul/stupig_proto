@@ -1,19 +1,19 @@
 ﻿import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:stupig_proto/models/models.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:stupig_proto/systems/projects/project_state.dart';
-import 'package:stupig_proto/widgets/reward_widget.dart';
+import 'package:stupig_proto/systems/projects/projects_state_notifier.dart';
 
-class ProjectCard extends StatefulWidget {
-  const ProjectCard({super.key, required this.project});
+class ActiveProjectCard extends ConsumerStatefulWidget {
+  const ActiveProjectCard({super.key, required this.project});
   final ProjectState project;
 
   @override
-  State<ProjectCard> createState() => _ProjectCardState();
+  ConsumerState<ActiveProjectCard> createState() => _ActiveProjectCardState();
 }
 
-class _ProjectCardState extends State<ProjectCard> with SingleTickerProviderStateMixin {
+class _ActiveProjectCardState extends ConsumerState<ActiveProjectCard> with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _animation;
   bool _isFrontVisible = true;
@@ -54,6 +54,7 @@ class _ProjectCardState extends State<ProjectCard> with SingleTickerProviderStat
 
   @override
   Widget build(BuildContext context) {
+    var pState = ref.watch(projectNotifierProvider(widget.project));
     return GestureDetector(
       onTap: _flipCard,
       child: AnimatedBuilder(
@@ -82,44 +83,37 @@ class _ProjectCardState extends State<ProjectCard> with SingleTickerProviderStat
                             crossAxisAlignment: CrossAxisAlignment.end,
                             children: [
                               Text(
-                                widget.project.name,
+                                pState.project.name,
                                 textAlign: TextAlign.left,
                                 style: const TextStyle(
                                   fontSize: 20,
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),
-                              Visibility(
-                                visible: widget.project.status == ProjectStatus.inProgress,
-                                child: TweenAnimationBuilder<double>(
-                                  duration: const Duration(milliseconds: 250),
-                                  curve: Curves.linear,
-                                  tween: Tween<double>(
-                                    begin: 0,
-                                    end: widget.project.progress,
-                                  ),
-                                  builder: (context, value, _) => Center(
-                                    child: CircularProgressIndicator(
-                                      value: value,
-                                      color: Colors.blue,
-                                      backgroundColor: Colors.grey[300],
-                                    ),
+                              TweenAnimationBuilder<double>(
+                                duration: const Duration(milliseconds: 250),
+                                curve: Curves.linear,
+                                tween: Tween<double>(
+                                  begin: 0,
+                                  end: pState.completion.progress,
+                                ),
+                                builder: (context, value, _) => Center(
+                                  child: CircularProgressIndicator(
+                                    value: value,
+                                    color: Colors.blue,
+                                    backgroundColor: Colors.grey[300],
                                   ),
                                 ),
                               ),
                             ],
                           ),
-                          Visibility(
-                            visible: widget.project.status == ProjectStatus.inProgress,
-                            child: const Text(
-                              'Tap to flip',
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                fontSize: 12,
-                              ),
+                          const Align(
+                            alignment: Alignment.centerRight,
+                            child: Icon(
+                              Icons.arrow_forward,
+                              size: 18,
                             ),
                           ),
-                          RewardWidget(reward: widget.project.reward),
                         ],
                       ),
                     ),
@@ -135,12 +129,13 @@ class _ProjectCardState extends State<ProjectCard> with SingleTickerProviderStat
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text(widget.project.description),
+                              Text(pState.project.description),
                               const SizedBox(height: 8),
-                              const Text(
-                                'Tap to flip back',
-                                style: TextStyle(
-                                  fontSize: 12,
+                              const Align(
+                                alignment: Alignment.centerLeft,
+                                child: Icon(
+                                  Icons.arrow_back,
+                                  size: 18,
                                 ),
                               ),
                             ],

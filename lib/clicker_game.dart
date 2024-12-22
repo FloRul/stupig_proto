@@ -3,7 +3,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:stupig_proto/widgets/click_counter.dart';
 import 'package:stupig_proto/widgets/projects_view.dart';
 import 'widgets/xp_status.dart';
-import 'widgets/tap_area.dart';
 
 class ClickerGame extends ConsumerWidget {
   const ClickerGame({super.key});
@@ -34,15 +33,14 @@ class ClickerGame extends ConsumerWidget {
                 child: Column(
                   children: [
                     Expanded(flex: 2, child: InprogressProjects()),
-                    Expanded(child: NotStartedProjects()),
-                    Expanded(child: TapArea()),
+                    Expanded(child: InactiveProjects()),
                   ],
                 ),
               ),
             ),
             Expanded(
               child: GroupArea(
-                title: 'Hardware upgrades',
+                title: 'Upgrades',
               ),
             )
           ],

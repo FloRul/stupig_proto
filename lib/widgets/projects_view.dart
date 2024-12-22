@@ -1,10 +1,10 @@
 ﻿import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:stupig_proto/state_management/game_state/game_state_notifier.dart';
 import 'package:stupig_proto/systems/projects/models.dart';
 import 'package:stupig_proto/systems/projects/projects_state_notifier.dart';
 import 'package:stupig_proto/utils/constants.dart';
-import 'package:stupig_proto/widgets/project_card.dart';
+import 'package:stupig_proto/widgets/active_project_card.dart';
+import 'package:stupig_proto/widgets/inactive_project_card.dart';
 
 class InprogressProjects extends ConsumerWidget {
   const InprogressProjects({super.key});
@@ -38,25 +38,31 @@ class InprogressProjects extends ConsumerWidget {
             builder: (context, candidateData, rejectedData) {
               return Container(
                 decoration: BoxDecoration(
-                    border: Border.all(
-                      color: candidateData.isNotEmpty ? Colors.green : Colors.red,
-                      width: 2,
-                      style: BorderStyle.solid,
-                      strokeAlign: BorderSide.strokeAlignCenter,
-                    ),
-                    borderRadius: BorderRadius.circular(12)),
-                child: ListView.builder(
-                  scrollDirection: Axis.horizontal,
-                  itemCount: activeProjects.length,
-                  itemBuilder: (context, index) {
-                    final project = activeProjects[index];
-                    return AspectRatio(
-                      aspectRatio: kCardAspectRatio,
-                      child: ProjectCard(
-                        project: project,
-                      ),
-                    );
-                  },
+                  border: Border.all(
+                    color: candidateData.isNotEmpty ? Colors.green : Colors.red,
+                    width: 2,
+                    style: BorderStyle.solid,
+                    strokeAlign: BorderSide.strokeAlignCenter,
+                  ),
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: Align(
+                  alignment: Alignment.topLeft,
+                  child: Wrap(
+                    spacing: 8.0,
+                    runSpacing: 8.0,
+                    children: activeProjects.map((project) {
+                      return SizedBox(
+                        width: 200, // Set your desired width
+                        child: AspectRatio(
+                          aspectRatio: kCardAspectRatio,
+                          child: ActiveProjectCard(
+                            project: project,
+                          ),
+                        ),
+                      );
+                    }).toList(),
+                  ),
                 ),
               );
             },
@@ -67,44 +73,38 @@ class InprogressProjects extends ConsumerWidget {
   }
 }
 
-class NotStartedProjects extends ConsumerWidget {
-  const NotStartedProjects({super.key});
+class InactiveProjects extends ConsumerWidget {
+  const InactiveProjects({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return ref.watch(gameStateNotifierProvider).when(
-          data: (gameState) {
-            final notStartedProjects = gameState.projects.where((p) => p.status == ProjectStatus.notStarted).toList();
-            return ListView.builder(
-              scrollDirection: Axis.horizontal,
-              itemCount: notStartedProjects.length,
-              itemBuilder: (context, index) {
-                final project = notStartedProjects[index];
-                return AspectRatio(
+    var inactiveProjects = ref.watch(inactiveProjectsNotifierProvider);
+    return Wrap(
+      spacing: 8.0,
+      runSpacing: 8.0,
+      children: inactiveProjects.map((project) {
+        return SizedBox(
+          width: 200, // Same width as in InprogressProjects
+          child: AspectRatio(
+            aspectRatio: kCardAspectRatio,
+            child: Draggable(
+              feedback: SizedBox(
+                width: 200, // Matching width for consistency
+                child: AspectRatio(
                   aspectRatio: kCardAspectRatio,
-                  child: Draggable(
-                    feedback: SizedBox(
-                      width: kCardHeight * kCardAspectRatio,
-                      height: kCardHeight,
-                      child: ProjectCard(
-                        project: project,
-                      ),
-                    ),
-                    data: project,
-                    child: ProjectCard(
-                      project: project,
-                    ),
+                  child: InactiveProjectCard(
+                    project: project,
                   ),
-                );
-              },
-            );
-          },
-          error: (error, stackTrace) => const Center(
-            child: Text('An error has occurred'),
-          ),
-          loading: () => const Center(
-            child: CircularProgressIndicator(),
+                ),
+              ),
+              data: project,
+              child: InactiveProjectCard(
+                project: project,
+              ),
+            ),
           ),
         );
+      }).toList(),
+    );
   }
 }

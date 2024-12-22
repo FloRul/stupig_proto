@@ -16,11 +16,11 @@ class Completion with _$Completion {
   factory Completion.initial(int seed) => Completion(
         baseAmount: seed * 20,
         completedAmount: 0,
-        multipliers: [],
+        multipliers: [0],
       );
 
   Completion tick() => copyWith(
-        completedAmount: min(completedAmount + baseAmount * rate, baseAmount),
+        completedAmount: min(completedAmount + rate, baseAmount),
       );
 
   double get progress => completedAmount / baseAmount;
