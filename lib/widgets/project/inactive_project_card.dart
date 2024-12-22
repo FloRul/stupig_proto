@@ -1,19 +1,17 @@
 ﻿import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:stupig_proto/systems/projects/project_state.dart';
-import 'package:stupig_proto/systems/projects/projects_state_notifier.dart';
+import 'package:stupig_proto/systems/projects/models.dart';
 
-class ActiveProjectCard extends ConsumerStatefulWidget {
-  const ActiveProjectCard({super.key, required this.project});
-  final ProjectState project;
+class InactiveProjectCard extends StatefulWidget {
+  const InactiveProjectCard({super.key, required this.project});
+  final Project project;
 
   @override
-  ConsumerState<ActiveProjectCard> createState() => _ActiveProjectCardState();
+  State<InactiveProjectCard> createState() => _InactiveProjectCardState();
 }
 
-class _ActiveProjectCardState extends ConsumerState<ActiveProjectCard> with SingleTickerProviderStateMixin {
+class _InactiveProjectCardState extends State<InactiveProjectCard> with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _animation;
   bool _isFrontVisible = true;
@@ -54,7 +52,6 @@ class _ActiveProjectCardState extends ConsumerState<ActiveProjectCard> with Sing
 
   @override
   Widget build(BuildContext context) {
-    var pState = ref.watch(projectNotifierProvider(widget.project));
     return GestureDetector(
       onTap: _flipCard,
       child: AnimatedBuilder(
@@ -82,27 +79,15 @@ class _ActiveProjectCardState extends ConsumerState<ActiveProjectCard> with Sing
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             crossAxisAlignment: CrossAxisAlignment.end,
                             children: [
-                              Text(
-                                pState.project.name,
-                                textAlign: TextAlign.left,
-                                style: const TextStyle(
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                              TweenAnimationBuilder<double>(
-                                duration: const Duration(milliseconds: 250),
-                                curve: Curves.linear,
-                                tween: Tween<double>(
-                                  begin: 0,
-                                  end: pState.completion.progress,
-                                ),
-                                builder: (context, value, _) => Center(
-                                  child: CircularProgressIndicator(
-                                    value: value,
-                                    color: Colors.blue,
-                                    backgroundColor: Colors.grey[300],
+                              Expanded(
+                                child: Text(
+                                  widget.project.name,
+                                  textAlign: TextAlign.left,
+                                  style: const TextStyle(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold,
                                   ),
+                                  overflow: TextOverflow.ellipsis,
                                 ),
                               ),
                             ],
@@ -129,7 +114,7 @@ class _ActiveProjectCardState extends ConsumerState<ActiveProjectCard> with Sing
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text(pState.project.description),
+                              Text(widget.project.description),
                               const SizedBox(height: 8),
                               const Align(
                                 alignment: Alignment.centerLeft,

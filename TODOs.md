@@ -21,6 +21,21 @@
 
 - [ ] View for the completed projects page
 
+
+Ideas
+unlockable features on progression
+ - know the exact time to complete a project (initially no clue but a range)
+ - know the failure chance of a project (initially no clue but a range)
+ - know the reward of a project (initially no clue but a range)
+ - able to save/load game state
+ - able to generate new projects
+
+ 3 different pages
+ - personnal page - own projects + hardware + upgrades
+ - team page - team projects + hardware + upgrades
+ - completed projects page + flashcards
+
+
 ```mermaid
 graph LR
   Projects -->|rewards| Experience

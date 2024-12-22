@@ -10,6 +10,22 @@ import 'package:stupig_proto/systems/projects/project_state.dart';
 part 'projects_state_notifier.g.dart';
 
 @Riverpod(keepAlive: true)
+class ProjectOrchestrator extends _$ProjectOrchestrator {
+  @override
+  void build() {}
+
+  void startProject(Project project) {
+    ref.read(inactiveProjectsNotifierProvider.notifier).removeProject(project);
+    ref.read(activeProjectsStateNotifierProvider.notifier).addProject(project);
+  }
+
+  void completeProject(ProjectState pState) {
+    ref.read(activeProjectsStateNotifierProvider.notifier).completeProject(pState);
+    ref.read(completedProjectsStateNotifierProvider.notifier).addProject(pState.project);
+  }
+}
+
+@Riverpod(keepAlive: true)
 class ActiveProjectsStateNotifier extends _$ActiveProjectsStateNotifier {
   @override
   List<ProjectState> build() {
@@ -24,7 +40,7 @@ class ActiveProjectsStateNotifier extends _$ActiveProjectsStateNotifier {
     return [];
   }
 
-  void activateProject(Project project) {
+  void addProject(Project project) {
     ref.read(eventBusProvider.notifier).publish(GameEvent.projectStarted(project));
     state = [...state, ProjectState.fromProject(project, Random().nextInt(50))];
   }
@@ -38,19 +54,10 @@ class ActiveProjectsStateNotifier extends _$ActiveProjectsStateNotifier {
 @Riverpod(keepAlive: true)
 class CompletedProjectsStateNotifier extends _$CompletedProjectsStateNotifier {
   @override
-  List<ProjectState> build() {
-    ref.listen(
-      eventBusProvider,
-      (previous, next) => next.whenData(_handleProjectCompleted),
-    );
-    return [];
-  }
+  List<Project> build() => [];
 
-  void _handleProjectCompleted(GameEvent event) {
-    event.maybeMap(
-      projectCompleted: (event) => state = [...state, event.project],
-      orElse: () {},
-    );
+  void addProject(Project project) {
+    state = [...state, project];
   }
 }
 
@@ -76,7 +83,7 @@ class InactiveProjectsNotifier extends _$InactiveProjectsNotifier {
         const Project(id: '3', name: 'Project 3', description: 'Description 3'),
       ];
 
-  void startProject(Project project) {
+  void removeProject(Project project) {
     state = [for (var p in state.where((p) => p != project)) p];
     // generate new project
     // ...

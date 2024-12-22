@@ -1,17 +1,19 @@
 ﻿import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:stupig_proto/systems/projects/models.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:stupig_proto/systems/projects/project_state.dart';
+import 'package:stupig_proto/systems/projects/projects_state_notifier.dart';
 
-class InactiveProjectCard extends StatefulWidget {
-  const InactiveProjectCard({super.key, required this.project});
-  final Project project;
+class ActiveProjectCard extends ConsumerStatefulWidget {
+  const ActiveProjectCard({super.key, required this.project});
+  final ProjectState project;
 
   @override
-  State<InactiveProjectCard> createState() => _InactiveProjectCardState();
+  ConsumerState<ActiveProjectCard> createState() => _ActiveProjectCardState();
 }
 
-class _InactiveProjectCardState extends State<InactiveProjectCard> with SingleTickerProviderStateMixin {
+class _ActiveProjectCardState extends ConsumerState<ActiveProjectCard> with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _animation;
   bool _isFrontVisible = true;
@@ -52,6 +54,7 @@ class _InactiveProjectCardState extends State<InactiveProjectCard> with SingleTi
 
   @override
   Widget build(BuildContext context) {
+    var pState = ref.watch(projectNotifierProvider(widget.project));
     return GestureDetector(
       onTap: _flipCard,
       child: AnimatedBuilder(
@@ -79,12 +82,30 @@ class _InactiveProjectCardState extends State<InactiveProjectCard> with SingleTi
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             crossAxisAlignment: CrossAxisAlignment.end,
                             children: [
-                              Text(
-                                widget.project.name,
-                                textAlign: TextAlign.left,
-                                style: const TextStyle(
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.bold,
+                              Expanded(
+                                child: Text(
+                                  pState.project.name,
+                                  textAlign: TextAlign.left,
+                                  style: const TextStyle(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                  overflow: TextOverflow.ellipsis,
+                                ),
+                              ),
+                              TweenAnimationBuilder<double>(
+                                duration: const Duration(milliseconds: 250),
+                                curve: Curves.linear,
+                                tween: Tween<double>(
+                                  begin: 0,
+                                  end: pState.completion.progress,
+                                ),
+                                builder: (context, value, _) => Center(
+                                  child: CircularProgressIndicator(
+                                    value: value,
+                                    color: Colors.blue,
+                                    backgroundColor: Colors.grey[300],
+                                  ),
                                 ),
                               ),
                             ],
@@ -111,7 +132,7 @@ class _InactiveProjectCardState extends State<InactiveProjectCard> with SingleTi
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text(widget.project.description),
+                              Text(pState.project.description),
                               const SizedBox(height: 8),
                               const Align(
                                 alignment: Alignment.centerLeft,

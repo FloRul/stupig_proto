@@ -6,8 +6,25 @@ part of 'projects_state_notifier.dart';
 // RiverpodGenerator
 // **************************************************************************
 
+String _$projectOrchestratorHash() =>
+    r'3757681a468e6b90986c33ed3fcf2c53cf418972';
+
+/// See also [ProjectOrchestrator].
+@ProviderFor(ProjectOrchestrator)
+final projectOrchestratorProvider =
+    NotifierProvider<ProjectOrchestrator, void>.internal(
+  ProjectOrchestrator.new,
+  name: r'projectOrchestratorProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$projectOrchestratorHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef _$ProjectOrchestrator = Notifier<void>;
 String _$activeProjectsStateNotifierHash() =>
-    r'91dfa290f2b5d4da671d011e55a3720e5cfc3371';
+    r'03d96d173f050ffc77f1bc9a4be0c7853b8935df';
 
 /// See also [ActiveProjectsStateNotifier].
 @ProviderFor(ActiveProjectsStateNotifier)
@@ -24,12 +41,12 @@ final activeProjectsStateNotifierProvider =
 
 typedef _$ActiveProjectsStateNotifier = Notifier<List<ProjectState>>;
 String _$completedProjectsStateNotifierHash() =>
-    r'4c3a3f8b8f529a2d4a037732286771815d2edb2a';
+    r'50a82460d3c4176768ff3e80f46a698476bf3ef7';
 
 /// See also [CompletedProjectsStateNotifier].
 @ProviderFor(CompletedProjectsStateNotifier)
-final completedProjectsStateNotifierProvider = NotifierProvider<
-    CompletedProjectsStateNotifier, List<ProjectState>>.internal(
+final completedProjectsStateNotifierProvider =
+    NotifierProvider<CompletedProjectsStateNotifier, List<Project>>.internal(
   CompletedProjectsStateNotifier.new,
   name: r'completedProjectsStateNotifierProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
@@ -39,7 +56,7 @@ final completedProjectsStateNotifierProvider = NotifierProvider<
   allTransitiveDependencies: null,
 );
 
-typedef _$CompletedProjectsStateNotifier = Notifier<List<ProjectState>>;
+typedef _$CompletedProjectsStateNotifier = Notifier<List<Project>>;
 String _$projectNotifierHash() => r'fc6d08029dd767972a9c34aca5b6245ba73cb281';
 
 /// Copied from Dart SDK
@@ -208,7 +225,7 @@ class _ProjectNotifierProviderElement
 }
 
 String _$inactiveProjectsNotifierHash() =>
-    r'2eaa3e5cc74da43a2b46290ca5399201fd954ccf';
+    r'8f5fc266690f8bd107c871607b3333b1fb048424';
 
 /// See also [InactiveProjectsNotifier].
 @ProviderFor(InactiveProjectsNotifier)

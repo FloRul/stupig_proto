@@ -1,7 +1,7 @@
 ﻿import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:stupig_proto/widgets/click_counter.dart';
-import 'package:stupig_proto/widgets/projects_view.dart';
+import 'package:stupig_proto/widgets/project/projects_view.dart';
 import 'widgets/xp_status.dart';
 
 class ClickerGame extends ConsumerWidget {
