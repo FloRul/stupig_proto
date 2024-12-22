@@ -6,58 +6,7 @@ part of 'projects_state_notifier.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$projectOrchestratorHash() =>
-    r'3757681a468e6b90986c33ed3fcf2c53cf418972';
-
-/// See also [ProjectOrchestrator].
-@ProviderFor(ProjectOrchestrator)
-final projectOrchestratorProvider =
-    NotifierProvider<ProjectOrchestrator, void>.internal(
-  ProjectOrchestrator.new,
-  name: r'projectOrchestratorProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$projectOrchestratorHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
-
-typedef _$ProjectOrchestrator = Notifier<void>;
-String _$activeProjectsStateNotifierHash() =>
-    r'03d96d173f050ffc77f1bc9a4be0c7853b8935df';
-
-/// See also [ActiveProjectsStateNotifier].
-@ProviderFor(ActiveProjectsStateNotifier)
-final activeProjectsStateNotifierProvider =
-    NotifierProvider<ActiveProjectsStateNotifier, List<ProjectState>>.internal(
-  ActiveProjectsStateNotifier.new,
-  name: r'activeProjectsStateNotifierProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$activeProjectsStateNotifierHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
-
-typedef _$ActiveProjectsStateNotifier = Notifier<List<ProjectState>>;
-String _$completedProjectsStateNotifierHash() =>
-    r'50a82460d3c4176768ff3e80f46a698476bf3ef7';
-
-/// See also [CompletedProjectsStateNotifier].
-@ProviderFor(CompletedProjectsStateNotifier)
-final completedProjectsStateNotifierProvider =
-    NotifierProvider<CompletedProjectsStateNotifier, List<Project>>.internal(
-  CompletedProjectsStateNotifier.new,
-  name: r'completedProjectsStateNotifierProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$completedProjectsStateNotifierHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
-
-typedef _$CompletedProjectsStateNotifier = Notifier<List<Project>>;
-String _$projectNotifierHash() => r'fc6d08029dd767972a9c34aca5b6245ba73cb281';
+String _$projectNotifierHash() => r'd83cff139e58dcb44744112c7c2000ec5edc49ad';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -224,22 +173,21 @@ class _ProjectNotifierProviderElement
       (origin as ProjectNotifierProvider).projectState;
 }
 
-String _$inactiveProjectsNotifierHash() =>
-    r'8f5fc266690f8bd107c871607b3333b1fb048424';
+String _$projectsNotifierHash() => r'2d5fd2663f0d23f1f89cc48a148218d8d3ba630e';
 
-/// See also [InactiveProjectsNotifier].
-@ProviderFor(InactiveProjectsNotifier)
-final inactiveProjectsNotifierProvider =
-    NotifierProvider<InactiveProjectsNotifier, List<Project>>.internal(
-  InactiveProjectsNotifier.new,
-  name: r'inactiveProjectsNotifierProvider',
+/// See also [ProjectsNotifier].
+@ProviderFor(ProjectsNotifier)
+final projectsNotifierProvider =
+    NotifierProvider<ProjectsNotifier, ProjectsState>.internal(
+  ProjectsNotifier.new,
+  name: r'projectsNotifierProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : _$inactiveProjectsNotifierHash,
+      : _$projectsNotifierHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-typedef _$InactiveProjectsNotifier = Notifier<List<Project>>;
+typedef _$ProjectsNotifier = Notifier<ProjectsState>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

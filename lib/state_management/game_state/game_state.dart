@@ -70,7 +70,7 @@ class GameState with _$GameState {
 
   double get clickPower => cpuSpeed;
   double get usedRam => projects.where((p) => p.status == ProjectStatus.inProgress).fold(0, (p, e) => p + e.ram);
-  double get xpToNextLevel => kBaseXp * pow(level, kLevelUpFactor);
+  int get xpToNextLevel => kBaseXp * pow(level, kLevelUpFactor).toInt();
 
   bool satisfyPrereq(Prerequisite? pq) {
     if (pq == null) return true;

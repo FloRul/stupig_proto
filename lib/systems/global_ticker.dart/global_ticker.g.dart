@@ -6,7 +6,7 @@ part of 'global_ticker.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$globalTickerHash() => r'4ce9ce580db7fa12e001bcadc36371579eb103f4';
+String _$globalTickerHash() => r'ff0ea485d52c1566bd92d46116254a25086bf0d4';
 
 /// See also [GlobalTicker].
 @ProviderFor(GlobalTicker)

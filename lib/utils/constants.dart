@@ -6,6 +6,7 @@ const String kGameStateKey = 'gameState';
 
 // Game state
 const int kMaxClickInterval = 100;
-const double kBaseXp = 20;
+const int kBaseXp = 20;
 const double kLevelUpFactor = 1.25;
 const double kClickPowerDenominator = 20;
+const int kTickInterval = 200;

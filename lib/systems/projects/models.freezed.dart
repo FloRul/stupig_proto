@@ -195,3 +195,225 @@ abstract class _Project implements Project {
   _$$ProjectImplCopyWith<_$ProjectImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
+
+ProjectsState _$ProjectsStateFromJson(Map<String, dynamic> json) {
+  return _ProjectsState.fromJson(json);
+}
+
+/// @nodoc
+mixin _$ProjectsState {
+  List<Project> get inactiveProjects => throw _privateConstructorUsedError;
+  List<ProjectState> get activeProjects => throw _privateConstructorUsedError;
+  List<Project> get completedProjects => throw _privateConstructorUsedError;
+
+  /// Serializes this ProjectsState to a JSON map.
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+
+  /// Create a copy of ProjectsState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  $ProjectsStateCopyWith<ProjectsState> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $ProjectsStateCopyWith<$Res> {
+  factory $ProjectsStateCopyWith(
+          ProjectsState value, $Res Function(ProjectsState) then) =
+      _$ProjectsStateCopyWithImpl<$Res, ProjectsState>;
+  @useResult
+  $Res call(
+      {List<Project> inactiveProjects,
+      List<ProjectState> activeProjects,
+      List<Project> completedProjects});
+}
+
+/// @nodoc
+class _$ProjectsStateCopyWithImpl<$Res, $Val extends ProjectsState>
+    implements $ProjectsStateCopyWith<$Res> {
+  _$ProjectsStateCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  /// Create a copy of ProjectsState
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? inactiveProjects = null,
+    Object? activeProjects = null,
+    Object? completedProjects = null,
+  }) {
+    return _then(_value.copyWith(
+      inactiveProjects: null == inactiveProjects
+          ? _value.inactiveProjects
+          : inactiveProjects // ignore: cast_nullable_to_non_nullable
+              as List<Project>,
+      activeProjects: null == activeProjects
+          ? _value.activeProjects
+          : activeProjects // ignore: cast_nullable_to_non_nullable
+              as List<ProjectState>,
+      completedProjects: null == completedProjects
+          ? _value.completedProjects
+          : completedProjects // ignore: cast_nullable_to_non_nullable
+              as List<Project>,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$ProjectsStateImplCopyWith<$Res>
+    implements $ProjectsStateCopyWith<$Res> {
+  factory _$$ProjectsStateImplCopyWith(
+          _$ProjectsStateImpl value, $Res Function(_$ProjectsStateImpl) then) =
+      __$$ProjectsStateImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {List<Project> inactiveProjects,
+      List<ProjectState> activeProjects,
+      List<Project> completedProjects});
+}
+
+/// @nodoc
+class __$$ProjectsStateImplCopyWithImpl<$Res>
+    extends _$ProjectsStateCopyWithImpl<$Res, _$ProjectsStateImpl>
+    implements _$$ProjectsStateImplCopyWith<$Res> {
+  __$$ProjectsStateImplCopyWithImpl(
+      _$ProjectsStateImpl _value, $Res Function(_$ProjectsStateImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of ProjectsState
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? inactiveProjects = null,
+    Object? activeProjects = null,
+    Object? completedProjects = null,
+  }) {
+    return _then(_$ProjectsStateImpl(
+      inactiveProjects: null == inactiveProjects
+          ? _value._inactiveProjects
+          : inactiveProjects // ignore: cast_nullable_to_non_nullable
+              as List<Project>,
+      activeProjects: null == activeProjects
+          ? _value._activeProjects
+          : activeProjects // ignore: cast_nullable_to_non_nullable
+              as List<ProjectState>,
+      completedProjects: null == completedProjects
+          ? _value._completedProjects
+          : completedProjects // ignore: cast_nullable_to_non_nullable
+              as List<Project>,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$ProjectsStateImpl implements _ProjectsState {
+  const _$ProjectsStateImpl(
+      {required final List<Project> inactiveProjects,
+      required final List<ProjectState> activeProjects,
+      required final List<Project> completedProjects})
+      : _inactiveProjects = inactiveProjects,
+        _activeProjects = activeProjects,
+        _completedProjects = completedProjects;
+
+  factory _$ProjectsStateImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ProjectsStateImplFromJson(json);
+
+  final List<Project> _inactiveProjects;
+  @override
+  List<Project> get inactiveProjects {
+    if (_inactiveProjects is EqualUnmodifiableListView)
+      return _inactiveProjects;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_inactiveProjects);
+  }
+
+  final List<ProjectState> _activeProjects;
+  @override
+  List<ProjectState> get activeProjects {
+    if (_activeProjects is EqualUnmodifiableListView) return _activeProjects;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_activeProjects);
+  }
+
+  final List<Project> _completedProjects;
+  @override
+  List<Project> get completedProjects {
+    if (_completedProjects is EqualUnmodifiableListView)
+      return _completedProjects;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_completedProjects);
+  }
+
+  @override
+  String toString() {
+    return 'ProjectsState(inactiveProjects: $inactiveProjects, activeProjects: $activeProjects, completedProjects: $completedProjects)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ProjectsStateImpl &&
+            const DeepCollectionEquality()
+                .equals(other._inactiveProjects, _inactiveProjects) &&
+            const DeepCollectionEquality()
+                .equals(other._activeProjects, _activeProjects) &&
+            const DeepCollectionEquality()
+                .equals(other._completedProjects, _completedProjects));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(_inactiveProjects),
+      const DeepCollectionEquality().hash(_activeProjects),
+      const DeepCollectionEquality().hash(_completedProjects));
+
+  /// Create a copy of ProjectsState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ProjectsStateImplCopyWith<_$ProjectsStateImpl> get copyWith =>
+      __$$ProjectsStateImplCopyWithImpl<_$ProjectsStateImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$ProjectsStateImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _ProjectsState implements ProjectsState {
+  const factory _ProjectsState(
+      {required final List<Project> inactiveProjects,
+      required final List<ProjectState> activeProjects,
+      required final List<Project> completedProjects}) = _$ProjectsStateImpl;
+
+  factory _ProjectsState.fromJson(Map<String, dynamic> json) =
+      _$ProjectsStateImpl.fromJson;
+
+  @override
+  List<Project> get inactiveProjects;
+  @override
+  List<ProjectState> get activeProjects;
+  @override
+  List<Project> get completedProjects;
+
+  /// Create a copy of ProjectsState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$ProjectsStateImplCopyWith<_$ProjectsStateImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}

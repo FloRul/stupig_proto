@@ -1,8 +1,7 @@
 ﻿import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:stupig_proto/widgets/click_counter.dart';
 import 'package:stupig_proto/widgets/project/projects_view.dart';
-import 'widgets/xp_status.dart';
+import 'widgets/primary_resources.dart';
 
 class ClickerGame extends ConsumerWidget {
   const ClickerGame({super.key});
@@ -18,12 +17,7 @@ class ClickerGame extends ConsumerWidget {
             Expanded(
               child: GroupArea(
                 title: 'Resources',
-                child: Column(
-                  children: [
-                    XpStatus(),
-                    ClickCounter(),
-                  ],
-                ),
+                child: PrimaryResourceView(),
               ),
             ),
             Expanded(
