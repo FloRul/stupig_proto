@@ -1,7 +1,7 @@
 ﻿import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:stupig_proto/widgets/project/projects_view.dart';
-import 'widgets/primary_resources.dart';
+import 'widgets/resources_panel.dart';
 
 class ClickerGame extends ConsumerWidget {
   const ClickerGame({super.key});
@@ -17,7 +17,7 @@ class ClickerGame extends ConsumerWidget {
             Expanded(
               child: GroupArea(
                 title: 'Resources',
-                child: PrimaryResourceView(),
+                child: ResourcesView(),
               ),
             ),
             Expanded(
@@ -64,6 +64,7 @@ class GroupArea extends StatelessWidget {
       padding: const EdgeInsets.all(16.0),
       margin: const EdgeInsets.all(8.0),
       child: Column(
+        mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           if (title != null) Text(title!, style: const TextStyle(fontSize: 20)),
