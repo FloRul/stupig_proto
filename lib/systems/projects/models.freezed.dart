@@ -202,7 +202,6 @@ ProjectsState _$ProjectsStateFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$ProjectsState {
-  List<Project> get inactiveProjects => throw _privateConstructorUsedError;
   List<ActiveProjectState> get activeProjects =>
       throw _privateConstructorUsedError;
   List<Project> get completedProjects => throw _privateConstructorUsedError;
@@ -224,8 +223,7 @@ abstract class $ProjectsStateCopyWith<$Res> {
       _$ProjectsStateCopyWithImpl<$Res, ProjectsState>;
   @useResult
   $Res call(
-      {List<Project> inactiveProjects,
-      List<ActiveProjectState> activeProjects,
+      {List<ActiveProjectState> activeProjects,
       List<Project> completedProjects});
 }
 
@@ -244,15 +242,10 @@ class _$ProjectsStateCopyWithImpl<$Res, $Val extends ProjectsState>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? inactiveProjects = null,
     Object? activeProjects = null,
     Object? completedProjects = null,
   }) {
     return _then(_value.copyWith(
-      inactiveProjects: null == inactiveProjects
-          ? _value.inactiveProjects
-          : inactiveProjects // ignore: cast_nullable_to_non_nullable
-              as List<Project>,
       activeProjects: null == activeProjects
           ? _value.activeProjects
           : activeProjects // ignore: cast_nullable_to_non_nullable
@@ -274,8 +267,7 @@ abstract class _$$ProjectsStateImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {List<Project> inactiveProjects,
-      List<ActiveProjectState> activeProjects,
+      {List<ActiveProjectState> activeProjects,
       List<Project> completedProjects});
 }
 
@@ -292,15 +284,10 @@ class __$$ProjectsStateImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? inactiveProjects = null,
     Object? activeProjects = null,
     Object? completedProjects = null,
   }) {
     return _then(_$ProjectsStateImpl(
-      inactiveProjects: null == inactiveProjects
-          ? _value._inactiveProjects
-          : inactiveProjects // ignore: cast_nullable_to_non_nullable
-              as List<Project>,
       activeProjects: null == activeProjects
           ? _value._activeProjects
           : activeProjects // ignore: cast_nullable_to_non_nullable
@@ -317,24 +304,13 @@ class __$$ProjectsStateImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$ProjectsStateImpl implements _ProjectsState {
   const _$ProjectsStateImpl(
-      {required final List<Project> inactiveProjects,
-      required final List<ActiveProjectState> activeProjects,
+      {required final List<ActiveProjectState> activeProjects,
       required final List<Project> completedProjects})
-      : _inactiveProjects = inactiveProjects,
-        _activeProjects = activeProjects,
+      : _activeProjects = activeProjects,
         _completedProjects = completedProjects;
 
   factory _$ProjectsStateImpl.fromJson(Map<String, dynamic> json) =>
       _$$ProjectsStateImplFromJson(json);
-
-  final List<Project> _inactiveProjects;
-  @override
-  List<Project> get inactiveProjects {
-    if (_inactiveProjects is EqualUnmodifiableListView)
-      return _inactiveProjects;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_inactiveProjects);
-  }
 
   final List<ActiveProjectState> _activeProjects;
   @override
@@ -355,7 +331,7 @@ class _$ProjectsStateImpl implements _ProjectsState {
 
   @override
   String toString() {
-    return 'ProjectsState(inactiveProjects: $inactiveProjects, activeProjects: $activeProjects, completedProjects: $completedProjects)';
+    return 'ProjectsState(activeProjects: $activeProjects, completedProjects: $completedProjects)';
   }
 
   @override
@@ -363,8 +339,6 @@ class _$ProjectsStateImpl implements _ProjectsState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ProjectsStateImpl &&
-            const DeepCollectionEquality()
-                .equals(other._inactiveProjects, _inactiveProjects) &&
             const DeepCollectionEquality()
                 .equals(other._activeProjects, _activeProjects) &&
             const DeepCollectionEquality()
@@ -375,7 +349,6 @@ class _$ProjectsStateImpl implements _ProjectsState {
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(_inactiveProjects),
       const DeepCollectionEquality().hash(_activeProjects),
       const DeepCollectionEquality().hash(_completedProjects));
 
@@ -397,15 +370,12 @@ class _$ProjectsStateImpl implements _ProjectsState {
 
 abstract class _ProjectsState implements ProjectsState {
   const factory _ProjectsState(
-      {required final List<Project> inactiveProjects,
-      required final List<ActiveProjectState> activeProjects,
+      {required final List<ActiveProjectState> activeProjects,
       required final List<Project> completedProjects}) = _$ProjectsStateImpl;
 
   factory _ProjectsState.fromJson(Map<String, dynamic> json) =
       _$ProjectsStateImpl.fromJson;
 
-  @override
-  List<Project> get inactiveProjects;
   @override
   List<ActiveProjectState> get activeProjects;
   @override

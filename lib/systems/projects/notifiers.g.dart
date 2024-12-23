@@ -6,7 +6,7 @@ part of 'notifiers.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$projectNotifierHash() => r'f6921df69d3219d2ae826ad0ff41dc342d5a538a';
+String _$projectNotifierHash() => r'560e8324c6c2725eaefccc303a60bcae7784cd87';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -173,7 +173,7 @@ class _ProjectNotifierProviderElement
       (origin as ProjectNotifierProvider).projectState;
 }
 
-String _$projectsNotifierHash() => r'bfdfa27c7859c07028cf0a88191fd4349dab65e2';
+String _$projectsNotifierHash() => r'694f0b194d3075c8d8bcf0433c79e75ca13db9c0';
 
 /// See also [ProjectsNotifier].
 @ProviderFor(ProjectsNotifier)
@@ -190,7 +190,7 @@ final projectsNotifierProvider =
 
 typedef _$ProjectsNotifier = Notifier<ProjectsState>;
 String _$availableProjectNotifierHash() =>
-    r'3e938832725416eaf909dc5142776c0047c555e3';
+    r'7a66a3524356a1dbd753da6d5cdab5550a1c77a9';
 
 /// See also [AvailableProjectNotifier].
 @ProviderFor(AvailableProjectNotifier)

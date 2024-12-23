@@ -18,7 +18,6 @@ class Project with _$Project {
 @freezed
 class ProjectsState with _$ProjectsState {
   const factory ProjectsState({
-    required List<Project> inactiveProjects,
     required List<ActiveProjectState> activeProjects,
     required List<Project> completedProjects,
   }) = _ProjectsState;

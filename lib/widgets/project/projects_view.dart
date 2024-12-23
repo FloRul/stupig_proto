@@ -1,8 +1,8 @@
 ﻿import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:stupig_proto/systems/projects/models.dart';
 import 'package:stupig_proto/systems/projects/project_state.dart';
 import 'package:stupig_proto/systems/projects/notifiers.dart';
+import 'package:stupig_proto/systems/secondary_resources/notifiers.dart';
 import 'package:stupig_proto/utils/constants.dart';
 import 'package:stupig_proto/widgets/project/active_project_card.dart';
 import 'package:stupig_proto/widgets/project/inactive_project_card.dart';
@@ -39,9 +39,10 @@ class _InprogressProjectsState extends ConsumerState<InprogressProjects> {
           ],
         ),
         Expanded(
-          child: DragTarget<Project>(
+          child: DragTarget<AvailableProjectState>(
             onWillAcceptWithDetails: (d) => true,
-            onAcceptWithDetails: (details) => ref.read(projectsNotifierProvider.notifier).startProject(details.data),
+            onAcceptWithDetails: (details) =>
+                ref.read(availableProjectNotifierProvider.notifier).startProject(details.data),
             builder: (context, candidateData, rejectedData) {
               return Container(
                 decoration: BoxDecoration(
@@ -137,7 +138,7 @@ class InactiveProjects extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    var inactiveProjects = ref.watch(projectsNotifierProvider.select((value) => value.inactiveProjects));
+    var availableProjects = ref.watch(availableProjectNotifierProvider);
     return LayoutBuilder(
       builder: (context, constraints) {
         final crossAxisCount = (constraints.maxWidth / 250).ceil().toInt();
@@ -149,18 +150,18 @@ class InactiveProjects extends ConsumerWidget {
             mainAxisSpacing: 8.0,
             childAspectRatio: kCardAspectRatio,
           ),
-          itemCount: inactiveProjects.length,
+          itemCount: ref.watch(secondaryResourcesNotifierProvider.select((value) => value.availableProjectSlots)),
           itemBuilder: (context, index) {
-            return Draggable<Project>(
+            return Draggable<AvailableProjectState>(
               feedback: SizedBox(
                 width: 150,
                 child: AspectRatio(
                   aspectRatio: kCardAspectRatio,
-                  child: InactiveProjectCard(project: inactiveProjects[index]),
+                  child: InactiveProjectCard(aPstate: availableProjects[index]),
                 ),
               ),
-              data: inactiveProjects[index],
-              child: InactiveProjectCard(project: inactiveProjects[index]),
+              data: availableProjects[index],
+              child: InactiveProjectCard(aPstate: availableProjects[index]),
             );
           },
         );

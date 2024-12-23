@@ -19,6 +19,10 @@ class ProjectNotifier extends _$ProjectNotifier {
         ref.read(projectsNotifierProvider.notifier).completeProject(next);
       }
     });
+    ref.listen(
+      globalTickerProvider,
+      (previous, next) => tick(),
+    );
     return projectState;
   }
 
@@ -32,30 +36,23 @@ class ProjectsNotifier extends _$ProjectsNotifier {
   @override
   ProjectsState build() {
     ref.listen(
-      globalTickerProvider,
+      eventBusProvider,
       (previous, next) {
-        for (var projectState in state.activeProjects) {
-          ref.read(projectNotifierProvider(projectState).notifier).tick();
-        }
+        next.whenData((event) => event.maybeMap(
+              projectStarted: (pStarted) => _handleStartProject(pStarted.project),
+              orElse: () {},
+            ));
       },
     );
 
     return const ProjectsState(
-      inactiveProjects: [
-        Project(id: '1', name: 'Project 1', description: 'Description 1'),
-        Project(id: '2', name: 'Project 2', description: 'Description 2'),
-        Project(id: '3', name: 'Project 3', description: 'Description 3'),
-      ],
       activeProjects: [],
       completedProjects: [],
     );
   }
 
-  void startProject(Project project) {
-    ref.read(eventBusProvider.notifier).publish(GameEvent.projectStarted(project));
-
+  void _handleStartProject(Project project) {
     state = state.copyWith(
-      inactiveProjects: state.inactiveProjects.where((p) => p != project).toList(),
       activeProjects: [...state.activeProjects, ActiveProjectState.fromProject(project, Random().nextInt(10))],
     );
   }
@@ -78,5 +75,19 @@ class AvailableProjectNotifier extends _$AvailableProjectNotifier {
   @override
   List<AvailableProjectState> build() {
     return [];
+  }
+
+  void startProject(AvailableProjectState projectState) {
+    state = [
+      for (var p in state)
+        if (p != projectState) p,
+    ];
+
+    ref.read(eventBusProvider.notifier).publish(GameEvent.projectStarted(projectState.project));
+    // TODO: fetch new project
+  }
+
+  void _fetchNewProject() {
+    // TODO
   }
 }

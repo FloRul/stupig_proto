@@ -1,11 +1,11 @@
 ﻿import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:stupig_proto/systems/projects/models.dart';
+import 'package:stupig_proto/systems/projects/project_state.dart';
 
 class InactiveProjectCard extends StatefulWidget {
-  const InactiveProjectCard({super.key, required this.project});
-  final Project project;
+  const InactiveProjectCard({super.key, required this.aPstate});
+  final AvailableProjectState aPstate;
 
   @override
   State<InactiveProjectCard> createState() => _InactiveProjectCardState();
@@ -81,7 +81,7 @@ class _InactiveProjectCardState extends State<InactiveProjectCard> with SingleTi
                             children: [
                               Expanded(
                                 child: Text(
-                                  widget.project.name,
+                                  widget.aPstate.project.name,
                                   textAlign: TextAlign.left,
                                   style: const TextStyle(
                                     fontSize: 20,
@@ -114,7 +114,7 @@ class _InactiveProjectCardState extends State<InactiveProjectCard> with SingleTi
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text(widget.project.description),
+                              Text(widget.aPstate.project.description),
                               const SizedBox(height: 8),
                               const Align(
                                 alignment: Alignment.centerLeft,

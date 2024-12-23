@@ -22,9 +22,6 @@ Map<String, dynamic> _$$ProjectImplToJson(_$ProjectImpl instance) =>
 
 _$ProjectsStateImpl _$$ProjectsStateImplFromJson(Map<String, dynamic> json) =>
     _$ProjectsStateImpl(
-      inactiveProjects: (json['inactiveProjects'] as List<dynamic>)
-          .map((e) => Project.fromJson(e as Map<String, dynamic>))
-          .toList(),
       activeProjects: (json['activeProjects'] as List<dynamic>)
           .map((e) => ActiveProjectState.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -35,7 +32,6 @@ _$ProjectsStateImpl _$$ProjectsStateImplFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$$ProjectsStateImplToJson(_$ProjectsStateImpl instance) =>
     <String, dynamic>{
-      'inactiveProjects': instance.inactiveProjects,
       'activeProjects': instance.activeProjects,
       'completedProjects': instance.completedProjects,
     };
