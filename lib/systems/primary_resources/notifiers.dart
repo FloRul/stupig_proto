@@ -9,15 +9,31 @@ class ExperienceNotifier extends _$ExperienceNotifier {
   ExperienceState build() {
     ref.listen(eventBusProvider, (previous, next) {
       next.whenData(
-        (event) => event.maybeMap(
-          projectCompleted: (pCompleted) => state = state.copyWith(
-            xp: state.xp + pCompleted.project.reward.xpAmount,
-          ),
-          orElse: () {},
-        ),
+        (event) {
+          return event.maybeMap(
+            projectCompleted: (pCompleted) {
+              var newXp = state.xp + pCompleted.project.reward.xpAmount;
+              if (newXp >= state.xpToNextLevel) {
+                _levelUp();
+              } else {
+                state = state.copyWith(
+                  xp: newXp,
+                );
+              }
+            },
+            orElse: () {},
+          );
+        },
       );
     });
     return ExperienceState.initial();
+  }
+
+  void _levelUp() {
+    state = state.copyWith(
+      level: state.level + 1,
+      xp: 0,
+    );
   }
 }
 

@@ -6,7 +6,8 @@ part of 'notifiers.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$projectNotifierHash() => r'560e8324c6c2725eaefccc303a60bcae7784cd87';
+String _$activeProjectNotifierHash() =>
+    r'b47fc1d7a75f8d7d90926be50f660bd102c53d7c';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -29,7 +30,8 @@ class _SystemHash {
   }
 }
 
-abstract class _$ProjectNotifier extends BuildlessNotifier<ActiveProjectState> {
+abstract class _$ActiveProjectNotifier
+    extends BuildlessAutoDisposeNotifier<ActiveProjectState> {
   late final ActiveProjectState projectState;
 
   ActiveProjectState build(
@@ -37,27 +39,27 @@ abstract class _$ProjectNotifier extends BuildlessNotifier<ActiveProjectState> {
   );
 }
 
-/// See also [ProjectNotifier].
-@ProviderFor(ProjectNotifier)
-const projectNotifierProvider = ProjectNotifierFamily();
+/// See also [ActiveProjectNotifier].
+@ProviderFor(ActiveProjectNotifier)
+const activeProjectNotifierProvider = ActiveProjectNotifierFamily();
 
-/// See also [ProjectNotifier].
-class ProjectNotifierFamily extends Family<ActiveProjectState> {
-  /// See also [ProjectNotifier].
-  const ProjectNotifierFamily();
+/// See also [ActiveProjectNotifier].
+class ActiveProjectNotifierFamily extends Family<ActiveProjectState> {
+  /// See also [ActiveProjectNotifier].
+  const ActiveProjectNotifierFamily();
 
-  /// See also [ProjectNotifier].
-  ProjectNotifierProvider call(
+  /// See also [ActiveProjectNotifier].
+  ActiveProjectNotifierProvider call(
     ActiveProjectState projectState,
   ) {
-    return ProjectNotifierProvider(
+    return ActiveProjectNotifierProvider(
       projectState,
     );
   }
 
   @override
-  ProjectNotifierProvider getProviderOverride(
-    covariant ProjectNotifierProvider provider,
+  ActiveProjectNotifierProvider getProviderOverride(
+    covariant ActiveProjectNotifierProvider provider,
   ) {
     return call(
       provider.projectState,
@@ -76,30 +78,30 @@ class ProjectNotifierFamily extends Family<ActiveProjectState> {
       _allTransitiveDependencies;
 
   @override
-  String? get name => r'projectNotifierProvider';
+  String? get name => r'activeProjectNotifierProvider';
 }
 
-/// See also [ProjectNotifier].
-class ProjectNotifierProvider
-    extends NotifierProviderImpl<ProjectNotifier, ActiveProjectState> {
-  /// See also [ProjectNotifier].
-  ProjectNotifierProvider(
+/// See also [ActiveProjectNotifier].
+class ActiveProjectNotifierProvider extends AutoDisposeNotifierProviderImpl<
+    ActiveProjectNotifier, ActiveProjectState> {
+  /// See also [ActiveProjectNotifier].
+  ActiveProjectNotifierProvider(
     ActiveProjectState projectState,
   ) : this._internal(
-          () => ProjectNotifier()..projectState = projectState,
-          from: projectNotifierProvider,
-          name: r'projectNotifierProvider',
+          () => ActiveProjectNotifier()..projectState = projectState,
+          from: activeProjectNotifierProvider,
+          name: r'activeProjectNotifierProvider',
           debugGetCreateSourceHash:
               const bool.fromEnvironment('dart.vm.product')
                   ? null
-                  : _$projectNotifierHash,
-          dependencies: ProjectNotifierFamily._dependencies,
+                  : _$activeProjectNotifierHash,
+          dependencies: ActiveProjectNotifierFamily._dependencies,
           allTransitiveDependencies:
-              ProjectNotifierFamily._allTransitiveDependencies,
+              ActiveProjectNotifierFamily._allTransitiveDependencies,
           projectState: projectState,
         );
 
-  ProjectNotifierProvider._internal(
+  ActiveProjectNotifierProvider._internal(
     super._createNotifier, {
     required super.name,
     required super.dependencies,
@@ -113,7 +115,7 @@ class ProjectNotifierProvider
 
   @override
   ActiveProjectState runNotifierBuild(
-    covariant ProjectNotifier notifier,
+    covariant ActiveProjectNotifier notifier,
   ) {
     return notifier.build(
       projectState,
@@ -121,10 +123,10 @@ class ProjectNotifierProvider
   }
 
   @override
-  Override overrideWith(ProjectNotifier Function() create) {
+  Override overrideWith(ActiveProjectNotifier Function() create) {
     return ProviderOverride(
       origin: this,
-      override: ProjectNotifierProvider._internal(
+      override: ActiveProjectNotifierProvider._internal(
         () => create()..projectState = projectState,
         from: from,
         name: null,
@@ -137,13 +139,14 @@ class ProjectNotifierProvider
   }
 
   @override
-  NotifierProviderElement<ProjectNotifier, ActiveProjectState> createElement() {
-    return _ProjectNotifierProviderElement(this);
+  AutoDisposeNotifierProviderElement<ActiveProjectNotifier, ActiveProjectState>
+      createElement() {
+    return _ActiveProjectNotifierProviderElement(this);
   }
 
   @override
   bool operator ==(Object other) {
-    return other is ProjectNotifierProvider &&
+    return other is ActiveProjectNotifierProvider &&
         other.projectState == projectState;
   }
 
@@ -158,22 +161,23 @@ class ProjectNotifierProvider
 
 @Deprecated('Will be removed in 3.0. Use Ref instead')
 // ignore: unused_element
-mixin ProjectNotifierRef on NotifierProviderRef<ActiveProjectState> {
+mixin ActiveProjectNotifierRef
+    on AutoDisposeNotifierProviderRef<ActiveProjectState> {
   /// The parameter `projectState` of this provider.
   ActiveProjectState get projectState;
 }
 
-class _ProjectNotifierProviderElement
-    extends NotifierProviderElement<ProjectNotifier, ActiveProjectState>
-    with ProjectNotifierRef {
-  _ProjectNotifierProviderElement(super.provider);
+class _ActiveProjectNotifierProviderElement
+    extends AutoDisposeNotifierProviderElement<ActiveProjectNotifier,
+        ActiveProjectState> with ActiveProjectNotifierRef {
+  _ActiveProjectNotifierProviderElement(super.provider);
 
   @override
   ActiveProjectState get projectState =>
-      (origin as ProjectNotifierProvider).projectState;
+      (origin as ActiveProjectNotifierProvider).projectState;
 }
 
-String _$projectsNotifierHash() => r'694f0b194d3075c8d8bcf0433c79e75ca13db9c0';
+String _$projectsNotifierHash() => r'86e6a7df1dca88a6a30b60f50b3dd089e61c3222';
 
 /// See also [ProjectsNotifier].
 @ProviderFor(ProjectsNotifier)
@@ -189,22 +193,171 @@ final projectsNotifierProvider =
 );
 
 typedef _$ProjectsNotifier = Notifier<ProjectsState>;
-String _$availableProjectNotifierHash() =>
-    r'7a66a3524356a1dbd753da6d5cdab5550a1c77a9';
+String _$availableProjectsNotifierHash() =>
+    r'd3bbebd308abb1a18b594dfd556548df4030f93d';
 
-/// See also [AvailableProjectNotifier].
-@ProviderFor(AvailableProjectNotifier)
-final availableProjectNotifierProvider = NotifierProvider<
-    AvailableProjectNotifier, List<AvailableProjectState>>.internal(
-  AvailableProjectNotifier.new,
-  name: r'availableProjectNotifierProvider',
+/// See also [AvailableProjectsNotifier].
+@ProviderFor(AvailableProjectsNotifier)
+final availableProjectsNotifierProvider = NotifierProvider<
+    AvailableProjectsNotifier, List<AvailableProjectState>>.internal(
+  AvailableProjectsNotifier.new,
+  name: r'availableProjectsNotifierProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : _$availableProjectNotifierHash,
+      : _$availableProjectsNotifierHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-typedef _$AvailableProjectNotifier = Notifier<List<AvailableProjectState>>;
+typedef _$AvailableProjectsNotifier = Notifier<List<AvailableProjectState>>;
+String _$availableProjectNotifierHash() =>
+    r'419d1a736a54ce24a481040d52cdc5e61a24ef91';
+
+abstract class _$AvailableProjectNotifier
+    extends BuildlessAutoDisposeNotifier<AvailableProjectState> {
+  late final AvailableProjectState projectState;
+
+  AvailableProjectState build(
+    AvailableProjectState projectState,
+  );
+}
+
+/// See also [AvailableProjectNotifier].
+@ProviderFor(AvailableProjectNotifier)
+const availableProjectNotifierProvider = AvailableProjectNotifierFamily();
+
+/// See also [AvailableProjectNotifier].
+class AvailableProjectNotifierFamily extends Family<AvailableProjectState> {
+  /// See also [AvailableProjectNotifier].
+  const AvailableProjectNotifierFamily();
+
+  /// See also [AvailableProjectNotifier].
+  AvailableProjectNotifierProvider call(
+    AvailableProjectState projectState,
+  ) {
+    return AvailableProjectNotifierProvider(
+      projectState,
+    );
+  }
+
+  @override
+  AvailableProjectNotifierProvider getProviderOverride(
+    covariant AvailableProjectNotifierProvider provider,
+  ) {
+    return call(
+      provider.projectState,
+    );
+  }
+
+  static const Iterable<ProviderOrFamily>? _dependencies = null;
+
+  @override
+  Iterable<ProviderOrFamily>? get dependencies => _dependencies;
+
+  static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
+
+  @override
+  Iterable<ProviderOrFamily>? get allTransitiveDependencies =>
+      _allTransitiveDependencies;
+
+  @override
+  String? get name => r'availableProjectNotifierProvider';
+}
+
+/// See also [AvailableProjectNotifier].
+class AvailableProjectNotifierProvider extends AutoDisposeNotifierProviderImpl<
+    AvailableProjectNotifier, AvailableProjectState> {
+  /// See also [AvailableProjectNotifier].
+  AvailableProjectNotifierProvider(
+    AvailableProjectState projectState,
+  ) : this._internal(
+          () => AvailableProjectNotifier()..projectState = projectState,
+          from: availableProjectNotifierProvider,
+          name: r'availableProjectNotifierProvider',
+          debugGetCreateSourceHash:
+              const bool.fromEnvironment('dart.vm.product')
+                  ? null
+                  : _$availableProjectNotifierHash,
+          dependencies: AvailableProjectNotifierFamily._dependencies,
+          allTransitiveDependencies:
+              AvailableProjectNotifierFamily._allTransitiveDependencies,
+          projectState: projectState,
+        );
+
+  AvailableProjectNotifierProvider._internal(
+    super._createNotifier, {
+    required super.name,
+    required super.dependencies,
+    required super.allTransitiveDependencies,
+    required super.debugGetCreateSourceHash,
+    required super.from,
+    required this.projectState,
+  }) : super.internal();
+
+  final AvailableProjectState projectState;
+
+  @override
+  AvailableProjectState runNotifierBuild(
+    covariant AvailableProjectNotifier notifier,
+  ) {
+    return notifier.build(
+      projectState,
+    );
+  }
+
+  @override
+  Override overrideWith(AvailableProjectNotifier Function() create) {
+    return ProviderOverride(
+      origin: this,
+      override: AvailableProjectNotifierProvider._internal(
+        () => create()..projectState = projectState,
+        from: from,
+        name: null,
+        dependencies: null,
+        allTransitiveDependencies: null,
+        debugGetCreateSourceHash: null,
+        projectState: projectState,
+      ),
+    );
+  }
+
+  @override
+  AutoDisposeNotifierProviderElement<AvailableProjectNotifier,
+      AvailableProjectState> createElement() {
+    return _AvailableProjectNotifierProviderElement(this);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return other is AvailableProjectNotifierProvider &&
+        other.projectState == projectState;
+  }
+
+  @override
+  int get hashCode {
+    var hash = _SystemHash.combine(0, runtimeType.hashCode);
+    hash = _SystemHash.combine(hash, projectState.hashCode);
+
+    return _SystemHash.finish(hash);
+  }
+}
+
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
+mixin AvailableProjectNotifierRef
+    on AutoDisposeNotifierProviderRef<AvailableProjectState> {
+  /// The parameter `projectState` of this provider.
+  AvailableProjectState get projectState;
+}
+
+class _AvailableProjectNotifierProviderElement
+    extends AutoDisposeNotifierProviderElement<AvailableProjectNotifier,
+        AvailableProjectState> with AvailableProjectNotifierRef {
+  _AvailableProjectNotifierProviderElement(super.provider);
+
+  @override
+  AvailableProjectState get projectState =>
+      (origin as AvailableProjectNotifierProvider).projectState;
+}
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

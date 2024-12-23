@@ -2,10 +2,9 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:stupig_proto/systems/projects/project_state.dart';
 import 'package:stupig_proto/systems/projects/notifiers.dart';
-import 'package:stupig_proto/systems/secondary_resources/notifiers.dart';
 import 'package:stupig_proto/utils/constants.dart';
 import 'package:stupig_proto/widgets/project/active_project_card.dart';
-import 'package:stupig_proto/widgets/project/inactive_project_card.dart';
+import 'package:stupig_proto/widgets/project/available_project_card.dart';
 
 class InprogressProjects extends ConsumerStatefulWidget {
   const InprogressProjects({super.key});
@@ -20,7 +19,7 @@ class _InprogressProjectsState extends ConsumerState<InprogressProjects> {
 
   @override
   Widget build(BuildContext context) {
-    var activeProjects = ref.watch(projectsNotifierProvider.select((value) => value.activeProjects));
+    var activeProjects = ref.watch(projectsNotifierProvider).activeProjects;
 
     // Handle projects list changes
     WidgetsBinding.instance.addPostFrameCallback((_) {
@@ -42,7 +41,7 @@ class _InprogressProjectsState extends ConsumerState<InprogressProjects> {
           child: DragTarget<AvailableProjectState>(
             onWillAcceptWithDetails: (d) => true,
             onAcceptWithDetails: (details) =>
-                ref.read(availableProjectNotifierProvider.notifier).startProject(details.data),
+                ref.read(availableProjectsNotifierProvider.notifier).startProject(details.data),
             builder: (context, candidateData, rejectedData) {
               return Container(
                 decoration: BoxDecoration(
@@ -123,12 +122,9 @@ class _InprogressProjectsState extends ConsumerState<InprogressProjects> {
   }
 
   Widget _buildRemovedItem(ActiveProjectState project, Animation<double> animation) {
-    return SizeTransition(
-      sizeFactor: animation,
-      child: FadeTransition(
-        opacity: animation,
-        child: ActiveProjectCard(project: project),
-      ),
+    return FadeTransition(
+      opacity: animation,
+      child: ActiveProjectCard(project: project),
     );
   }
 }
@@ -138,7 +134,7 @@ class InactiveProjects extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    var availableProjects = ref.watch(availableProjectNotifierProvider);
+    var availableProjects = ref.watch(availableProjectsNotifierProvider);
     return LayoutBuilder(
       builder: (context, constraints) {
         final crossAxisCount = (constraints.maxWidth / 250).ceil().toInt();
@@ -150,7 +146,7 @@ class InactiveProjects extends ConsumerWidget {
             mainAxisSpacing: 8.0,
             childAspectRatio: kCardAspectRatio,
           ),
-          itemCount: ref.watch(secondaryResourcesNotifierProvider.select((value) => value.availableProjectSlots)),
+          itemCount: ref.watch(availableProjectsNotifierProvider).length,
           itemBuilder: (context, index) {
             return Draggable<AvailableProjectState>(
               feedback: SizedBox(

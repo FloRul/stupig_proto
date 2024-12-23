@@ -17,22 +17,25 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$GameEvent {
   Object get project => throw _privateConstructorUsedError;
+  String? get tag => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(ActiveProjectState project) projectCompleted,
-    required TResult Function(Project project) projectStarted,
+    required TResult Function(ActiveProjectState project, String? tag)
+        projectCompleted,
+    required TResult Function(Project project, String? tag) projectStarted,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(ActiveProjectState project)? projectCompleted,
-    TResult? Function(Project project)? projectStarted,
+    TResult? Function(ActiveProjectState project, String? tag)?
+        projectCompleted,
+    TResult? Function(Project project, String? tag)? projectStarted,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(ActiveProjectState project)? projectCompleted,
-    TResult Function(Project project)? projectStarted,
+    TResult Function(ActiveProjectState project, String? tag)? projectCompleted,
+    TResult Function(Project project, String? tag)? projectStarted,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -55,12 +58,20 @@ mixin _$GameEvent {
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
+
+  /// Create a copy of GameEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  $GameEventCopyWith<GameEvent> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class $GameEventCopyWith<$Res> {
   factory $GameEventCopyWith(GameEvent value, $Res Function(GameEvent) then) =
       _$GameEventCopyWithImpl<$Res, GameEvent>;
+  @useResult
+  $Res call({String? tag});
 }
 
 /// @nodoc
@@ -75,15 +86,29 @@ class _$GameEventCopyWithImpl<$Res, $Val extends GameEvent>
 
   /// Create a copy of GameEvent
   /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? tag = freezed,
+  }) {
+    return _then(_value.copyWith(
+      tag: freezed == tag
+          ? _value.tag
+          : tag // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ) as $Val);
+  }
 }
 
 /// @nodoc
-abstract class _$$ProjectCompletedImplCopyWith<$Res> {
+abstract class _$$ProjectCompletedImplCopyWith<$Res>
+    implements $GameEventCopyWith<$Res> {
   factory _$$ProjectCompletedImplCopyWith(_$ProjectCompletedImpl value,
           $Res Function(_$ProjectCompletedImpl) then) =
       __$$ProjectCompletedImplCopyWithImpl<$Res>;
+  @override
   @useResult
-  $Res call({ActiveProjectState project});
+  $Res call({ActiveProjectState project, String? tag});
 
   $ActiveProjectStateCopyWith<$Res> get project;
 }
@@ -102,12 +127,17 @@ class __$$ProjectCompletedImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? project = null,
+    Object? tag = freezed,
   }) {
     return _then(_$ProjectCompletedImpl(
-      null == project
+      project: null == project
           ? _value.project
           : project // ignore: cast_nullable_to_non_nullable
               as ActiveProjectState,
+      tag: freezed == tag
+          ? _value.tag
+          : tag // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 
@@ -125,14 +155,16 @@ class __$$ProjectCompletedImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$ProjectCompletedImpl implements ProjectCompleted {
-  const _$ProjectCompletedImpl(this.project);
+  const _$ProjectCompletedImpl({required this.project, this.tag});
 
   @override
   final ActiveProjectState project;
+  @override
+  final String? tag;
 
   @override
   String toString() {
-    return 'GameEvent.projectCompleted(project: $project)';
+    return 'GameEvent.projectCompleted(project: $project, tag: $tag)';
   }
 
   @override
@@ -140,11 +172,12 @@ class _$ProjectCompletedImpl implements ProjectCompleted {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ProjectCompletedImpl &&
-            (identical(other.project, project) || other.project == project));
+            (identical(other.project, project) || other.project == project) &&
+            (identical(other.tag, tag) || other.tag == tag));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, project);
+  int get hashCode => Object.hash(runtimeType, project, tag);
 
   /// Create a copy of GameEvent
   /// with the given fields replaced by the non-null parameter values.
@@ -158,30 +191,32 @@ class _$ProjectCompletedImpl implements ProjectCompleted {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(ActiveProjectState project) projectCompleted,
-    required TResult Function(Project project) projectStarted,
+    required TResult Function(ActiveProjectState project, String? tag)
+        projectCompleted,
+    required TResult Function(Project project, String? tag) projectStarted,
   }) {
-    return projectCompleted(project);
+    return projectCompleted(project, tag);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(ActiveProjectState project)? projectCompleted,
-    TResult? Function(Project project)? projectStarted,
+    TResult? Function(ActiveProjectState project, String? tag)?
+        projectCompleted,
+    TResult? Function(Project project, String? tag)? projectStarted,
   }) {
-    return projectCompleted?.call(project);
+    return projectCompleted?.call(project, tag);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(ActiveProjectState project)? projectCompleted,
-    TResult Function(Project project)? projectStarted,
+    TResult Function(ActiveProjectState project, String? tag)? projectCompleted,
+    TResult Function(Project project, String? tag)? projectStarted,
     required TResult orElse(),
   }) {
     if (projectCompleted != null) {
-      return projectCompleted(project);
+      return projectCompleted(project, tag);
     }
     return orElse();
   }
@@ -219,26 +254,32 @@ class _$ProjectCompletedImpl implements ProjectCompleted {
 }
 
 abstract class ProjectCompleted implements GameEvent {
-  const factory ProjectCompleted(final ActiveProjectState project) =
-      _$ProjectCompletedImpl;
+  const factory ProjectCompleted(
+      {required final ActiveProjectState project,
+      final String? tag}) = _$ProjectCompletedImpl;
 
   @override
   ActiveProjectState get project;
+  @override
+  String? get tag;
 
   /// Create a copy of GameEvent
   /// with the given fields replaced by the non-null parameter values.
+  @override
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ProjectCompletedImplCopyWith<_$ProjectCompletedImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$ProjectStartedImplCopyWith<$Res> {
+abstract class _$$ProjectStartedImplCopyWith<$Res>
+    implements $GameEventCopyWith<$Res> {
   factory _$$ProjectStartedImplCopyWith(_$ProjectStartedImpl value,
           $Res Function(_$ProjectStartedImpl) then) =
       __$$ProjectStartedImplCopyWithImpl<$Res>;
+  @override
   @useResult
-  $Res call({Project project});
+  $Res call({Project project, String? tag});
 
   $ProjectCopyWith<$Res> get project;
 }
@@ -257,12 +298,17 @@ class __$$ProjectStartedImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? project = null,
+    Object? tag = freezed,
   }) {
     return _then(_$ProjectStartedImpl(
-      null == project
+      project: null == project
           ? _value.project
           : project // ignore: cast_nullable_to_non_nullable
               as Project,
+      tag: freezed == tag
+          ? _value.tag
+          : tag // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 
@@ -280,14 +326,16 @@ class __$$ProjectStartedImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$ProjectStartedImpl implements ProjectStarted {
-  const _$ProjectStartedImpl(this.project);
+  const _$ProjectStartedImpl({required this.project, this.tag});
 
   @override
   final Project project;
+  @override
+  final String? tag;
 
   @override
   String toString() {
-    return 'GameEvent.projectStarted(project: $project)';
+    return 'GameEvent.projectStarted(project: $project, tag: $tag)';
   }
 
   @override
@@ -295,11 +343,12 @@ class _$ProjectStartedImpl implements ProjectStarted {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ProjectStartedImpl &&
-            (identical(other.project, project) || other.project == project));
+            (identical(other.project, project) || other.project == project) &&
+            (identical(other.tag, tag) || other.tag == tag));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, project);
+  int get hashCode => Object.hash(runtimeType, project, tag);
 
   /// Create a copy of GameEvent
   /// with the given fields replaced by the non-null parameter values.
@@ -313,30 +362,32 @@ class _$ProjectStartedImpl implements ProjectStarted {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(ActiveProjectState project) projectCompleted,
-    required TResult Function(Project project) projectStarted,
+    required TResult Function(ActiveProjectState project, String? tag)
+        projectCompleted,
+    required TResult Function(Project project, String? tag) projectStarted,
   }) {
-    return projectStarted(project);
+    return projectStarted(project, tag);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(ActiveProjectState project)? projectCompleted,
-    TResult? Function(Project project)? projectStarted,
+    TResult? Function(ActiveProjectState project, String? tag)?
+        projectCompleted,
+    TResult? Function(Project project, String? tag)? projectStarted,
   }) {
-    return projectStarted?.call(project);
+    return projectStarted?.call(project, tag);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(ActiveProjectState project)? projectCompleted,
-    TResult Function(Project project)? projectStarted,
+    TResult Function(ActiveProjectState project, String? tag)? projectCompleted,
+    TResult Function(Project project, String? tag)? projectStarted,
     required TResult orElse(),
   }) {
     if (projectStarted != null) {
-      return projectStarted(project);
+      return projectStarted(project, tag);
     }
     return orElse();
   }
@@ -374,13 +425,18 @@ class _$ProjectStartedImpl implements ProjectStarted {
 }
 
 abstract class ProjectStarted implements GameEvent {
-  const factory ProjectStarted(final Project project) = _$ProjectStartedImpl;
+  const factory ProjectStarted(
+      {required final Project project,
+      final String? tag}) = _$ProjectStartedImpl;
 
   @override
   Project get project;
+  @override
+  String? get tag;
 
   /// Create a copy of GameEvent
   /// with the given fields replaced by the non-null parameter values.
+  @override
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ProjectStartedImplCopyWith<_$ProjectStartedImpl> get copyWith =>
       throw _privateConstructorUsedError;

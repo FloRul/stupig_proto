@@ -15,6 +15,6 @@ class EventBus extends _$EventBus {
     return _controller.stream;
   }
 
-  void publish(GameEvent event) => _controller.add(event);
+  void publish(GameEvent event,) => _controller.add(event);
   Stream<T> on<T extends GameEvent>() => _controller.stream.where((event) => event is T).cast<T>();
 }

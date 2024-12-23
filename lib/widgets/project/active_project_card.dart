@@ -54,7 +54,7 @@ class _ActiveProjectCardState extends ConsumerState<ActiveProjectCard> with Sing
 
   @override
   Widget build(BuildContext context) {
-    var pState = ref.watch(projectNotifierProvider(widget.project));
+    var pState = ref.watch(activeProjectNotifierProvider(widget.project));
     return GestureDetector(
       onTap: _flipCard,
       child: AnimatedBuilder(

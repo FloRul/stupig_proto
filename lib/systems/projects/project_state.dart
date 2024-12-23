@@ -48,9 +48,11 @@ class Completion with _$Completion {
         multipliers: [0],
       );
 
-  Completion tick() => copyWith(
+  Completion tick() {
+    return copyWith(
         completedAmount: min(completedAmount + rate, baseAmount),
       );
+  }
 
   double get progress => completedAmount / baseAmount;
   double get rate => baseRate + multipliers.reduce((a, b) => a * b);

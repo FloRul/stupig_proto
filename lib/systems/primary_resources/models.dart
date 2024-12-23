@@ -16,7 +16,7 @@ class ExperienceState with _$ExperienceState {
         level: 1,
       );
 
-  int get xpToNextLevel => kBaseXp * pow(level, kLevelUpFactor).toInt();
+  int get xpToNextLevel => (kBaseXp * pow(level, kLevelUpFactor)).toInt();
 
   const ExperienceState._();
   factory ExperienceState.fromJson(Map<String, Object?> json) => _$ExperienceStateFromJson(json);

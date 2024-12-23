@@ -1,17 +1,18 @@
 ﻿import 'dart:math';
-
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter/material.dart';
+import 'package:stupig_proto/systems/projects/notifiers.dart';
 import 'package:stupig_proto/systems/projects/project_state.dart';
 
-class InactiveProjectCard extends StatefulWidget {
+class InactiveProjectCard extends ConsumerStatefulWidget {
   const InactiveProjectCard({super.key, required this.aPstate});
   final AvailableProjectState aPstate;
 
   @override
-  State<InactiveProjectCard> createState() => _InactiveProjectCardState();
+  ConsumerState<InactiveProjectCard> createState() => _InactiveProjectCardState();
 }
 
-class _InactiveProjectCardState extends State<InactiveProjectCard> with SingleTickerProviderStateMixin {
+class _InactiveProjectCardState extends ConsumerState<InactiveProjectCard> with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _animation;
   bool _isFrontVisible = true;
@@ -52,8 +53,9 @@ class _InactiveProjectCardState extends State<InactiveProjectCard> with SingleTi
 
   @override
   Widget build(BuildContext context) {
+    var aPstate = ref.watch(availableProjectNotifierProvider(widget.aPstate));
     return GestureDetector(
-      onTap: _flipCard,
+      onTap: aPstate.isAvailable ? _flipCard : null,
       child: AnimatedBuilder(
         animation: _animation,
         builder: (_, __) {
@@ -81,7 +83,7 @@ class _InactiveProjectCardState extends State<InactiveProjectCard> with SingleTi
                             children: [
                               Expanded(
                                 child: Text(
-                                  widget.aPstate.project.name,
+                                  aPstate.isAvailable ? aPstate.project.name : '??????',
                                   textAlign: TextAlign.left,
                                   style: const TextStyle(
                                     fontSize: 20,
@@ -92,11 +94,32 @@ class _InactiveProjectCardState extends State<InactiveProjectCard> with SingleTi
                               ),
                             ],
                           ),
-                          const Align(
-                            alignment: Alignment.centerRight,
-                            child: Icon(
-                              Icons.arrow_forward,
-                              size: 18,
+                          Visibility(
+                            visible: !aPstate.isAvailable,
+                            child: TweenAnimationBuilder<double>(
+                              duration: const Duration(milliseconds: 250),
+                              curve: Curves.linear,
+                              tween: Tween<double>(
+                                begin: 0,
+                                end: aPstate.cooldown.progress,
+                              ),
+                              builder: (context, value, _) => Center(
+                                child: CircularProgressIndicator(
+                                  value: value,
+                                  color: Colors.blue,
+                                  backgroundColor: Colors.grey[300],
+                                ),
+                              ),
+                            ),
+                          ),
+                          Visibility(
+                            visible: aPstate.isAvailable,
+                            child: const Align(
+                              alignment: Alignment.centerRight,
+                              child: Icon(
+                                Icons.arrow_forward,
+                                size: 18,
+                              ),
                             ),
                           ),
                         ],
@@ -114,7 +137,7 @@ class _InactiveProjectCardState extends State<InactiveProjectCard> with SingleTi
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text(widget.aPstate.project.description),
+                              Text(aPstate.project.description),
                               const SizedBox(height: 8),
                               const Align(
                                 alignment: Alignment.centerLeft,

@@ -9,25 +9,25 @@ import 'package:stupig_proto/systems/projects/project_state.dart';
 
 part 'notifiers.g.dart';
 
-@Riverpod(keepAlive: true)
-class ProjectNotifier extends _$ProjectNotifier {
+@riverpod
+class ActiveProjectNotifier extends _$ActiveProjectNotifier {
   @override
   ActiveProjectState build(ActiveProjectState projectState) {
-    // Add a listener to remove completed projects
+    // Add a listener to remove completed projects, but only trigger once
     listenSelf((previous, next) {
-      if (next.completion.isComplete) {
+      // Only trigger if we're transitioning from incomplete to complete
+      if (!(previous?.completion.isComplete ?? false) && next.completion.isComplete) {
         ref.read(projectsNotifierProvider.notifier).completeProject(next);
       }
     });
-    ref.listen(
-      globalTickerProvider,
-      (previous, next) => tick(),
-    );
     return projectState;
   }
 
   void tick() {
-    state = state.copyWith(completion: state.completion.tick());
+    // Only tick if the project isn't already complete
+    if (!state.completion.isComplete) {
+      state = state.copyWith(completion: state.completion.tick());
+    }
   }
 }
 
@@ -38,10 +38,23 @@ class ProjectsNotifier extends _$ProjectsNotifier {
     ref.listen(
       eventBusProvider,
       (previous, next) {
-        next.whenData((event) => event.maybeMap(
-              projectStarted: (pStarted) => _handleStartProject(pStarted.project),
-              orElse: () {},
-            ));
+        next.whenData(
+          (event) => event.maybeMap(
+            projectStarted: (pStarted) => _handleStartProject(pStarted.project),
+            orElse: () {},
+          ),
+        );
+      },
+    );
+    ref.listen(
+      globalTickerProvider,
+      (previous, next) {
+        // Only tick active and incomplete projects
+        for (var p in state.activeProjects) {
+          if (!p.completion.isComplete) {
+            ref.read(activeProjectNotifierProvider(p).notifier).tick();
+          }
+        }
       },
     );
 
@@ -58,36 +71,71 @@ class ProjectsNotifier extends _$ProjectsNotifier {
   }
 
   void completeProject(ActiveProjectState projectState) {
-    ref.read(eventBusProvider.notifier).publish(GameEvent.projectCompleted(projectState));
+    // Check if the project is already in completedProjects to prevent duplicate completions
+    if (state.completedProjects.contains(projectState.project)) {
+      return;
+    }
 
-    final newActiveProjects = [...state.activeProjects];
-    newActiveProjects.removeWhere((p) => p.project.id == projectState.project.id);
+    ref.read(eventBusProvider.notifier).publish(GameEvent.projectCompleted(
+          project: projectState,
+          tag: runtimeType.toString(),
+        ));
 
     state = state.copyWith(
-      activeProjects: newActiveProjects,
+      activeProjects: state.activeProjects.where((p) => p != projectState).toList(),
       completedProjects: [...state.completedProjects, projectState.project],
     );
   }
 }
 
 @Riverpod(keepAlive: true)
-class AvailableProjectNotifier extends _$AvailableProjectNotifier {
+class AvailableProjectsNotifier extends _$AvailableProjectsNotifier {
   @override
   List<AvailableProjectState> build() {
-    return [];
+    return [
+      AvailableProjectState.initial(const Project(
+        id: '1',
+        name: 'Project 1',
+        description: 'Project 1 Description',
+      )),
+    ];
   }
 
-  void startProject(AvailableProjectState projectState) {
+  Future<void> startProject(AvailableProjectState projectState) async {
+    ref.read(eventBusProvider.notifier).publish(GameEvent.projectStarted(project: projectState.project));
     state = [
       for (var p in state)
         if (p != projectState) p,
     ];
-
-    ref.read(eventBusProvider.notifier).publish(GameEvent.projectStarted(projectState.project));
-    // TODO: fetch new project
+    var nextProject = await _fetchNewProject();
+    state = [...state, nextProject];
   }
 
-  void _fetchNewProject() {
+  Future<AvailableProjectState> _fetchNewProject() async {
+    await Future.delayed(const Duration(seconds: 1));
     // TODO
+    return AvailableProjectState.initial(const Project(
+      id: '2',
+      name: 'Project 2',
+      description: 'Project 2 Description',
+    ));
+  }
+}
+
+@riverpod
+class AvailableProjectNotifier extends _$AvailableProjectNotifier {
+  @override
+  AvailableProjectState build(AvailableProjectState projectState) {
+    ref.listen(
+      globalTickerProvider,
+      (previous, next) => tick(),
+    );
+    ref.onDispose(() =>
+        print('disposing available project notifier ${projectState.project.id} - hashcode ${projectState.hashCode}'));
+    return projectState;
+  }
+
+  void tick() {
+    state = state.copyWith(cooldown: state.cooldown.tick());
   }
 }
