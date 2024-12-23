@@ -6,20 +6,20 @@ part 'project_state.freezed.dart';
 part 'project_state.g.dart';
 
 @freezed
-class ProjectState with _$ProjectState {
-  const factory ProjectState({
+class ActiveProjectState with _$ActiveProjectState {
+  const factory ActiveProjectState({
     required Project project,
     required Completion completion,
     required ProjectReward reward,
-  }) = _ProjectState;
+  }) = _ActiveProjectState;
 
-  factory ProjectState.fromProject(Project project, int seed) => ProjectState(
+  factory ActiveProjectState.fromProject(Project project, int seed) => ActiveProjectState(
         project: project,
         completion: Completion.initial(seed),
         reward: const ProjectReward(xpAmount: 1, moneyAmount: 1),
       );
 
-  factory ProjectState.fromJson(Map<String, Object?> json) => _$ProjectStateFromJson(json);
+  factory ActiveProjectState.fromJson(Map<String, Object?> json) => _$ActiveProjectStateFromJson(json);
 }
 
 @freezed
@@ -37,12 +37,14 @@ class Completion with _$Completion {
   const factory Completion({
     required double baseAmount,
     required double completedAmount,
+    required double baseRate,
     required List<double> multipliers,
   }) = _Completion;
 
   factory Completion.initial(int seed) => Completion(
         baseAmount: seed * 20,
         completedAmount: 0,
+        baseRate: 1,
         multipliers: [0],
       );
 
@@ -51,9 +53,35 @@ class Completion with _$Completion {
       );
 
   double get progress => completedAmount / baseAmount;
-  double get rate => 1 + multipliers.reduce((a, b) => a * b);
+  double get rate => baseRate + multipliers.reduce((a, b) => a * b);
   bool get isComplete => completedAmount >= baseAmount;
 
   const Completion._();
   factory Completion.fromJson(Map<String, Object?> json) => _$CompletionFromJson(json);
+}
+
+@freezed
+class AvailableProjectState with _$AvailableProjectState {
+  const factory AvailableProjectState({
+    required Project project,
+    required Completion cooldown,
+  }) = _AvailableProjectState;
+
+  factory AvailableProjectState.initial(
+    Project project,
+  ) =>
+      AvailableProjectState(
+        project: project,
+        cooldown: const Completion(
+          baseAmount: 20,
+          completedAmount: 0,
+          baseRate: 1,
+          multipliers: [0],
+        ),
+      );
+
+  bool get isAvailable => cooldown.isComplete;
+
+  const AvailableProjectState._();
+  factory AvailableProjectState.fromJson(Map<String, Object?> json) => _$AvailableProjectStateFromJson(json);
 }

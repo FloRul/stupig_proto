@@ -14,31 +14,31 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
-ProjectState _$ProjectStateFromJson(Map<String, dynamic> json) {
-  return _ProjectState.fromJson(json);
+ActiveProjectState _$ActiveProjectStateFromJson(Map<String, dynamic> json) {
+  return _ActiveProjectState.fromJson(json);
 }
 
 /// @nodoc
-mixin _$ProjectState {
+mixin _$ActiveProjectState {
   Project get project => throw _privateConstructorUsedError;
   Completion get completion => throw _privateConstructorUsedError;
   ProjectReward get reward => throw _privateConstructorUsedError;
 
-  /// Serializes this ProjectState to a JSON map.
+  /// Serializes this ActiveProjectState to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 
-  /// Create a copy of ProjectState
+  /// Create a copy of ActiveProjectState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $ProjectStateCopyWith<ProjectState> get copyWith =>
+  $ActiveProjectStateCopyWith<ActiveProjectState> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $ProjectStateCopyWith<$Res> {
-  factory $ProjectStateCopyWith(
-          ProjectState value, $Res Function(ProjectState) then) =
-      _$ProjectStateCopyWithImpl<$Res, ProjectState>;
+abstract class $ActiveProjectStateCopyWith<$Res> {
+  factory $ActiveProjectStateCopyWith(
+          ActiveProjectState value, $Res Function(ActiveProjectState) then) =
+      _$ActiveProjectStateCopyWithImpl<$Res, ActiveProjectState>;
   @useResult
   $Res call({Project project, Completion completion, ProjectReward reward});
 
@@ -48,16 +48,16 @@ abstract class $ProjectStateCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$ProjectStateCopyWithImpl<$Res, $Val extends ProjectState>
-    implements $ProjectStateCopyWith<$Res> {
-  _$ProjectStateCopyWithImpl(this._value, this._then);
+class _$ActiveProjectStateCopyWithImpl<$Res, $Val extends ActiveProjectState>
+    implements $ActiveProjectStateCopyWith<$Res> {
+  _$ActiveProjectStateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of ProjectState
+  /// Create a copy of ActiveProjectState
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -82,7 +82,7 @@ class _$ProjectStateCopyWithImpl<$Res, $Val extends ProjectState>
     ) as $Val);
   }
 
-  /// Create a copy of ProjectState
+  /// Create a copy of ActiveProjectState
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
@@ -92,7 +92,7 @@ class _$ProjectStateCopyWithImpl<$Res, $Val extends ProjectState>
     });
   }
 
-  /// Create a copy of ProjectState
+  /// Create a copy of ActiveProjectState
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
@@ -102,7 +102,7 @@ class _$ProjectStateCopyWithImpl<$Res, $Val extends ProjectState>
     });
   }
 
-  /// Create a copy of ProjectState
+  /// Create a copy of ActiveProjectState
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
@@ -114,11 +114,11 @@ class _$ProjectStateCopyWithImpl<$Res, $Val extends ProjectState>
 }
 
 /// @nodoc
-abstract class _$$ProjectStateImplCopyWith<$Res>
-    implements $ProjectStateCopyWith<$Res> {
-  factory _$$ProjectStateImplCopyWith(
-          _$ProjectStateImpl value, $Res Function(_$ProjectStateImpl) then) =
-      __$$ProjectStateImplCopyWithImpl<$Res>;
+abstract class _$$ActiveProjectStateImplCopyWith<$Res>
+    implements $ActiveProjectStateCopyWith<$Res> {
+  factory _$$ActiveProjectStateImplCopyWith(_$ActiveProjectStateImpl value,
+          $Res Function(_$ActiveProjectStateImpl) then) =
+      __$$ActiveProjectStateImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({Project project, Completion completion, ProjectReward reward});
@@ -132,14 +132,14 @@ abstract class _$$ProjectStateImplCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$ProjectStateImplCopyWithImpl<$Res>
-    extends _$ProjectStateCopyWithImpl<$Res, _$ProjectStateImpl>
-    implements _$$ProjectStateImplCopyWith<$Res> {
-  __$$ProjectStateImplCopyWithImpl(
-      _$ProjectStateImpl _value, $Res Function(_$ProjectStateImpl) _then)
+class __$$ActiveProjectStateImplCopyWithImpl<$Res>
+    extends _$ActiveProjectStateCopyWithImpl<$Res, _$ActiveProjectStateImpl>
+    implements _$$ActiveProjectStateImplCopyWith<$Res> {
+  __$$ActiveProjectStateImplCopyWithImpl(_$ActiveProjectStateImpl _value,
+      $Res Function(_$ActiveProjectStateImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of ProjectState
+  /// Create a copy of ActiveProjectState
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -148,7 +148,7 @@ class __$$ProjectStateImplCopyWithImpl<$Res>
     Object? completion = null,
     Object? reward = null,
   }) {
-    return _then(_$ProjectStateImpl(
+    return _then(_$ActiveProjectStateImpl(
       project: null == project
           ? _value.project
           : project // ignore: cast_nullable_to_non_nullable
@@ -167,12 +167,12 @@ class __$$ProjectStateImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$ProjectStateImpl implements _ProjectState {
-  const _$ProjectStateImpl(
+class _$ActiveProjectStateImpl implements _ActiveProjectState {
+  const _$ActiveProjectStateImpl(
       {required this.project, required this.completion, required this.reward});
 
-  factory _$ProjectStateImpl.fromJson(Map<String, dynamic> json) =>
-      _$$ProjectStateImplFromJson(json);
+  factory _$ActiveProjectStateImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ActiveProjectStateImplFromJson(json);
 
   @override
   final Project project;
@@ -183,14 +183,14 @@ class _$ProjectStateImpl implements _ProjectState {
 
   @override
   String toString() {
-    return 'ProjectState(project: $project, completion: $completion, reward: $reward)';
+    return 'ActiveProjectState(project: $project, completion: $completion, reward: $reward)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ProjectStateImpl &&
+            other is _$ActiveProjectStateImpl &&
             (identical(other.project, project) || other.project == project) &&
             (identical(other.completion, completion) ||
                 other.completion == completion) &&
@@ -201,30 +201,31 @@ class _$ProjectStateImpl implements _ProjectState {
   @override
   int get hashCode => Object.hash(runtimeType, project, completion, reward);
 
-  /// Create a copy of ProjectState
+  /// Create a copy of ActiveProjectState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$ProjectStateImplCopyWith<_$ProjectStateImpl> get copyWith =>
-      __$$ProjectStateImplCopyWithImpl<_$ProjectStateImpl>(this, _$identity);
+  _$$ActiveProjectStateImplCopyWith<_$ActiveProjectStateImpl> get copyWith =>
+      __$$ActiveProjectStateImplCopyWithImpl<_$ActiveProjectStateImpl>(
+          this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$ProjectStateImplToJson(
+    return _$$ActiveProjectStateImplToJson(
       this,
     );
   }
 }
 
-abstract class _ProjectState implements ProjectState {
-  const factory _ProjectState(
+abstract class _ActiveProjectState implements ActiveProjectState {
+  const factory _ActiveProjectState(
       {required final Project project,
       required final Completion completion,
-      required final ProjectReward reward}) = _$ProjectStateImpl;
+      required final ProjectReward reward}) = _$ActiveProjectStateImpl;
 
-  factory _ProjectState.fromJson(Map<String, dynamic> json) =
-      _$ProjectStateImpl.fromJson;
+  factory _ActiveProjectState.fromJson(Map<String, dynamic> json) =
+      _$ActiveProjectStateImpl.fromJson;
 
   @override
   Project get project;
@@ -233,11 +234,11 @@ abstract class _ProjectState implements ProjectState {
   @override
   ProjectReward get reward;
 
-  /// Create a copy of ProjectState
+  /// Create a copy of ActiveProjectState
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$ProjectStateImplCopyWith<_$ProjectStateImpl> get copyWith =>
+  _$$ActiveProjectStateImplCopyWith<_$ActiveProjectStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -419,6 +420,7 @@ Completion _$CompletionFromJson(Map<String, dynamic> json) {
 mixin _$Completion {
   double get baseAmount => throw _privateConstructorUsedError;
   double get completedAmount => throw _privateConstructorUsedError;
+  double get baseRate => throw _privateConstructorUsedError;
   List<double> get multipliers => throw _privateConstructorUsedError;
 
   /// Serializes this Completion to a JSON map.
@@ -438,7 +440,10 @@ abstract class $CompletionCopyWith<$Res> {
       _$CompletionCopyWithImpl<$Res, Completion>;
   @useResult
   $Res call(
-      {double baseAmount, double completedAmount, List<double> multipliers});
+      {double baseAmount,
+      double completedAmount,
+      double baseRate,
+      List<double> multipliers});
 }
 
 /// @nodoc
@@ -458,6 +463,7 @@ class _$CompletionCopyWithImpl<$Res, $Val extends Completion>
   $Res call({
     Object? baseAmount = null,
     Object? completedAmount = null,
+    Object? baseRate = null,
     Object? multipliers = null,
   }) {
     return _then(_value.copyWith(
@@ -468,6 +474,10 @@ class _$CompletionCopyWithImpl<$Res, $Val extends Completion>
       completedAmount: null == completedAmount
           ? _value.completedAmount
           : completedAmount // ignore: cast_nullable_to_non_nullable
+              as double,
+      baseRate: null == baseRate
+          ? _value.baseRate
+          : baseRate // ignore: cast_nullable_to_non_nullable
               as double,
       multipliers: null == multipliers
           ? _value.multipliers
@@ -486,7 +496,10 @@ abstract class _$$CompletionImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {double baseAmount, double completedAmount, List<double> multipliers});
+      {double baseAmount,
+      double completedAmount,
+      double baseRate,
+      List<double> multipliers});
 }
 
 /// @nodoc
@@ -504,6 +517,7 @@ class __$$CompletionImplCopyWithImpl<$Res>
   $Res call({
     Object? baseAmount = null,
     Object? completedAmount = null,
+    Object? baseRate = null,
     Object? multipliers = null,
   }) {
     return _then(_$CompletionImpl(
@@ -514,6 +528,10 @@ class __$$CompletionImplCopyWithImpl<$Res>
       completedAmount: null == completedAmount
           ? _value.completedAmount
           : completedAmount // ignore: cast_nullable_to_non_nullable
+              as double,
+      baseRate: null == baseRate
+          ? _value.baseRate
+          : baseRate // ignore: cast_nullable_to_non_nullable
               as double,
       multipliers: null == multipliers
           ? _value._multipliers
@@ -529,6 +547,7 @@ class _$CompletionImpl extends _Completion {
   const _$CompletionImpl(
       {required this.baseAmount,
       required this.completedAmount,
+      required this.baseRate,
       required final List<double> multipliers})
       : _multipliers = multipliers,
         super._();
@@ -540,6 +559,8 @@ class _$CompletionImpl extends _Completion {
   final double baseAmount;
   @override
   final double completedAmount;
+  @override
+  final double baseRate;
   final List<double> _multipliers;
   @override
   List<double> get multipliers {
@@ -550,7 +571,7 @@ class _$CompletionImpl extends _Completion {
 
   @override
   String toString() {
-    return 'Completion(baseAmount: $baseAmount, completedAmount: $completedAmount, multipliers: $multipliers)';
+    return 'Completion(baseAmount: $baseAmount, completedAmount: $completedAmount, baseRate: $baseRate, multipliers: $multipliers)';
   }
 
   @override
@@ -562,6 +583,8 @@ class _$CompletionImpl extends _Completion {
                 other.baseAmount == baseAmount) &&
             (identical(other.completedAmount, completedAmount) ||
                 other.completedAmount == completedAmount) &&
+            (identical(other.baseRate, baseRate) ||
+                other.baseRate == baseRate) &&
             const DeepCollectionEquality()
                 .equals(other._multipliers, _multipliers));
   }
@@ -569,7 +592,7 @@ class _$CompletionImpl extends _Completion {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, baseAmount, completedAmount,
-      const DeepCollectionEquality().hash(_multipliers));
+      baseRate, const DeepCollectionEquality().hash(_multipliers));
 
   /// Create a copy of Completion
   /// with the given fields replaced by the non-null parameter values.
@@ -591,6 +614,7 @@ abstract class _Completion extends Completion {
   const factory _Completion(
       {required final double baseAmount,
       required final double completedAmount,
+      required final double baseRate,
       required final List<double> multipliers}) = _$CompletionImpl;
   const _Completion._() : super._();
 
@@ -602,6 +626,8 @@ abstract class _Completion extends Completion {
   @override
   double get completedAmount;
   @override
+  double get baseRate;
+  @override
   List<double> get multipliers;
 
   /// Create a copy of Completion
@@ -610,4 +636,208 @@ abstract class _Completion extends Completion {
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$CompletionImplCopyWith<_$CompletionImpl> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+AvailableProjectState _$AvailableProjectStateFromJson(
+    Map<String, dynamic> json) {
+  return _AvailableProjectState.fromJson(json);
+}
+
+/// @nodoc
+mixin _$AvailableProjectState {
+  Project get project => throw _privateConstructorUsedError;
+  Completion get cooldown => throw _privateConstructorUsedError;
+
+  /// Serializes this AvailableProjectState to a JSON map.
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+
+  /// Create a copy of AvailableProjectState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  $AvailableProjectStateCopyWith<AvailableProjectState> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $AvailableProjectStateCopyWith<$Res> {
+  factory $AvailableProjectStateCopyWith(AvailableProjectState value,
+          $Res Function(AvailableProjectState) then) =
+      _$AvailableProjectStateCopyWithImpl<$Res, AvailableProjectState>;
+  @useResult
+  $Res call({Project project, Completion cooldown});
+
+  $ProjectCopyWith<$Res> get project;
+  $CompletionCopyWith<$Res> get cooldown;
+}
+
+/// @nodoc
+class _$AvailableProjectStateCopyWithImpl<$Res,
+        $Val extends AvailableProjectState>
+    implements $AvailableProjectStateCopyWith<$Res> {
+  _$AvailableProjectStateCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  /// Create a copy of AvailableProjectState
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? project = null,
+    Object? cooldown = null,
+  }) {
+    return _then(_value.copyWith(
+      project: null == project
+          ? _value.project
+          : project // ignore: cast_nullable_to_non_nullable
+              as Project,
+      cooldown: null == cooldown
+          ? _value.cooldown
+          : cooldown // ignore: cast_nullable_to_non_nullable
+              as Completion,
+    ) as $Val);
+  }
+
+  /// Create a copy of AvailableProjectState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ProjectCopyWith<$Res> get project {
+    return $ProjectCopyWith<$Res>(_value.project, (value) {
+      return _then(_value.copyWith(project: value) as $Val);
+    });
+  }
+
+  /// Create a copy of AvailableProjectState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $CompletionCopyWith<$Res> get cooldown {
+    return $CompletionCopyWith<$Res>(_value.cooldown, (value) {
+      return _then(_value.copyWith(cooldown: value) as $Val);
+    });
+  }
+}
+
+/// @nodoc
+abstract class _$$AvailableProjectStateImplCopyWith<$Res>
+    implements $AvailableProjectStateCopyWith<$Res> {
+  factory _$$AvailableProjectStateImplCopyWith(
+          _$AvailableProjectStateImpl value,
+          $Res Function(_$AvailableProjectStateImpl) then) =
+      __$$AvailableProjectStateImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({Project project, Completion cooldown});
+
+  @override
+  $ProjectCopyWith<$Res> get project;
+  @override
+  $CompletionCopyWith<$Res> get cooldown;
+}
+
+/// @nodoc
+class __$$AvailableProjectStateImplCopyWithImpl<$Res>
+    extends _$AvailableProjectStateCopyWithImpl<$Res,
+        _$AvailableProjectStateImpl>
+    implements _$$AvailableProjectStateImplCopyWith<$Res> {
+  __$$AvailableProjectStateImplCopyWithImpl(_$AvailableProjectStateImpl _value,
+      $Res Function(_$AvailableProjectStateImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of AvailableProjectState
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? project = null,
+    Object? cooldown = null,
+  }) {
+    return _then(_$AvailableProjectStateImpl(
+      project: null == project
+          ? _value.project
+          : project // ignore: cast_nullable_to_non_nullable
+              as Project,
+      cooldown: null == cooldown
+          ? _value.cooldown
+          : cooldown // ignore: cast_nullable_to_non_nullable
+              as Completion,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$AvailableProjectStateImpl extends _AvailableProjectState {
+  const _$AvailableProjectStateImpl(
+      {required this.project, required this.cooldown})
+      : super._();
+
+  factory _$AvailableProjectStateImpl.fromJson(Map<String, dynamic> json) =>
+      _$$AvailableProjectStateImplFromJson(json);
+
+  @override
+  final Project project;
+  @override
+  final Completion cooldown;
+
+  @override
+  String toString() {
+    return 'AvailableProjectState(project: $project, cooldown: $cooldown)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$AvailableProjectStateImpl &&
+            (identical(other.project, project) || other.project == project) &&
+            (identical(other.cooldown, cooldown) ||
+                other.cooldown == cooldown));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(runtimeType, project, cooldown);
+
+  /// Create a copy of AvailableProjectState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$AvailableProjectStateImplCopyWith<_$AvailableProjectStateImpl>
+      get copyWith => __$$AvailableProjectStateImplCopyWithImpl<
+          _$AvailableProjectStateImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$AvailableProjectStateImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _AvailableProjectState extends AvailableProjectState {
+  const factory _AvailableProjectState(
+      {required final Project project,
+      required final Completion cooldown}) = _$AvailableProjectStateImpl;
+  const _AvailableProjectState._() : super._();
+
+  factory _AvailableProjectState.fromJson(Map<String, dynamic> json) =
+      _$AvailableProjectStateImpl.fromJson;
+
+  @override
+  Project get project;
+  @override
+  Completion get cooldown;
+
+  /// Create a copy of AvailableProjectState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$AvailableProjectStateImplCopyWith<_$AvailableProjectStateImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }

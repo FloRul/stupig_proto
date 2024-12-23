@@ -6,15 +6,17 @@ part of 'project_state.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$ProjectStateImpl _$$ProjectStateImplFromJson(Map<String, dynamic> json) =>
-    _$ProjectStateImpl(
+_$ActiveProjectStateImpl _$$ActiveProjectStateImplFromJson(
+        Map<String, dynamic> json) =>
+    _$ActiveProjectStateImpl(
       project: Project.fromJson(json['project'] as Map<String, dynamic>),
       completion:
           Completion.fromJson(json['completion'] as Map<String, dynamic>),
       reward: ProjectReward.fromJson(json['reward'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$$ProjectStateImplToJson(_$ProjectStateImpl instance) =>
+Map<String, dynamic> _$$ActiveProjectStateImplToJson(
+        _$ActiveProjectStateImpl instance) =>
     <String, dynamic>{
       'project': instance.project,
       'completion': instance.completion,
@@ -37,6 +39,7 @@ _$CompletionImpl _$$CompletionImplFromJson(Map<String, dynamic> json) =>
     _$CompletionImpl(
       baseAmount: (json['baseAmount'] as num).toDouble(),
       completedAmount: (json['completedAmount'] as num).toDouble(),
+      baseRate: (json['baseRate'] as num).toDouble(),
       multipliers: (json['multipliers'] as List<dynamic>)
           .map((e) => (e as num).toDouble())
           .toList(),
@@ -46,5 +49,20 @@ Map<String, dynamic> _$$CompletionImplToJson(_$CompletionImpl instance) =>
     <String, dynamic>{
       'baseAmount': instance.baseAmount,
       'completedAmount': instance.completedAmount,
+      'baseRate': instance.baseRate,
       'multipliers': instance.multipliers,
+    };
+
+_$AvailableProjectStateImpl _$$AvailableProjectStateImplFromJson(
+        Map<String, dynamic> json) =>
+    _$AvailableProjectStateImpl(
+      project: Project.fromJson(json['project'] as Map<String, dynamic>),
+      cooldown: Completion.fromJson(json['cooldown'] as Map<String, dynamic>),
+    );
+
+Map<String, dynamic> _$$AvailableProjectStateImplToJson(
+        _$AvailableProjectStateImpl instance) =>
+    <String, dynamic>{
+      'project': instance.project,
+      'cooldown': instance.cooldown,
     };

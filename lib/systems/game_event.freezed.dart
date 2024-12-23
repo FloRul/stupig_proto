@@ -19,19 +19,19 @@ mixin _$GameEvent {
   Object get project => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(ProjectState project) projectCompleted,
+    required TResult Function(ActiveProjectState project) projectCompleted,
     required TResult Function(Project project) projectStarted,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(ProjectState project)? projectCompleted,
+    TResult? Function(ActiveProjectState project)? projectCompleted,
     TResult? Function(Project project)? projectStarted,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(ProjectState project)? projectCompleted,
+    TResult Function(ActiveProjectState project)? projectCompleted,
     TResult Function(Project project)? projectStarted,
     required TResult orElse(),
   }) =>
@@ -83,9 +83,9 @@ abstract class _$$ProjectCompletedImplCopyWith<$Res> {
           $Res Function(_$ProjectCompletedImpl) then) =
       __$$ProjectCompletedImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({ProjectState project});
+  $Res call({ActiveProjectState project});
 
-  $ProjectStateCopyWith<$Res> get project;
+  $ActiveProjectStateCopyWith<$Res> get project;
 }
 
 /// @nodoc
@@ -107,7 +107,7 @@ class __$$ProjectCompletedImplCopyWithImpl<$Res>
       null == project
           ? _value.project
           : project // ignore: cast_nullable_to_non_nullable
-              as ProjectState,
+              as ActiveProjectState,
     ));
   }
 
@@ -115,8 +115,8 @@ class __$$ProjectCompletedImplCopyWithImpl<$Res>
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $ProjectStateCopyWith<$Res> get project {
-    return $ProjectStateCopyWith<$Res>(_value.project, (value) {
+  $ActiveProjectStateCopyWith<$Res> get project {
+    return $ActiveProjectStateCopyWith<$Res>(_value.project, (value) {
       return _then(_value.copyWith(project: value));
     });
   }
@@ -128,7 +128,7 @@ class _$ProjectCompletedImpl implements ProjectCompleted {
   const _$ProjectCompletedImpl(this.project);
 
   @override
-  final ProjectState project;
+  final ActiveProjectState project;
 
   @override
   String toString() {
@@ -158,7 +158,7 @@ class _$ProjectCompletedImpl implements ProjectCompleted {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(ProjectState project) projectCompleted,
+    required TResult Function(ActiveProjectState project) projectCompleted,
     required TResult Function(Project project) projectStarted,
   }) {
     return projectCompleted(project);
@@ -167,7 +167,7 @@ class _$ProjectCompletedImpl implements ProjectCompleted {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(ProjectState project)? projectCompleted,
+    TResult? Function(ActiveProjectState project)? projectCompleted,
     TResult? Function(Project project)? projectStarted,
   }) {
     return projectCompleted?.call(project);
@@ -176,7 +176,7 @@ class _$ProjectCompletedImpl implements ProjectCompleted {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(ProjectState project)? projectCompleted,
+    TResult Function(ActiveProjectState project)? projectCompleted,
     TResult Function(Project project)? projectStarted,
     required TResult orElse(),
   }) {
@@ -219,11 +219,11 @@ class _$ProjectCompletedImpl implements ProjectCompleted {
 }
 
 abstract class ProjectCompleted implements GameEvent {
-  const factory ProjectCompleted(final ProjectState project) =
+  const factory ProjectCompleted(final ActiveProjectState project) =
       _$ProjectCompletedImpl;
 
   @override
-  ProjectState get project;
+  ActiveProjectState get project;
 
   /// Create a copy of GameEvent
   /// with the given fields replaced by the non-null parameter values.
@@ -313,7 +313,7 @@ class _$ProjectStartedImpl implements ProjectStarted {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(ProjectState project) projectCompleted,
+    required TResult Function(ActiveProjectState project) projectCompleted,
     required TResult Function(Project project) projectStarted,
   }) {
     return projectStarted(project);
@@ -322,7 +322,7 @@ class _$ProjectStartedImpl implements ProjectStarted {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(ProjectState project)? projectCompleted,
+    TResult? Function(ActiveProjectState project)? projectCompleted,
     TResult? Function(Project project)? projectStarted,
   }) {
     return projectStarted?.call(project);
@@ -331,7 +331,7 @@ class _$ProjectStartedImpl implements ProjectStarted {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(ProjectState project)? projectCompleted,
+    TResult Function(ActiveProjectState project)? projectCompleted,
     TResult Function(Project project)? projectStarted,
     required TResult orElse(),
   }) {

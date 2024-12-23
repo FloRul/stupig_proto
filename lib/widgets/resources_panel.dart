@@ -1,6 +1,6 @@
 ﻿import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:stupig_proto/systems/primary_resources/primary_resource_notifier.dart';
+import 'package:stupig_proto/systems/primary_resources/notifiers.dart';
 
 class ResourcesView extends ConsumerWidget {
   const ResourcesView({super.key});
@@ -11,7 +11,7 @@ class ResourcesView extends ConsumerWidget {
       children: [
         const XpWidget(),
         ResourceContainer<int>(
-          resource: ref.watch(primaryResourceNotifierProvider.select((value) => value.money)),
+          resource: ref.watch(moneyNotifierProvider),
           label: 'Money',
           resourceToString: (value) => '${value.toString()} \$',
           description: 'The amount of money you have.',
@@ -63,11 +63,9 @@ class XpWidget extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    var xp = ref.watch(primaryResourceNotifierProvider.select((value) => value.xp));
-    var level = ref.watch(primaryResourceNotifierProvider.select((value) => value.level));
-    var xpToNextLevel = ref.watch(primaryResourceNotifierProvider.select((value) => value.xpToNextLevel));
+    var xpState = ref.watch(experienceNotifierProvider);
     return Tooltip(
-      message: '$xp / $xpToNextLevel',
+      message: '${xpState.xp} / ${xpState.xpToNextLevel}',
       child: Container(
         decoration: BoxDecoration(
           color: Theme.of(context).colorScheme.onInverseSurface,
@@ -83,19 +81,19 @@ class XpWidget extends ConsumerWidget {
                 curve: Curves.linear,
                 tween: Tween<double>(
                   begin: 0,
-                  end: xp / xpToNextLevel,
+                  end: xpState.xp / xpState.xpToNextLevel,
                 ),
                 builder: (context, value, _) => LinearProgressIndicator(
                   minHeight: 16,
                   borderRadius: BorderRadius.circular(8),
-                  value: value,
+                  value: xpState.xp / xpState.xpToNextLevel,
                   color: Colors.green,
                   backgroundColor: Colors.grey[300],
                 ),
               ),
             ),
             Text(
-              '  Level $level',
+              '  Level ${xpState.level}',
               style: const TextStyle(fontSize: 16),
             ),
           ],

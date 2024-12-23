@@ -7,12 +7,12 @@ import 'package:stupig_proto/systems/game_event.dart';
 import 'package:stupig_proto/systems/projects/models.dart';
 import 'package:stupig_proto/systems/projects/project_state.dart';
 
-part 'projects_state_notifier.g.dart';
+part 'notifiers.g.dart';
 
 @Riverpod(keepAlive: true)
 class ProjectNotifier extends _$ProjectNotifier {
   @override
-  ProjectState build(ProjectState projectState) {
+  ActiveProjectState build(ActiveProjectState projectState) {
     // Add a listener to remove completed projects
     listenSelf((previous, next) {
       if (next.completion.isComplete) {
@@ -56,11 +56,11 @@ class ProjectsNotifier extends _$ProjectsNotifier {
 
     state = state.copyWith(
       inactiveProjects: state.inactiveProjects.where((p) => p != project).toList(),
-      activeProjects: [...state.activeProjects, ProjectState.fromProject(project, Random().nextInt(10))],
+      activeProjects: [...state.activeProjects, ActiveProjectState.fromProject(project, Random().nextInt(10))],
     );
   }
 
-  void completeProject(ProjectState projectState) {
+  void completeProject(ActiveProjectState projectState) {
     ref.read(eventBusProvider.notifier).publish(GameEvent.projectCompleted(projectState));
 
     final newActiveProjects = [...state.activeProjects];
@@ -71,12 +71,12 @@ class ProjectsNotifier extends _$ProjectsNotifier {
       completedProjects: [...state.completedProjects, projectState.project],
     );
   }
+}
 
-  void removeInactiveProject(Project project) {
-    state = state.copyWith(
-      inactiveProjects: state.inactiveProjects.where((p) => p != project).toList(),
-    );
-    // generate new project
-    // ...
+@Riverpod(keepAlive: true)
+class AvailableProjectNotifier extends _$AvailableProjectNotifier {
+  @override
+  List<AvailableProjectState> build() {
+    return [];
   }
 }

@@ -6,20 +6,18 @@ part 'models.freezed.dart';
 part 'models.g.dart';
 
 @freezed
-class PrimaryResourcesState with _$PrimaryResourcesState {
-  const factory PrimaryResourcesState({
+class ExperienceState with _$ExperienceState {
+  const factory ExperienceState({
     required int xp,
-    required int money,
     required int level,
-  }) = _ResourcesState;
-  factory PrimaryResourcesState.initial() => const PrimaryResourcesState(
+  }) = _ExperienceState;
+  factory ExperienceState.initial() => const ExperienceState(
         xp: 0,
-        money: 0,
         level: 1,
       );
 
   int get xpToNextLevel => kBaseXp * pow(level, kLevelUpFactor).toInt();
 
-  const PrimaryResourcesState._();
-  factory PrimaryResourcesState.fromJson(Map<String, Object?> json) => _$PrimaryResourcesStateFromJson(json);
+  const ExperienceState._();
+  factory ExperienceState.fromJson(Map<String, Object?> json) => _$ExperienceStateFromJson(json);
 }

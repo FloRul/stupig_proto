@@ -21,6 +21,9 @@
 
 - [ ] View for the completed projects page
 
+notes
+ - available projects have a cooldown timer before a new one appears after the last one is completed
+ - the amount of available project slot is upgradable
 
 Ideas
 unlockable features on progression

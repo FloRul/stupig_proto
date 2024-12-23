@@ -26,7 +26,7 @@ _$ProjectsStateImpl _$$ProjectsStateImplFromJson(Map<String, dynamic> json) =>
           .map((e) => Project.fromJson(e as Map<String, dynamic>))
           .toList(),
       activeProjects: (json['activeProjects'] as List<dynamic>)
-          .map((e) => ProjectState.fromJson(e as Map<String, dynamic>))
+          .map((e) => ActiveProjectState.fromJson(e as Map<String, dynamic>))
           .toList(),
       completedProjects: (json['completedProjects'] as List<dynamic>)
           .map((e) => Project.fromJson(e as Map<String, dynamic>))

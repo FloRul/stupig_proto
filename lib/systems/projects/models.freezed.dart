@@ -203,7 +203,8 @@ ProjectsState _$ProjectsStateFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$ProjectsState {
   List<Project> get inactiveProjects => throw _privateConstructorUsedError;
-  List<ProjectState> get activeProjects => throw _privateConstructorUsedError;
+  List<ActiveProjectState> get activeProjects =>
+      throw _privateConstructorUsedError;
   List<Project> get completedProjects => throw _privateConstructorUsedError;
 
   /// Serializes this ProjectsState to a JSON map.
@@ -224,7 +225,7 @@ abstract class $ProjectsStateCopyWith<$Res> {
   @useResult
   $Res call(
       {List<Project> inactiveProjects,
-      List<ProjectState> activeProjects,
+      List<ActiveProjectState> activeProjects,
       List<Project> completedProjects});
 }
 
@@ -255,7 +256,7 @@ class _$ProjectsStateCopyWithImpl<$Res, $Val extends ProjectsState>
       activeProjects: null == activeProjects
           ? _value.activeProjects
           : activeProjects // ignore: cast_nullable_to_non_nullable
-              as List<ProjectState>,
+              as List<ActiveProjectState>,
       completedProjects: null == completedProjects
           ? _value.completedProjects
           : completedProjects // ignore: cast_nullable_to_non_nullable
@@ -274,7 +275,7 @@ abstract class _$$ProjectsStateImplCopyWith<$Res>
   @useResult
   $Res call(
       {List<Project> inactiveProjects,
-      List<ProjectState> activeProjects,
+      List<ActiveProjectState> activeProjects,
       List<Project> completedProjects});
 }
 
@@ -303,7 +304,7 @@ class __$$ProjectsStateImplCopyWithImpl<$Res>
       activeProjects: null == activeProjects
           ? _value._activeProjects
           : activeProjects // ignore: cast_nullable_to_non_nullable
-              as List<ProjectState>,
+              as List<ActiveProjectState>,
       completedProjects: null == completedProjects
           ? _value._completedProjects
           : completedProjects // ignore: cast_nullable_to_non_nullable
@@ -317,7 +318,7 @@ class __$$ProjectsStateImplCopyWithImpl<$Res>
 class _$ProjectsStateImpl implements _ProjectsState {
   const _$ProjectsStateImpl(
       {required final List<Project> inactiveProjects,
-      required final List<ProjectState> activeProjects,
+      required final List<ActiveProjectState> activeProjects,
       required final List<Project> completedProjects})
       : _inactiveProjects = inactiveProjects,
         _activeProjects = activeProjects,
@@ -335,9 +336,9 @@ class _$ProjectsStateImpl implements _ProjectsState {
     return EqualUnmodifiableListView(_inactiveProjects);
   }
 
-  final List<ProjectState> _activeProjects;
+  final List<ActiveProjectState> _activeProjects;
   @override
-  List<ProjectState> get activeProjects {
+  List<ActiveProjectState> get activeProjects {
     if (_activeProjects is EqualUnmodifiableListView) return _activeProjects;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_activeProjects);
@@ -397,7 +398,7 @@ class _$ProjectsStateImpl implements _ProjectsState {
 abstract class _ProjectsState implements ProjectsState {
   const factory _ProjectsState(
       {required final List<Project> inactiveProjects,
-      required final List<ProjectState> activeProjects,
+      required final List<ActiveProjectState> activeProjects,
       required final List<Project> completedProjects}) = _$ProjectsStateImpl;
 
   factory _ProjectsState.fromJson(Map<String, dynamic> json) =
@@ -406,7 +407,7 @@ abstract class _ProjectsState implements ProjectsState {
   @override
   List<Project> get inactiveProjects;
   @override
-  List<ProjectState> get activeProjects;
+  List<ActiveProjectState> get activeProjects;
   @override
   List<Project> get completedProjects;
 

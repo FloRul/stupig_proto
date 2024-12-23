@@ -2,7 +2,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:stupig_proto/systems/projects/models.dart';
 import 'package:stupig_proto/systems/projects/project_state.dart';
-import 'package:stupig_proto/systems/projects/projects_state_notifier.dart';
+import 'package:stupig_proto/systems/projects/notifiers.dart';
 import 'package:stupig_proto/utils/constants.dart';
 import 'package:stupig_proto/widgets/project/active_project_card.dart';
 import 'package:stupig_proto/widgets/project/inactive_project_card.dart';
@@ -16,7 +16,7 @@ class InprogressProjects extends ConsumerStatefulWidget {
 
 class _InprogressProjectsState extends ConsumerState<InprogressProjects> {
   final GlobalKey<SliverAnimatedGridState> _gridKey = GlobalKey<SliverAnimatedGridState>();
-  late final List<ProjectState> _projects = [];
+  late final List<ActiveProjectState> _projects = [];
 
   @override
   Widget build(BuildContext context) {
@@ -83,7 +83,7 @@ class _InprogressProjectsState extends ConsumerState<InprogressProjects> {
     );
   }
 
-  Widget _buildAnimatedItem(ProjectState project, Animation<double> animation) {
+  Widget _buildAnimatedItem(ActiveProjectState project, Animation<double> animation) {
     return SlideTransition(
       position: animation.drive(
         Tween<Offset>(
@@ -98,7 +98,7 @@ class _InprogressProjectsState extends ConsumerState<InprogressProjects> {
     );
   }
 
-  void _updateGrid(List<ProjectState> newProjects) {
+  void _updateGrid(List<ActiveProjectState> newProjects) {
     for (var i = 0; i < _projects.length; i++) {
       if (!newProjects.contains(_projects[i])) {
         // Remove animation
@@ -121,7 +121,7 @@ class _InprogressProjectsState extends ConsumerState<InprogressProjects> {
     }
   }
 
-  Widget _buildRemovedItem(ProjectState project, Animation<double> animation) {
+  Widget _buildRemovedItem(ActiveProjectState project, Animation<double> animation) {
     return SizeTransition(
       sizeFactor: animation,
       child: FadeTransition(

@@ -6,17 +6,16 @@ part of 'models.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$ResourcesStateImpl _$$ResourcesStateImplFromJson(Map<String, dynamic> json) =>
-    _$ResourcesStateImpl(
+_$ExperienceStateImpl _$$ExperienceStateImplFromJson(
+        Map<String, dynamic> json) =>
+    _$ExperienceStateImpl(
       xp: (json['xp'] as num).toInt(),
-      money: (json['money'] as num).toInt(),
       level: (json['level'] as num).toInt(),
     );
 
-Map<String, dynamic> _$$ResourcesStateImplToJson(
-        _$ResourcesStateImpl instance) =>
+Map<String, dynamic> _$$ExperienceStateImplToJson(
+        _$ExperienceStateImpl instance) =>
     <String, dynamic>{
       'xp': instance.xp,
-      'money': instance.money,
       'level': instance.level,
     };

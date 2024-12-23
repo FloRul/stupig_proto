@@ -3,11 +3,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:stupig_proto/systems/projects/project_state.dart';
-import 'package:stupig_proto/systems/projects/projects_state_notifier.dart';
+import 'package:stupig_proto/systems/projects/notifiers.dart';
 
 class ActiveProjectCard extends ConsumerStatefulWidget {
   const ActiveProjectCard({super.key, required this.project});
-  final ProjectState project;
+  final ActiveProjectState project;
 
   @override
   ConsumerState<ActiveProjectCard> createState() => _ActiveProjectCardState();
