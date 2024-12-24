@@ -42,7 +42,7 @@ class Completion with _$Completion {
   }) = _Completion;
 
   factory Completion.initial(int seed) => Completion(
-        baseAmount: seed * 20,
+        baseAmount: 1 + seed * 20,
         completedAmount: 0,
         baseRate: 1,
         multipliers: [0],
@@ -50,8 +50,8 @@ class Completion with _$Completion {
 
   Completion tick() {
     return copyWith(
-        completedAmount: min(completedAmount + rate, baseAmount),
-      );
+      completedAmount: min(completedAmount + rate, baseAmount),
+    );
   }
 
   double get progress => completedAmount / baseAmount;

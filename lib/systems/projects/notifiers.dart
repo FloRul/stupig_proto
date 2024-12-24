@@ -81,8 +81,10 @@ class ProjectsNotifier extends _$ProjectsNotifier {
           tag: runtimeType.toString(),
         ));
 
+    var newActiveProjects = state.activeProjects.where((p) => p.project.id != projectState.project.id).toList();
+
     state = state.copyWith(
-      activeProjects: state.activeProjects.where((p) => p != projectState).toList(),
+      activeProjects: newActiveProjects,
       completedProjects: [...state.completedProjects, projectState.project],
     );
   }
@@ -114,10 +116,11 @@ class AvailableProjectsNotifier extends _$AvailableProjectsNotifier {
   Future<AvailableProjectState> _fetchNewProject() async {
     await Future.delayed(const Duration(seconds: 1));
     // TODO
-    return AvailableProjectState.initial(const Project(
-      id: '2',
-      name: 'Project 2',
-      description: 'Project 2 Description',
+    var id = Random().nextInt(100).toString();
+    return AvailableProjectState.initial(Project(
+      id: id,
+      name: 'Project $id',
+      description: 'Project $id Description',
     ));
   }
 }
