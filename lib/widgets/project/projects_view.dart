@@ -3,8 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:stupig_proto/systems/projects/project_state.dart';
 import 'package:stupig_proto/systems/projects/notifiers.dart';
 import 'package:stupig_proto/utils/constants.dart';
-import 'package:stupig_proto/widgets/project/active_project_card.dart';
-import 'package:stupig_proto/widgets/project/available_project_card.dart';
+import 'package:stupig_proto/widgets/project/project_card.dart';
 
 class InprogressProjects extends ConsumerStatefulWidget {
   const InprogressProjects({super.key});
