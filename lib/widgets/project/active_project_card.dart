@@ -57,7 +57,7 @@ class _ActiveProjectCardState extends ConsumerState<ActiveProjectCard> with Tick
   @override
   Widget build(BuildContext context) {
     var pState = ref.watch(activeProjectNotifierProvider(widget.project));
-
+    var notifier = ref.read(activeProjectNotifierProvider(widget.project).notifier);
     // Update progress directly
     _progressController.value = pState.completion.progress;
 
@@ -80,7 +80,6 @@ class _ActiveProjectCardState extends ConsumerState<ActiveProjectCard> with Tick
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Column(
-                        mainAxisSize: MainAxisSize.min,
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: [
@@ -99,23 +98,29 @@ class _ActiveProjectCardState extends ConsumerState<ActiveProjectCard> with Tick
                                   overflow: TextOverflow.ellipsis,
                                 ),
                               ),
-                              TweenAnimationBuilder<double>(
-                                tween: Tween<double>(
-                                    begin: _progressAnimation.value,
-                                    end: pState.completion.progress), // Animate from current value
-                                duration: const Duration(milliseconds: 250),
-                                curve: Curves.linear,
-                                builder: (context, progress, _) {
-                                  return Center(
-                                    child: CircularProgressIndicator(
-                                      value: progress,
-                                      color: Colors.blue,
-                                      backgroundColor: Colors.grey[300],
-                                    ),
-                                  );
-                                },
-                              ),
                             ],
+                          ),
+                          AnimatedSwitcher(
+                            duration: const Duration(milliseconds: 250),
+                            child: pState.completion.isComplete
+                                ? IconButton.filled(
+                                    icon: const Icon(Icons.check),
+                                    onPressed: notifier.complete,
+                                  )
+                                : TweenAnimationBuilder<double>(
+                                    tween: Tween<double>(
+                                        begin: _progressAnimation.value,
+                                        end: pState.completion.progress), // Animate from current value
+                                    duration: const Duration(milliseconds: 250),
+                                    curve: Curves.linear,
+                                    builder: (context, progress, _) {
+                                      return CircularProgressIndicator(
+                                        value: progress,
+                                        color: Colors.blue,
+                                        backgroundColor: Colors.grey[300],
+                                      );
+                                    },
+                                  ),
                           ),
                           const Align(
                             alignment: Alignment.centerRight,

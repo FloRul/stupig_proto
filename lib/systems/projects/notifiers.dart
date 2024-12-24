@@ -13,13 +13,6 @@ part 'notifiers.g.dart';
 class ActiveProjectNotifier extends _$ActiveProjectNotifier {
   @override
   ActiveProjectState build(ActiveProjectState projectState) {
-    // Add a listener to remove completed projects, but only trigger once
-    listenSelf((previous, next) {
-      // Only trigger if we're transitioning from incomplete to complete
-      if (!(previous?.completion.isComplete ?? false) && next.completion.isComplete) {
-        ref.read(projectsNotifierProvider.notifier).completeProject(next);
-      }
-    });
     return projectState;
   }
 
@@ -28,6 +21,10 @@ class ActiveProjectNotifier extends _$ActiveProjectNotifier {
     if (!state.completion.isComplete) {
       state = state.copyWith(completion: state.completion.tick());
     }
+  }
+
+  void complete() {
+    ref.read(projectsNotifierProvider.notifier).completeProject(state);
   }
 }
 

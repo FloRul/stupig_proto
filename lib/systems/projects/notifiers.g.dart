@@ -7,7 +7,7 @@ part of 'notifiers.dart';
 // **************************************************************************
 
 String _$activeProjectNotifierHash() =>
-    r'b47fc1d7a75f8d7d90926be50f660bd102c53d7c';
+    r'44d63fcdecf9d4d67d02a651f037e8c8408dbd03';
 
 /// Copied from Dart SDK
 class _SystemHash {
