@@ -1,7 +1,6 @@
 ﻿import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:stupig_proto/systems/feature_unlock/notifiers.dart';
 import 'package:stupig_proto/systems/projects/project_state.dart';
 import 'package:stupig_proto/systems/projects/notifiers.dart';
 import 'package:stupig_proto/widgets/project/reward.dart';
