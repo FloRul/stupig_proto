@@ -39,6 +39,12 @@ unlockable features on progression
  - team page - team projects + hardware + upgrades
  - completed projects page + flashcards
 
+finishing the game loop
+ - [ ] define progression system
+ - [ ] define levelup reward for each level (flashcards)
+
+ progression
+
 
 ```mermaid
 graph LR
