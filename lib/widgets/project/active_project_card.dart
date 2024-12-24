@@ -1,5 +1,4 @@
 ﻿import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:stupig_proto/systems/projects/project_state.dart';
@@ -13,39 +12,42 @@ class ActiveProjectCard extends ConsumerStatefulWidget {
   ConsumerState<ActiveProjectCard> createState() => _ActiveProjectCardState();
 }
 
-class _ActiveProjectCardState extends ConsumerState<ActiveProjectCard> with SingleTickerProviderStateMixin {
-  late AnimationController _controller;
-  late Animation<double> _animation;
+class _ActiveProjectCardState extends ConsumerState<ActiveProjectCard> with TickerProviderStateMixin {
+  // Use TickerProviderStateMixin
+  late AnimationController _cardFlipController;
+  late Animation<double> _cardFlipAnimation;
+  late AnimationController _progressController;
+  late Animation<double> _progressAnimation;
   bool _isFrontVisible = true;
 
   @override
   void initState() {
     super.initState();
-    _controller = AnimationController(
+    _cardFlipController = AnimationController(
       duration: const Duration(milliseconds: 500),
       vsync: this,
     );
 
-    _animation = Tween<double>(
-      begin: 0,
-      end: 1,
-    ).animate(CurvedAnimation(
-      parent: _controller,
-      curve: Curves.easeInOut,
-    ));
+    _cardFlipAnimation =
+        Tween<double>(begin: 0, end: 1).animate(CurvedAnimation(parent: _cardFlipController, curve: Curves.easeInOut));
+
+    _progressController = AnimationController(vsync: this, duration: const Duration(milliseconds: 250));
+    _progressAnimation =
+        Tween<double>(begin: 0, end: 1).animate(CurvedAnimation(parent: _progressController, curve: Curves.linear));
   }
 
   @override
   void dispose() {
-    _controller.dispose();
+    _cardFlipController.dispose();
+    _progressController.dispose();
     super.dispose();
   }
 
   void _flipCard() {
     if (_isFrontVisible) {
-      _controller.forward();
+      _cardFlipController.forward();
     } else {
-      _controller.reverse();
+      _cardFlipController.reverse();
     }
     setState(() {
       _isFrontVisible = !_isFrontVisible;
@@ -55,12 +57,16 @@ class _ActiveProjectCardState extends ConsumerState<ActiveProjectCard> with Sing
   @override
   Widget build(BuildContext context) {
     var pState = ref.watch(activeProjectNotifierProvider(widget.project));
+
+    // Update progress directly
+    _progressController.value = pState.completion.progress;
+
     return GestureDetector(
       onTap: _flipCard,
       child: AnimatedBuilder(
-        animation: _animation,
-        builder: (_, __) {
-          final angle = _animation.value * pi;
+        animation: _cardFlipAnimation,
+        builder: (context, __) {
+          final angle = _cardFlipAnimation.value * pi;
           final transform = Matrix4.identity()
             ..setEntry(3, 2, 0.001)
             ..rotateY(angle);
@@ -94,19 +100,20 @@ class _ActiveProjectCardState extends ConsumerState<ActiveProjectCard> with Sing
                                 ),
                               ),
                               TweenAnimationBuilder<double>(
+                                tween: Tween<double>(
+                                    begin: _progressAnimation.value,
+                                    end: pState.completion.progress), // Animate from current value
                                 duration: const Duration(milliseconds: 250),
                                 curve: Curves.linear,
-                                tween: Tween<double>(
-                                  begin: 0,
-                                  end: pState.completion.progress,
-                                ),
-                                builder: (context, value, _) => Center(
-                                  child: CircularProgressIndicator(
-                                    value: value,
-                                    color: Colors.blue,
-                                    backgroundColor: Colors.grey[300],
-                                  ),
-                                ),
+                                builder: (context, progress, _) {
+                                  return Center(
+                                    child: CircularProgressIndicator(
+                                      value: progress,
+                                      color: Colors.blue,
+                                      backgroundColor: Colors.grey[300],
+                                    ),
+                                  );
+                                },
                               ),
                             ],
                           ),

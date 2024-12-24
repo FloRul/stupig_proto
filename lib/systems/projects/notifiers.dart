@@ -133,8 +133,6 @@ class AvailableProjectNotifier extends _$AvailableProjectNotifier {
       globalTickerProvider,
       (previous, next) => tick(),
     );
-    ref.onDispose(() =>
-        print('disposing available project notifier ${projectState.project.id} - hashcode ${projectState.hashCode}'));
     return projectState;
   }
 

@@ -211,7 +211,7 @@ final availableProjectsNotifierProvider = NotifierProvider<
 
 typedef _$AvailableProjectsNotifier = Notifier<List<AvailableProjectState>>;
 String _$availableProjectNotifierHash() =>
-    r'419d1a736a54ce24a481040d52cdc5e61a24ef91';
+    r'f65d6af1b1dfba10cb5717eb40719062b16f3d27';
 
 abstract class _$AvailableProjectNotifier
     extends BuildlessAutoDisposeNotifier<AvailableProjectState> {
