@@ -11,6 +11,7 @@ _$ProjectImpl _$$ProjectImplFromJson(Map<String, dynamic> json) =>
       id: json['id'] as String,
       name: json['name'] as String,
       description: json['description'] as String,
+      reward: ProjectReward.fromJson(json['reward'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$ProjectImplToJson(_$ProjectImpl instance) =>
@@ -18,6 +19,7 @@ Map<String, dynamic> _$$ProjectImplToJson(_$ProjectImpl instance) =>
       'id': instance.id,
       'name': instance.name,
       'description': instance.description,
+      'reward': instance.reward,
     };
 
 _$ProjectsStateImpl _$$ProjectsStateImplFromJson(Map<String, dynamic> json) =>

@@ -23,6 +23,7 @@ mixin _$Project {
   String get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
+  ProjectReward get reward => throw _privateConstructorUsedError;
 
   /// Serializes this Project to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -38,7 +39,9 @@ abstract class $ProjectCopyWith<$Res> {
   factory $ProjectCopyWith(Project value, $Res Function(Project) then) =
       _$ProjectCopyWithImpl<$Res, Project>;
   @useResult
-  $Res call({String id, String name, String description});
+  $Res call({String id, String name, String description, ProjectReward reward});
+
+  $ProjectRewardCopyWith<$Res> get reward;
 }
 
 /// @nodoc
@@ -59,6 +62,7 @@ class _$ProjectCopyWithImpl<$Res, $Val extends Project>
     Object? id = null,
     Object? name = null,
     Object? description = null,
+    Object? reward = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -73,7 +77,21 @@ class _$ProjectCopyWithImpl<$Res, $Val extends Project>
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String,
+      reward: null == reward
+          ? _value.reward
+          : reward // ignore: cast_nullable_to_non_nullable
+              as ProjectReward,
     ) as $Val);
+  }
+
+  /// Create a copy of Project
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ProjectRewardCopyWith<$Res> get reward {
+    return $ProjectRewardCopyWith<$Res>(_value.reward, (value) {
+      return _then(_value.copyWith(reward: value) as $Val);
+    });
   }
 }
 
@@ -84,7 +102,10 @@ abstract class _$$ProjectImplCopyWith<$Res> implements $ProjectCopyWith<$Res> {
       __$$ProjectImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String id, String name, String description});
+  $Res call({String id, String name, String description, ProjectReward reward});
+
+  @override
+  $ProjectRewardCopyWith<$Res> get reward;
 }
 
 /// @nodoc
@@ -103,6 +124,7 @@ class __$$ProjectImplCopyWithImpl<$Res>
     Object? id = null,
     Object? name = null,
     Object? description = null,
+    Object? reward = null,
   }) {
     return _then(_$ProjectImpl(
       id: null == id
@@ -117,6 +139,10 @@ class __$$ProjectImplCopyWithImpl<$Res>
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String,
+      reward: null == reward
+          ? _value.reward
+          : reward // ignore: cast_nullable_to_non_nullable
+              as ProjectReward,
     ));
   }
 }
@@ -125,7 +151,10 @@ class __$$ProjectImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$ProjectImpl implements _Project {
   const _$ProjectImpl(
-      {required this.id, required this.name, required this.description});
+      {required this.id,
+      required this.name,
+      required this.description,
+      required this.reward});
 
   factory _$ProjectImpl.fromJson(Map<String, dynamic> json) =>
       _$$ProjectImplFromJson(json);
@@ -136,10 +165,12 @@ class _$ProjectImpl implements _Project {
   final String name;
   @override
   final String description;
+  @override
+  final ProjectReward reward;
 
   @override
   String toString() {
-    return 'Project(id: $id, name: $name, description: $description)';
+    return 'Project(id: $id, name: $name, description: $description, reward: $reward)';
   }
 
   @override
@@ -150,12 +181,13 @@ class _$ProjectImpl implements _Project {
             (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.description, description) ||
-                other.description == description));
+                other.description == description) &&
+            (identical(other.reward, reward) || other.reward == reward));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, id, name, description);
+  int get hashCode => Object.hash(runtimeType, id, name, description, reward);
 
   /// Create a copy of Project
   /// with the given fields replaced by the non-null parameter values.
@@ -177,7 +209,8 @@ abstract class _Project implements Project {
   const factory _Project(
       {required final String id,
       required final String name,
-      required final String description}) = _$ProjectImpl;
+      required final String description,
+      required final ProjectReward reward}) = _$ProjectImpl;
 
   factory _Project.fromJson(Map<String, dynamic> json) = _$ProjectImpl.fromJson;
 
@@ -187,6 +220,8 @@ abstract class _Project implements Project {
   String get name;
   @override
   String get description;
+  @override
+  ProjectReward get reward;
 
   /// Create a copy of Project
   /// with the given fields replaced by the non-null parameter values.

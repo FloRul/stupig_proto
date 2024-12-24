@@ -63,7 +63,15 @@ class ProjectsNotifier extends _$ProjectsNotifier {
 
   void _handleStartProject(Project project) {
     state = state.copyWith(
-      activeProjects: [...state.activeProjects, ActiveProjectState.fromProject(project, Random().nextInt(10))],
+      activeProjects: [
+        ...state.activeProjects,
+        ActiveProjectState.fromProject(
+          project,
+          Random().nextInt(2),
+          false,
+          false,
+        )
+      ],
     );
   }
 
@@ -74,7 +82,7 @@ class ProjectsNotifier extends _$ProjectsNotifier {
     }
 
     ref.read(eventBusProvider.notifier).publish(GameEvent.projectCompleted(
-          project: projectState,
+          project: projectState.project,
           tag: runtimeType.toString(),
         ));
 
@@ -92,11 +100,17 @@ class AvailableProjectsNotifier extends _$AvailableProjectsNotifier {
   @override
   List<AvailableProjectState> build() {
     return [
-      AvailableProjectState.initial(const Project(
-        id: '1',
-        name: 'Project 1',
-        description: 'Project 1 Description',
-      )),
+      AvailableProjectState.initial(
+        const Project(
+          id: '1',
+          name: 'Project 1',
+          description: 'Project 1 Description',
+          reward: ProjectReward(
+            moneyAmount: 1,
+            xpAmount: 1,
+          ),
+        ),
+      ),
     ];
   }
 
@@ -114,11 +128,17 @@ class AvailableProjectsNotifier extends _$AvailableProjectsNotifier {
     await Future.delayed(const Duration(seconds: 1));
     // TODO
     var id = Random().nextInt(100).toString();
-    return AvailableProjectState.initial(Project(
-      id: id,
-      name: 'Project $id',
-      description: 'Project $id Description',
-    ));
+    return AvailableProjectState.initial(
+      Project(
+        id: id,
+        name: 'Project $id',
+        description: 'Project $id Description',
+        reward: const ProjectReward(
+          moneyAmount: 1,
+          xpAmount: 1,
+        ),
+      ),
+    );
   }
 }
 

@@ -1,6 +1,7 @@
 ﻿import 'dart:math';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter/material.dart';
+import 'package:stupig_proto/systems/feature_unlock/notifiers.dart';
 import 'package:stupig_proto/systems/projects/notifiers.dart';
 import 'package:stupig_proto/systems/projects/project_state.dart';
 
@@ -54,6 +55,7 @@ class _InactiveProjectCardState extends ConsumerState<InactiveProjectCard> with 
   @override
   Widget build(BuildContext context) {
     var aPstate = ref.watch(availableProjectNotifierProvider(widget.aPstate));
+    bool showRewards = ref.watch(featureUnlockNotifierProvider.select((value) => value.showRewards));
     return GestureDetector(
       onTap: aPstate.isAvailable ? _flipCard : null,
       child: AnimatedBuilder(
@@ -73,9 +75,7 @@ class _InactiveProjectCardState extends ConsumerState<InactiveProjectCard> with 
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Column(
-                        mainAxisSize: MainAxisSize.min,
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: [
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -110,6 +110,27 @@ class _InactiveProjectCardState extends ConsumerState<InactiveProjectCard> with 
                                   backgroundColor: Colors.grey[300],
                                 ),
                               ),
+                            ),
+                          ),
+                          Container(
+                            decoration: BoxDecoration(
+                              color: Colors.black26,
+                              borderRadius: BorderRadius.circular(8),
+                            ),
+                            padding: const EdgeInsets.all(8),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                const Text('Rewards'),
+                                const Divider(),
+                                Text(
+                                  '${showRewards ? aPstate.project.reward.xpAmount : '???'} XP',
+                                ),
+                                if (aPstate.project.reward.moneyAmount > 0)
+                                  Text(
+                                    '${showRewards ? aPstate.project.reward.moneyAmount : '???'} \$',
+                                  ),
+                              ],
                             ),
                           ),
                           Visibility(

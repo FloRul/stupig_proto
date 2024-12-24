@@ -10,6 +10,7 @@ class Project with _$Project {
     required String id,
     required String name,
     required String description,
+    required ProjectReward reward,
   }) = _Project;
 
   factory Project.fromJson(Map<String, Object?> json) => _$ProjectFromJson(json);

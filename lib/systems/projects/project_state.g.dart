@@ -12,7 +12,7 @@ _$ActiveProjectStateImpl _$$ActiveProjectStateImplFromJson(
       project: Project.fromJson(json['project'] as Map<String, dynamic>),
       completion:
           Completion.fromJson(json['completion'] as Map<String, dynamic>),
-      reward: ProjectReward.fromJson(json['reward'] as Map<String, dynamic>),
+      displayCompletionDetails: json['displayCompletionDetails'] as bool,
     );
 
 Map<String, dynamic> _$$ActiveProjectStateImplToJson(
@@ -20,7 +20,7 @@ Map<String, dynamic> _$$ActiveProjectStateImplToJson(
     <String, dynamic>{
       'project': instance.project,
       'completion': instance.completion,
-      'reward': instance.reward,
+      'displayCompletionDetails': instance.displayCompletionDetails,
     };
 
 _$ProjectRewardImpl _$$ProjectRewardImplFromJson(Map<String, dynamic> json) =>
