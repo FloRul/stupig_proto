@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:stupig_proto/systems/feature_unlock/notifiers.dart';
 import 'package:stupig_proto/systems/projects/project_state.dart';
 import 'package:stupig_proto/systems/projects/notifiers.dart';
+import 'package:stupig_proto/widgets/project/reward.dart';
 
 class ActiveProjectCard extends ConsumerStatefulWidget {
   const ActiveProjectCard({super.key, required this.project});
@@ -123,6 +124,7 @@ class _ActiveProjectCardState extends ConsumerState<ActiveProjectCard> with Tick
                                     },
                                   ),
                           ),
+                          RewardWidget(reward: pState.project.reward),
                           const Align(
                             alignment: Alignment.centerRight,
                             child: Icon(

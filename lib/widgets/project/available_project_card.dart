@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:stupig_proto/systems/feature_unlock/notifiers.dart';
 import 'package:stupig_proto/systems/projects/notifiers.dart';
 import 'package:stupig_proto/systems/projects/project_state.dart';
+import 'package:stupig_proto/widgets/project/reward.dart';
 
 class InactiveProjectCard extends ConsumerStatefulWidget {
   const InactiveProjectCard({super.key, required this.aPstate});
@@ -112,26 +113,9 @@ class _InactiveProjectCardState extends ConsumerState<InactiveProjectCard> with 
                               ),
                             ),
                           ),
-                          Container(
-                            decoration: BoxDecoration(
-                              color: Colors.black26,
-                              borderRadius: BorderRadius.circular(8),
-                            ),
-                            padding: const EdgeInsets.all(8),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                const Text('Rewards'),
-                                const Divider(),
-                                Text(
-                                  '${showRewards ? aPstate.project.reward.xpAmount : '???'} XP',
-                                ),
-                                if (aPstate.project.reward.moneyAmount > 0)
-                                  Text(
-                                    '${showRewards ? aPstate.project.reward.moneyAmount : '???'} \$',
-                                  ),
-                              ],
-                            ),
+                          RewardWidget(
+                            reward: aPstate.project.reward,
+                            showRewards: showRewards,
                           ),
                           Visibility(
                             visible: aPstate.isAvailable,
