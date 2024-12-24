@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:stupig_proto/systems/projects/project_state.dart';
 import 'package:stupig_proto/systems/projects/notifiers.dart';
 import 'package:stupig_proto/utils/constants.dart';
+import 'package:stupig_proto/widgets/common/glassmorphism_container.dart';
 import 'package:stupig_proto/widgets/project/project_card.dart';
 
 class InprogressProjects extends ConsumerStatefulWidget {
@@ -20,21 +21,32 @@ class _InprogressProjectsState extends ConsumerState<InprogressProjects> {
   Widget build(BuildContext context) {
     var activeProjects = ref.watch(projectsNotifierProvider).activeProjects;
 
-    // Handle projects list changes
     WidgetsBinding.instance.addPostFrameCallback((_) {
       _updateGrid(activeProjects);
     });
 
     return Column(
       children: [
-        const Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text(
-              'In progress',
-              style: TextStyle(fontSize: 20),
+        Padding(
+          padding: const EdgeInsets.symmetric(vertical: 16.0),
+          child: GlassmorphicContainer(
+            child: Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    'In progress',
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white.withValues(alpha: 0.9),
+                    ),
+                  ),
+                ],
+              ),
             ),
-          ],
+          ),
         ),
         Expanded(
           child: DragTarget<AvailableProjectState>(
@@ -42,33 +54,28 @@ class _InprogressProjectsState extends ConsumerState<InprogressProjects> {
             onAcceptWithDetails: (details) =>
                 ref.read(availableProjectsNotifierProvider.notifier).startProject(details.data),
             builder: (context, candidateData, rejectedData) {
-              return Container(
-                decoration: BoxDecoration(
-                  border: Border.all(
-                    color: candidateData.isNotEmpty ? Colors.green : Colors.red,
-                    width: 2,
-                    style: BorderStyle.solid,
-                    strokeAlign: BorderSide.strokeAlignCenter,
-                  ),
-                  borderRadius: BorderRadius.circular(12),
-                ),
+              return GlassmorphicContainer(
+                isHighlighted: candidateData.isNotEmpty,
                 child: LayoutBuilder(
                   builder: (context, constraints) {
                     final crossAxisCount = (constraints.maxWidth / 250).ceil().toInt();
                     return CustomScrollView(
                       slivers: [
-                        SliverAnimatedGrid(
-                          key: _gridKey,
-                          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: crossAxisCount,
-                            crossAxisSpacing: 8.0,
-                            mainAxisSpacing: 8.0,
-                            childAspectRatio: kCardAspectRatio,
+                        SliverPadding(
+                          padding: const EdgeInsets.all(16.0),
+                          sliver: SliverAnimatedGrid(
+                            key: _gridKey,
+                            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                              crossAxisCount: crossAxisCount,
+                              crossAxisSpacing: 16.0,
+                              mainAxisSpacing: 16.0,
+                              childAspectRatio: kCardAspectRatio,
+                            ),
+                            initialItemCount: _projects.length,
+                            itemBuilder: (context, index, animation) {
+                              return _buildAnimatedItem(_projects[index], animation);
+                            },
                           ),
-                          initialItemCount: _projects.length,
-                          itemBuilder: (context, index, animation) {
-                            return _buildAnimatedItem(_projects[index], animation);
-                          },
                         ),
                       ],
                     );
@@ -134,33 +141,35 @@ class InactiveProjects extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     var availableProjects = ref.watch(availableProjectsNotifierProvider);
-    return LayoutBuilder(
-      builder: (context, constraints) {
-        final crossAxisCount = (constraints.maxWidth / 250).ceil().toInt();
-        return GridView.builder(
-          padding: const EdgeInsets.all(8.0),
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: crossAxisCount,
-            crossAxisSpacing: 8.0,
-            mainAxisSpacing: 8.0,
-            childAspectRatio: kCardAspectRatio,
-          ),
-          itemCount: ref.watch(availableProjectsNotifierProvider).length,
-          itemBuilder: (context, index) {
-            return Draggable<AvailableProjectState>(
-              feedback: SizedBox(
-                width: 150,
-                child: AspectRatio(
-                  aspectRatio: kCardAspectRatio,
-                  child: InactiveProjectCard(aPstate: availableProjects[index]),
+    return GlassmorphicContainer(
+      child: LayoutBuilder(
+        builder: (context, constraints) {
+          final crossAxisCount = (constraints.maxWidth / 250).ceil().toInt();
+          return GridView.builder(
+            padding: const EdgeInsets.all(16.0),
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: crossAxisCount,
+              crossAxisSpacing: 16.0,
+              mainAxisSpacing: 16.0,
+              childAspectRatio: kCardAspectRatio,
+            ),
+            itemCount: availableProjects.length,
+            itemBuilder: (context, index) {
+              return Draggable<AvailableProjectState>(
+                feedback: SizedBox(
+                  width: 150,
+                  child: AspectRatio(
+                    aspectRatio: kCardAspectRatio,
+                    child: InactiveProjectCard(aPstate: availableProjects[index]),
+                  ),
                 ),
-              ),
-              data: availableProjects[index],
-              child: InactiveProjectCard(aPstate: availableProjects[index]),
-            );
-          },
-        );
-      },
+                data: availableProjects[index],
+                child: InactiveProjectCard(aPstate: availableProjects[index]),
+              );
+            },
+          );
+        },
+      ),
     );
   }
 }
