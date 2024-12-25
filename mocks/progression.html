@@ -1,0 +1,145 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CS Progress Tracker</title>
+  <style>
+    :root {
+      --glass-bg: rgba(17, 25, 40, 0.75);
+      --glass-border: rgba(255, 255, 255, 0.125);
+      --accent-color: rgba(66, 211, 255, 0.5);
+    }
+
+    body {
+      margin: 0;
+      padding: 20px;
+      min-height: 100vh;
+      background: linear-gradient(45deg, #1a1a2e, #16213e);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: white;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .progress-header {
+      background: var(--glass-bg);
+      backdrop-filter: blur(10px);
+      border: 1px solid var(--glass-border);
+      border-radius: 15px;
+      padding: 20px;
+      margin-bottom: 30px;
+    }
+
+    .level-indicator {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .theme-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+    }
+
+    .theme-card {
+      background: var(--glass-bg);
+      backdrop-filter: blur(10px);
+      border: 1px solid var(--glass-border);
+      border-radius: 15px;
+      padding: 20px;
+    }
+
+    .flashcard-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 15px;
+      margin-top: 15px;
+    }
+
+    .flashcard {
+      aspect-ratio: 10/7;
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: 10px;
+      padding: 15px;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+
+    .flashcard:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    }
+
+    .progress-bar {
+      height: 10px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 5px;
+      margin-top: 10px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: var(--accent-color);
+      width: 60%;
+      border-radius: 5px;
+    }
+
+    .locked {
+      filter: grayscale(1);
+      opacity: 0.5;
+      pointer-events: none;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="progress-header">
+      <div class="level-indicator">
+        <h2>Level 15: Junior Developer</h2>
+        <div class="progress-bar">
+          <div class="progress-fill"></div>
+        </div>
+      </div>
+      <p>Progress to AI Overlord: 15%</p>
+    </div>
+
+    <div class="theme-container">
+      <!-- Data Structures Theme -->
+      <div class="theme-card">
+        <h3>Data Structures</h3>
+        <div class="progress-bar">
+          <div class="progress-fill"></div>
+        </div>
+        <div class="flashcard-grid">
+          <div class="flashcard">Arrays</div>
+          <div class="flashcard">Linked Lists</div>
+          <div class="flashcard locked">Trees</div>
+        </div>
+      </div>
+
+      <!-- Algorithms Theme -->
+      <div class="theme-card">
+        <h3>Algorithms</h3>
+        <div class="progress-bar">
+          <div class="progress-fill"></div>
+        </div>
+        <div class="flashcard-grid">
+          <div class="flashcard">Sorting</div>
+          <div class="flashcard locked">Searching</div>
+          <div class="flashcard locked">Graph Theory</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

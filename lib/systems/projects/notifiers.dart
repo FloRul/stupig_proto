@@ -77,6 +77,7 @@ class ProjectsNotifier extends _$ProjectsNotifier {
 
   void completeProject(ActiveProjectState projectState) {
     // Check if the project is already in completedProjects to prevent duplicate completions
+    // TODO this is a temporary solution, we should probably use a Set instead of a List
     if (state.completedProjects.contains(projectState.project)) {
       return;
     }
@@ -126,7 +127,7 @@ class AvailableProjectsNotifier extends _$AvailableProjectsNotifier {
 
   Future<AvailableProjectState> _fetchNewProject() async {
     await Future.delayed(const Duration(seconds: 1));
-    // TODO
+    // TODO call API to fetch new project
     var id = Random().nextInt(100).toString();
     return AvailableProjectState.initial(
       Project(
