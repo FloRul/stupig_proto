@@ -1,0 +1,21 @@
+﻿{
+  "concept": {
+    "name": "string",
+    "description": "string",
+    "rarity": "common | uncommon | rare | epic | legendary"
+  },
+  "theme": {
+    "name": "string",
+    "description": "string",
+    "subthemes": [
+      "subtheme"
+    ]
+  },
+  "subtheme": {
+    "name": "string",
+    "description": "string",
+    "concepts": [
+      "concept"
+    ]
+  }
+}

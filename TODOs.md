@@ -33,6 +33,7 @@ unlockable features on progression
  - know the reward of a project (initially no clue but a range)
  - able to save/load game state
  - able to generate new projects
+ - know the reward of an available project
 
  3 different pages
  - personnal page - own projects + hardware + upgrades

@@ -1,0 +1,2569 @@
+﻿{
+  "themes": [
+    {
+      "name": "Algorithms & data structures",
+      "subthemes": [
+        {
+          "name": "Sorting algorithms",
+          "concepts": [
+            {
+              "name": "Bubble sort",
+              "rarity": "common",
+              "unlocked": false
+            },
+            {
+              "name": "Selection sort",
+              "rarity": "common",
+              "unlocked": false
+            },
+            {
+              "name": "Insertion sort",
+              "rarity": "common",
+              "unlocked": false
+            },
+            {
+              "name": "Shell sort",
+              "rarity": "uncommon",
+              "unlocked": false
+            },
+            {
+              "name": "Cocktail shaker sort",
+              "rarity": "uncommon",
+              "unlocked": false
+            },
+            {
+              "name": "Merge sort",
+              "rarity": "rare",
+              "unlocked": false
+            },
+            {
+              "name": "Quick sort",
+              "rarity": "rare",
+              "unlocked": false
+            },
+            {
+              "name": "Heap sort",
+              "rarity": "rare",
+              "unlocked": false
+            },
+            {
+              "name": "Tim sort",
+              "rarity": "epic",
+              "unlocked": false
+            },
+            {
+              "name": "Library sort",
+              "rarity": "epic",
+              "unlocked": false
+            },
+            {
+              "name": "Smooth sort",
+              "rarity": "epic",
+              "unlocked": false
+            },
+            {
+              "name": "Bucket sort",
+              "rarity": "legendary",
+              "unlocked": false
+            },
+            {
+              "name": "Radix sort",
+              "rarity": "legendary",
+              "unlocked": false
+            },
+            {
+              "name": "Flash sort",
+              "rarity": "legendary",
+              "unlocked": false
+            },
+            {
+              "name": "Intro sort",
+              "rarity": "legendary",
+              "unlocked": false
+            }
+          ]
+        },
+        {
+          "name": "Arrays & strings",
+          "concepts": [
+            {
+              "name": "Array Declaration and Initialization",
+              "rarity": "common",
+              "unlocked": false
+            },
+            {
+              "name": "String Declaration and Initialization",
+              "rarity": "common",
+              "unlocked": false
+            },
+            {
+              "name": "Accessing Array Elements",
+              "rarity": "common",
+              "unlocked": false
+            },
+            {
+              "name": "Accessing String Characters",
+              "rarity": "common",
+              "unlocked": false
+            },
+            {
+              "name": "Iterating over an Array",
+              "rarity": "common",
+              "unlocked": false
+            },
+            {
+              "name": "String Length",
+              "rarity": "common",
+              "unlocked": false
+            },
+            {
+              "name": "Multi-dimensional Arrays",
+              "rarity": "uncommon",
+              "unlocked": false
+            },
+            {
+              "name": "Array Slicing",
+              "rarity": "uncommon",
+              "unlocked": false
+            },
+            {
+              "name": "Common Array Operations (e.g., search, insert, delete)",
+              "rarity": "uncommon",
+              "unlocked": false
+            },
+            {
+              "name": "String Concatenation",
+              "rarity": "uncommon",
+              "unlocked": false
+            },
+            {
+              "name": "Substring",
+              "rarity": "uncommon",
+              "unlocked": false
+            },
+            {
+              "name": "String Comparison",
+              "rarity": "uncommon",
+              "unlocked": false
+            },
+            {
+              "name": "Dynamic Arrays (e.g., ArrayList in Java, vector in C++)",
+              "rarity": "rare",
+              "unlocked": false
+            },
+            {
+              "name": "Sparse Arrays",
+              "rarity": "rare",
+              "unlocked": false
+            },
+            {
+              "name": "Prefix Sum Arrays",
+              "rarity": "rare",
+              "unlocked": false
+            },
+            {
+              "name": "String Builder/Buffer (e.g., in Java)",
+              "rarity": "rare",
+              "unlocked": false
+            },
+            {
+              "name": "Regular Expressions",
+              "rarity": "rare",
+              "unlocked": false
+            },
+            {
+              "name": "String Hashing (e.g., Rabin-Karp algorithm)",
+              "rarity": "rare",
+              "unlocked": false
+            },
+            {
+              "name": "Segment Trees",
+              "rarity": "epic",
+              "unlocked": false
+            },
+            {
+              "name": "Fenwick Trees (Binary Indexed Trees)",
+              "rarity": "epic",
+              "unlocked": false
+            },
+            {
+              "name": "Sparse Tables",
+              "rarity": "epic",
+              "unlocked": false
+            },
+            {
+              "name": "Suffix Arrays",
+              "rarity": "epic",
+              "unlocked": false
+            },
+            {
+              "name": "Suffix Trees",
+              "rarity": "epic",
+              "unlocked": false
+            },
+            {
+              "name": "Trie (Prefix Tree)",
+              "rarity": "epic",
+              "unlocked": false
+            },
+            {
+              "name": "Bit Manipulation Techniques for Arrays",
+              "rarity": "legendary",
+              "unlocked": false
+            },
+            {
+              "name": "Difference Array",
+              "rarity": "legendary",
+              "unlocked": false
+            },
+            {
+              "name": "Aho-Corasick Algorithm",
+              "rarity": "legendary",
+              "unlocked": false
+            },
+            {
+              "name": "UKKONEN’s Algorithm for Suffix Tree Construction",
+              "rarity": "legendary",
+              "unlocked": false
+            },
+            {
+              "name": "Boyer-Moore String Search Algorithm",
+              "rarity": "legendary",
+              "unlocked": false
+            }
+          ]
+        },
+        {
+          "name": "Trees & graphs",
+          "concepts": [
+            {
+              "name": "Tree Definition and Terminology",
+              "rarity": "common",
+              "unlocked": false
+            },
+            {
+              "name": "Graph Definition and Terminology",
+              "rarity": "common",
+              "unlocked": false
+            },
+            {
+              "name": "Binary Tree Traversal",
+              "rarity": "common",
+              "unlocked": false
+            },
+            {
+              "name": "Breadth-First Search (BFS) on Graphs",
+              "rarity": "common",
+              "unlocked": false
+            },
+            {
+              "name": "Depth-First Search (DFS) on Graphs",
+              "rarity": "common",
+              "unlocked": false
+            },
+            {
+              "name": "Binary Search Tree (BST)",
+              "rarity": "uncommon",
+              "unlocked": false
+            },
+            {
+              "name": "AVL Tree",
+              "rarity": "uncommon",
+              "unlocked": false
+            },
+            {
+              "name": "Connected Components in Graphs",
+              "rarity": "uncommon",
+              "unlocked": false
+            },
+            {
+              "name": "Topological Sorting",
+              "rarity": "uncommon",
+              "unlocked": false
+            },
+            {
+              "name": "Minimum Spanning Tree (MST)",
+              "rarity": "uncommon",
+              "unlocked": false
+            },
+            {
+              "name": "Red-Black Tree",
+              "rarity": "rare",
+              "unlocked": false
+            },
+            {
+              "name": "Segment Tree",
+              "rarity": "rare",
+              "unlocked": false
+            },
+            {
+              "name": "Shortest Path Algorithms",
+              "rarity": "rare",
+              "unlocked": false
+            },
+            {
+              "name": "Strongly Connected Components",
+              "rarity": "rare",
+              "unlocked": false
+            },
+            {
+              "name": "Bipartite Graphs and Matching Algorithms",
+              "rarity": "rare",
+              "unlocked": false
+            },
+            {
+              "name": "Fenwick Tree",
+              "rarity": "epic",
+              "unlocked": false
+            },
+            {
+              "name": "Heavy-Light Decomposition",
+              "rarity": "epic",
+              "unlocked": false
+            },
+            {
+              "name": "Centroid Decomposition",
+              "rarity": "epic",
+              "unlocked": false
+            },
+            {
+              "name": "Jump Point Search",
+              "rarity": "epic",
+              "unlocked": false
+            },
+            {
+              "name": "Johnson's Algorithm",
+              "rarity": "epic",
+              "unlocked": false
+            },
+            {
+              "name": "Graph Coloring",
+              "rarity": "epic",
+              "unlocked": false
+            },
+            {
+              "name": "Treap",
+              "rarity": "legendary",
+              "unlocked": false
+            },
+            {
+              "name": "Link/Cut Tree",
+              "rarity": "legendary",
+              "unlocked": false
+            },
+            {
+              "name": "Dynamic Connectivity",
+              "rarity": "legendary",
+              "unlocked": false
+            },
+            {
+              "name": "Betweenness Centrality",
+              "rarity": "legendary",
+              "unlocked": false
+            },
+            {
+              "name": "PageRank Algorithm",
+              "rarity": "legendary",
+              "unlocked": false
+            },
+            {
+              "name": "Community Detection Algorithms",
+              "rarity": "legendary",
+              "unlocked": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Programming fundamentals",
+      "subthemes": [
+        {
+          "name": "Variables & data types",
+          "concepts": [
+            {
+              "name": "Variable Declaration and Initialization",
+              "rarity": "common",
+              "unlocked": false
+            },
+            {
+              "name": "Primitive Data Types",
+              "rarity": "common",
+              "unlocked": false
+            },
+            {
+              "name": "Type Casting",
+              "rarity": "common",
+              "unlocked": false
+            },
+            {
+              "name": "Scope and Lifetime of Variables",
+              "rarity": "common",
+              "unlocked": false
+            },
+            {
+              "name": "Arithmetic Operators",
+              "rarity": "common",
+              "unlocked": false
+            },
+            {
+              "name": "Reference vs Value Types",
+              "rarity": "uncommon",
+              "unlocked": false
+            },
+            {
+              "name": "Pointers",
+              "rarity": "uncommon",
+              "unlocked": false
+            },
+            {
+              "name": "Arrays and their Types",
+              "rarity": "uncommon",
+              "unlocked": false
+            },
+            {
+              "name": "Structures/Classes",
+              "rarity": "uncommon",
+              "unlocked": false
+            },
+            {
+              "name": "Enums",
+              "rarity": "uncommon",
+              "unlocked": false
+            },
+            {
+              "name": "Unions",
+              "rarity": "rare",
+              "unlocked": false
+            },
+            {
+              "name": "Type Inference",
+              "rarity": "rare",
+              "unlocked": false
+            },
+            {
+              "name": "Type Aliases",
+              "rarity": "rare",
+              "unlocked": false
+            },
+            {
+              "name": "Optional Types",
+              "rarity": "rare",
+              "unlocked": false
+            },
+            {
+              "name": "Generics/Templates",
+              "rarity": "rare",
+              "unlocked": false
+            },
+            {
+              "name": "Tuples",
+              "rarity": "epic",
+              "unlocked": false
+            },
+            {
+              "name": "Variant Types",
+              "rarity": "epic",
+              "unlocked": false
+            },
+            {
+              "name": "Type Erasure",
+              "rarity": "epic",
+              "unlocked": false
+            },
+            {
+              "name": "Discriminated Unions",
+              "rarity": "epic",
+              "unlocked": false
+            },
+            {
+              "name": "Sum Types",
+              "rarity": "epic",
+              "unlocked": false
+            },
+            {
+              "name": "Dependent Types",
+              "rarity": "legendary",
+              "unlocked": false
+            },
+            {
+              "name": "Intersection Types",
+              "rarity": "legendary",
+              "unlocked": false
+            },
+            {
+              "name": "Phantom Types",
+              "rarity": "legendary",
+              "unlocked": false
+            },
+            {
+              "name": "Gradual Typing",
+              "rarity": "legendary",
+              "unlocked": false
+            },
+            {
+              "name": "Linear Types",
+              "rarity": "legendary",
+              "unlocked": false
+            },
+            {
+              "name": "Refinement Types",
+              "rarity": "legendary",
+              "unlocked": false
+            }
+          ]
+        },
+        {
+          "name": "Control flow",
+          "concepts": [
+            {
+              "name": "Sequential Execution",
+              "rarity": "common",
+              "unlocked": false
+            },
+            {
+              "name": "If Statement",
+              "rarity": "common",
+              "unlocked": false
+            },
+            {
+              "name": "Else/Else if Statement",
+              "rarity": "common",
+              "unlocked": false
+            },
+            {
+              "name": "Switch Statement",
+              "rarity": "uncommon",
+              "unlocked": false
+            },
+            {
+              "name": "For Loop",
+              "rarity": "uncommon",
+              "unlocked": false
+            },
+            {
+              "name": "While/Do-while Loop",
+              "rarity": "uncommon",
+              "unlocked": false
+            },
+            {
+              "name": "Nested Loops",
+              "rarity": "rare",
+              "unlocked": false
+            },
+            {
+              "name": "Break Statement",
+              "rarity": "rare",
+              "unlocked": false
+            },
+            {
+              "name": "Continue Statement",
+              "rarity": "rare",
+              "unlocked": false
+            },
+            {
+              "name": "Infinite Loop",
+              "rarity": "rare",
+              "unlocked": false
+            },
+            {
+              "name": "GoTo Statement",
+              "rarity": "epic",
+              "unlocked": false
+            },
+            {
+              "name": "Try-Catch",
+              "rarity": "epic",
+              "unlocked": false
+            },
+            {
+              "name": "Ternary Operator",
+              "rarity": "epic",
+              "unlocked": false
+            },
+            {
+              "name": "Early Return",
+              "rarity": "epic",
+              "unlocked": false
+            },
+            {
+              "name": "Coroutines",
+              "rarity": "legendary",
+              "unlocked": false
+            },
+            {
+              "name": "Generators",
+              "rarity": "legendary",
+              "unlocked": false
+            },
+            {
+              "name": "Yield Keyword",
+              "rarity": "legendary",
+              "unlocked": false
+            },
+            {
+              "name": "Pattern Matching",
+              "rarity": "legendary",
+              "unlocked": false
+            }
+          ]
+        },
+        {
+          "name": "Version control",
+          "concepts": [
+            {
+              "name": "Repository",
+              "rarity": "common",
+              "unlocked": false
+            },
+            {
+              "name": "Commit",
+              "rarity": "common",
+              "unlocked": false
+            },
+            {
+              "name": "Clone",
+              "rarity": "common",
+              "unlocked": false
+            },
+            {
+              "name": "Branch",
+              "rarity": "common",
+              "unlocked": false
+            },
+            {
+              "name": "Merge",
+              "rarity": "uncommon",
+              "unlocked": false
+            },
+            {
+              "name": "Pull request",
+              "rarity": "uncommon",
+              "unlocked": false
+            },
+            {
+              "name": "Push",
+              "rarity": "uncommon",
+              "unlocked": false
+            },
+            {
+              "name": "Pull",
+              "rarity": "uncommon",
+              "unlocked": false
+            },
+            {
+              "name": "Rebase",
+              "rarity": "rare",
+              "unlocked": false
+            },
+            {
+              "name": "Stash",
+              "rarity": "rare",
+              "unlocked": false
+            },
+            {
+              "name": "Tag",
+              "rarity": "rare",
+              "unlocked": false
+            },
+            {
+              "name": "Conflict resolution",
+              "rarity": "rare",
+              "unlocked": false
+            },
+            {
+              "name": "Cherry pick",
+              "rarity": "epic",
+              "unlocked": false
+            },
+            {
+              "name": "Bisect",
+              "rarity": "epic",
+              "unlocked": false
+            },
+            {
+              "name": "Submodule",
+              "rarity": "epic",
+              "unlocked": false
+            },
+            {
+              "name": "Git hooks",
+              "rarity": "epic",
+              "unlocked": false
+            },
+            {
+              "name": "Git rewriting history",
+              "rarity": "legendary",
+              "unlocked": false
+            },
+            {
+              "name": "Git bundle",
+              "rarity": "legendary",
+              "unlocked": false
+            },
+            {
+              "name": "Git notes",
+              "rarity": "legendary",
+              "unlocked": false
+            },
+            {
+              "name": "Git subtree",
+              "rarity": "legendary",
+              "unlocked": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Software engineering",
+      "subthemes": [
+        {
+          "name": "System design",
+          "concepts": [
+            {
+              "name": "Load Balancing",
+              "rarity": "common",
+              "unlocked": false
+            },
+            {
+              "name": "Caching",
+              "rarity": "common",
+              "unlocked": false
+            },
+            {
+              "name": "Database Normalization",
+              "rarity": "common",
+              "unlocked": false
+            },
+            {
+              "name": "API Design Basics",
+              "rarity": "common",
+              "unlocked": false
+            },
+            {
+              "name": "Basic Scalability Concepts",
+              "rarity": "common",
+              "unlocked": false
+            },
+            {
+              "name": "Microservices Architecture",
+              "rarity": "uncommon",
+              "unlocked": false
+            },
+            {
+              "name": "CAP Theorem",
+              "rarity": "uncommon",
+              "unlocked": false
+            },
+            {
+              "name": "Event-Driven Architecture",
+              "rarity": "uncommon",
+              "unlocked": false
+            },
+            {
+              "name": "Service Discovery",
+              "rarity": "uncommon",
+              "unlocked": false
+            },
+            {
+              "name": "Rate Limiting",
+              "rarity": "uncommon",
+              "unlocked": false
+            },
+            {
+              "name": "Distributed Transactions",
+              "rarity": "rare",
+              "unlocked": false
+            },
+            {
+              "name": "Consistency Models (e.g., eventual consistency)",
+              "rarity": "rare",
+              "unlocked": false
+            },
+            {
+              "name": "Circuit Breaker Pattern",
+              "rarity": "rare",
+              "unlocked": false
+            },
+            {
+              "name": "Sharding",
+              "rarity": "rare",
+              "unlocked": false
+            },
+            {
+              "name": "Pub/Sub Messaging Systems",
+              "rarity": "rare",
+              "unlocked": false
+            },
+            {
+              "name": "Paxos and Raft Consensus Algorithms",
+              "rarity": "epic",
+              "unlocked": false
+            },
+            {
+              "name": "CQRS (Command Query Responsibility Segregation)",
+              "rarity": "epic",
+              "unlocked": false
+            },
+            {
+              "name": "Serverless Architectures",
+              "rarity": "epic",
+              "unlocked": false
+            },
+            {
+              "name": "Geo-Partitioning",
+              "rarity": "epic",
+              "unlocked": false
+            },
+            {
+              "name": "Multi-Region Deployments",
+              "rarity": "epic",
+              "unlocked": false
+            },
+            {
+              "name": "Distributed SQL Databases (e.g., Spanner)",
+              "rarity": "legendary",
+              "unlocked": false
+            },
+            {
+              "name": "Blockchain for System Design",
+              "rarity": "legendary",
+              "unlocked": false
+            },
+            {
+              "name": "Machine Learning Ops (MLOps)",
+              "rarity": "legendary",
+              "unlocked": false
+            },
+            {
+              "name": "Quantum Computing Considerations",
+              "rarity": "legendary",
+              "unlocked": false
+            },
+            {
+              "name": "Edge Computing Architectures",
+              "rarity": "legendary",
+              "unlocked": false
+            }
+          ]
+        },
+        {
+          "name": "Project management",
+          "concepts": [
+            {
+              "name": "Agile Methodology",
+              "rarity": "common",
+              "unlocked": false
+            },
+            {
+              "name": "Scrum Framework",
+              "rarity": "common",
+              "unlocked": false
+            },
+            {
+              "name": "Kanban",
+              "rarity": "common",
+              "unlocked": false
+            },
+            {
+              "name": "Basic Project Planning",
+              "rarity": "common",
+              "unlocked": false
+            },
+            {
+              "name": "Stakeholder Communication",
+              "rarity": "common",
+              "unlocked": false
+            },
+            {
+              "name": "User Stories",
+              "rarity": "uncommon",
+              "unlocked": false
+            },
+            {
+              "name": "Backlog Grooming",
+              "rarity": "uncommon",
+              "unlocked": false
+            },
+            {
+              "name": "Sprint Planning",
+              "rarity": "uncommon",
+              "unlocked": false
+            },
+            {
+              "name": "Retrospectives",
+              "rarity": "uncommon",
+              "unlocked": false
+            },
+            {
+              "name": "Burndown Charts",
+              "rarity": "uncommon",
+              "unlocked": false
+            },
+            {
+              "name": "Lean Software Development",
+              "rarity": "rare",
+              "unlocked": false
+            },
+            {
+              "name": "Extreme Programming (XP)",
+              "rarity": "rare",
+              "unlocked": false
+            },
+            {
+              "name": "Risk Management",
+              "rarity": "rare",
+              "unlocked": false
+            },
+            {
+              "name": "Value Stream Mapping",
+              "rarity": "rare",
+              "unlocked": false
+            },
+            {
+              "name": "Dependency Management",
+              "rarity": "rare",
+              "unlocked": false
+            },
+            {
+              "name": "Scaled Agile Framework (SAFe)",
+              "rarity": "epic",
+              "unlocked": false
+            },
+            {
+              "name": "Large-Scale Scrum (LeSS)",
+              "rarity": "epic",
+              "unlocked": false
+            },
+            {
+              "name": "Disciplined Agile Delivery (DAD)",
+              "rarity": "epic",
+              "unlocked": false
+            },
+            {
+              "name": "Critical Chain Project Management (CCPM)",
+              "rarity": "epic",
+              "unlocked": false
+            },
+            {
+              "name": "Program Evaluation and Review Technique (PERT)",
+              "rarity": "epic",
+              "unlocked": false
+            },
+            {
+              "name": "DevOps Integration with Project Management",
+              "rarity": "legendary",
+              "unlocked": false
+            },
+            {
+              "name": "Artificial Intelligence in Project Management",
+              "rarity": "legendary",
+              "unlocked": false
+            },
+            {
+              "name": "Blockchain for Project Transparency",
+              "rarity": "legendary",
+              "unlocked": false
+            },
+            {
+              "name": "Complex Adaptive Systems in Project Management",
+              "rarity": "legendary",
+              "unlocked": false
+            },
+            {
+              "name": "Global Distributed Team Management",
+              "rarity": "legendary",
+              "unlocked": false
+            }
+          ]
+        },
+        {
+          "name": "DevOps",
+          "concepts": [
+            {
+              "name": "Continuous Integration (CI)",
+              "rarity": "common",
+              "unlocked": false
+            },
+            {
+              "name": "Continuous Deployment (CD)",
+              "rarity": "common",
+              "unlocked": false
+            },
+            {
+              "name": "Infrastructure as Code (IaC)",
+              "rarity": "common",
+              "unlocked": false
+            },
+            {
+              "name": "Basic Monitoring and Logging",
+              "rarity": "common",
+              "unlocked": false
+            },
+            {
+              "name": "Version Control Systems (e.g., Git)",
+              "rarity": "common",
+              "unlocked": false
+            },
+            {
+              "name": "Containerization (e.g., Docker)",
+              "rarity": "uncommon",
+              "unlocked": false
+            },
+            {
+              "name": "Orchestration (e.g., Kubernetes)",
+              "rarity": "uncommon",
+              "unlocked": false
+            },
+            {
+              "name": "Configuration Management (e.g., Ansible, Puppet)",
+              "rarity": "uncommon",
+              "unlocked": false
+            },
+            {
+              "name": "Blue-Green Deployments",
+              "rarity": "uncommon",
+              "unlocked": false
+            },
+            {
+              "name": "Canary Releases",
+              "rarity": "uncommon",
+              "unlocked": false
+            },
+            {
+              "name": "Site Reliability Engineering (SRE)",
+              "rarity": "rare",
+              "unlocked": false
+            },
+            {
+              "name": "Chaos Engineering",
+              "rarity": "rare",
+              "unlocked": false
+            },
+            {
+              "name": "Golden Signals Monitoring",
+              "rarity": "rare",
+              "unlocked": false
+            },
+            {
+              "name": "Service Mesh",
+              "rarity": "rare",
+              "unlocked": false
+            },
+            {
+              "name": "Immutable Infrastructure",
+              "rarity": "rare",
+              "unlocked": false
+            },
+            {
+              "name": "GitOps",
+              "rarity": "epic",
+              "unlocked": false
+            },
+            {
+              "name": "Serverless DevOps",
+              "rarity": "epic",
+              "unlocked": false
+            },
+            {
+              "name": "Advanced Observability (e.g., distributed tracing)",
+              "rarity": "epic",
+              "unlocked": false
+            },
+            {
+              "name": "Multi-Cloud Strategie",
+              "rarity": "epic",
+              "unlocked": false
+            },
+            {
+              "name": "Edge Computing in DevOps",
+              "rarity": "epic",
+              "unlocked": false
+            },
+            {
+              "name": "AIOps (Artificial Intelligence for IT Operations)",
+              "rarity": "legendary",
+              "unlocked": false
+            },
+            {
+              "name": "Autonomous Operations",
+              "rarity": "legendary",
+              "unlocked": false
+            },
+            {
+              "name": "Quantum-Safe DevOps Practices",
+              "rarity": "legendary",
+              "unlocked": false
+            },
+            {
+              "name": "DevSecOps at Scale",
+              "rarity": "legendary",
+              "unlocked": false
+            },
+            {
+              "name": "Blockchain for DevOps Transparency",
+              "rarity": "legendary",
+              "unlocked": false
+            }
+          ]
+        },
+        {
+          "name": "Clean code",
+          "concepts": [
+            {
+              "name": "Single Responsibility Principle (SRP)",
+              "rarity": "common",
+              "unlocked": false
+            },
+            {
+              "name": "Liskov Substitution Principle (LSP)",
+              "rarity": "common",
+              "unlocked": false
+            },
+            {
+              "name": "Code Smells",
+              "rarity": "common",
+              "unlocked": false
+            },
+            {
+              "name": "KISS principle",
+              "rarity": "uncommon",
+              "unlocked": false
+            },
+            {
+              "name": "Interface Segregation Principle (ISP)",
+              "rarity": "uncommon",
+              "unlocked": false
+            },
+            {
+              "name": "Boy Scout Rule",
+              "rarity": "uncommon",
+              "unlocked": false
+            },
+            {
+              "name": "Refactoring",
+              "rarity": "uncommon",
+              "unlocked": false
+            },
+            {
+              "name": "DRY principle",
+              "rarity": "rare",
+              "unlocked": false
+            },
+            {
+              "name": "Dependency Inversion Principle (DIP)",
+              "rarity": "rare",
+              "unlocked": false
+            },
+            {
+              "name": "Law of Demeter (LoD)",
+              "rarity": "rare",
+              "unlocked": false
+            },
+            {
+              "name": "Code Reviews",
+              "rarity": "rare",
+              "unlocked": false
+            },
+            {
+              "name": "YAGNI principle",
+              "rarity": "epic",
+              "unlocked": false
+            },
+            {
+              "name": "Pair Programming",
+              "rarity": "epic",
+              "unlocked": false
+            },
+            {
+              "name": "Open/Closed Principle (OCP)",
+              "rarity": "legendary",
+              "unlocked": false
+            },
+            {
+              "name": "Test-Driven Development (TDD)",
+              "rarity": "legendary",
+              "unlocked": false
+            }
+          ]
+        },
+        {
+          "name": "Gang of 4 Design patterns",
+          "concepts": [
+            {
+              "name": "Singleton",
+              "rarity": "common",
+              "unlocked": false
+            },
+            {
+              "name": "Factory",
+              "rarity": "common",
+              "unlocked": false
+            },
+            {
+              "name": "Abstract Factory",
+              "rarity": "common",
+              "unlocked": false
+            },
+            {
+              "name": "Builder",
+              "rarity": "common",
+              "unlocked": false
+            },
+            {
+              "name": "Prototype",
+              "rarity": "common",
+              "unlocked": false
+            },
+            {
+              "name": "Adapter",
+              "rarity": "uncommon",
+              "unlocked": false
+            },
+            {
+              "name": "Bridge",
+              "rarity": "uncommon",
+              "unlocked": false
+            },
+            {
+              "name": "Composite",
+              "rarity": "uncommon",
+              "unlocked": false
+            },
+            {
+              "name": "Decorator",
+              "rarity": "uncommon",
+              "unlocked": false
+            },
+            {
+              "name": "Facade",
+              "rarity": "uncommon",
+              "unlocked": false
+            },
+            {
+              "name": "Flyweight",
+              "rarity": "rare",
+              "unlocked": false
+            },
+            {
+              "name": "Proxy",
+              "rarity": "rare",
+              "unlocked": false
+            },
+            {
+              "name": "Chain of Responsibility",
+              "rarity": "rare",
+              "unlocked": false
+            },
+            {
+              "name": "Command",
+              "rarity": "rare",
+              "unlocked": false
+            },
+            {
+              "name": "Interpreter",
+              "rarity": "rare",
+              "unlocked": false
+            },
+            {
+              "name": "Mediator",
+              "rarity": "epic",
+              "unlocked": false
+            },
+            {
+              "name": "Observer",
+              "rarity": "epic",
+              "unlocked": false
+            },
+            {
+              "name": "Memento",
+              "rarity": "epic",
+              "unlocked": false
+            },
+            {
+              "name": "State",
+              "rarity": "epic",
+              "unlocked": false
+            },
+            {
+              "name": "Strategy",
+              "rarity": "epic",
+              "unlocked": false
+            },
+            {
+              "name": "Template Method",
+              "rarity": "legendary",
+              "unlocked": false
+            },
+            {
+              "name": "Visitor",
+              "rarity": "legendary",
+              "unlocked": false
+            },
+            {
+              "name": "Iterator",
+              "rarity": "legendary",
+              "unlocked": false
+            },
+            {
+              "name": "Null Object",
+              "rarity": "legendary",
+              "unlocked": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Game development",
+      "subthemes": [
+        {
+          "name": "Gameplay programming & design",
+          "concepts": [
+            {
+              "name": "Game Design Document (GDD)",
+              "rarity": "common",
+              "unlocked": false
+            },
+            {
+              "name": "Core Gameplay Loop",
+              "rarity": "common",
+              "unlocked": false
+            },
+            {
+              "name": "Player Feedback",
+              "rarity": "common",
+              "unlocked": false
+            },
+            {
+              "name": "Level Design Basics",
+              "rarity": "common",
+              "unlocked": false
+            },
+            {
+              "name": "UI/UX in Games",
+              "rarity": "common",
+              "unlocked": false
+            },
+            {
+              "name": "Game Balancing",
+              "rarity": "uncommon",
+              "unlocked": false
+            },
+            {
+              "name": "Narrative Design",
+              "rarity": "uncommon",
+              "unlocked": false
+            },
+            {
+              "name": "Monetization Models",
+              "rarity": "uncommon",
+              "unlocked": false
+            },
+            {
+              "name": "Player Progression Systems",
+              "rarity": "uncommon",
+              "unlocked": false
+            },
+            {
+              "name": "Environmental Storytelling",
+              "rarity": "uncommon",
+              "unlocked": false
+            },
+            {
+              "name": "Procedural Generation",
+              "rarity": "rare",
+              "unlocked": false
+            },
+            {
+              "name": "Emergent Gameplay",
+              "rarity": "rare",
+              "unlocked": false
+            },
+            {
+              "name": "Asynchronous Gameplay",
+              "rarity": "rare",
+              "unlocked": false
+            },
+            {
+              "name": "Meta-game Design",
+              "rarity": "rare",
+              "unlocked": false
+            },
+            {
+              "name": "Procedural Narrative Generation",
+              "rarity": "epic",
+              "unlocked": false
+            },
+            {
+              "name": "Player Behavior Analytics",
+              "rarity": "epic",
+              "unlocked": false
+            },
+            {
+              "name": "Live Operations",
+              "rarity": "epic",
+              "unlocked": false
+            },
+            {
+              "name": "Cross-Platform Play",
+              "rarity": "epic",
+              "unlocked": false
+            },
+            {
+              "name": "Esports Considerations",
+              "rarity": "epic",
+              "unlocked": false
+            },
+            {
+              "name": "Systemic Design",
+              "rarity": "legendary",
+              "unlocked": false
+            },
+            {
+              "name": "Adaptive Storytelling",
+              "rarity": "legendary",
+              "unlocked": false
+            },
+            {
+              "name": "Player-Driven Economies",
+              "rarity": "legendary",
+              "unlocked": false
+            },
+            {
+              "name": "Ethical Game Design",
+              "rarity": "legendary",
+              "unlocked": false
+            },
+            {
+              "name": "Augmented Reality (AR) Gameplay",
+              "rarity": "legendary",
+              "unlocked": false
+            }
+          ]
+        },
+        {
+          "name": "Physics programming",
+          "concepts": [
+            {
+              "name": "What is a physics engine ?",
+              "rarity": "common",
+              "unlocked": false
+            },
+            {
+              "name": "Types of physics engines",
+              "rarity": "common",
+              "unlocked": false
+            },
+            {
+              "name": "Rigid bodies",
+              "rarity": "common",
+              "unlocked": false
+            },
+            {
+              "name": "Simple collision detection (AABB)",
+              "rarity": "common",
+              "unlocked": false
+            },
+            {
+              "name": "Newton's law of motion",
+              "rarity": "uncommon",
+              "unlocked": false
+            },
+            {
+              "name": "Gravity in games",
+              "rarity": "uncommon",
+              "unlocked": false
+            },
+            {
+              "name": "Friction (static & dynamic)",
+              "rarity": "uncommon",
+              "unlocked": false
+            },
+            {
+              "name": "Basic constraints (hinge, slider)",
+              "rarity": "uncommon",
+              "unlocked": false
+            },
+            {
+              "name": "Collision response",
+              "rarity": "rare",
+              "unlocked": false
+            },
+            {
+              "name": "Continuous collision detection",
+              "rarity": "rare",
+              "unlocked": false
+            },
+            {
+              "name": "Rigid body dynamics",
+              "rarity": "rare",
+              "unlocked": false
+            },
+            {
+              "name": "Soft body dynamics",
+              "rarity": "rare",
+              "unlocked": false
+            },
+            {
+              "name": "Raycasting",
+              "rarity": "rare",
+              "unlocked": false
+            },
+            {
+              "name": "Fluid sim",
+              "rarity": "epic",
+              "unlocked": false
+            },
+            {
+              "name": "Cloth sim",
+              "rarity": "epic",
+              "unlocked": false
+            },
+            {
+              "name": "Advanced constraints (universal joints)",
+              "rarity": "epic",
+              "unlocked": false
+            },
+            {
+              "name": "Numerical integration methods (euler, verlet)",
+              "rarity": "epic",
+              "unlocked": false
+            },
+            {
+              "name": "Broad phase collision detection algorithms",
+              "rarity": "epic",
+              "unlocked": false
+            },
+            {
+              "name": "Advanced numerical stability techniques",
+              "rarity": "legendary",
+              "unlocked": false
+            },
+            {
+              "name": "Custom collision shapes and detection",
+              "rarity": "legendary",
+              "unlocked": false
+            },
+            {
+              "name": "Multi-threaded physics simulation",
+              "rarity": "legendary",
+              "unlocked": false
+            },
+            {
+              "name": "Machine learning in physics engine",
+              "rarity": "legendary",
+              "unlocked": false
+            },
+            {
+              "name": "Real time deformable bodies",
+              "rarity": "legendary",
+              "unlocked": false
+            },
+            {
+              "name": "Quaternions",
+              "rarity": "legendary",
+              "unlocked": false
+            }
+          ]
+        },
+        {
+          "name": "Graphics programming",
+          "concepts": [
+            {
+              "name": "Rasterization",
+              "rarity": "common",
+              "unlocked": false
+            },
+            {
+              "name": "Basic transformations",
+              "rarity": "common",
+              "unlocked": false
+            },
+            {
+              "name": "Pixels and textures",
+              "rarity": "common",
+              "unlocked": false
+            },
+            {
+              "name": "Shaders (vertex & fragments)",
+              "rarity": "common",
+              "unlocked": false
+            },
+            {
+              "name": "Basic lighting models (Gouraud, Phong)",
+              "rarity": "uncommon",
+              "unlocked": false
+            },
+            {
+              "name": "Texture mapping",
+              "rarity": "uncommon",
+              "unlocked": false
+            },
+            {
+              "name": "Buffers (Vertex, index buffers)",
+              "rarity": "uncommon",
+              "unlocked": false
+            },
+            {
+              "name": "Normal mapping",
+              "rarity": "uncommon",
+              "unlocked": false
+            },
+            {
+              "name": "Parallax mapping",
+              "rarity": "rare",
+              "unlocked": false
+            },
+            {
+              "name": "Post processing effects (Bloom, HDR)",
+              "rarity": "rare",
+              "unlocked": false
+            },
+            {
+              "name": "Compute shaders",
+              "rarity": "rare",
+              "unlocked": false
+            },
+            {
+              "name": "Global illumination techniques (ray, path tracing)",
+              "rarity": "rare",
+              "unlocked": false
+            },
+            {
+              "name": "Volumetric lighting",
+              "rarity": "epic",
+              "unlocked": false
+            },
+            {
+              "name": "Screen space ambient occlusion (SSAO)",
+              "rarity": "epic",
+              "unlocked": false
+            },
+            {
+              "name": "Advanced post-processing (depth of field, motion blur)",
+              "rarity": "epic",
+              "unlocked": false
+            },
+            {
+              "name": "Deferred shading",
+              "rarity": "epic",
+              "unlocked": false
+            },
+            {
+              "name": "Real time ray tracing",
+              "rarity": "epic",
+              "unlocked": false
+            },
+            {
+              "name": "Physically based rendering",
+              "rarity": "legendary",
+              "unlocked": false
+            },
+            {
+              "name": "Procedural content generation",
+              "rarity": "legendary",
+              "unlocked": false
+            },
+            {
+              "name": "Machine learning in graphics (style transfer, neural rendering)",
+              "rarity": "legendary",
+              "unlocked": false
+            },
+            {
+              "name": "Optimizing graphics pipelines for high performance",
+              "rarity": "legendary",
+              "unlocked": false
+            }
+          ]
+        },
+        {
+          "name": "AI programming",
+          "concepts": [
+            {
+              "name": "Introduction to AI in Game Development",
+              "rarity": "common",
+              "unlocked": false
+            },
+            {
+              "name": "Basic Pathfinding: A* Algorithm",
+              "rarity": "common",
+              "unlocked": false
+            },
+            {
+              "name": "Simple Finite State Machines",
+              "rarity": "common",
+              "unlocked": false
+            },
+            {
+              "name": "Flocking Behavior with Boids",
+              "rarity": "common",
+              "unlocked": false
+            },
+            {
+              "name": "Decision Making with Decision Trees",
+              "rarity": "uncommon",
+              "unlocked": false
+            },
+            {
+              "name": "Introduction to Behavior Trees",
+              "rarity": "uncommon",
+              "unlocked": false
+            },
+            {
+              "name": "Machine Learning Basics for Game Developers",
+              "rarity": "uncommon",
+              "unlocked": false
+            },
+            {
+              "name": "Neural Networks: Perceptron and Backpropagation",
+              "rarity": "rare",
+              "unlocked": false
+            },
+            {
+              "name": "Reinforcement Learning: Q-Learning",
+              "rarity": "rare",
+              "unlocked": false
+            },
+            {
+              "name": "Genetic Algorithms for Evolving Game Characters",
+              "rarity": "rare",
+              "unlocked": false
+            },
+            {
+              "name": "AI-driven Procedural Content Generation",
+              "rarity": "epic",
+              "unlocked": false
+            },
+            {
+              "name": "Dynamic Difficulty Adjustment",
+              "rarity": "epic",
+              "unlocked": false
+            },
+            {
+              "name": "Natural Language Processing for In-game Dialogues",
+              "rarity": "epic",
+              "unlocked": false
+            },
+            {
+              "name": "Deep Learning for Real-time Strategy Games",
+              "rarity": "legendary",
+              "unlocked": false
+            },
+            {
+              "name": "Advanced Reinforcement Learning: Deep Q-Networks",
+              "rarity": "legendary",
+              "unlocked": false
+            },
+            {
+              "name": "Generative Adversarial Networks in Game Design",
+              "rarity": "legendary",
+              "unlocked": false
+            },
+            {
+              "name": "Ethical AI in Game Development",
+              "rarity": "legendary",
+              "unlocked": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Database",
+      "subthemes": [
+        {
+          "name": "SQL",
+          "concepts": [
+            {
+              "name": "SELECT Statement",
+              "rarity": "common",
+              "unlocked": false
+            },
+            {
+              "name": "FROM Clause",
+              "rarity": "common",
+              "unlocked": false
+            },
+            {
+              "name": "WHERE Clause",
+              "rarity": "common",
+              "unlocked": false
+            },
+            {
+              "name": "Basic Data Types (INT, VARCHAR, DATE)",
+              "rarity": "common",
+              "unlocked": false
+            },
+            {
+              "name": "ORDER BY Clause",
+              "rarity": "common",
+              "unlocked": false
+            },
+            {
+              "name": "INSERT INTO Statement",
+              "rarity": "uncommon",
+              "unlocked": false
+            },
+            {
+              "name": "UPDATE Statement",
+              "rarity": "uncommon",
+              "unlocked": false
+            },
+            {
+              "name": "DELETE Statement",
+              "rarity": "uncommon",
+              "unlocked": false
+            },
+            {
+              "name": "LIKE Operator",
+              "rarity": "uncommon",
+              "unlocked": false
+            },
+            {
+              "name": "Aggregate Functions (COUNT, SUM, AVG, MIN, MAX)",
+              "rarity": "uncommon",
+              "unlocked": false
+            },
+            {
+              "name": "JOIN (INNER JOIN, LEFT JOIN, RIGHT JOIN, FULL JOIN)",
+              "rarity": "rare",
+              "unlocked": false
+            },
+            {
+              "name": "GROUP BY Clause",
+              "rarity": "rare",
+              "unlocked": false
+            },
+            {
+              "name": "HAVING Clause",
+              "rarity": "rare",
+              "unlocked": false
+            },
+            {
+              "name": "Subqueries",
+              "rarity": "rare",
+              "unlocked": false
+            },
+            {
+              "name": "ALIAS (Column and Table Aliases)",
+              "rarity": "rare",
+              "unlocked": false
+            },
+            {
+              "name": "Stored Procedures",
+              "rarity": "epic",
+              "unlocked": false
+            },
+            {
+              "name": "Transactions (COMMIT, ROLLBACK)",
+              "rarity": "epic",
+              "unlocked": false
+            },
+            {
+              "name": "Common Table Expressions (CTEs)",
+              "rarity": "epic",
+              "unlocked": false
+            },
+            {
+              "name": "Partitioning",
+              "rarity": "epic",
+              "unlocked": false
+            },
+            {
+              "name": "Materialized Views",
+              "rarity": "legendary",
+              "unlocked": false
+            },
+            {
+              "name": "Query Optimization Techniques",
+              "rarity": "legendary",
+              "unlocked": false
+            },
+            {
+              "name": "Database Replication",
+              "rarity": "legendary",
+              "unlocked": false
+            }
+          ]
+        },
+        {
+          "name": "NoSQL",
+          "concepts": [
+            {
+              "name": "Document Model",
+              "rarity": "common",
+              "unlocked": false
+            },
+            {
+              "name": "Collections",
+              "rarity": "common",
+              "unlocked": false
+            },
+            {
+              "name": "Basic CRUD Operations (insertOne, find, updateOne, deleteOne)",
+              "rarity": "common",
+              "unlocked": false
+            },
+            {
+              "name": "_id Field",
+              "rarity": "common",
+              "unlocked": false
+            },
+            {
+              "name": "Querying with Filters",
+              "rarity": "common",
+              "unlocked": false
+            },
+            {
+              "name": "Projection",
+              "rarity": "common",
+              "unlocked": false
+            },
+            {
+              "name": "Sorting Results",
+              "rarity": "common",
+              "unlocked": false
+            },
+            {
+              "name": "Limiting Results",
+              "rarity": "common",
+              "unlocked": false
+            },
+            {
+              "name": "Embedded Documents",
+              "rarity": "uncommon",
+              "unlocked": false
+            },
+            {
+              "name": "Array Fields",
+              "rarity": "uncommon",
+              "unlocked": false
+            },
+            {
+              "name": "Indexes",
+              "rarity": "uncommon",
+              "unlocked": false
+            },
+            {
+              "name": "Aggregation Framework (Basics)",
+              "rarity": "uncommon",
+              "unlocked": false
+            },
+            {
+              "name": "Update Operators ($set, $inc, $push, $pull)",
+              "rarity": "uncommon",
+              "unlocked": false
+            },
+            {
+              "name": "Upserts",
+              "rarity": "rare",
+              "unlocked": false
+            },
+            {
+              "name": "Document Validation",
+              "rarity": "rare",
+              "unlocked": false
+            },
+            {
+              "name": "Replication",
+              "rarity": "rare",
+              "unlocked": false
+            },
+            {
+              "name": "Sharding",
+              "rarity": "rare",
+              "unlocked": false
+            },
+            {
+              "name": "Complex Aggregation Pipelines",
+              "rarity": "epic",
+              "unlocked": false
+            },
+            {
+              "name": "Transactions",
+              "rarity": "epic",
+              "unlocked": false
+            },
+            {
+              "name": "Change Streams",
+              "rarity": "epic",
+              "unlocked": false
+            },
+            {
+              "name": "Atlas Search (Full-Text Search)",
+              "rarity": "epic",
+              "unlocked": false
+            },
+            {
+              "name": "Atlas Data Lake",
+              "rarity": "legendary",
+              "unlocked": false
+            },
+            {
+              "name": "Multi-Document Transactions",
+              "rarity": "legendary",
+              "unlocked": false
+            },
+            {
+              "name": "Custom Collations",
+              "rarity": "legendary",
+              "unlocked": false
+            },
+            {
+              "name": "Atlas Triggers and Functions",
+              "rarity": "legendary",
+              "unlocked": false
+            }
+          ]
+        },
+        {
+          "name": "Analytics",
+          "concepts": [
+            {
+              "name": "Data Warehousing",
+              "rarity": "common",
+              "unlocked": false
+            },
+            {
+              "name": "ETL (Extract, Transform, Load)",
+              "rarity": "common",
+              "unlocked": false
+            },
+            {
+              "name": "OLAP (Online Analytical Processing)",
+              "rarity": "common",
+              "unlocked": false
+            },
+            {
+              "name": "Basic Metrics (Count, Sum, Average)",
+              "rarity": "common",
+              "unlocked": false
+            },
+            {
+              "name": "Dimensions and Measures",
+              "rarity": "common",
+              "unlocked": false
+            },
+            {
+              "name": "Fact Tables and Dimension Tables",
+              "rarity": "common",
+              "unlocked": false
+            },
+            {
+              "name": "Star Schema",
+              "rarity": "common",
+              "unlocked": false
+            },
+            {
+              "name": "Snowflake Schema",
+              "rarity": "uncommon",
+              "unlocked": false
+            },
+            {
+              "name": "Basic Window Functions",
+              "rarity": "uncommon",
+              "unlocked": false
+            },
+            {
+              "name": "Data Cleaning",
+              "rarity": "common",
+              "unlocked": false
+            },
+            {
+              "name": "Advanced Window Functions (LAG, LEAD, RANK, DENSE_RANK)",
+              "rarity": "rare",
+              "unlocked": false
+            },
+            {
+              "name": "Data Cubes",
+              "rarity": "uncommon",
+              "unlocked": false
+            },
+            {
+              "name": "ROLAP, MOLAP, and HOLAP",
+              "rarity": "rare",
+              "unlocked": false
+            },
+            {
+              "name": "Basic Predictive Analytics (Simple Linear Regression)",
+              "rarity": "uncommon",
+              "unlocked": false
+            },
+            {
+              "name": "A/B Testing",
+              "rarity": "uncommon",
+              "unlocked": false
+            },
+            {
+              "name": "Machine Learning Integration (e.g., using SQL with ML models)",
+              "rarity": "rare",
+              "unlocked": false
+            },
+            {
+              "name": "Complex Event Processing",
+              "rarity": "rare",
+              "unlocked": false
+            },
+            {
+              "name": "Anomaly Detection",
+              "rarity": "rare",
+              "unlocked": false
+            },
+            {
+              "name": "Stream Processing",
+              "rarity": "rare",
+              "unlocked": false
+            },
+            {
+              "name": "Advanced Predictive Modeling (e.g., Random Forest, Gradient Boosting)",
+              "rarity": "epic",
+              "unlocked": false
+            },
+            {
+              "name": "Deep Learning Integration",
+              "rarity": "epic",
+              "unlocked": false
+            },
+            {
+              "name": "Reinforcement Learning for Analytics",
+              "rarity": "legendary",
+              "unlocked": false
+            },
+            {
+              "name": "Real-Time Analytics Pipelines",
+              "rarity": "epic",
+              "unlocked": false
+            },
+            {
+              "name": "Advanced Anomaly Detection Algorithms",
+              "rarity": "epic",
+              "unlocked": false
+            },
+            {
+              "name": "Hyper-Parameter Tuning for ML Models in Analytics",
+              "rarity": "legendary",
+              "unlocked": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Web development",
+      "subthemes": [
+        {
+          "name": "Backend development",
+          "concepts": [
+            {
+              "name": "HTTP Methods",
+              "rarity": "common",
+              "unlocked": false
+            },
+            {
+              "name": "RESTful APIs",
+              "rarity": "common",
+              "unlocked": false
+            },
+            {
+              "name": "Database CRUD Operations",
+              "rarity": "common",
+              "unlocked": false
+            },
+            {
+              "name": "Server-Client Communication",
+              "rarity": "common",
+              "unlocked": false
+            },
+            {
+              "name": "Middleware",
+              "rarity": "uncommon",
+              "unlocked": false
+            },
+            {
+              "name": "Authentication and Authorization",
+              "rarity": "uncommon",
+              "unlocked": false
+            },
+            {
+              "name": "Environment Variables",
+              "rarity": "common",
+              "unlocked": false
+            },
+            {
+              "name": "ORM (Object-Relational Mapping)",
+              "rarity": "uncommon",
+              "unlocked": false
+            },
+            {
+              "name": "Rate Limiting",
+              "rarity": "uncommon",
+              "unlocked": false
+            },
+            {
+              "name": "Caching",
+              "rarity": "uncommon",
+              "unlocked": false
+            },
+            {
+              "name": "WebSockets",
+              "rarity": "rare",
+              "unlocked": false
+            },
+            {
+              "name": "Microservices Architecture",
+              "rarity": "rare",
+              "unlocked": false
+            },
+            {
+              "name": "Event-Driven Architecture",
+              "rarity": "rare",
+              "unlocked": false
+            },
+            {
+              "name": "Serverless Functions",
+              "rarity": "rare",
+              "unlocked": false
+            },
+            {
+              "name": "GraphQL",
+              "rarity": "epic",
+              "unlocked": false
+            },
+            {
+              "name": "API Rate Limiting and Throttling",
+              "rarity": "uncommon",
+              "unlocked": false
+            },
+            {
+              "name": "Distributed Systems",
+              "rarity": "epic",
+              "unlocked": false
+            },
+            {
+              "name": "Custom Protocol Development",
+              "rarity": "legendary",
+              "unlocked": false
+            }
+          ]
+        },
+        {
+          "name": "HTML & CSS",
+          "concepts": [
+            {
+              "name": "HTML Elements",
+              "rarity": "common",
+              "unlocked": false
+            },
+            {
+              "name": "CSS Selectors",
+              "rarity": "common",
+              "unlocked": false
+            },
+            {
+              "name": "Inline CSS",
+              "rarity": "common",
+              "unlocked": false
+            },
+            {
+              "name": "HTML Attributes",
+              "rarity": "common",
+              "unlocked": false
+            },
+            {
+              "name": "External CSS",
+              "rarity": "common",
+              "unlocked": false
+            },
+            {
+              "name": "Box Model",
+              "rarity": "common",
+              "unlocked": false
+            },
+            {
+              "name": "Flexbox",
+              "rarity": "uncommon",
+              "unlocked": false
+            },
+            {
+              "name": "Pseudo-classes",
+              "rarity": "uncommon",
+              "unlocked": false
+            },
+            {
+              "name": "CSS Grid",
+              "rarity": "uncommon",
+              "unlocked": false
+            },
+            {
+              "name": "Media Queries",
+              "rarity": "uncommon",
+              "unlocked": false
+            },
+            {
+              "name": "CSS Variables (Custom Properties)",
+              "rarity": "rare",
+              "unlocked": false
+            },
+            {
+              "name": "Pseudo-elements",
+              "rarity": "rare",
+              "unlocked": false
+            },
+            {
+              "name": "Animations and Transitions",
+              "rarity": "rare",
+              "unlocked": false
+            },
+            {
+              "name": "CSS Grid Areas",
+              "rarity": "rare",
+              "unlocked": false
+            },
+            {
+              "name": "BEM Methodology",
+              "rarity": "rare",
+              "unlocked": false
+            },
+            {
+              "name": "CSS Modules",
+              "rarity": "epic",
+              "unlocked": false
+            },
+            {
+              "name": "Subgrid",
+              "rarity": "epic",
+              "unlocked": false
+            },
+            {
+              "name": "CSS Custom Properties with calc()",
+              "rarity": "epic",
+              "unlocked": false
+            },
+            {
+              "name": "Container Queries (Experimental)",
+              "rarity": "legendary",
+              "unlocked": false
+            },
+            {
+              "name": "CSS Houdini",
+              "rarity": "legendary",
+              "unlocked": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "AI & Quantum computing",
+      "subthemes": [
+        {
+          "name": "AI",
+          "concepts": [
+            {
+              "name": "Types of problem solving",
+              "rarity": "common",
+              "unlocked": false
+            },
+            {
+              "name": "Basic decision trees",
+              "rarity": "common",
+              "unlocked": false
+            },
+            {
+              "name": "Rule based systems",
+              "rarity": "common",
+              "unlocked": false
+            },
+            {
+              "name": "Common AI applications",
+              "rarity": "common",
+              "unlocked": false
+            },
+            {
+              "name": "Heuristic search",
+              "rarity": "uncommon",
+              "unlocked": false
+            },
+            {
+              "name": "Basic probability in AI",
+              "rarity": "uncommon",
+              "unlocked": false
+            },
+            {
+              "name": "Knowledge representation",
+              "rarity": "uncommon",
+              "unlocked": false
+            },
+            {
+              "name": "Agent based systems",
+              "rarity": "uncommon",
+              "unlocked": false
+            },
+            {
+              "name": "Basic machine learning concepts",
+              "rarity": "uncommon",
+              "unlocked": false
+            },
+            {
+              "name": "Neural network basics",
+              "rarity": "rare",
+              "unlocked": false
+            },
+            {
+              "name": "Genetic algorithms",
+              "rarity": "rare",
+              "unlocked": false
+            },
+            {
+              "name": "Expert systems",
+              "rarity": "rare",
+              "unlocked": false
+            },
+            {
+              "name": "Natural language processing basics",
+              "rarity": "rare",
+              "unlocked": false
+            },
+            {
+              "name": "Computer vision",
+              "rarity": "rare",
+              "unlocked": false
+            },
+            {
+              "name": "Game theory",
+              "rarity": "epic",
+              "unlocked": false
+            },
+            {
+              "name": "Fuzzy logic systems",
+              "rarity": "epic",
+              "unlocked": false
+            },
+            {
+              "name": "Cognitive architectures",
+              "rarity": "epic",
+              "unlocked": false
+            },
+            {
+              "name": "Swarm intelligence",
+              "rarity": "epic",
+              "unlocked": false
+            },
+            {
+              "name": "Advanced planning algorithms",
+              "rarity": "legendary",
+              "unlocked": false
+            },
+            {
+              "name": "Quantum AI concepts",
+              "rarity": "legendary",
+              "unlocked": false
+            },
+            {
+              "name": "AGI theories",
+              "rarity": "legendary",
+              "unlocked": false
+            },
+            {
+              "name": "Consciousness in AI",
+              "rarity": "legendary",
+              "unlocked": false
+            },
+            {
+              "name": "Advanced reasoning systems",
+              "rarity": "legendary",
+              "unlocked": false
+            },
+            {
+              "name": "Hybrid AI architectures",
+              "rarity": "legendary",
+              "unlocked": false
+            }
+          ]
+        },
+        {
+          "name": "Quantum computing",
+          "concepts": [
+            {
+              "name": "Definition",
+              "rarity": "common",
+              "unlocked": false
+            },
+            {
+              "name": "Qubit",
+              "rarity": "common",
+              "unlocked": false
+            },
+            {
+              "name": "Superposition",
+              "rarity": "common",
+              "unlocked": false
+            },
+            {
+              "name": "Entanglement",
+              "rarity": "common",
+              "unlocked": false
+            },
+            {
+              "name": "Quantum gates",
+              "rarity": "uncommon",
+              "unlocked": false
+            },
+            {
+              "name": "Quantum algorithms",
+              "rarity": "uncommon",
+              "unlocked": false
+            },
+            {
+              "name": "Shor's algorithm",
+              "rarity": "rare",
+              "unlocked": false
+            },
+            {
+              "name": "Quantum error correction",
+              "rarity": "rare",
+              "unlocked": false
+            },
+            {
+              "name": "Quantum cryptography",
+              "rarity": "rare",
+              "unlocked": false
+            },
+            {
+              "name": "Quantum supremacy",
+              "rarity": "epic",
+              "unlocked": false
+            },
+            {
+              "name": "Topological quantum computing",
+              "rarity": "epic",
+              "unlocked": false
+            },
+            {
+              "name": "Quantum internet",
+              "rarity": "epic",
+              "unlocked": false
+            },
+            {
+              "name": "Quantum gravity",
+              "rarity": "legendary",
+              "unlocked": false
+            },
+            {
+              "name": "Quantum machine learning",
+              "rarity": "legendary",
+              "unlocked": false
+            },
+            {
+              "name": "Fault-tolerant quantum computing",
+              "rarity": "legendary",
+              "unlocked": false
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
