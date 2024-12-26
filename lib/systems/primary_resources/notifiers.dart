@@ -1,5 +1,6 @@
 ﻿import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:stupig_proto/systems/event_bus.dart';
+import 'package:stupig_proto/systems/game_event.dart';
 import 'package:stupig_proto/systems/primary_resources/models.dart';
 part 'resource_notifier.g.dart';
 
@@ -9,21 +10,20 @@ class ExperienceNotifier extends _$ExperienceNotifier {
   ExperienceState build() {
     ref.listen(eventBusProvider, (previous, next) {
       next.whenData(
-        (event) {
-          return event.maybeMap(
-            projectCompleted: (pCompleted) {
-              var newXp = state.xp + pCompleted.project.reward.xpAmount;
-              if (newXp >= state.xpToNextLevel) {
-                _levelUp();
-              } else {
-                state = state.copyWith(
-                  xp: newXp,
-                );
-              }
-            },
-            orElse: () {},
-          );
-        },
+        (event) => event.maybeMap(
+          projectCompleted: (pCompleted) {
+            var newXp = state.xp + pCompleted.project.reward.xpAmount;
+            if (newXp >= state.xpToNextLevel) {
+              ref.read(eventBusProvider.notifier).publish(const GameEvent.levelUp());
+            } else {
+              state = state.copyWith(
+                xp: newXp,
+              );
+            }
+          },
+          levelUp: (_) => _levelUp(),
+          orElse: () {},
+        ),
       );
     });
     return ExperienceState.initial();

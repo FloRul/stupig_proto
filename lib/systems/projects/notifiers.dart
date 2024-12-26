@@ -4,8 +4,10 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:stupig_proto/systems/global_ticker.dart/global_ticker.dart';
 import 'package:stupig_proto/systems/event_bus.dart';
 import 'package:stupig_proto/systems/game_event.dart';
+import 'package:stupig_proto/systems/primary_resources/notifiers.dart';
 import 'package:stupig_proto/systems/projects/models.dart';
 import 'package:stupig_proto/systems/projects/project_state.dart';
+import 'package:uuid/uuid.dart';
 
 part 'notifiers.g.dart';
 
@@ -128,15 +130,15 @@ class AvailableProjectsNotifier extends _$AvailableProjectsNotifier {
   Future<AvailableProjectState> _fetchNewProject() async {
     await Future.delayed(const Duration(seconds: 1));
     // TODO call API to fetch new project
-    var id = Random().nextInt(100).toString();
+    var id = Random().nextInt(100000).toString();
     return AvailableProjectState.initial(
       Project(
-        id: id,
+        id: const Uuid().v4(),
         name: 'Project $id',
         description: 'Project $id Description',
-        reward: const ProjectReward(
+        reward: ProjectReward(
           moneyAmount: 1,
-          xpAmount: 1,
+          xpAmount: 1 + ref.watch(experienceNotifierProvider).level * Random().nextInt(10),
         ),
       ),
     );

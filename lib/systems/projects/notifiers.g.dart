@@ -194,7 +194,7 @@ final projectsNotifierProvider =
 
 typedef _$ProjectsNotifier = Notifier<ProjectsState>;
 String _$availableProjectsNotifierHash() =>
-    r'b68173fd2348ad9306f9b04d4640c9cafbf546ab';
+    r'179e006a5cdf7daa25f8e98b92acffed34313a58';
 
 /// See also [AvailableProjectsNotifier].
 @ProviderFor(AvailableProjectsNotifier)
