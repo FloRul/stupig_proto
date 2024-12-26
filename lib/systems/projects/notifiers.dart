@@ -89,6 +89,9 @@ class ProjectsNotifier extends _$ProjectsNotifier {
           tag: runtimeType.toString(),
         ));
 
+    ref.read(eventBusProvider.notifier).publish(GameEvent.moneyEarned(amount: projectState.project.reward.moneyAmount));
+    ref.read(eventBusProvider.notifier).publish(GameEvent.xpEarned(amount: projectState.project.reward.xpAmount));
+
     var newActiveProjects = state.activeProjects.where((p) => p.project.id != projectState.project.id).toList();
 
     state = state.copyWith(

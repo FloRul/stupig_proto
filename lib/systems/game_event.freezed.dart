@@ -16,10 +16,11 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$GameEvent {
-  String? get tag => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(Project project, String? tag) projectCompleted,
+    required TResult Function(int amount) xpEarned,
+    required TResult Function(int amount) moneyEarned,
     required TResult Function(Project project, String? tag) projectStarted,
     required TResult Function(String? tag) levelUp,
   }) =>
@@ -27,6 +28,8 @@ mixin _$GameEvent {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(Project project, String? tag)? projectCompleted,
+    TResult? Function(int amount)? xpEarned,
+    TResult? Function(int amount)? moneyEarned,
     TResult? Function(Project project, String? tag)? projectStarted,
     TResult? Function(String? tag)? levelUp,
   }) =>
@@ -34,6 +37,8 @@ mixin _$GameEvent {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Project project, String? tag)? projectCompleted,
+    TResult Function(int amount)? xpEarned,
+    TResult Function(int amount)? moneyEarned,
     TResult Function(Project project, String? tag)? projectStarted,
     TResult Function(String? tag)? levelUp,
     required TResult orElse(),
@@ -42,6 +47,8 @@ mixin _$GameEvent {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(ProjectCompleted value) projectCompleted,
+    required TResult Function(XpEarned value) xpEarned,
+    required TResult Function(MoneyEarned value) moneyEarned,
     required TResult Function(ProjectStarted value) projectStarted,
     required TResult Function(LevelUp value) levelUp,
   }) =>
@@ -49,6 +56,8 @@ mixin _$GameEvent {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(ProjectCompleted value)? projectCompleted,
+    TResult? Function(XpEarned value)? xpEarned,
+    TResult? Function(MoneyEarned value)? moneyEarned,
     TResult? Function(ProjectStarted value)? projectStarted,
     TResult? Function(LevelUp value)? levelUp,
   }) =>
@@ -56,16 +65,12 @@ mixin _$GameEvent {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(ProjectCompleted value)? projectCompleted,
+    TResult Function(XpEarned value)? xpEarned,
+    TResult Function(MoneyEarned value)? moneyEarned,
     TResult Function(ProjectStarted value)? projectStarted,
     TResult Function(LevelUp value)? levelUp,
     required TResult orElse(),
   }) =>
-      throw _privateConstructorUsedError;
-
-  /// Create a copy of GameEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $GameEventCopyWith<GameEvent> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -73,8 +78,6 @@ mixin _$GameEvent {
 abstract class $GameEventCopyWith<$Res> {
   factory $GameEventCopyWith(GameEvent value, $Res Function(GameEvent) then) =
       _$GameEventCopyWithImpl<$Res, GameEvent>;
-  @useResult
-  $Res call({String? tag});
 }
 
 /// @nodoc
@@ -89,27 +92,13 @@ class _$GameEventCopyWithImpl<$Res, $Val extends GameEvent>
 
   /// Create a copy of GameEvent
   /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? tag = freezed,
-  }) {
-    return _then(_value.copyWith(
-      tag: freezed == tag
-          ? _value.tag
-          : tag // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ) as $Val);
-  }
 }
 
 /// @nodoc
-abstract class _$$ProjectCompletedImplCopyWith<$Res>
-    implements $GameEventCopyWith<$Res> {
+abstract class _$$ProjectCompletedImplCopyWith<$Res> {
   factory _$$ProjectCompletedImplCopyWith(_$ProjectCompletedImpl value,
           $Res Function(_$ProjectCompletedImpl) then) =
       __$$ProjectCompletedImplCopyWithImpl<$Res>;
-  @override
   @useResult
   $Res call({Project project, String? tag});
 
@@ -195,6 +184,8 @@ class _$ProjectCompletedImpl implements ProjectCompleted {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(Project project, String? tag) projectCompleted,
+    required TResult Function(int amount) xpEarned,
+    required TResult Function(int amount) moneyEarned,
     required TResult Function(Project project, String? tag) projectStarted,
     required TResult Function(String? tag) levelUp,
   }) {
@@ -205,6 +196,8 @@ class _$ProjectCompletedImpl implements ProjectCompleted {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(Project project, String? tag)? projectCompleted,
+    TResult? Function(int amount)? xpEarned,
+    TResult? Function(int amount)? moneyEarned,
     TResult? Function(Project project, String? tag)? projectStarted,
     TResult? Function(String? tag)? levelUp,
   }) {
@@ -215,6 +208,8 @@ class _$ProjectCompletedImpl implements ProjectCompleted {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Project project, String? tag)? projectCompleted,
+    TResult Function(int amount)? xpEarned,
+    TResult Function(int amount)? moneyEarned,
     TResult Function(Project project, String? tag)? projectStarted,
     TResult Function(String? tag)? levelUp,
     required TResult orElse(),
@@ -229,6 +224,8 @@ class _$ProjectCompletedImpl implements ProjectCompleted {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(ProjectCompleted value) projectCompleted,
+    required TResult Function(XpEarned value) xpEarned,
+    required TResult Function(MoneyEarned value) moneyEarned,
     required TResult Function(ProjectStarted value) projectStarted,
     required TResult Function(LevelUp value) levelUp,
   }) {
@@ -239,6 +236,8 @@ class _$ProjectCompletedImpl implements ProjectCompleted {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(ProjectCompleted value)? projectCompleted,
+    TResult? Function(XpEarned value)? xpEarned,
+    TResult? Function(MoneyEarned value)? moneyEarned,
     TResult? Function(ProjectStarted value)? projectStarted,
     TResult? Function(LevelUp value)? levelUp,
   }) {
@@ -249,6 +248,8 @@ class _$ProjectCompletedImpl implements ProjectCompleted {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(ProjectCompleted value)? projectCompleted,
+    TResult Function(XpEarned value)? xpEarned,
+    TResult Function(MoneyEarned value)? moneyEarned,
     TResult Function(ProjectStarted value)? projectStarted,
     TResult Function(LevelUp value)? levelUp,
     required TResult orElse(),
@@ -266,24 +267,336 @@ abstract class ProjectCompleted implements GameEvent {
       final String? tag}) = _$ProjectCompletedImpl;
 
   Project get project;
-  @override
   String? get tag;
 
   /// Create a copy of GameEvent
   /// with the given fields replaced by the non-null parameter values.
-  @override
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ProjectCompletedImplCopyWith<_$ProjectCompletedImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$ProjectStartedImplCopyWith<$Res>
-    implements $GameEventCopyWith<$Res> {
+abstract class _$$XpEarnedImplCopyWith<$Res> {
+  factory _$$XpEarnedImplCopyWith(
+          _$XpEarnedImpl value, $Res Function(_$XpEarnedImpl) then) =
+      __$$XpEarnedImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({int amount});
+}
+
+/// @nodoc
+class __$$XpEarnedImplCopyWithImpl<$Res>
+    extends _$GameEventCopyWithImpl<$Res, _$XpEarnedImpl>
+    implements _$$XpEarnedImplCopyWith<$Res> {
+  __$$XpEarnedImplCopyWithImpl(
+      _$XpEarnedImpl _value, $Res Function(_$XpEarnedImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of GameEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? amount = null,
+  }) {
+    return _then(_$XpEarnedImpl(
+      amount: null == amount
+          ? _value.amount
+          : amount // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$XpEarnedImpl implements XpEarned {
+  const _$XpEarnedImpl({required this.amount});
+
+  @override
+  final int amount;
+
+  @override
+  String toString() {
+    return 'GameEvent.xpEarned(amount: $amount)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$XpEarnedImpl &&
+            (identical(other.amount, amount) || other.amount == amount));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, amount);
+
+  /// Create a copy of GameEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$XpEarnedImplCopyWith<_$XpEarnedImpl> get copyWith =>
+      __$$XpEarnedImplCopyWithImpl<_$XpEarnedImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(Project project, String? tag) projectCompleted,
+    required TResult Function(int amount) xpEarned,
+    required TResult Function(int amount) moneyEarned,
+    required TResult Function(Project project, String? tag) projectStarted,
+    required TResult Function(String? tag) levelUp,
+  }) {
+    return xpEarned(amount);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(Project project, String? tag)? projectCompleted,
+    TResult? Function(int amount)? xpEarned,
+    TResult? Function(int amount)? moneyEarned,
+    TResult? Function(Project project, String? tag)? projectStarted,
+    TResult? Function(String? tag)? levelUp,
+  }) {
+    return xpEarned?.call(amount);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(Project project, String? tag)? projectCompleted,
+    TResult Function(int amount)? xpEarned,
+    TResult Function(int amount)? moneyEarned,
+    TResult Function(Project project, String? tag)? projectStarted,
+    TResult Function(String? tag)? levelUp,
+    required TResult orElse(),
+  }) {
+    if (xpEarned != null) {
+      return xpEarned(amount);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(ProjectCompleted value) projectCompleted,
+    required TResult Function(XpEarned value) xpEarned,
+    required TResult Function(MoneyEarned value) moneyEarned,
+    required TResult Function(ProjectStarted value) projectStarted,
+    required TResult Function(LevelUp value) levelUp,
+  }) {
+    return xpEarned(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(ProjectCompleted value)? projectCompleted,
+    TResult? Function(XpEarned value)? xpEarned,
+    TResult? Function(MoneyEarned value)? moneyEarned,
+    TResult? Function(ProjectStarted value)? projectStarted,
+    TResult? Function(LevelUp value)? levelUp,
+  }) {
+    return xpEarned?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(ProjectCompleted value)? projectCompleted,
+    TResult Function(XpEarned value)? xpEarned,
+    TResult Function(MoneyEarned value)? moneyEarned,
+    TResult Function(ProjectStarted value)? projectStarted,
+    TResult Function(LevelUp value)? levelUp,
+    required TResult orElse(),
+  }) {
+    if (xpEarned != null) {
+      return xpEarned(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class XpEarned implements GameEvent {
+  const factory XpEarned({required final int amount}) = _$XpEarnedImpl;
+
+  int get amount;
+
+  /// Create a copy of GameEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$XpEarnedImplCopyWith<_$XpEarnedImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$MoneyEarnedImplCopyWith<$Res> {
+  factory _$$MoneyEarnedImplCopyWith(
+          _$MoneyEarnedImpl value, $Res Function(_$MoneyEarnedImpl) then) =
+      __$$MoneyEarnedImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({int amount});
+}
+
+/// @nodoc
+class __$$MoneyEarnedImplCopyWithImpl<$Res>
+    extends _$GameEventCopyWithImpl<$Res, _$MoneyEarnedImpl>
+    implements _$$MoneyEarnedImplCopyWith<$Res> {
+  __$$MoneyEarnedImplCopyWithImpl(
+      _$MoneyEarnedImpl _value, $Res Function(_$MoneyEarnedImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of GameEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? amount = null,
+  }) {
+    return _then(_$MoneyEarnedImpl(
+      amount: null == amount
+          ? _value.amount
+          : amount // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$MoneyEarnedImpl implements MoneyEarned {
+  const _$MoneyEarnedImpl({required this.amount});
+
+  @override
+  final int amount;
+
+  @override
+  String toString() {
+    return 'GameEvent.moneyEarned(amount: $amount)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$MoneyEarnedImpl &&
+            (identical(other.amount, amount) || other.amount == amount));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, amount);
+
+  /// Create a copy of GameEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$MoneyEarnedImplCopyWith<_$MoneyEarnedImpl> get copyWith =>
+      __$$MoneyEarnedImplCopyWithImpl<_$MoneyEarnedImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(Project project, String? tag) projectCompleted,
+    required TResult Function(int amount) xpEarned,
+    required TResult Function(int amount) moneyEarned,
+    required TResult Function(Project project, String? tag) projectStarted,
+    required TResult Function(String? tag) levelUp,
+  }) {
+    return moneyEarned(amount);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(Project project, String? tag)? projectCompleted,
+    TResult? Function(int amount)? xpEarned,
+    TResult? Function(int amount)? moneyEarned,
+    TResult? Function(Project project, String? tag)? projectStarted,
+    TResult? Function(String? tag)? levelUp,
+  }) {
+    return moneyEarned?.call(amount);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(Project project, String? tag)? projectCompleted,
+    TResult Function(int amount)? xpEarned,
+    TResult Function(int amount)? moneyEarned,
+    TResult Function(Project project, String? tag)? projectStarted,
+    TResult Function(String? tag)? levelUp,
+    required TResult orElse(),
+  }) {
+    if (moneyEarned != null) {
+      return moneyEarned(amount);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(ProjectCompleted value) projectCompleted,
+    required TResult Function(XpEarned value) xpEarned,
+    required TResult Function(MoneyEarned value) moneyEarned,
+    required TResult Function(ProjectStarted value) projectStarted,
+    required TResult Function(LevelUp value) levelUp,
+  }) {
+    return moneyEarned(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(ProjectCompleted value)? projectCompleted,
+    TResult? Function(XpEarned value)? xpEarned,
+    TResult? Function(MoneyEarned value)? moneyEarned,
+    TResult? Function(ProjectStarted value)? projectStarted,
+    TResult? Function(LevelUp value)? levelUp,
+  }) {
+    return moneyEarned?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(ProjectCompleted value)? projectCompleted,
+    TResult Function(XpEarned value)? xpEarned,
+    TResult Function(MoneyEarned value)? moneyEarned,
+    TResult Function(ProjectStarted value)? projectStarted,
+    TResult Function(LevelUp value)? levelUp,
+    required TResult orElse(),
+  }) {
+    if (moneyEarned != null) {
+      return moneyEarned(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class MoneyEarned implements GameEvent {
+  const factory MoneyEarned({required final int amount}) = _$MoneyEarnedImpl;
+
+  int get amount;
+
+  /// Create a copy of GameEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$MoneyEarnedImplCopyWith<_$MoneyEarnedImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$ProjectStartedImplCopyWith<$Res> {
   factory _$$ProjectStartedImplCopyWith(_$ProjectStartedImpl value,
           $Res Function(_$ProjectStartedImpl) then) =
       __$$ProjectStartedImplCopyWithImpl<$Res>;
-  @override
   @useResult
   $Res call({Project project, String? tag});
 
@@ -369,6 +682,8 @@ class _$ProjectStartedImpl implements ProjectStarted {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(Project project, String? tag) projectCompleted,
+    required TResult Function(int amount) xpEarned,
+    required TResult Function(int amount) moneyEarned,
     required TResult Function(Project project, String? tag) projectStarted,
     required TResult Function(String? tag) levelUp,
   }) {
@@ -379,6 +694,8 @@ class _$ProjectStartedImpl implements ProjectStarted {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(Project project, String? tag)? projectCompleted,
+    TResult? Function(int amount)? xpEarned,
+    TResult? Function(int amount)? moneyEarned,
     TResult? Function(Project project, String? tag)? projectStarted,
     TResult? Function(String? tag)? levelUp,
   }) {
@@ -389,6 +706,8 @@ class _$ProjectStartedImpl implements ProjectStarted {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Project project, String? tag)? projectCompleted,
+    TResult Function(int amount)? xpEarned,
+    TResult Function(int amount)? moneyEarned,
     TResult Function(Project project, String? tag)? projectStarted,
     TResult Function(String? tag)? levelUp,
     required TResult orElse(),
@@ -403,6 +722,8 @@ class _$ProjectStartedImpl implements ProjectStarted {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(ProjectCompleted value) projectCompleted,
+    required TResult Function(XpEarned value) xpEarned,
+    required TResult Function(MoneyEarned value) moneyEarned,
     required TResult Function(ProjectStarted value) projectStarted,
     required TResult Function(LevelUp value) levelUp,
   }) {
@@ -413,6 +734,8 @@ class _$ProjectStartedImpl implements ProjectStarted {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(ProjectCompleted value)? projectCompleted,
+    TResult? Function(XpEarned value)? xpEarned,
+    TResult? Function(MoneyEarned value)? moneyEarned,
     TResult? Function(ProjectStarted value)? projectStarted,
     TResult? Function(LevelUp value)? levelUp,
   }) {
@@ -423,6 +746,8 @@ class _$ProjectStartedImpl implements ProjectStarted {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(ProjectCompleted value)? projectCompleted,
+    TResult Function(XpEarned value)? xpEarned,
+    TResult Function(MoneyEarned value)? moneyEarned,
     TResult Function(ProjectStarted value)? projectStarted,
     TResult Function(LevelUp value)? levelUp,
     required TResult orElse(),
@@ -440,24 +765,20 @@ abstract class ProjectStarted implements GameEvent {
       final String? tag}) = _$ProjectStartedImpl;
 
   Project get project;
-  @override
   String? get tag;
 
   /// Create a copy of GameEvent
   /// with the given fields replaced by the non-null parameter values.
-  @override
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ProjectStartedImplCopyWith<_$ProjectStartedImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$LevelUpImplCopyWith<$Res>
-    implements $GameEventCopyWith<$Res> {
+abstract class _$$LevelUpImplCopyWith<$Res> {
   factory _$$LevelUpImplCopyWith(
           _$LevelUpImpl value, $Res Function(_$LevelUpImpl) then) =
       __$$LevelUpImplCopyWithImpl<$Res>;
-  @override
   @useResult
   $Res call({String? tag});
 }
@@ -522,6 +843,8 @@ class _$LevelUpImpl implements LevelUp {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(Project project, String? tag) projectCompleted,
+    required TResult Function(int amount) xpEarned,
+    required TResult Function(int amount) moneyEarned,
     required TResult Function(Project project, String? tag) projectStarted,
     required TResult Function(String? tag) levelUp,
   }) {
@@ -532,6 +855,8 @@ class _$LevelUpImpl implements LevelUp {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(Project project, String? tag)? projectCompleted,
+    TResult? Function(int amount)? xpEarned,
+    TResult? Function(int amount)? moneyEarned,
     TResult? Function(Project project, String? tag)? projectStarted,
     TResult? Function(String? tag)? levelUp,
   }) {
@@ -542,6 +867,8 @@ class _$LevelUpImpl implements LevelUp {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Project project, String? tag)? projectCompleted,
+    TResult Function(int amount)? xpEarned,
+    TResult Function(int amount)? moneyEarned,
     TResult Function(Project project, String? tag)? projectStarted,
     TResult Function(String? tag)? levelUp,
     required TResult orElse(),
@@ -556,6 +883,8 @@ class _$LevelUpImpl implements LevelUp {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(ProjectCompleted value) projectCompleted,
+    required TResult Function(XpEarned value) xpEarned,
+    required TResult Function(MoneyEarned value) moneyEarned,
     required TResult Function(ProjectStarted value) projectStarted,
     required TResult Function(LevelUp value) levelUp,
   }) {
@@ -566,6 +895,8 @@ class _$LevelUpImpl implements LevelUp {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(ProjectCompleted value)? projectCompleted,
+    TResult? Function(XpEarned value)? xpEarned,
+    TResult? Function(MoneyEarned value)? moneyEarned,
     TResult? Function(ProjectStarted value)? projectStarted,
     TResult? Function(LevelUp value)? levelUp,
   }) {
@@ -576,6 +907,8 @@ class _$LevelUpImpl implements LevelUp {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(ProjectCompleted value)? projectCompleted,
+    TResult Function(XpEarned value)? xpEarned,
+    TResult Function(MoneyEarned value)? moneyEarned,
     TResult Function(ProjectStarted value)? projectStarted,
     TResult Function(LevelUp value)? levelUp,
     required TResult orElse(),
@@ -590,12 +923,10 @@ class _$LevelUpImpl implements LevelUp {
 abstract class LevelUp implements GameEvent {
   const factory LevelUp({final String? tag}) = _$LevelUpImpl;
 
-  @override
   String? get tag;
 
   /// Create a copy of GameEvent
   /// with the given fields replaced by the non-null parameter values.
-  @override
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$LevelUpImplCopyWith<_$LevelUpImpl> get copyWith =>
       throw _privateConstructorUsedError;

@@ -177,7 +177,7 @@ class _ActiveProjectNotifierProviderElement
       (origin as ActiveProjectNotifierProvider).projectState;
 }
 
-String _$projectsNotifierHash() => r'bde950df93d750f75a5ade8117ee98f292a22841';
+String _$projectsNotifierHash() => r'46273ef9485ad68e95dbeba1010954a8bca5731a';
 
 /// See also [ProjectsNotifier].
 @ProviderFor(ProjectsNotifier)
@@ -194,7 +194,7 @@ final projectsNotifierProvider =
 
 typedef _$ProjectsNotifier = Notifier<ProjectsState>;
 String _$availableProjectsNotifierHash() =>
-    r'179e006a5cdf7daa25f8e98b92acffed34313a58';
+    r'b977c3ae3e8d44a40ad2c67184021c60a19d3510';
 
 /// See also [AvailableProjectsNotifier].
 @ProviderFor(AvailableProjectsNotifier)

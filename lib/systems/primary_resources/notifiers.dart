@@ -11,8 +11,8 @@ class ExperienceNotifier extends _$ExperienceNotifier {
     ref.listen(eventBusProvider, (previous, next) {
       next.whenData(
         (event) => event.maybeMap(
-          projectCompleted: (pCompleted) {
-            var newXp = state.xp + pCompleted.project.reward.xpAmount;
+          xpEarned: (xpEarned) {
+            var newXp = state.xp + xpEarned.amount;
             if (newXp >= state.xpToNextLevel) {
               ref.read(eventBusProvider.notifier).publish(const GameEvent.levelUp());
             } else {
@@ -44,7 +44,7 @@ class MoneyNotifier extends _$MoneyNotifier {
     ref.listen(eventBusProvider, (previous, next) {
       next.whenData(
         (event) => event.maybeMap(
-          projectCompleted: (pCompleted) => state = state + pCompleted.project.reward.moneyAmount,
+          moneyEarned: (moneyEarned) => state = state + moneyEarned.amount,
           orElse: () {},
         ),
       );
