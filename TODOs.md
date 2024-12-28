@@ -26,8 +26,15 @@ notes
  - the amount of available project slot is upgradable
  - merge reputation level and xp level
 
+ Narrative/gameplay phases:
+ - Student
+  - 
+ - Employee
+ - CEO
+
 Ideas
 unlockable features on progression
+ - alternating between working on project and studying
  - know the exact time to complete a project (initially no clue but a range)
  - know the failure chance of a project (initially no clue but a range)
  - know the reward of a project (initially no clue but a range)
@@ -46,6 +53,37 @@ finishing the game loop
 
  progression
 
+game context:
+I am designing an incremental game where you "complete" projects to earn experience and money.
+You start as a computer science student and grind your way to become an AI overlord.
+The primary resources are experience and money. 
+Experience allows you to level up which unlocks a pack of random knowledge flashcards about various comp-sci concepts and a passive bonus.
+Flashcards have rarity, the more rare the card the bigger the bonus.
+Common topics flashcards unlocks higher bonuses.
+The secondary resources (hardware) are:
+ - CPU speed -> speed up personal project completion
+ - CPU power -> increase better project reward chances-bracket
+ - GPU/Wram -> ???
+ - RAM -> each project takes a specific amount of ram during completion, more ram = more project that can be completed at the same time.
+
+The game is divided into 3 narrative phases, the first one is the student, the projects you complete can only reward experience
+Second one is employee, your projects can reward money as well to upgrade your hardware.
+Third one is startup-company, you unlock the ability to hire freelancers who will complete one project for you, you can later unlock the ability to hire them permanently.
+
+Projects are generated randomly using LLM to create fun and humorous project name/description to keep the player engaged.
+
+During gameplay random story events can appear, the player can choose a direction to influence the outcome of the event and affect its reputation level. Reputation level affects the probability to hire hire better freelancer (hiring process has some randomness in it)
+
+Reputation level also unlocks completion strategy that influence the way multiple projects are completed like :
+- FIFO - first active projects gets all the clicks
+- Catch up - attempt to complete all the active projects at the same time
+- Random - random distribution with a small chance of clicking bonus.
+- Collaborative - portion of the hired freelances goes to complete the active projects.
+
+Ultimately multiple endings could be considered :
+- hardware master (lots of hardware upgrades, allowing for ultra fast project completion)
+- startup CEO (lots of freelancer - conversion to startup, allowing a lot of multiple projects to be active at the same time)
+- cloud wizard (cloud migration allowing for completion of ultra high project prerequisites to be taken)
 
 ```mermaid
 graph LR
