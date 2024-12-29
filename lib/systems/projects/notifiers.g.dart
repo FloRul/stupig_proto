@@ -7,7 +7,7 @@ part of 'notifiers.dart';
 // **************************************************************************
 
 String _$activeProjectNotifierHash() =>
-    r'44d63fcdecf9d4d67d02a651f037e8c8408dbd03';
+    r'726bb42b644c4361ead52395e6c8f6dba385de11';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -31,7 +31,7 @@ class _SystemHash {
 }
 
 abstract class _$ActiveProjectNotifier
-    extends BuildlessAutoDisposeNotifier<ActiveProjectState> {
+    extends BuildlessNotifier<ActiveProjectState> {
   late final ActiveProjectState projectState;
 
   ActiveProjectState build(
@@ -82,8 +82,8 @@ class ActiveProjectNotifierFamily extends Family<ActiveProjectState> {
 }
 
 /// See also [ActiveProjectNotifier].
-class ActiveProjectNotifierProvider extends AutoDisposeNotifierProviderImpl<
-    ActiveProjectNotifier, ActiveProjectState> {
+class ActiveProjectNotifierProvider
+    extends NotifierProviderImpl<ActiveProjectNotifier, ActiveProjectState> {
   /// See also [ActiveProjectNotifier].
   ActiveProjectNotifierProvider(
     ActiveProjectState projectState,
@@ -139,7 +139,7 @@ class ActiveProjectNotifierProvider extends AutoDisposeNotifierProviderImpl<
   }
 
   @override
-  AutoDisposeNotifierProviderElement<ActiveProjectNotifier, ActiveProjectState>
+  NotifierProviderElement<ActiveProjectNotifier, ActiveProjectState>
       createElement() {
     return _ActiveProjectNotifierProviderElement(this);
   }
@@ -161,15 +161,14 @@ class ActiveProjectNotifierProvider extends AutoDisposeNotifierProviderImpl<
 
 @Deprecated('Will be removed in 3.0. Use Ref instead')
 // ignore: unused_element
-mixin ActiveProjectNotifierRef
-    on AutoDisposeNotifierProviderRef<ActiveProjectState> {
+mixin ActiveProjectNotifierRef on NotifierProviderRef<ActiveProjectState> {
   /// The parameter `projectState` of this provider.
   ActiveProjectState get projectState;
 }
 
 class _ActiveProjectNotifierProviderElement
-    extends AutoDisposeNotifierProviderElement<ActiveProjectNotifier,
-        ActiveProjectState> with ActiveProjectNotifierRef {
+    extends NotifierProviderElement<ActiveProjectNotifier, ActiveProjectState>
+    with ActiveProjectNotifierRef {
   _ActiveProjectNotifierProviderElement(super.provider);
 
   @override
@@ -177,7 +176,7 @@ class _ActiveProjectNotifierProviderElement
       (origin as ActiveProjectNotifierProvider).projectState;
 }
 
-String _$projectsNotifierHash() => r'46273ef9485ad68e95dbeba1010954a8bca5731a';
+String _$projectsNotifierHash() => r'248aa1f544040c0ca3700bd8293cde33d746695d';
 
 /// See also [ProjectsNotifier].
 @ProviderFor(ProjectsNotifier)
@@ -194,7 +193,7 @@ final projectsNotifierProvider =
 
 typedef _$ProjectsNotifier = Notifier<ProjectsState>;
 String _$availableProjectsNotifierHash() =>
-    r'6c52756305be9d71bce46cc2978cdeb56f0015ed';
+    r'9f85139b7b069298b70b41ee63c8bb64aae443bb';
 
 /// See also [AvailableProjectsNotifier].
 @ProviderFor(AvailableProjectsNotifier)

@@ -11,7 +11,7 @@ import 'package:uuid/uuid.dart';
 
 part 'notifiers.g.dart';
 
-@riverpod
+@Riverpod(keepAlive: true)
 class ActiveProjectNotifier extends _$ActiveProjectNotifier {
   @override
   ActiveProjectState build(ActiveProjectState projectState) {
@@ -92,7 +92,8 @@ class ProjectsNotifier extends _$ProjectsNotifier {
     ref.read(eventBusProvider.notifier).publish(GameEvent.moneyEarned(amount: projectState.project.reward.moneyAmount));
     ref.read(eventBusProvider.notifier).publish(GameEvent.xpEarned(amount: projectState.project.reward.xpAmount));
 
-    var newActiveProjects = state.activeProjects.where((p) => p.project.id != projectState.project.id).toList();
+    var newActiveProjects = [...state.activeProjects];
+    newActiveProjects.removeWhere((p) => p.project.id == projectState.project.id);
 
     state = state.copyWith(
       activeProjects: newActiveProjects,
@@ -141,7 +142,7 @@ class AvailableProjectsNotifier extends _$AvailableProjectsNotifier {
         description: 'Project $id Description',
         reward: ProjectReward(
           moneyAmount: 1,
-          xpAmount: 1 + ref.watch(experienceNotifierProvider).level * Random().nextInt(10),
+          xpAmount: 1 + ref.read(experienceNotifierProvider).level * Random().nextInt(10),
         ),
       ),
     );
