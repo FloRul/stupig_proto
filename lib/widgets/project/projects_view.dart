@@ -51,7 +51,7 @@ class _InprogressProjectsState extends ConsumerState<InprogressProjects> {
         Expanded(
           child: DragTarget<AvailableProjectState>(
             onWillAcceptWithDetails: (d) => true,
-            onAcceptWithDetails: (details) =>
+            onAcceptWithDetails: (details) async =>
                 ref.read(availableProjectsNotifierProvider.notifier).startProject(details.data),
             builder: (context, candidateData, rejectedData) {
               return GlassmorphicContainer(

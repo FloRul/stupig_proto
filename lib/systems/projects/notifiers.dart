@@ -107,11 +107,11 @@ class AvailableProjectsNotifier extends _$AvailableProjectsNotifier {
   List<AvailableProjectState> build() {
     return [
       AvailableProjectState.initial(
-        const Project(
-          id: '1',
+        Project(
+          id: const Uuid().v4(),
           name: 'Project 1',
           description: 'Project 1 Description',
-          reward: ProjectReward(
+          reward: const ProjectReward(
             moneyAmount: 1,
             xpAmount: 1,
           ),

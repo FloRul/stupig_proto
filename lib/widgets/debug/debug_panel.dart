@@ -64,6 +64,21 @@ class _DebugPanelState extends ConsumerState<DebugPanel> {
               });
             },
           ),
+          const SizedBox(width: 8),
+          ElevatedButton(
+            child: const Text('Save game'),
+            onPressed: () {},
+          ),
+          const SizedBox(width: 8),
+          ElevatedButton(
+            child: const Text('Load game'),
+            onPressed: () {},
+          ),
+          const SizedBox(width: 8),
+          ElevatedButton(
+            child: const Text('Clear save'),
+            onPressed: () {},
+          ),
         ],
       ),
     );
