@@ -14,9 +14,16 @@ class InprogressProjects extends ConsumerStatefulWidget {
 }
 
 class _InprogressProjectsState extends ConsumerState<InprogressProjects> {
+  final GlobalKey<SliverAnimatedGridState> _gridKey = GlobalKey<SliverAnimatedGridState>();
+  late final List<ActiveProjectState> _projects = [];
+
   @override
   Widget build(BuildContext context) {
-    var activeProjects = ref.watch(projectsNotifierProvider.select((value) => value.activeProjects));
+    var activeProjects = ref.watch(projectsNotifierProvider).activeProjects;
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _updateGrid(activeProjects);
+    });
 
     return Column(
       children: [
@@ -52,18 +59,25 @@ class _InprogressProjectsState extends ConsumerState<InprogressProjects> {
                 child: LayoutBuilder(
                   builder: (context, constraints) {
                     final crossAxisCount = (constraints.maxWidth / 250).ceil().toInt();
-                    return GridView.builder(
-                      // key: _gridKey,
-                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: crossAxisCount,
-                        crossAxisSpacing: 16.0,
-                        mainAxisSpacing: 16.0,
-                        childAspectRatio: kCardAspectRatio,
-                      ),
-                      itemCount: activeProjects.length,
-                      itemBuilder: (context, index) {
-                        return ActiveProjectCard(project: activeProjects[index]);
-                      },
+                    return CustomScrollView(
+                      slivers: [
+                        SliverPadding(
+                          padding: const EdgeInsets.all(16.0),
+                          sliver: SliverAnimatedGrid(
+                            key: _gridKey,
+                            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                              crossAxisCount: crossAxisCount,
+                              crossAxisSpacing: 16.0,
+                              mainAxisSpacing: 16.0,
+                              childAspectRatio: kCardAspectRatio,
+                            ),
+                            initialItemCount: _projects.length,
+                            itemBuilder: (context, index, animation) {
+                              return _buildAnimatedItem(_projects[index], animation);
+                            },
+                          ),
+                        ),
+                      ],
                     );
                   },
                 ),
@@ -72,6 +86,51 @@ class _InprogressProjectsState extends ConsumerState<InprogressProjects> {
           ),
         ),
       ],
+    );
+  }
+
+  Widget _buildAnimatedItem(ActiveProjectState project, Animation<double> animation) {
+    return SlideTransition(
+      position: animation.drive(
+        Tween<Offset>(
+          begin: const Offset(1.0, 0.0),
+          end: Offset.zero,
+        ),
+      ),
+      child: FadeTransition(
+        opacity: animation,
+        child: ActiveProjectCard(project: project),
+      ),
+    );
+  }
+
+  void _updateGrid(List<ActiveProjectState> newProjects) {
+    for (var i = 0; i < _projects.length; i++) {
+      if (!newProjects.contains(_projects[i])) {
+        // Remove animation
+        final removedProject = _projects[i];
+        _projects.removeAt(i);
+        _gridKey.currentState?.removeItem(
+          i,
+          (context, animation) => _buildRemovedItem(removedProject, animation),
+          duration: const Duration(milliseconds: 300),
+        );
+      }
+    }
+
+    for (var i = 0; i < newProjects.length; i++) {
+      if (!_projects.contains(newProjects[i])) {
+        // Add animation
+        _projects.insert(i, newProjects[i]);
+        _gridKey.currentState?.insertItem(i);
+      }
+    }
+  }
+
+  Widget _buildRemovedItem(ActiveProjectState project, Animation<double> animation) {
+    return FadeTransition(
+      opacity: animation,
+      child: ActiveProjectCard(project: project),
     );
   }
 }
