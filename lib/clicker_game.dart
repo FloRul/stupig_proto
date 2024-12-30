@@ -1,7 +1,7 @@
 ﻿import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:stupig_proto/systems/event_bus.dart';
-import 'package:stupig_proto/widgets/booster_opening_dialog.dart';
+import 'package:stupig_proto/widgets/progression/booster_opening_dialog.dart';
 import 'package:stupig_proto/widgets/common/group_area.dart';
 import 'package:stupig_proto/widgets/debug/debug_panel.dart';
 import 'package:stupig_proto/widgets/project/projects_view.dart';
@@ -20,12 +20,7 @@ class ClickerGame extends ConsumerWidget {
             levelUp: (_) => showDialog(
               context: context,
               barrierDismissible: false,
-              builder: (context) => const BoosterPackDialog(cards: [
-                'Rare Card 1',
-                'Common Card 2',
-                'Epic Card 3',
-                'Legendary Card 4',
-              ]),
+              builder: (context) => const BoosterPackDialog(),
             ),
             orElse: () {},
           ),
