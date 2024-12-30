@@ -1,11 +1,10 @@
-﻿import 'dart:math';
-
-import 'package:flutter/material.dart';
+﻿import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:stupig_proto/systems/progression/models.dart';
 import 'package:stupig_proto/systems/progression/notifiers.dart';
 import 'package:stupig_proto/utils/constants.dart';
+import 'package:stupig_proto/widgets/common/flippable_card.dart';
 import 'package:stupig_proto/widgets/progression/flashcard.dart';
 import 'package:collection/collection.dart';
 
@@ -19,43 +18,35 @@ class BoosterPackDialog extends ConsumerStatefulWidget {
 const kDialogWidth = 800.0;
 const kDialogHeight = 400.0;
 
-class _BoosterPackDialogState extends ConsumerState<BoosterPackDialog> {
-  bool _isOpened = false;
-  
+class _BoosterPackDialogState extends ConsumerState<BoosterPackDialog> with SingleTickerProviderStateMixin {
+  final _flipController = FlipCardController();
+
+  @override
+  void initState() {
+    super.initState();
+    _flipController.initialize(this);
+  }
+
+  @override
+  void dispose() {
+    _flipController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Dialog(
-      backgroundColor: Colors.transparent,
-      child: AnimatedSwitcher(
-        duration: const Duration(milliseconds: 500),
-        transitionBuilder: (Widget child, Animation<double> animation) {
-          final rotate = Tween(begin: 1.0, end: 0.0).animate(animation);
-          return AnimatedBuilder(
-            animation: rotate,
-            child: child,
-            builder: (context, child) {
-              final isFront = ValueKey(_isOpened) == child?.key;
-              final rotationY = isFront ? rotate.value : -rotate.value;
-              return Transform(
-                transform: Matrix4.rotationY(rotationY * pi),
-                alignment: Alignment.center,
-                child: child,
-              );
-            },
-          );
-        },
-        child: _isOpened
-            ? OpenedPackWidget(
-                key: const ValueKey(true),
-                cards: ref.watch(nextLvlFlashCardsProvider),
-              )
-            : ClosedPackWidget(
-                key: const ValueKey(false),
-                onTap: () => setState(() => _isOpened = true),
-              ),
-      ),
-    );
+        backgroundColor: Colors.transparent,
+        child: FlippableCard(
+          flipController: _flipController,
+          frontContent: const ClosedPackWidget(),
+          backContent: OpenedPackWidget(
+            cards: ref.watch(nextLvlFlashCardsProvider),
+          ),
+          onTap: () {
+            _flipController.flip();
+          },
+        ));
   }
 }
 
@@ -78,7 +69,7 @@ class OpenedPackWidget extends StatelessWidget {
         borderRadius: BorderRadius.circular(16),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.2),
+            color: Colors.black.withValues(alpha: 0.2),
             blurRadius: 10,
             spreadRadius: 2,
           ),
@@ -138,53 +129,47 @@ class OpenedPackWidget extends StatelessWidget {
 class ClosedPackWidget extends StatelessWidget {
   const ClosedPackWidget({
     super.key,
-    required this.onTap,
   });
-
-  final VoidCallback onTap;
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onTap,
-      child: Container(
-        width: kDialogWidth,
-        height: kDialogHeight,
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-            colors: [Colors.blue.shade400, Colors.purple.shade400],
+    return Container(
+      width: kDialogWidth,
+      height: kDialogHeight,
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+          colors: [Colors.blue.shade400, Colors.purple.shade400],
+        ),
+        borderRadius: BorderRadius.circular(16),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.blue.shade200.withValues(alpha: 0.5),
+            blurRadius: 15,
+            spreadRadius: 2,
           ),
-          borderRadius: BorderRadius.circular(16),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.blue.shade200.withOpacity(0.5),
-              blurRadius: 15,
-              spreadRadius: 2,
+        ],
+      ),
+      child: const Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(
+              Icons.card_giftcard,
+              size: 64,
+              color: Colors.white,
+            ),
+            SizedBox(height: 16),
+            Text(
+              'Tap to Open!',
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 24,
+                fontWeight: FontWeight.bold,
+              ),
             ),
           ],
-        ),
-        child: const Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Icon(
-                Icons.card_giftcard,
-                size: 64,
-                color: Colors.white,
-              ),
-              SizedBox(height: 16),
-              Text(
-                'Tap to Open!',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ],
-          ),
         ),
       ),
     );
