@@ -141,7 +141,7 @@ class AvailableProjectsNotifier extends _$AvailableProjectsNotifier {
         description: 'Project $id Description',
         reward: ProjectReward(
           moneyAmount: 1,
-          xpAmount: 1 + ref.watch(experienceNotifierProvider).level * Random().nextInt(10),
+          xpAmount: 1 + ref.read(experienceNotifierProvider).level * Random().nextInt(10),
         ),
       ),
     );
