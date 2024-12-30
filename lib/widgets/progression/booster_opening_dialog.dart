@@ -1,9 +1,11 @@
-﻿import 'dart:math';
-import 'package:flutter/material.dart';
+﻿import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:stupig_proto/systems/progression/models.dart';
 import 'package:stupig_proto/systems/progression/notifiers.dart';
+import 'package:stupig_proto/utils/constants.dart';
 import 'package:stupig_proto/widgets/progression/flashcard.dart';
+import 'package:collection/collection.dart';
 
 class BoosterPackDialog extends ConsumerStatefulWidget {
   const BoosterPackDialog({super.key});
@@ -12,91 +14,26 @@ class BoosterPackDialog extends ConsumerStatefulWidget {
   ConsumerState<BoosterPackDialog> createState() => _BoosterPackDialogState();
 }
 
-class _BoosterPackDialogState extends ConsumerState<BoosterPackDialog> with SingleTickerProviderStateMixin {
-  late AnimationController _controller;
-  late Animation<double> _scaleAnimation;
-  late Animation<double> _rotateAnimation;
-  late Animation<double> _cardSlideAnimation;
+const kDialogWidth = 800.0;
+const kDialogHeight = 400.0;
+
+class _BoosterPackDialogState extends ConsumerState<BoosterPackDialog> {
   bool _isOpened = false;
-
-  @override
-  void initState() {
-    super.initState();
-    _controller = AnimationController(
-      duration: const Duration(milliseconds: 2000),
-      vsync: this,
-    );
-
-    _scaleAnimation = Tween<double>(
-      begin: 0.0,
-      end: 1.0,
-    ).animate(
-      CurvedAnimation(
-        parent: _controller,
-        curve: const Interval(0.0, 0.5, curve: Curves.easeOut),
-      ),
-    );
-
-    _rotateAnimation = Tween<double>(
-      begin: 0.0,
-      end: 2 * pi,
-    ).animate(
-      CurvedAnimation(
-        parent: _controller,
-        curve: const Interval(0.5, 0.8, curve: Curves.easeInOut),
-      ),
-    );
-
-    _cardSlideAnimation = Tween<double>(
-      begin: 200.0,
-      end: 0.0,
-    ).animate(
-      CurvedAnimation(
-        parent: _controller,
-        curve: const Interval(0.8, 1.0, curve: Curves.easeOut),
-      ),
-    );
-
-    _controller.addStatusListener((status) {
-      if (status == AnimationStatus.completed) {
-        setState(() => _isOpened = true);
-      }
-    });
-  }
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
-  }
-
-  void _handleTap() {
-    if (!_controller.isAnimating && !_isOpened) {
-      _controller.forward();
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     return Dialog(
       backgroundColor: Colors.transparent,
-      child: AnimatedBuilder(
-        animation: _controller,
-        builder: (context, child) {
-          return Transform.scale(
-            scale: _scaleAnimation.value,
-            child: Transform.rotate(
-              angle: _rotateAnimation.value,
-              child: _isOpened
-                  ? OpenedPackWidget(
-                      cards: ref.watch(nextLvlFlashCardsProvider),
-                      cardSlideAnimation: _cardSlideAnimation,
-                    )
-                  : ClosedPackWidget(onOpen: _handleTap),
-            ),
-          );
-        },
-      ),
+      child: _isOpened
+          ? OpenedPackWidget(cards: ref.watch(nextLvlFlashCardsProvider)).animate().scale(
+                duration: 500.ms,
+                curve: Curves.easeOut,
+                begin: const Offset(0, 0),
+                end: const Offset(1, 1),
+              )
+          : ClosedPackWidget(onTap: () => setState(() => _isOpened = true)).animate().scale(
+                duration: 500.ms,
+                curve: Curves.easeOut,
+              ),
     );
   }
 }
@@ -105,21 +42,22 @@ class OpenedPackWidget extends StatelessWidget {
   const OpenedPackWidget({
     super.key,
     required this.cards,
-    required this.cardSlideAnimation,
   });
+
   final List<FlashCard> cards;
-  final Animation<double> cardSlideAnimation;
+
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 300,
-      height: 400,
+      clipBehavior: Clip.hardEdge,
+      width: kDialogWidth,
+      height: kDialogHeight,
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(16),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withValues(alpha: 0.2),
+            color: Colors.black.withOpacity(0.2),
             blurRadius: 10,
             spreadRadius: 2,
           ),
@@ -128,21 +66,28 @@ class OpenedPackWidget extends StatelessWidget {
       child: Column(
         children: [
           Expanded(
-            child: SingleChildScrollView(
-              padding: const EdgeInsets.all(16),
-              child: Column(
-                children: cards.map((card) {
-                  return AnimatedBuilder(
-                    animation: cardSlideAnimation,
-                    builder: (context, child) {
-                      return Transform.translate(
-                        offset: Offset(cardSlideAnimation.value, 0),
-                        child: FlashCardWidget(card: card),
-                      );
-                    },
-                  );
-                }).toList(),
-              ),
+            child: LayoutBuilder(
+              builder: (context, constraints) {
+                final cardWidth = (constraints.maxWidth / 5) - 20; // Adjust the width as needed
+                return Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: cards.mapIndexed((index, card) {
+                    return SizedBox(
+                      width: cardWidth,
+                      child: AspectRatio(
+                        aspectRatio: kCardAspectRatio,
+                        child: FlashCardWidget(card: card).animate().slideY(
+                              delay: (index * 100).ms,
+                              begin: index % 2 == 0 ? 100 : -100,
+                              end: 0,
+                              duration: 400.ms,
+                              curve: Curves.easeOut,
+                            ),
+                      ),
+                    );
+                  }).toList(),
+                );
+              },
             ),
           ),
           Padding(
@@ -172,16 +117,18 @@ class OpenedPackWidget extends StatelessWidget {
 class ClosedPackWidget extends StatelessWidget {
   const ClosedPackWidget({
     super.key,
-    required this.onOpen,
+    required this.onTap,
   });
-  final VoidCallback onOpen;
+
+  final VoidCallback onTap;
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: onOpen,
+      onTap: onTap,
       child: Container(
-        width: 300,
-        height: 400,
+        width: kDialogWidth,
+        height: kDialogHeight,
         decoration: BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment.topLeft,
@@ -191,7 +138,7 @@ class ClosedPackWidget extends StatelessWidget {
           borderRadius: BorderRadius.circular(16),
           boxShadow: [
             BoxShadow(
-              color: Colors.blue.shade200.withValues(alpha: 0.5),
+              color: Colors.blue.shade200.withOpacity(0.5),
               blurRadius: 15,
               spreadRadius: 2,
             ),

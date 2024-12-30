@@ -13,8 +13,6 @@ class FlashCardWidget extends StatelessWidget {
     return Container(
       margin: const EdgeInsets.symmetric(vertical: 4),
       padding: const EdgeInsets.all(12),
-      height: 100,
-      width: 71,
       decoration: BoxDecoration(
         color: _getRarityColor(card.rarity).withValues(alpha: 0.2),
         borderRadius: BorderRadius.circular(8),
@@ -36,7 +34,7 @@ class FlashCardWidget extends StatelessWidget {
           Text(
             card.name,
             style: TextStyle(
-              fontSize: 18,
+              fontSize: 12,
               fontWeight: FontWeight.bold,
               color: _getRarityColor(card.rarity),
             ),
@@ -45,19 +43,11 @@ class FlashCardWidget extends StatelessWidget {
           Text(
             card.content,
             style: TextStyle(
-              fontSize: 14,
+              fontSize: 10,
               color: Colors.grey.shade700,
             ),
           ),
           const SizedBox(height: 4),
-          Text(
-            card.rarity.toString().split('.').last.toUpperCase(),
-            style: TextStyle(
-              fontSize: 12,
-              fontWeight: FontWeight.w500,
-              color: _getRarityColor(card.rarity),
-            ),
-          ),
         ],
       ),
     );

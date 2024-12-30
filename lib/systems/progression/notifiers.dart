@@ -1,6 +1,5 @@
 ﻿import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:stupig_proto/systems/common/models.dart';
-import 'package:stupig_proto/systems/primary_resources/notifiers.dart';
 import 'package:stupig_proto/systems/progression/models.dart';
 
 final nextLvlFlashCardsProvider = Provider<List<FlashCard>>((ref) {
