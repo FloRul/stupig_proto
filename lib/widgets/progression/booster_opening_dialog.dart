@@ -1,4 +1,6 @@
-﻿import 'package:flutter/material.dart';
+﻿import 'dart:math';
+
+import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:stupig_proto/systems/progression/models.dart';
@@ -19,21 +21,40 @@ const kDialogHeight = 400.0;
 
 class _BoosterPackDialogState extends ConsumerState<BoosterPackDialog> {
   bool _isOpened = false;
+  
+
   @override
   Widget build(BuildContext context) {
     return Dialog(
       backgroundColor: Colors.transparent,
-      child: _isOpened
-          ? OpenedPackWidget(cards: ref.watch(nextLvlFlashCardsProvider)).animate().scale(
-                duration: 500.ms,
-                curve: Curves.easeOut,
-                begin: const Offset(0, 0),
-                end: const Offset(1, 1),
+      child: AnimatedSwitcher(
+        duration: const Duration(milliseconds: 500),
+        transitionBuilder: (Widget child, Animation<double> animation) {
+          final rotate = Tween(begin: 1.0, end: 0.0).animate(animation);
+          return AnimatedBuilder(
+            animation: rotate,
+            child: child,
+            builder: (context, child) {
+              final isFront = ValueKey(_isOpened) == child?.key;
+              final rotationY = isFront ? rotate.value : -rotate.value;
+              return Transform(
+                transform: Matrix4.rotationY(rotationY * pi),
+                alignment: Alignment.center,
+                child: child,
+              );
+            },
+          );
+        },
+        child: _isOpened
+            ? OpenedPackWidget(
+                key: const ValueKey(true),
+                cards: ref.watch(nextLvlFlashCardsProvider),
               )
-          : ClosedPackWidget(onTap: () => setState(() => _isOpened = true)).animate().scale(
-                duration: 500.ms,
-                curve: Curves.easeOut,
+            : ClosedPackWidget(
+                key: const ValueKey(false),
+                onTap: () => setState(() => _isOpened = true),
               ),
+      ),
     );
   }
 }
