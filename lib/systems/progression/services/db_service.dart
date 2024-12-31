@@ -1,27 +1,42 @@
-﻿import 'package:path/path.dart';
+﻿import 'package:flutter/foundation.dart';
 import 'package:sqflite/sqflite.dart';
+import 'package:sqflite_common_ffi_web/sqflite_ffi_web.dart';
 
 class DatabaseHelper {
-  static final DatabaseHelper _instance = DatabaseHelper._internal();
-  static Database? _database;
-
-  factory DatabaseHelper() => _instance;
-
-  DatabaseHelper._internal();
+  Database? _database;
 
   Future<Database> get database async {
-    if (_database != null) return _database!;
-    _database = await _initDatabase();
+    _database ??= await _initDatabase();
+    print('Database initialized');
     return _database!;
   }
 
   Future<Database> _initDatabase() async {
-    String path = join(await getDatabasesPath(), 'progression.db');
-    return await openDatabase(
+    // For web, we need to initialize the factory first
+    if (kIsWeb) {
+      databaseFactory = databaseFactoryFfiWeb;
+    }
+
+    String path = 'progression.db'; // Simplified path for web
+
+    var db = await databaseFactory.openDatabase(
       path,
-      version: 1,
-      onCreate: _onCreate,
+      options: OpenDatabaseOptions(
+        version: 1,
+        onCreate: _onCreate,
+      ),
     );
+    return db;
+  }
+
+  // Check if initial data is already imported
+  Future<bool> hasInitialData() async {
+    final db = await database;
+    final result = await db.query(
+      'themes',
+      limit: 1,
+    );
+    return result.isNotEmpty;
   }
 
   Future<void> _onCreate(Database db, int version) async {
@@ -29,6 +44,7 @@ class DatabaseHelper {
     await db.execute('''
       CREATE TABLE themes (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
+        tier INTEGER NOT NULL,
         name TEXT NOT NULL
       )
     ''');

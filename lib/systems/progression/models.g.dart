@@ -8,6 +8,7 @@ part of 'models.dart';
 
 _$ThemeImpl _$$ThemeImplFromJson(Map<String, dynamic> json) => _$ThemeImpl(
       name: json['name'] as String,
+      tier: (json['tier'] as num).toInt(),
       subthemes: (json['subthemes'] as List<dynamic>)
           .map((e) => Subtheme.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -16,6 +17,7 @@ _$ThemeImpl _$$ThemeImplFromJson(Map<String, dynamic> json) => _$ThemeImpl(
 Map<String, dynamic> _$$ThemeImplToJson(_$ThemeImpl instance) =>
     <String, dynamic>{
       'name': instance.name,
+      'tier': instance.tier,
       'subthemes': instance.subthemes,
     };
 

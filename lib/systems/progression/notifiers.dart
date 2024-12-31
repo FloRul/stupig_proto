@@ -2,6 +2,8 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:stupig_proto/systems/common/models.dart';
 import 'package:stupig_proto/systems/progression/models.dart';
+import 'package:stupig_proto/systems/progression/services/db_service.dart';
+import 'package:stupig_proto/systems/progression/services/progression_repo.dart';
 
 part 'notifiers.g.dart';
 
@@ -50,4 +52,11 @@ List<FlashCard> nextLvlFlashCards(Ref ref) {
         ),
         bonus: "Random bonus"),
   ];
+}
+
+@riverpod
+Future<ProgressionRepository> progressionRepository(Ref ref) async {
+  var repo = ProgressionRepository(DatabaseHelper());
+  await repo.initializeIfNeeded('data/updated_flashcards_20241229.json');
+  return repo;
 }

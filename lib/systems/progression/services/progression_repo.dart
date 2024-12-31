@@ -1,5 +1,6 @@
 ﻿import 'dart:convert';
 
+import 'package:flutter/services.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:stupig_proto/systems/progression/models.dart';
 import 'package:stupig_proto/systems/progression/services/db_service.dart';
@@ -9,9 +10,17 @@ class ProgressionRepository {
 
   ProgressionRepository(this._databaseHelper);
 
-  // Import initial data from JSON
-  Future<void> importInitialData(String jsonString) async {
+  Future<void> initializeIfNeeded(String assetPath) async {
+    final hasData = await _databaseHelper.hasInitialData();
+    if (!hasData) {
+      await importInitialData(assetPath);
+    }
+  }
+
+  Future<void> importInitialData(String assetPath) async {
     final db = await _databaseHelper.database;
+    
+    final jsonString = await rootBundle.loadString(assetPath);
     final Map<String, dynamic> jsonData = json.decode(jsonString);
     final List<dynamic> themesData = jsonData['themes'];
 
@@ -20,6 +29,7 @@ class ProgressionRepository {
         // Insert theme
         int themeId = await txn.insert('themes', {
           'name': themeData['name'],
+          'tier': themeData['tier'],
         });
 
         // Insert subthemes
@@ -35,14 +45,13 @@ class ProgressionRepository {
               'subtheme_id': subthemeId,
               'name': conceptData['name'],
               'rarity': conceptData['rarity'],
-              'description': conceptData['description'],
+              'content': conceptData['content'],
             });
 
             // Initialize user progress
             await txn.insert('user_progress', {
               'concept_id': conceptId,
-              'unlocked': conceptData['unlocked'] ? 1 : 0,
-              'unlock_date': conceptData['unlocked'] ? DateTime.now().toIso8601String() : null,
+              'unlocked': 0,
             });
           }
         }
@@ -58,6 +67,7 @@ class ProgressionRepository {
       SELECT 
         t.id as theme_id,
         t.name as theme_name,
+        t.tier,
         s.id as subtheme_id,
         s.name as subtheme_name,
         c.id as concept_id,
@@ -84,6 +94,7 @@ class ProgressionRepository {
       // Create theme if it doesn't exist
       if (!themes.containsKey(themeId)) {
         themes[themeId] = Theme(
+          tier: row['tier'],
           name: row['theme_name'],
           subthemes: [],
         );

@@ -2,6 +2,7 @@
   "themes": [
     {
       "name": "Algorithms & data structures",
+      "tier": 1,
       "subthemes": [
         {
           "name": "Sorting algorithms",
@@ -377,6 +378,7 @@
     },
     {
       "name": "Programming fundamentals",
+      "tier": 1,
       "subthemes": [
         {
           "name": "Variables & data types",
@@ -717,6 +719,7 @@
     },
     {
       "name": "Software engineering",
+      "tier": 2,
       "subthemes": [
         {
           "name": "System design",
@@ -1317,6 +1320,7 @@
     },
     {
       "name": "Game development",
+      "tier": 2,
       "subthemes": [
         {
           "name": "Gameplay programming & design",
@@ -1772,6 +1776,7 @@
     },
     {
       "name": "Database",
+      "tier": 2,
       "subthemes": [
         {
           "name": "SQL",
@@ -2152,6 +2157,7 @@
     },
     {
       "name": "Web development",
+      "tier": 2,
       "subthemes": [
         {
           "name": "Backend development",
@@ -2357,6 +2363,7 @@
     },
     {
       "name": "AI & Quantum computing",
+      "tier": 3,
       "subthemes": [
         {
           "name": "AI",

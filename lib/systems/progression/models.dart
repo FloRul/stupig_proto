@@ -7,6 +7,7 @@ part 'models.g.dart';
 class Theme with _$Theme {
   const factory Theme({
     required String name,
+    required int tier,
     required List<Subtheme> subthemes,
   }) = _Theme;
 

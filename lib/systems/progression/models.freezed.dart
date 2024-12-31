@@ -21,6 +21,7 @@ Theme _$ThemeFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$Theme {
   String get name => throw _privateConstructorUsedError;
+  int get tier => throw _privateConstructorUsedError;
   List<Subtheme> get subthemes => throw _privateConstructorUsedError;
 
   /// Serializes this Theme to a JSON map.
@@ -37,7 +38,7 @@ abstract class $ThemeCopyWith<$Res> {
   factory $ThemeCopyWith(Theme value, $Res Function(Theme) then) =
       _$ThemeCopyWithImpl<$Res, Theme>;
   @useResult
-  $Res call({String name, List<Subtheme> subthemes});
+  $Res call({String name, int tier, List<Subtheme> subthemes});
 }
 
 /// @nodoc
@@ -56,6 +57,7 @@ class _$ThemeCopyWithImpl<$Res, $Val extends Theme>
   @override
   $Res call({
     Object? name = null,
+    Object? tier = null,
     Object? subthemes = null,
   }) {
     return _then(_value.copyWith(
@@ -63,6 +65,10 @@ class _$ThemeCopyWithImpl<$Res, $Val extends Theme>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
+      tier: null == tier
+          ? _value.tier
+          : tier // ignore: cast_nullable_to_non_nullable
+              as int,
       subthemes: null == subthemes
           ? _value.subthemes
           : subthemes // ignore: cast_nullable_to_non_nullable
@@ -78,7 +84,7 @@ abstract class _$$ThemeImplCopyWith<$Res> implements $ThemeCopyWith<$Res> {
       __$$ThemeImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String name, List<Subtheme> subthemes});
+  $Res call({String name, int tier, List<Subtheme> subthemes});
 }
 
 /// @nodoc
@@ -95,6 +101,7 @@ class __$$ThemeImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? name = null,
+    Object? tier = null,
     Object? subthemes = null,
   }) {
     return _then(_$ThemeImpl(
@@ -102,6 +109,10 @@ class __$$ThemeImplCopyWithImpl<$Res>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
+      tier: null == tier
+          ? _value.tier
+          : tier // ignore: cast_nullable_to_non_nullable
+              as int,
       subthemes: null == subthemes
           ? _value._subthemes
           : subthemes // ignore: cast_nullable_to_non_nullable
@@ -114,7 +125,9 @@ class __$$ThemeImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$ThemeImpl implements _Theme {
   const _$ThemeImpl(
-      {required this.name, required final List<Subtheme> subthemes})
+      {required this.name,
+      required this.tier,
+      required final List<Subtheme> subthemes})
       : _subthemes = subthemes;
 
   factory _$ThemeImpl.fromJson(Map<String, dynamic> json) =>
@@ -122,6 +135,8 @@ class _$ThemeImpl implements _Theme {
 
   @override
   final String name;
+  @override
+  final int tier;
   final List<Subtheme> _subthemes;
   @override
   List<Subtheme> get subthemes {
@@ -132,7 +147,7 @@ class _$ThemeImpl implements _Theme {
 
   @override
   String toString() {
-    return 'Theme(name: $name, subthemes: $subthemes)';
+    return 'Theme(name: $name, tier: $tier, subthemes: $subthemes)';
   }
 
   @override
@@ -141,6 +156,7 @@ class _$ThemeImpl implements _Theme {
         (other.runtimeType == runtimeType &&
             other is _$ThemeImpl &&
             (identical(other.name, name) || other.name == name) &&
+            (identical(other.tier, tier) || other.tier == tier) &&
             const DeepCollectionEquality()
                 .equals(other._subthemes, _subthemes));
   }
@@ -148,7 +164,7 @@ class _$ThemeImpl implements _Theme {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
-      runtimeType, name, const DeepCollectionEquality().hash(_subthemes));
+      runtimeType, name, tier, const DeepCollectionEquality().hash(_subthemes));
 
   /// Create a copy of Theme
   /// with the given fields replaced by the non-null parameter values.
@@ -169,12 +185,15 @@ class _$ThemeImpl implements _Theme {
 abstract class _Theme implements Theme {
   const factory _Theme(
       {required final String name,
+      required final int tier,
       required final List<Subtheme> subthemes}) = _$ThemeImpl;
 
   factory _Theme.fromJson(Map<String, dynamic> json) = _$ThemeImpl.fromJson;
 
   @override
   String get name;
+  @override
+  int get tier;
   @override
   List<Subtheme> get subthemes;
 

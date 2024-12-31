@@ -27,11 +27,12 @@ class MyApp extends ConsumerWidget {
             ),
             error: (error, _) => Scaffold(
               body: Center(
-                child: Text('Error: $error'),
+                child: Text(
+                  'Error: $error',
+                ),
               ),
             ),
           ),
-      // const ClickerGame(),
     );
   }
 }
