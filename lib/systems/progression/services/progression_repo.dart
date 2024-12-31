@@ -2,6 +2,7 @@
 
 import 'package:flutter/services.dart';
 import 'package:sqflite/sqflite.dart';
+import 'package:stupig_proto/systems/common/models.dart';
 import 'package:stupig_proto/systems/progression/models.dart';
 import 'package:stupig_proto/systems/progression/services/db_service.dart';
 
@@ -64,65 +65,74 @@ class ProgressionRepository {
     final db = await _databaseHelper.database;
 
     final List<Map<String, dynamic>> themesData = await db.rawQuery('''
-      SELECT 
-        t.id as theme_id,
-        t.name as theme_name,
-        t.tier,
-        s.id as subtheme_id,
-        s.name as subtheme_name,
-        c.id as concept_id,
-        c.name as concept_name,
-        c.rarity,
-        c.content,
-        up.unlocked,
-        up.unlock_date
-      FROM themes t
-      LEFT JOIN subthemes s ON s.theme_id = t.id
-      LEFT JOIN concepts c ON c.subtheme_id = s.id
-      LEFT JOIN user_progress up ON up.concept_id = c.id
-      ORDER BY t.id, s.id, c.id
-    ''');
+    SELECT 
+      t.id as theme_id,
+      t.name as theme_name,
+      t.tier,
+      s.id as subtheme_id,
+      s.name as subtheme_name,
+      c.id as concept_id,
+      c.name as concept_name,
+      c.rarity,
+      c.content,
+      up.unlocked,
+      up.unlock_date
+    FROM themes t
+    LEFT JOIN subthemes s ON s.theme_id = t.id
+    LEFT JOIN concepts c ON c.subtheme_id = s.id
+    LEFT JOIN user_progress up ON up.concept_id = c.id
+    ORDER BY t.id, s.id, c.id
+  ''');
 
     // Group the flat data into the hierarchical structure
-    Map<int, Theme> themes = {};
-    Map<int, Subtheme> subthemes = {};
+    final Map<int, List<Map<String, dynamic>>> themeGroups = {};
 
-    for (var row in themesData) {
+    // Group rows by theme_id
+    for (final row in themesData) {
       final themeId = row['theme_id'] as int;
-      final subthemeId = row['subtheme_id'] as int;
-
-      // Create theme if it doesn't exist
-      if (!themes.containsKey(themeId)) {
-        themes[themeId] = Theme(
-          tier: row['tier'],
-          name: row['theme_name'],
-          subthemes: [],
-        );
-      }
-
-      // Create subtheme if it doesn't exist
-      if (!subthemes.containsKey(subthemeId)) {
-        subthemes[subthemeId] = Subtheme(
-          name: row['subtheme_name'],
-          concepts: [],
-        );
-        themes[themeId]!.subthemes.add(subthemes[subthemeId]!);
-      }
-
-      // Add concept to subtheme
-      if (row['concept_id'] != null) {
-        subthemes[subthemeId]!.concepts.add(
-              Concept(
-                name: row['concept_name'],
-                rarity: row['rarity'],
-                content: row['description'],
-                unlocked: row['unlocked'] == 1,
-              ),
-            );
-      }
+      themeGroups.putIfAbsent(themeId, () => []).add(row);
     }
 
-    return themes.values.toList();
+    // Convert grouped data into Theme objects
+    final List<Theme> themes = themeGroups.values.map((themeRows) {
+      final firstRow = themeRows.first;
+
+      // Group subthemes
+      final Map<int, List<Map<String, dynamic>>> subthemeGroups = {};
+      for (final row in themeRows) {
+        final subthemeId = row['subtheme_id'] as int;
+        subthemeGroups.putIfAbsent(subthemeId, () => []).add(row);
+      }
+
+      // Create Subthemes with their concepts
+      final List<Subtheme> subthemes = subthemeGroups.values.map((subthemeRows) {
+        final firstSubthemeRow = subthemeRows.first;
+
+        // Create concepts for this subtheme
+        final List<Concept> concepts = subthemeRows
+            .where((row) => row['concept_id'] != null)
+            .map((row) => Concept(
+                  name: row['concept_name'],
+                  rarity: Rarity.fromString(row['rarity']),
+                  content: row['content'],
+                  unlocked: row['unlocked'] == 1,
+                ))
+            .toList();
+
+        return Subtheme(
+          name: firstSubthemeRow['subtheme_name'],
+          concepts: concepts,
+        );
+      }).toList();
+
+      return Theme(
+        name: firstRow['theme_name'],
+        tier: firstRow['tier'],
+        subthemes: subthemes,
+      );
+    }).toList();
+
+    return themes;
   }
 
   // Unlock a concept
