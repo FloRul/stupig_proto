@@ -6,22 +6,22 @@ part of 'notifiers.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$initializationHash() => r'ef747be8076f98a13b3fae527c8627ed4f36f29a';
+String _$sharedPrefsHash() => r'707e23210559b373c587233dd97b87ac9c3b9f57';
 
-/// See also [initialization].
-@ProviderFor(initialization)
-final initializationProvider = AutoDisposeFutureProvider<void>.internal(
-  initialization,
-  name: r'initializationProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$initializationHash,
+/// See also [sharedPrefs].
+@ProviderFor(sharedPrefs)
+final sharedPrefsProvider =
+    AutoDisposeFutureProvider<SharedPreferences>.internal(
+  sharedPrefs,
+  name: r'sharedPrefsProvider',
+  debugGetCreateSourceHash:
+      const bool.fromEnvironment('dart.vm.product') ? null : _$sharedPrefsHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
 @Deprecated('Will be removed in 3.0. Use Ref instead')
 // ignore: unused_element
-typedef InitializationRef = AutoDisposeFutureProviderRef<void>;
+typedef SharedPrefsRef = AutoDisposeFutureProviderRef<SharedPreferences>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

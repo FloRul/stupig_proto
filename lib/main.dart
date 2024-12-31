@@ -25,10 +25,12 @@ class MyApp extends ConsumerWidget {
                 child: CircularProgressIndicator(),
               ),
             ),
-            error: (error, _) => Scaffold(
+            error: (error, stackTrace) => Scaffold(
               body: Center(
-                child: Text(
-                  'Error: $error',
+                child: SingleChildScrollView(
+                  child: Text(
+                    'Error: $error \n $stackTrace',
+                  ),
                 ),
               ),
             ),

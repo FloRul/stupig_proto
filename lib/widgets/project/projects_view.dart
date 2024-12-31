@@ -30,21 +30,18 @@ class _InprogressProjectsState extends ConsumerState<InprogressProjects> {
         Padding(
           padding: const EdgeInsets.symmetric(vertical: 16.0),
           child: GlassmorphicContainer(
-            child: Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    'In progress',
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white.withValues(alpha: 0.9),
-                    ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  'In progress',
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white.withValues(alpha: 0.9),
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
           ),
         ),
@@ -62,7 +59,7 @@ class _InprogressProjectsState extends ConsumerState<InprogressProjects> {
                     return CustomScrollView(
                       slivers: [
                         SliverPadding(
-                          padding: const EdgeInsets.all(16.0),
+                          padding: const EdgeInsets.all(0),
                           sliver: SliverAnimatedGrid(
                             key: _gridKey,
                             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -146,7 +143,6 @@ class InactiveProjects extends ConsumerWidget {
         builder: (context, constraints) {
           final crossAxisCount = (constraints.maxWidth / 250).ceil().toInt();
           return GridView.builder(
-            padding: const EdgeInsets.all(16.0),
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: crossAxisCount,
               crossAxisSpacing: 16.0,

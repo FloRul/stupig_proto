@@ -19,7 +19,7 @@ class ProgressionRepository {
 
   Future<void> importInitialData(String assetPath) async {
     final db = await _databaseHelper.database;
-    
+
     final jsonString = await rootBundle.loadString(assetPath);
     final Map<String, dynamic> jsonData = json.decode(jsonString);
     final List<dynamic> themesData = jsonData['themes'];
@@ -73,7 +73,7 @@ class ProgressionRepository {
         c.id as concept_id,
         c.name as concept_name,
         c.rarity,
-        c.description,
+        c.content,
         up.unlocked,
         up.unlock_date
       FROM themes t

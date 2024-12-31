@@ -1,5 +1,6 @@
 ﻿import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:stupig_proto/systems/progression/notifiers.dart';
 import 'package:stupig_proto/widgets/common/glassmorphism_container.dart';
 
 class ProgressionPage extends ConsumerWidget {
@@ -8,17 +9,21 @@ class ProgressionPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return const Scaffold(
-      body: Row(
-        children: [
-          Expanded(
-            flex: 2,
-            child: ThemesList(),
-          ),
-          Expanded(
-            flex: 3,
-            child: ConceptDetails(),
-          ),
-        ],
+      body: Padding(
+        padding: EdgeInsets.all(16.0),
+        child: Row(
+          children: [
+            Expanded(
+              flex: 2,
+              child: ThemesList(),
+            ),
+            SizedBox(width: 16),
+            Expanded(
+              flex: 3,
+              child: ConceptDetails(),
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -29,6 +34,7 @@ class ThemesList extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    var themes = ref.watch(themesProvider).value!;
     return GlassmorphicContainer(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -54,22 +60,19 @@ class ProgressionHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Padding(
-      padding: EdgeInsets.all(16),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            'Progression',
-            style: TextStyle(
-              fontSize: 24,
-              fontWeight: FontWeight.bold,
-            ),
+    return const Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          'Progression',
+          style: TextStyle(
+            fontSize: 24,
+            fontWeight: FontWeight.bold,
           ),
-          SizedBox(height: 8),
-          ProgressionStats(),
-        ],
-      ),
+        ),
+        SizedBox(height: 8),
+        ProgressionStats(),
+      ],
     );
   }
 }
