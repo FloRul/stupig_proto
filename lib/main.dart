@@ -1,21 +1,37 @@
 import 'package:flutter/material.dart';
+import 'package:stupig_proto/systems/initialization/notifiers.dart';
 import 'package:stupig_proto/theme.dart';
 import 'clicker_game.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+// TODO: use newton particles
 
 void main() {
   runApp(const ProviderScope(child: MyApp()));
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends ConsumerWidget {
   const MyApp({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: themeData,
-      home: const ClickerGame(),
+      home: ref.watch(initializationProvider).when(
+            data: (_) => const ClickerGame(),
+            loading: () => const Scaffold(
+              body: Center(
+                child: CircularProgressIndicator(),
+              ),
+            ),
+            error: (error, _) => Scaffold(
+              body: Center(
+                child: Text('Error: $error'),
+              ),
+            ),
+          ),
+      // const ClickerGame(),
     );
   }
 }

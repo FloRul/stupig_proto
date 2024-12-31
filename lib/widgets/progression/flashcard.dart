@@ -14,15 +14,15 @@ class FlashCardWidget extends StatelessWidget {
       margin: const EdgeInsets.symmetric(vertical: 4),
       padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
-        color: _getRarityColor(card.rarity).withValues(alpha: 0.2),
+        color: _getRarityColor(card.concept.rarity).withValues(alpha: 0.2),
         borderRadius: BorderRadius.circular(8),
         border: Border.all(
-          color: _getRarityColor(card.rarity),
+          color: _getRarityColor(card.concept.rarity),
           width: 2,
         ),
         boxShadow: [
           BoxShadow(
-            color: _getRarityColor(card.rarity).withValues(alpha: 0.3),
+            color: _getRarityColor(card.concept.rarity).withValues(alpha: 0.3),
             blurRadius: 8,
             spreadRadius: 1,
           ),
@@ -32,16 +32,16 @@ class FlashCardWidget extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            card.name,
+            card.concept.name,
             style: TextStyle(
               fontSize: 12,
               fontWeight: FontWeight.bold,
-              color: _getRarityColor(card.rarity),
+              color: _getRarityColor(card.concept.rarity),
             ),
           ),
           const SizedBox(height: 4),
           Text(
-            card.content,
+            card.concept.content,
             style: TextStyle(
               fontSize: 10,
               color: Colors.grey.shade700,
