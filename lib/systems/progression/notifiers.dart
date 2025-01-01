@@ -63,7 +63,7 @@ Future<ProgressionRepository> progressionRepository(Ref ref) async {
 }
 
 @Riverpod(keepAlive: true)
-Future<List<Theme>> themes(Ref ref) async {
+Future<List<ProjectTheme>> themes(Ref ref) async {
   return (await ref.watch(progressionRepositoryProvider).value!.loadThemes());
 }
 

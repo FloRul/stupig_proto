@@ -1,5 +1,6 @@
 ﻿import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:stupig_proto/systems/progression/models.dart';
 import 'package:stupig_proto/systems/progression/notifiers.dart';
 import 'package:stupig_proto/widgets/common/glassmorphism_container.dart';
 
@@ -44,9 +45,9 @@ class ThemesList extends ConsumerWidget {
           Expanded(
             child: ListView(
               padding: const EdgeInsets.all(16),
-              children: const [
-                ThemeCard(),
-              ],
+              children: themes.map((theme) {
+                return ThemeCard(theme: theme);
+              }).toList(),
             ),
           ),
         ],
@@ -146,20 +147,23 @@ class ProgressCard extends StatelessWidget {
 }
 
 class ThemeCard extends StatelessWidget {
-  const ThemeCard({super.key});
+  const ThemeCard({super.key, required this.theme});
+  final ProjectTheme theme;
 
   @override
   Widget build(BuildContext context) {
     return ExpansionTile(
-      title: const Text('Theme Name'),
-      subtitle: const Text('Tier 1'),
+      title: Text(theme.name),
+      subtitle: Text('Unlocked: ${theme.progress.$1}/${theme.progress.$2}'),
       children: [
         ListView.builder(
           shrinkWrap: true,
           physics: const NeverScrollableScrollPhysics(),
-          itemCount: 3,
+          itemCount: theme.subthemes.length,
           itemBuilder: (context, index) {
-            return const SubthemeCard();
+            return SubthemeCard(
+              subtheme: theme.subthemes[index],
+            );
           },
         ),
       ],
@@ -168,14 +172,13 @@ class ThemeCard extends StatelessWidget {
 }
 
 class SubthemeCard extends StatelessWidget {
-  const SubthemeCard({super.key});
-
+  const SubthemeCard({super.key, required this.subtheme});
+  final Subtheme subtheme;
   @override
   Widget build(BuildContext context) {
-    return const ListTile(
-      title: Text('Subtheme Name'),
-      subtitle: Text('3/5 concepts unlocked'),
-      trailing: Icon(Icons.chevron_right),
+    return ListTile(
+      title: Text(subtheme.name),
+      subtitle: Text('Unlocked: ${subtheme.progress.$1}/${subtheme.progress.$2}'),
     );
   }
 }

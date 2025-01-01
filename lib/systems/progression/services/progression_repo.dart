@@ -61,7 +61,7 @@ class ProgressionRepository {
   }
 
   // Load themes with all related data
-  Future<List<Theme>> loadThemes() async {
+  Future<List<ProjectTheme>> loadThemes() async {
     final db = await _databaseHelper.database;
 
     final List<Map<String, dynamic>> themesData = await db.rawQuery('''
@@ -94,7 +94,7 @@ class ProgressionRepository {
     }
 
     // Convert grouped data into Theme objects
-    final List<Theme> themes = themeGroups.values.map((themeRows) {
+    final List<ProjectTheme> themes = themeGroups.values.map((themeRows) {
       final firstRow = themeRows.first;
 
       // Group subthemes
@@ -125,7 +125,7 @@ class ProgressionRepository {
         );
       }).toList();
 
-      return Theme(
+      return ProjectTheme(
         name: firstRow['theme_name'],
         tier: firstRow['tier'],
         subthemes: subthemes,

@@ -4,14 +4,23 @@ part 'models.freezed.dart';
 part 'models.g.dart';
 
 @freezed
-class Theme with _$Theme {
-  const factory Theme({
+class ProjectTheme with _$ProjectTheme {
+  const factory ProjectTheme({
     required String name,
     required int tier,
     required List<Subtheme> subthemes,
   }) = _Theme;
 
-  factory Theme.fromJson(Map<String, dynamic> json) => _$ThemeFromJson(json);
+  const ProjectTheme._();
+
+  (int, int) get progress {
+    final total = subthemes.fold(0, (previousValue, element) => previousValue + element.concepts.length);
+    final unlocked = subthemes.fold(
+        0, (previousValue, element) => previousValue + element.concepts.where((element) => element.unlocked).length);
+    return (unlocked, total);
+  }
+
+  factory ProjectTheme.fromJson(Map<String, dynamic> json) => _$ProjectThemeFromJson(json);
 }
 
 @freezed
@@ -20,6 +29,14 @@ class Subtheme with _$Subtheme {
     required String name,
     required List<Concept> concepts,
   }) = _Subtheme;
+
+  (int, int) get progress {
+    final total = concepts.length;
+    final unlocked = concepts.where((element) => element.unlocked).length;
+    return (unlocked, total);
+  }
+
+  const Subtheme._();
 
   factory Subtheme.fromJson(Map<String, dynamic> json) => _$SubthemeFromJson(json);
 }

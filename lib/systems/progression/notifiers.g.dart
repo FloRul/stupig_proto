@@ -42,11 +42,11 @@ final progressionRepositoryProvider =
 @Deprecated('Will be removed in 3.0. Use Ref instead')
 // ignore: unused_element
 typedef ProgressionRepositoryRef = FutureProviderRef<ProgressionRepository>;
-String _$themesHash() => r'62f8caab25dd7ca9c4dc12471c356dac6e13a65a';
+String _$themesHash() => r'8a442ab8bf2ded932ab24b652f67815891818756';
 
 /// See also [themes].
 @ProviderFor(themes)
-final themesProvider = FutureProvider<List<Theme>>.internal(
+final themesProvider = FutureProvider<List<ProjectTheme>>.internal(
   themes,
   name: r'themesProvider',
   debugGetCreateSourceHash:
@@ -57,7 +57,7 @@ final themesProvider = FutureProvider<List<Theme>>.internal(
 
 @Deprecated('Will be removed in 3.0. Use Ref instead')
 // ignore: unused_element
-typedef ThemesRef = FutureProviderRef<List<Theme>>;
+typedef ThemesRef = FutureProviderRef<List<ProjectTheme>>;
 String _$playerTierHash() => r'2d0c15137f381720366e97307fb0699d086af726';
 
 /// See also [playerTier].

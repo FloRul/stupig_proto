@@ -14,44 +14,46 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
-Theme _$ThemeFromJson(Map<String, dynamic> json) {
+ProjectTheme _$ProjectThemeFromJson(Map<String, dynamic> json) {
   return _Theme.fromJson(json);
 }
 
 /// @nodoc
-mixin _$Theme {
+mixin _$ProjectTheme {
   String get name => throw _privateConstructorUsedError;
   int get tier => throw _privateConstructorUsedError;
   List<Subtheme> get subthemes => throw _privateConstructorUsedError;
 
-  /// Serializes this Theme to a JSON map.
+  /// Serializes this ProjectTheme to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 
-  /// Create a copy of Theme
+  /// Create a copy of ProjectTheme
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $ThemeCopyWith<Theme> get copyWith => throw _privateConstructorUsedError;
+  $ProjectThemeCopyWith<ProjectTheme> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $ThemeCopyWith<$Res> {
-  factory $ThemeCopyWith(Theme value, $Res Function(Theme) then) =
-      _$ThemeCopyWithImpl<$Res, Theme>;
+abstract class $ProjectThemeCopyWith<$Res> {
+  factory $ProjectThemeCopyWith(
+          ProjectTheme value, $Res Function(ProjectTheme) then) =
+      _$ProjectThemeCopyWithImpl<$Res, ProjectTheme>;
   @useResult
   $Res call({String name, int tier, List<Subtheme> subthemes});
 }
 
 /// @nodoc
-class _$ThemeCopyWithImpl<$Res, $Val extends Theme>
-    implements $ThemeCopyWith<$Res> {
-  _$ThemeCopyWithImpl(this._value, this._then);
+class _$ProjectThemeCopyWithImpl<$Res, $Val extends ProjectTheme>
+    implements $ProjectThemeCopyWith<$Res> {
+  _$ProjectThemeCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of Theme
+  /// Create a copy of ProjectTheme
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -78,7 +80,8 @@ class _$ThemeCopyWithImpl<$Res, $Val extends Theme>
 }
 
 /// @nodoc
-abstract class _$$ThemeImplCopyWith<$Res> implements $ThemeCopyWith<$Res> {
+abstract class _$$ThemeImplCopyWith<$Res>
+    implements $ProjectThemeCopyWith<$Res> {
   factory _$$ThemeImplCopyWith(
           _$ThemeImpl value, $Res Function(_$ThemeImpl) then) =
       __$$ThemeImplCopyWithImpl<$Res>;
@@ -89,13 +92,13 @@ abstract class _$$ThemeImplCopyWith<$Res> implements $ThemeCopyWith<$Res> {
 
 /// @nodoc
 class __$$ThemeImplCopyWithImpl<$Res>
-    extends _$ThemeCopyWithImpl<$Res, _$ThemeImpl>
+    extends _$ProjectThemeCopyWithImpl<$Res, _$ThemeImpl>
     implements _$$ThemeImplCopyWith<$Res> {
   __$$ThemeImplCopyWithImpl(
       _$ThemeImpl _value, $Res Function(_$ThemeImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of Theme
+  /// Create a copy of ProjectTheme
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -123,12 +126,13 @@ class __$$ThemeImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$ThemeImpl implements _Theme {
+class _$ThemeImpl extends _Theme {
   const _$ThemeImpl(
       {required this.name,
       required this.tier,
       required final List<Subtheme> subthemes})
-      : _subthemes = subthemes;
+      : _subthemes = subthemes,
+        super._();
 
   factory _$ThemeImpl.fromJson(Map<String, dynamic> json) =>
       _$$ThemeImplFromJson(json);
@@ -147,7 +151,7 @@ class _$ThemeImpl implements _Theme {
 
   @override
   String toString() {
-    return 'Theme(name: $name, tier: $tier, subthemes: $subthemes)';
+    return 'ProjectTheme(name: $name, tier: $tier, subthemes: $subthemes)';
   }
 
   @override
@@ -166,7 +170,7 @@ class _$ThemeImpl implements _Theme {
   int get hashCode => Object.hash(
       runtimeType, name, tier, const DeepCollectionEquality().hash(_subthemes));
 
-  /// Create a copy of Theme
+  /// Create a copy of ProjectTheme
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
@@ -182,11 +186,12 @@ class _$ThemeImpl implements _Theme {
   }
 }
 
-abstract class _Theme implements Theme {
+abstract class _Theme extends ProjectTheme {
   const factory _Theme(
       {required final String name,
       required final int tier,
       required final List<Subtheme> subthemes}) = _$ThemeImpl;
+  const _Theme._() : super._();
 
   factory _Theme.fromJson(Map<String, dynamic> json) = _$ThemeImpl.fromJson;
 
@@ -197,7 +202,7 @@ abstract class _Theme implements Theme {
   @override
   List<Subtheme> get subthemes;
 
-  /// Create a copy of Theme
+  /// Create a copy of ProjectTheme
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -305,10 +310,11 @@ class __$$SubthemeImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$SubthemeImpl implements _Subtheme {
+class _$SubthemeImpl extends _Subtheme {
   const _$SubthemeImpl(
       {required this.name, required final List<Concept> concepts})
-      : _concepts = concepts;
+      : _concepts = concepts,
+        super._();
 
   factory _$SubthemeImpl.fromJson(Map<String, dynamic> json) =>
       _$$SubthemeImplFromJson(json);
@@ -358,10 +364,11 @@ class _$SubthemeImpl implements _Subtheme {
   }
 }
 
-abstract class _Subtheme implements Subtheme {
+abstract class _Subtheme extends Subtheme {
   const factory _Subtheme(
       {required final String name,
       required final List<Concept> concepts}) = _$SubthemeImpl;
+  const _Subtheme._() : super._();
 
   factory _Subtheme.fromJson(Map<String, dynamic> json) =
       _$SubthemeImpl.fromJson;
