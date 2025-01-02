@@ -109,7 +109,7 @@ class OpenedPackWidget extends ConsumerWidget {
             child: ElevatedButton(
               onPressed: () async {
                 for (var card in cards) {
-                  await ref.read(progressionRepositoryProvider).value!.unlockConcept(card.concept);
+                  await ref.read(progressionProvider.notifier).unlockConcept(card.concept);
                 }
                 Navigator.of(context).pop();
               },

@@ -63,7 +63,7 @@ class ThemesList extends ConsumerWidget {
   final void Function(Subtheme) onSelectedSubtheme;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    var themes = ref.watch(themesProvider).value!;
+    var themes = ref.watch(progressionProvider);
     return GlassmorphicContainer(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -72,14 +72,19 @@ class ThemesList extends ConsumerWidget {
           const Divider(),
           Expanded(
             child: ListView(
-              padding: const EdgeInsets.all(16),
-              children: themes.map((theme) {
-                return ThemeCard(
-                  theme: theme,
-                  onTap: onSelectedSubtheme,
-                );
-              }).toList(),
-            ),
+                padding: const EdgeInsets.all(16),
+                children: themes.when(
+                  data: (data) => data
+                      .map(
+                        (e) => ThemeCard(
+                          theme: e,
+                          onTap: onSelectedSubtheme,
+                        ),
+                      )
+                      .toList(),
+                  loading: () => const [CircularProgressIndicator()],
+                  error: (error, _) => [Text('Error: $error')],
+                )),
           ),
         ],
       ),
@@ -92,36 +97,45 @@ class ProgressionHeader extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    var progress = ref.watch(themesProvider).value!.fold<(int, int)>((0, 0), (previousValue, element) {
-      return (previousValue.$1 + element.progress.$1, previousValue.$2 + element.progress.$2);
-    });
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        const Text(
-          'Progression',
-          style: TextStyle(
-            fontSize: 24,
-            fontWeight: FontWeight.bold,
+    var progress = ref.watch(progressionProvider).whenData(
+          (value) => value.fold<(int, int)>(
+            (0, 0),
+            (previousValue, element) =>
+                (previousValue.$1 + element.progress.$1, previousValue.$2 + element.progress.$2),
           ),
-        ),
-        const SizedBox(height: 8),
-        Row(
-          children: [
-            ProgressCard(
-              title: 'Total Progress',
-              value: '${(progress.$1 / progress.$2).toStringAsFixed(2)}%',
-              color: Colors.blue,
+        );
+
+    return progress.when(
+      data: (data) => Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const Text(
+            'Progression',
+            style: TextStyle(
+              fontSize: 24,
+              fontWeight: FontWeight.bold,
             ),
-            const SizedBox(width: 16),
-            ProgressCard(
-              title: 'Unlocked Concepts',
-              value: '${progress.$1}/${progress.$2}',
-              color: Colors.green,
-            ),
-          ],
-        ),
-      ],
+          ),
+          const SizedBox(height: 8),
+          Row(
+            children: [
+              ProgressCard(
+                title: 'Total Progress',
+                value: '${(data.$1 / data.$2).toStringAsFixed(2)}%',
+                color: Colors.blue,
+              ),
+              const SizedBox(width: 16),
+              ProgressCard(
+                title: 'Unlocked Concepts',
+                value: '${data.$1}/${data.$2}',
+                color: Colors.green,
+              ),
+            ],
+          ),
+        ],
+      ),
+      loading: () => const CircularProgressIndicator(),
+      error: (error, _) => Text('Error: $error'),
     );
   }
 }
@@ -226,10 +240,6 @@ class SubthemeDetails extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    List<FlashCard>? flashCards;
-    if (subtheme != null) {
-      flashCards = ref.watch(subthemeFlashCardsProvider(subtheme!));
-    }
     return GlassmorphicContainer(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -247,7 +257,7 @@ class SubthemeDetails extends ConsumerWidget {
             ),
             Expanded(
               child: FlashCardsGrid(
-                flashCards: flashCards!,
+                flashCards: subtheme!.concepts.map((e) => FlashCard(concept: e, bonus: "Random bonus")).toList(),
               ),
             ),
           ]

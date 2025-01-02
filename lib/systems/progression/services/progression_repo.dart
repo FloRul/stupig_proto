@@ -5,10 +5,11 @@ import 'package:stupig_proto/systems/common/models.dart';
 import 'package:stupig_proto/systems/progression/models.dart';
 import 'package:stupig_proto/systems/progression/services/db_service.dart';
 
-class ProgressionRepository {
+// TODO: should me abstracted to avoid relying on the database implementation
+class ProgressionService {
   final DatabaseHelper _databaseHelper;
 
-  ProgressionRepository(this._databaseHelper);
+  ProgressionService(this._databaseHelper);
 
   Future<void> init(String assetPath) async {
     final hasData = await _databaseHelper.hasInitialData();

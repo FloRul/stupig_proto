@@ -2,6 +2,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:stupig_proto/systems/event_bus.dart';
 import 'package:stupig_proto/systems/game_event.dart';
+import 'package:stupig_proto/systems/progression/notifiers.dart';
 
 class DebugPanel extends ConsumerStatefulWidget {
   const DebugPanel({super.key});
@@ -77,7 +78,9 @@ class _DebugPanelState extends ConsumerState<DebugPanel> {
           const SizedBox(width: 8),
           ElevatedButton(
             child: const Text('Clear save'),
-            onPressed: () {},
+            onPressed: () async {
+              ref.read(progressionProvider.notifier).resetProgress();
+            },
           ),
         ],
       ),
