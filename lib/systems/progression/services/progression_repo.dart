@@ -1,7 +1,6 @@
 ﻿import 'dart:convert';
 
 import 'package:flutter/services.dart';
-import 'package:sqflite/sqflite.dart';
 import 'package:stupig_proto/systems/common/models.dart';
 import 'package:stupig_proto/systems/progression/models.dart';
 import 'package:stupig_proto/systems/progression/services/db_service.dart';

@@ -1,7 +1,7 @@
 ﻿import 'package:flutter/material.dart';
 
 ThemeData themeData = ThemeData(
-  // dividerTheme: DividerThemeData(color: Colors.white.withOpacity(0.2)),
+  // dividerTheme: DividerThemeData(color: Colors.white.withValues(alpha:0.2)),
   // scaffoldBackgroundColor: Colors.transparent,
   colorScheme: const ColorScheme.dark(),
   // navigationRailTheme: NavigationRailThemeData(
@@ -14,22 +14,22 @@ ThemeData themeData = ThemeData(
   // dataTableTheme: DataTableThemeData(
   //   dataRowColor: WidgetStateProperty.resolveWith<Color>((Set<WidgetState> states) {
   //     if (states.contains(WidgetState.selected)) {
-  //       return Colors.green[400]!.withOpacity(0.2);
+  //       return Colors.green[400]!.withValues(alpha:0.2);
   //     }
   //     return Colors.transparent;
   //   }),
   //   headingRowColor: WidgetStateProperty.resolveWith<Color>((Set<WidgetState> states) {
   //     if (states.contains(WidgetState.selected)) {
-  //       return Colors.green[400]!.withOpacity(0.2);
+  //       return Colors.green[400]!.withValues(alpha:0.2);
   //     }
   //     return Colors.transparent;
   //   }),
   // ),
   // inputDecorationTheme: InputDecorationTheme(
-  //   hintStyle: TextStyle(color: Colors.white.withOpacity(0.5)),
+  //   hintStyle: TextStyle(color: Colors.white.withValues(alpha:0.5)),
   //   suffixIconColor: Colors.green[400]!,
   //   filled: true,
-  //   fillColor: Colors.white.withOpacity(0.1),
+  //   fillColor: Colors.white.withValues(alpha:0.1),
   //   border: OutlineInputBorder(
   //     borderRadius: BorderRadius.circular(8),
   //     borderSide: BorderSide.none,
@@ -52,7 +52,7 @@ ThemeData themeData = ThemeData(
   //   }),
   //   trackColor: WidgetStateProperty.resolveWith<Color>((Set<WidgetState> states) {
   //     if (states.contains(WidgetState.selected)) {
-  //       return Colors.green[400]!.withOpacity(0.5);
+  //       return Colors.green[400]!.withValues(alpha:0.5);
   //     }
   //     return Colors.grey[700]!;
   //   }),
@@ -76,9 +76,9 @@ ThemeData themeData = ThemeData(
   //   backgroundColor: Colors.green[500],
   //   selectedColor: Colors.green[400]!,
   //   shape: const CircleBorder(side: BorderSide.none),
-  //   secondarySelectedColor: Colors.green[400]!.withOpacity(0.5),
+  //   secondarySelectedColor: Colors.green[400]!.withValues(alpha:0.5),
   //   disabledColor: Colors.grey[700]!,
   //   labelStyle: const TextStyle(color: Colors.white),
-  //   secondaryLabelStyle: TextStyle(color: Colors.white.withOpacity(0.5)),
+  //   secondaryLabelStyle: TextStyle(color: Colors.white.withValues(alpha:0.5)),
   // ),
 );

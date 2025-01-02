@@ -143,7 +143,7 @@ class ProgressCard extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: color.withOpacity(0.1),
+        color: color.withValues(alpha: 0.1),
         borderRadius: BorderRadius.circular(8),
       ),
       child: Column(
@@ -237,8 +237,8 @@ class SubthemeDetails extends ConsumerWidget {
           const SizedBox(height: 16),
           if (subtheme == null)
             const Text('Select a subtheme to view its concepts')
-          else
-            ...[Text(
+          else ...[
+            Text(
               subtheme!.name,
               style: const TextStyle(
                 fontSize: 24,
@@ -249,7 +249,8 @@ class SubthemeDetails extends ConsumerWidget {
               child: FlashCardsGrid(
                 flashCards: flashCards!,
               ),
-            ),]
+            ),
+          ]
         ],
       ),
     );
@@ -272,6 +273,7 @@ class FlashCardsGrid extends StatelessWidget {
       itemBuilder: (context, index) {
         return FlashCardWidget(
           card: flashCards[index],
+          unlocked: flashCards[index].concept.unlocked,
         );
       },
     );
