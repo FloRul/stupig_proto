@@ -6,11 +6,12 @@ part of 'notifiers.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$nextLvlFlashCardsHash() => r'9e5dc8e8803071bcf50ee42bff3887214283a04e';
+String _$nextLvlFlashCardsHash() => r'806fd84e1a70396077545fa00a7490a7bea018e4';
 
 /// See also [nextLvlFlashCards].
 @ProviderFor(nextLvlFlashCards)
-final nextLvlFlashCardsProvider = AutoDisposeProvider<List<FlashCard>>.internal(
+final nextLvlFlashCardsProvider =
+    AutoDisposeFutureProvider<List<FlashCard>>.internal(
   nextLvlFlashCards,
   name: r'nextLvlFlashCardsProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
@@ -22,9 +23,9 @@ final nextLvlFlashCardsProvider = AutoDisposeProvider<List<FlashCard>>.internal(
 
 @Deprecated('Will be removed in 3.0. Use Ref instead')
 // ignore: unused_element
-typedef NextLvlFlashCardsRef = AutoDisposeProviderRef<List<FlashCard>>;
+typedef NextLvlFlashCardsRef = AutoDisposeFutureProviderRef<List<FlashCard>>;
 String _$progressionRepositoryHash() =>
-    r'24348f1500c87b1997a88c26a372270af89cf62c';
+    r'6fcba740446e15c3d26ec5e76386f4e54206533a';
 
 /// See also [progressionRepository].
 @ProviderFor(progressionRepository)

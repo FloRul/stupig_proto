@@ -234,22 +234,22 @@ class SubthemeDetails extends ConsumerWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text(
-            'Selected Concept',
-            style: TextStyle(
-              fontSize: 24,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
           const SizedBox(height: 16),
           if (subtheme == null)
             const Text('Select a subtheme to view its concepts')
           else
+            ...[Text(
+              subtheme!.name,
+              style: const TextStyle(
+                fontSize: 24,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
             Expanded(
               child: FlashCardsGrid(
                 flashCards: flashCards!,
               ),
-            ),
+            ),]
         ],
       ),
     );

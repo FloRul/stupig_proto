@@ -40,9 +40,11 @@ class _BoosterPackDialogState extends ConsumerState<BoosterPackDialog> with Sing
         child: FlippableCard(
           flipController: _flipController,
           frontContent: const ClosedPackWidget(),
-          backContent: OpenedPackWidget(
-            cards: ref.watch(nextLvlFlashCardsProvider),
-          ),
+          backContent: ref.watch(nextLvlFlashCardsProvider).when(
+                data: (cards) => OpenedPackWidget(cards: cards),
+                loading: () => const Center(child: CircularProgressIndicator()),
+                error: (error, _) => Center(child: Text('Error: $error')),
+              ),
           onTap: () {
             _flipController.flip();
           },
@@ -50,7 +52,7 @@ class _BoosterPackDialogState extends ConsumerState<BoosterPackDialog> with Sing
   }
 }
 
-class OpenedPackWidget extends StatelessWidget {
+class OpenedPackWidget extends ConsumerWidget {
   const OpenedPackWidget({
     super.key,
     required this.cards,
@@ -59,7 +61,7 @@ class OpenedPackWidget extends StatelessWidget {
   final List<FlashCard> cards;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Container(
       clipBehavior: Clip.hardEdge,
       width: kDialogWidth,
@@ -105,7 +107,12 @@ class OpenedPackWidget extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(16),
             child: ElevatedButton(
-              onPressed: () => Navigator.of(context).pop(),
+              onPressed: () async {
+                for (var card in cards) {
+                  await ref.read(progressionRepositoryProvider).value!.unlockConcept(card.concept);
+                }
+                Navigator.of(context).pop();
+              },
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.blue.shade400,
                 foregroundColor: Colors.white,

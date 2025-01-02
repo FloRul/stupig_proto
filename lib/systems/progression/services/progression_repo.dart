@@ -11,7 +11,7 @@ class ProgressionRepository {
 
   ProgressionRepository(this._databaseHelper);
 
-  Future<void> initializeIfNeeded(String assetPath) async {
+  Future<void> init(String assetPath) async {
     final hasData = await _databaseHelper.hasInitialData();
     if (!hasData) {
       await importInitialData(assetPath);
@@ -135,56 +135,53 @@ class ProgressionRepository {
     return themes;
   }
 
+  Future<List<Concept>> getRandomLockedConcepts(int currentTier, int count) async {
+    final db = await _databaseHelper.database;
+
+    // Get random locked concepts from themes with tier <= currentTier
+    final List<Map<String, dynamic>> conceptsData = await db.rawQuery('''
+    SELECT 
+      c.name as name,
+      c.rarity as rarity,
+      c.content as content,
+      up.unlocked as unlocked
+    FROM concepts c
+    JOIN subthemes s ON c.subtheme_id = s.id
+    JOIN themes t ON s.theme_id = t.id
+    JOIN user_progress up ON c.id = up.concept_id
+    WHERE up.unlocked = 0
+    AND t.tier <= ?
+    ORDER BY RANDOM()
+    LIMIT ?
+  ''', [currentTier, count]);
+
+    // Convert to List<Concept>
+    return conceptsData
+        .map((data) => Concept(
+              name: data['name'],
+              rarity: Rarity.fromString(data['rarity']),
+              content: data['content'],
+              unlocked: data['unlocked'] == 1,
+            ))
+        .toList();
+  }
+
   // Unlock a concept
-  Future<void> unlockConcept(String themeName, String subthemeName, String conceptName) async {
+  Future<void> unlockConcept(Concept concept) async {
     final db = await _databaseHelper.database;
 
     await db.rawUpdate('''
-      UPDATE user_progress
-      SET unlocked = 1, unlock_date = ?
-      WHERE concept_id IN (
-        SELECT c.id
-        FROM concepts c
-        JOIN subthemes s ON c.subtheme_id = s.id
-        JOIN themes t ON s.theme_id = t.id
-        WHERE t.name = ? AND s.name = ? AND c.name = ?
-      )
-    ''', [
-      DateTime.now().toIso8601String(),
-      themeName,
-      subthemeName,
-      conceptName,
-    ]);
-  }
-
-  // Get progress statistics
-  Future<Map<String, dynamic>> getProgressStats() async {
-    final db = await _databaseHelper.database;
-
-    final totalConcepts = Sqflite.firstIntValue(await db.rawQuery('SELECT COUNT(*) FROM concepts')) ?? 0;
-
-    final unlockedConcepts =
-        Sqflite.firstIntValue(await db.rawQuery('SELECT COUNT(*) FROM user_progress WHERE unlocked = 1')) ?? 0;
-
-    final Map<String, int> rarityStats = {};
-    final List<Map<String, dynamic>> rarityData = await db.rawQuery('''
-      SELECT c.rarity, COUNT(*) as count
+    UPDATE user_progress
+    SET unlocked = 1, unlock_date = ?
+    WHERE concept_id IN (
+      SELECT c.id
       FROM concepts c
-      JOIN user_progress up ON c.id = up.concept_id
-      WHERE up.unlocked = 1
-      GROUP BY c.rarity
-    ''');
-
-    for (var row in rarityData) {
-      rarityStats[row['rarity']] = row['count'];
-    }
-
-    return {
-      'totalConcepts': totalConcepts,
-      'unlockedConcepts': unlockedConcepts,
-      'progressPercentage': (unlockedConcepts / totalConcepts * 100).toStringAsFixed(1),
-      'rarityBreakdown': rarityStats,
-    };
+      WHERE c.name = ?
+    )
+  ''', [
+      DateTime.now().toIso8601String(),
+      concept.name,
+    ]);
   }
 
   // Reset progress
