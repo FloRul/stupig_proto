@@ -5,7 +5,7 @@ import 'package:stupig_proto/systems/progression/models.dart';
 import 'package:stupig_proto/systems/progression/notifiers.dart';
 import 'package:stupig_proto/utils/constants.dart';
 import 'package:stupig_proto/widgets/common/flippable_card.dart';
-import 'package:stupig_proto/widgets/progression/flashcard.dart';
+import 'package:stupig_proto/widgets/progression/flashcard_widget.dart';
 import 'package:collection/collection.dart';
 
 class BoosterPackDialog extends ConsumerStatefulWidget {

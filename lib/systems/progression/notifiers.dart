@@ -67,6 +67,11 @@ Future<List<ProjectTheme>> themes(Ref ref) async {
   return (await ref.watch(progressionRepositoryProvider).value!.loadThemes());
 }
 
+@riverpod
+List<FlashCard> subthemeFlashCards(Ref ref, Subtheme subtheme) {
+  return subtheme.concepts.map((e) => FlashCard(concept: e, bonus: "Random bonus")).toList();
+}
+
 @Riverpod(keepAlive: true)
 int playerTier(Ref ref) {
   var currentLevel = ref.watch(experienceNotifierProvider.select((value) => value.level));

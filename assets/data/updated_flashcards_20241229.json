@@ -2607,7 +2607,7 @@
                         },
                         {
                             "name": "Environment Variables",
-                            "rarity": "common",
+                            "rarity": "uncommon",
                             "unlocked": false,
                             "content": "Environment variables in backend development are like the secret sauce in your web development recipe\u2014they're the clandestine ingredients that keep your application's sensitive data, like API keys and database passwords, hidden from prying eyes, ensuring your digital feast is both delicious and secure."
                         },
@@ -2619,13 +2619,13 @@
                         },
                         {
                             "name": "Rate Limiting",
-                            "rarity": "uncommon",
+                            "rarity": "rare",
                             "unlocked": false,
                             "content": "Rate limiting in backend development is like telling a hyperactive toddler to calm down and take a chill pill; it's the digital equivalent of saying, \"Whoa there, buddy! Let's not flood the server with requests faster than a caffeinated squirrel on a sugar rush, or we'll all end up in a tangled mess of timeouts and errors.\""
                         },
                         {
                             "name": "Caching",
-                            "rarity": "uncommon",
+                            "rarity": "rare",
                             "unlocked": false,
                             "content": "Caching in web development is like having a sneaky, clever sous-chef in the backend kitchen who remembers the most fabulous dishes (data) you've already cooked up, so when the head chef (frontend) demands them again, they can be served lightning-fast without reheating, ensuring your digital diners (users) get their gourmet experience without a second's wait."
                         },
@@ -2643,13 +2643,13 @@
                         },
                         {
                             "name": "Event-Driven Architecture",
-                            "rarity": "rare",
+                            "rarity": "epic",
                             "unlocked": false,
                             "content": "In the wild world of web development, Event-Driven Architecture is like a hyperactive backend DJ, constantly spinning records (events) and dropping beats (code executions) in real-time, ensuring the party (user experience) never stops, even if the kitchen (database) catches fire."
                         },
                         {
                             "name": "Serverless Functions",
-                            "rarity": "rare",
+                            "rarity": "epic",
                             "unlocked": false,
                             "content": "Serverless Functions are like the mischievous elves of web development; they pop up out of nowhere to handle backend tasks with zero server management hassle, leaving developers both amazed and slightly bewildered at their magical convenience."
                         },
@@ -2661,13 +2661,13 @@
                         },
                         {
                             "name": "API Rate Limiting and Throttling",
-                            "rarity": "uncommon",
+                            "rarity": "epic",
                             "unlocked": false,
                             "content": "In the chaotic world of backend development, API rate limiting and throttling are like the bouncers at a swanky web development club, ensuring that no single rowdy app crashes the party by sending too many requests, while keeping the smooth groove of data flow going for everyone else."
                         },
                         {
                             "name": "Distributed Systems",
-                            "rarity": "epic",
+                            "rarity": "legendary",
                             "unlocked": false,
                             "content": "Distributed Systems in backend development are like a chaotic game of telephone played by a bunch of overcaffeinated servers across the globe, desperately trying to keep the web running smoothly while occasionally dropping the ball and blaming the network lag for their mishaps."
                         },

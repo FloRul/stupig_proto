@@ -42,9 +42,12 @@ class FlashCardWidget extends StatelessWidget {
           const SizedBox(height: 4),
           Text(
             card.concept.content,
-            style: TextStyle(
+            maxLines: 5,
+            softWrap: true,
+            style: const TextStyle(
+              overflow: TextOverflow.ellipsis,
               fontSize: 10,
-              color: Colors.grey.shade700,
+              color: Colors.white,
             ),
           ),
           const SizedBox(height: 4),
