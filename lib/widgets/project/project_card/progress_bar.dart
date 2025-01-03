@@ -3,21 +3,21 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:stupig_proto/systems/global_ticker.dart/global_ticker.dart';
 import 'package:stupig_proto/systems/projects/project_state.dart';
 
-class ProjectProgress extends ConsumerStatefulWidget {
+class ProgressBar extends ConsumerStatefulWidget {
   final Completion progress;
   final VoidCallback? onComplete;
 
-  const ProjectProgress({
+  const ProgressBar({
     super.key,
     required this.progress,
     this.onComplete,
   });
 
   @override
-  ConsumerState<ProjectProgress> createState() => _ProjectProgressState();
+  ConsumerState<ProgressBar> createState() => _ProjectProgressState();
 }
 
-class _ProjectProgressState extends ConsumerState<ProjectProgress> {
+class _ProjectProgressState extends ConsumerState<ProgressBar> {
   late bool _isComplete;
   late Completion _completion;
 

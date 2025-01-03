@@ -5,8 +5,8 @@ import 'package:stupig_proto/systems/feature_unlock/notifiers.dart';
 import 'package:stupig_proto/systems/projects/models.dart';
 import 'package:stupig_proto/systems/projects/project_state.dart';
 import 'package:stupig_proto/widgets/common/flippable_card.dart';
-import 'package:stupig_proto/widgets/project/project_card/card.dart';
-import 'package:stupig_proto/widgets/project/project_card/progress.dart';
+import 'package:stupig_proto/widgets/project/project_card/active.dart';
+import 'package:stupig_proto/widgets/project/project_card/cooldown_bar.dart';
 import 'package:stupig_proto/widgets/project/project_card/reward.dart';
 import 'package:stupig_proto/widgets/project/project_card/title.dart';
 
@@ -23,10 +23,10 @@ class AvailableProjectCard extends ConsumerStatefulWidget {
   });
 
   @override
-  ConsumerState<AvailableProjectCard> createState() => _InactiveProjectCardState();
+  ConsumerState<AvailableProjectCard> createState() => AvailableProjectCardState();
 }
 
-class _InactiveProjectCardState extends ConsumerState<AvailableProjectCard> with SingleTickerProviderStateMixin {
+class AvailableProjectCardState extends ConsumerState<AvailableProjectCard> with SingleTickerProviderStateMixin {
   final _flipController = FlipCardController();
 
   @override
@@ -59,8 +59,8 @@ class _InactiveProjectCardState extends ConsumerState<AvailableProjectCard> with
           ),
           const SizedBox(height: 16),
           if (!widget.canFlip)
-            ProjectProgress(
-              progress: widget.cooldown,
+            CooldownBar(
+              cooldown: widget.cooldown,
             ),
           const SizedBox(height: 16),
           RewardWidget(

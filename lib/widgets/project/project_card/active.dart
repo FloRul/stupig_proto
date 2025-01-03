@@ -6,7 +6,7 @@ import 'package:stupig_proto/systems/game_event.dart';
 import 'package:stupig_proto/systems/projects/notifiers.dart';
 import 'package:stupig_proto/systems/projects/project_state.dart';
 import 'package:stupig_proto/widgets/common/flippable_card.dart';
-import 'package:stupig_proto/widgets/project/project_card/progress.dart';
+import 'package:stupig_proto/widgets/project/project_card/progress_bar.dart';
 import 'package:stupig_proto/widgets/project/project_card/reward.dart';
 import 'package:stupig_proto/widgets/project/project_card/title.dart';
 
@@ -110,7 +110,7 @@ class _ActiveProjectCardState extends ConsumerState<ActiveProjectCard> with Tick
         children: [
           ProjectCardTitle(title: widget.pState.project.name),
           const SizedBox(height: 16),
-          ProjectProgress(
+          ProgressBar(
             progress: widget.pState.completion,
             onComplete: () =>
                 ref.read(eventBusProvider.notifier).publish(GameEvent.projectCompleted(project: widget.pState.project)),
