@@ -60,8 +60,7 @@ class _InactiveProjectCardState extends ConsumerState<AvailableProjectCard> with
           const SizedBox(height: 16),
           if (!widget.canFlip)
             ProjectProgress(
-              progress: widget.cooldown.progress,
-              isComplete: false,
+              progress: widget.cooldown,
             ),
           const SizedBox(height: 16),
           RewardWidget(

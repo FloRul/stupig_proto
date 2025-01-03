@@ -111,8 +111,7 @@ class _ActiveProjectCardState extends ConsumerState<ActiveProjectCard> with Tick
           ProjectCardTitle(title: widget.pState.project.name),
           const SizedBox(height: 16),
           ProjectProgress(
-            progress: widget.pState.completion.progress,
-            isComplete: widget.pState.completion.isComplete,
+            progress: widget.pState.completion,
             onComplete: () =>
                 ref.read(eventBusProvider.notifier).publish(GameEvent.projectCompleted(project: widget.pState.project)),
           ),
