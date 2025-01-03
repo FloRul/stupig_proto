@@ -12,25 +12,6 @@ import 'package:uuid/uuid.dart';
 part 'notifiers.g.dart';
 
 @Riverpod(keepAlive: true)
-class ActiveProjectNotifier extends _$ActiveProjectNotifier {
-  @override
-  ActiveProjectState build(ActiveProjectState projectState) {
-    return projectState;
-  }
-
-  void tick() {
-    // Only tick if the project isn't already complete
-    if (!state.completion.isComplete) {
-      state = state.copyWith(completion: state.completion.tick());
-    }
-  }
-
-  void complete() {
-    ref.read(projectsNotifierProvider.notifier).completeProject(state);
-  }
-}
-
-@Riverpod(keepAlive: true)
 class ProjectsNotifier extends _$ProjectsNotifier {
   @override
   ProjectsState build() {
@@ -43,17 +24,6 @@ class ProjectsNotifier extends _$ProjectsNotifier {
             orElse: () {},
           ),
         );
-      },
-    );
-    ref.listen(
-      globalTickerProvider,
-      (previous, next) {
-        // Only tick active and incomplete projects
-        for (var p in state.activeProjects) {
-          if (!p.completion.isComplete) {
-            ref.read(activeProjectNotifierProvider(p).notifier).tick();
-          }
-        }
       },
     );
 
@@ -78,7 +48,6 @@ class ProjectsNotifier extends _$ProjectsNotifier {
   }
 
   void completeProject(ActiveProjectState projectState) {
-    // Check if the project is already in completedProjects to prevent duplicate completions
     // TODO this is a temporary solution, we should probably use a Set instead of a List
     if (state.completedProjects.contains(projectState.project)) {
       return;
@@ -105,6 +74,18 @@ class ProjectsNotifier extends _$ProjectsNotifier {
 class AvailableProjectsNotifier extends _$AvailableProjectsNotifier {
   @override
   List<AvailableProjectState> build() {
+    ref.listen(
+      eventBusProvider,
+      (previous, next) {
+        next.whenData(
+          (event) => event.maybeMap(
+            projectStarted: (pStarted) => _handleStartProject(pStarted.project),
+            orElse: () {},
+          ),
+        );
+      },
+    );
+
     return [
       AvailableProjectState.initial(
         Project(
@@ -120,11 +101,10 @@ class AvailableProjectsNotifier extends _$AvailableProjectsNotifier {
     ];
   }
 
-  Future<void> startProject(AvailableProjectState projectState) async {
-    ref.read(eventBusProvider.notifier).publish(GameEvent.projectStarted(project: projectState.project));
+  Future<void> _handleStartProject(Project project) async {
     state = [
       for (var p in state)
-        if (p != projectState) p,
+        if (p.project.id != project.id) p,
     ];
     var nextProject = await _fetchNewProject();
     state = [...state, nextProject];

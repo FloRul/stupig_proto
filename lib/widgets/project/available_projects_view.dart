@@ -7,7 +7,7 @@ import 'package:stupig_proto/widgets/common/glassmorphism_container.dart';
 import 'package:stupig_proto/widgets/project/project_card/available.dart';
 
 class AvailableProjects extends ConsumerWidget {
-  const AvailableProjects({super.key}); 
+  const AvailableProjects({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -27,10 +27,18 @@ class AvailableProjects extends ConsumerWidget {
               feedback: SizedBox(
                 width: constraints.maxWidth,
                 height: constraints.maxHeight,
-                child: AvailableProjectCard(aPstate: availableProjects[index]),
+                child: AvailableProjectCard(
+                  project: availableProjects[index].project,
+                  cooldown: availableProjects[index].cooldown,
+                  canFlip: availableProjects[index].isReadyToStart,
+                ),
               ),
               data: availableProjects[index],
-              child: AvailableProjectCard(aPstate: availableProjects[index]),
+              child: AvailableProjectCard(
+                project: availableProjects[index].project,
+                cooldown: availableProjects[index].cooldown,
+                canFlip: availableProjects[index].isReadyToStart,
+              ),
             );
           });
         },

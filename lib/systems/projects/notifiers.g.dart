@@ -6,8 +6,41 @@ part of 'notifiers.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$activeProjectNotifierHash() =>
-    r'726bb42b644c4361ead52395e6c8f6dba385de11';
+String _$projectsNotifierHash() => r'8b09d387a3dc21a7987106ee6f85e0a6aa014405';
+
+/// See also [ProjectsNotifier].
+@ProviderFor(ProjectsNotifier)
+final projectsNotifierProvider =
+    NotifierProvider<ProjectsNotifier, ProjectsState>.internal(
+  ProjectsNotifier.new,
+  name: r'projectsNotifierProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$projectsNotifierHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef _$ProjectsNotifier = Notifier<ProjectsState>;
+String _$availableProjectsNotifierHash() =>
+    r'07976326c78f19cb38fd7c341e691a35ecbc8ecd';
+
+/// See also [AvailableProjectsNotifier].
+@ProviderFor(AvailableProjectsNotifier)
+final availableProjectsNotifierProvider = NotifierProvider<
+    AvailableProjectsNotifier, List<AvailableProjectState>>.internal(
+  AvailableProjectsNotifier.new,
+  name: r'availableProjectsNotifierProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$availableProjectsNotifierHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef _$AvailableProjectsNotifier = Notifier<List<AvailableProjectState>>;
+String _$availableProjectNotifierHash() =>
+    r'2203c6f6b38e3ae32a047e52333f226e51ca4d0a';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -29,188 +62,6 @@ class _SystemHash {
     return 0x1fffffff & (hash + ((0x00003fff & hash) << 15));
   }
 }
-
-abstract class _$ActiveProjectNotifier
-    extends BuildlessNotifier<ActiveProjectState> {
-  late final ActiveProjectState projectState;
-
-  ActiveProjectState build(
-    ActiveProjectState projectState,
-  );
-}
-
-/// See also [ActiveProjectNotifier].
-@ProviderFor(ActiveProjectNotifier)
-const activeProjectNotifierProvider = ActiveProjectNotifierFamily();
-
-/// See also [ActiveProjectNotifier].
-class ActiveProjectNotifierFamily extends Family<ActiveProjectState> {
-  /// See also [ActiveProjectNotifier].
-  const ActiveProjectNotifierFamily();
-
-  /// See also [ActiveProjectNotifier].
-  ActiveProjectNotifierProvider call(
-    ActiveProjectState projectState,
-  ) {
-    return ActiveProjectNotifierProvider(
-      projectState,
-    );
-  }
-
-  @override
-  ActiveProjectNotifierProvider getProviderOverride(
-    covariant ActiveProjectNotifierProvider provider,
-  ) {
-    return call(
-      provider.projectState,
-    );
-  }
-
-  static const Iterable<ProviderOrFamily>? _dependencies = null;
-
-  @override
-  Iterable<ProviderOrFamily>? get dependencies => _dependencies;
-
-  static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
-
-  @override
-  Iterable<ProviderOrFamily>? get allTransitiveDependencies =>
-      _allTransitiveDependencies;
-
-  @override
-  String? get name => r'activeProjectNotifierProvider';
-}
-
-/// See also [ActiveProjectNotifier].
-class ActiveProjectNotifierProvider
-    extends NotifierProviderImpl<ActiveProjectNotifier, ActiveProjectState> {
-  /// See also [ActiveProjectNotifier].
-  ActiveProjectNotifierProvider(
-    ActiveProjectState projectState,
-  ) : this._internal(
-          () => ActiveProjectNotifier()..projectState = projectState,
-          from: activeProjectNotifierProvider,
-          name: r'activeProjectNotifierProvider',
-          debugGetCreateSourceHash:
-              const bool.fromEnvironment('dart.vm.product')
-                  ? null
-                  : _$activeProjectNotifierHash,
-          dependencies: ActiveProjectNotifierFamily._dependencies,
-          allTransitiveDependencies:
-              ActiveProjectNotifierFamily._allTransitiveDependencies,
-          projectState: projectState,
-        );
-
-  ActiveProjectNotifierProvider._internal(
-    super._createNotifier, {
-    required super.name,
-    required super.dependencies,
-    required super.allTransitiveDependencies,
-    required super.debugGetCreateSourceHash,
-    required super.from,
-    required this.projectState,
-  }) : super.internal();
-
-  final ActiveProjectState projectState;
-
-  @override
-  ActiveProjectState runNotifierBuild(
-    covariant ActiveProjectNotifier notifier,
-  ) {
-    return notifier.build(
-      projectState,
-    );
-  }
-
-  @override
-  Override overrideWith(ActiveProjectNotifier Function() create) {
-    return ProviderOverride(
-      origin: this,
-      override: ActiveProjectNotifierProvider._internal(
-        () => create()..projectState = projectState,
-        from: from,
-        name: null,
-        dependencies: null,
-        allTransitiveDependencies: null,
-        debugGetCreateSourceHash: null,
-        projectState: projectState,
-      ),
-    );
-  }
-
-  @override
-  NotifierProviderElement<ActiveProjectNotifier, ActiveProjectState>
-      createElement() {
-    return _ActiveProjectNotifierProviderElement(this);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return other is ActiveProjectNotifierProvider &&
-        other.projectState == projectState;
-  }
-
-  @override
-  int get hashCode {
-    var hash = _SystemHash.combine(0, runtimeType.hashCode);
-    hash = _SystemHash.combine(hash, projectState.hashCode);
-
-    return _SystemHash.finish(hash);
-  }
-}
-
-@Deprecated('Will be removed in 3.0. Use Ref instead')
-// ignore: unused_element
-mixin ActiveProjectNotifierRef on NotifierProviderRef<ActiveProjectState> {
-  /// The parameter `projectState` of this provider.
-  ActiveProjectState get projectState;
-}
-
-class _ActiveProjectNotifierProviderElement
-    extends NotifierProviderElement<ActiveProjectNotifier, ActiveProjectState>
-    with ActiveProjectNotifierRef {
-  _ActiveProjectNotifierProviderElement(super.provider);
-
-  @override
-  ActiveProjectState get projectState =>
-      (origin as ActiveProjectNotifierProvider).projectState;
-}
-
-String _$projectsNotifierHash() => r'46273ef9485ad68e95dbeba1010954a8bca5731a';
-
-/// See also [ProjectsNotifier].
-@ProviderFor(ProjectsNotifier)
-final projectsNotifierProvider =
-    NotifierProvider<ProjectsNotifier, ProjectsState>.internal(
-  ProjectsNotifier.new,
-  name: r'projectsNotifierProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$projectsNotifierHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
-
-typedef _$ProjectsNotifier = Notifier<ProjectsState>;
-String _$availableProjectsNotifierHash() =>
-    r'9f85139b7b069298b70b41ee63c8bb64aae443bb';
-
-/// See also [AvailableProjectsNotifier].
-@ProviderFor(AvailableProjectsNotifier)
-final availableProjectsNotifierProvider = NotifierProvider<
-    AvailableProjectsNotifier, List<AvailableProjectState>>.internal(
-  AvailableProjectsNotifier.new,
-  name: r'availableProjectsNotifierProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$availableProjectsNotifierHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
-
-typedef _$AvailableProjectsNotifier = Notifier<List<AvailableProjectState>>;
-String _$availableProjectNotifierHash() =>
-    r'2203c6f6b38e3ae32a047e52333f226e51ca4d0a';
 
 abstract class _$AvailableProjectNotifier
     extends BuildlessNotifier<AvailableProjectState> {

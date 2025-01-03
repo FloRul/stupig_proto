@@ -1,5 +1,7 @@
 ﻿import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:stupig_proto/systems/event_bus.dart';
+import 'package:stupig_proto/systems/game_event.dart';
 import 'package:stupig_proto/systems/projects/project_state.dart';
 import 'package:stupig_proto/systems/projects/notifiers.dart';
 import 'package:stupig_proto/utils/constants.dart';
@@ -49,7 +51,7 @@ class _InprogressProjectsState extends ConsumerState<InprogressProjects> {
           child: DragTarget<AvailableProjectState>(
             onWillAcceptWithDetails: (d) => true,
             onAcceptWithDetails: (details) async =>
-                ref.read(availableProjectsNotifierProvider.notifier).startProject(details.data),
+                ref.read(eventBusProvider.notifier).publish(GameEvent.projectStarted(project: details.data.project)),
             builder: (context, candidateData, rejectedData) {
               return GlassmorphicContainer(
                 isHighlighted: candidateData.isNotEmpty,

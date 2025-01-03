@@ -10,7 +10,6 @@ class ActiveProjectState with _$ActiveProjectState {
   const factory ActiveProjectState({
     required Project project,
     required Completion completion,
-    
     required bool displayCompletionDetails,
   }) = _ActiveProjectState;
 
@@ -23,7 +22,6 @@ class ActiveProjectState with _$ActiveProjectState {
       ActiveProjectState(
         project: project,
         completion: Completion.initial(seed),
-        
         displayCompletionDetails: displayCompletionDetails,
       );
 
@@ -90,7 +88,7 @@ class AvailableProjectState with _$AvailableProjectState {
         ),
       );
 
-  bool get isAvailable => cooldown.isComplete;
+  bool get isReadyToStart => cooldown.isComplete;
 
   const AvailableProjectState._();
   factory AvailableProjectState.fromJson(Map<String, Object?> json) => _$AvailableProjectStateFromJson(json);
