@@ -1,6 +1,8 @@
 ﻿// base_project_card.dart
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:stupig_proto/systems/event_bus.dart';
+import 'package:stupig_proto/systems/game_event.dart';
 import 'package:stupig_proto/systems/projects/notifiers.dart';
 import 'package:stupig_proto/systems/projects/project_state.dart';
 import 'package:stupig_proto/widgets/common/flippable_card.dart';
@@ -71,11 +73,11 @@ class ProjectCardBack extends StatelessWidget {
 
 // active_project_card.dart
 class ActiveProjectCard extends ConsumerStatefulWidget {
-  final ActiveProjectState project;
+  final ActiveProjectState pState;
 
   const ActiveProjectCard({
     super.key,
-    required this.project,
+    required this.pState,
   });
 
   @override
@@ -99,9 +101,6 @@ class _ActiveProjectCardState extends ConsumerState<ActiveProjectCard> with Tick
 
   @override
   Widget build(BuildContext context) {
-    final pState = ref.watch(activeProjectNotifierProvider(widget.project));
-    final notifier = ref.read(activeProjectNotifierProvider(widget.project).notifier);
-
     return FlippableCard(
       flipController: _flipController,
       onTap: () => _flipController.flip(),
@@ -109,19 +108,20 @@ class _ActiveProjectCardState extends ConsumerState<ActiveProjectCard> with Tick
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          ProjectCardTitle(title: pState.project.name),
+          ProjectCardTitle(title: widget.pState.project.name),
           const SizedBox(height: 16),
           ProjectProgress(
-            progress: pState.completion.progress,
-            isComplete: pState.completion.isComplete,
-            onComplete: notifier.complete,
+            progress: widget.pState.completion.progress,
+            isComplete: widget.pState.completion.isComplete,
+            onComplete: () =>
+                ref.read(eventBusProvider.notifier).publish(GameEvent.projectCompleted(project: widget.pState.project)),
           ),
           const SizedBox(height: 16),
-          RewardWidget(reward: pState.project.reward),
+          RewardWidget(reward: widget.pState.project.reward),
         ],
       ),
       backContent: ProjectCardBack(
-        description: pState.project.description,
+        description: widget.pState.project.description,
       ),
     );
   }

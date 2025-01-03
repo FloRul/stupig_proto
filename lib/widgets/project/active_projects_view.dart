@@ -98,7 +98,7 @@ class _InprogressProjectsState extends ConsumerState<InprogressProjects> {
       ),
       child: FadeTransition(
         opacity: animation,
-        child: ActiveProjectCard(project: project),
+        child: ActiveProjectCard(pState: project),
       ),
     );
   }
@@ -129,7 +129,7 @@ class _InprogressProjectsState extends ConsumerState<InprogressProjects> {
   Widget _buildRemovedItem(ActiveProjectState project, Animation<double> animation) {
     return FadeTransition(
       opacity: animation,
-      child: ActiveProjectCard(project: project),
+      child: ActiveProjectCard(pState: project),
     );
   }
 }
