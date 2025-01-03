@@ -2,11 +2,8 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:stupig_proto/systems/event_bus.dart';
 import 'package:stupig_proto/widgets/progression/booster_opening_dialog.dart';
-import 'package:stupig_proto/widgets/common/group_area.dart';
-import 'package:stupig_proto/widgets/debug/debug_panel.dart';
 import 'package:stupig_proto/widgets/progression/progression_page.dart';
-import 'package:stupig_proto/widgets/project/projects_view.dart';
-import 'widgets/resources_panel.dart';
+import 'package:stupig_proto/widgets/project/project_page.dart';
 
 enum GamePage {
   main,
@@ -87,60 +84,13 @@ class _ClickerGameState extends ConsumerState<ClickerGame> {
               controller: _pageController,
               physics: const NeverScrollableScrollPhysics(),
               children: const [
-                MainGameView(),
+                MainGamePage(),
                 ProgressionPage(),
               ],
             ),
           ),
         ],
       ),
-    );
-  }
-}
-
-class MainGameView extends StatelessWidget {
-  const MainGameView({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const Column(
-      children: [
-        Expanded(
-          child: Padding(
-            padding: EdgeInsets.all(8.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Expanded(
-                  child: GroupArea(
-                    title: 'Resources',
-                    child: ResourcesView(),
-                  ),
-                ),
-                Expanded(
-                  flex: 2,
-                  child: GroupArea(
-                    title: 'Projects',
-                    child: Column(
-                      children: [
-                        Expanded(flex: 2, child: InprogressProjects()),
-                        SizedBox(height: 16.0),
-                        Expanded(child: InactiveProjects()),
-                      ],
-                    ),
-                  ),
-                ),
-                Expanded(
-                  child: GroupArea(
-                    title: 'Upgrades',
-                  ),
-                )
-              ],
-            ),
-          ),
-        ),
-        SizedBox(height: kToolbarHeight, child: DebugPanel()),
-      ],
     );
   }
 }

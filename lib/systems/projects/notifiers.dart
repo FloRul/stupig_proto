@@ -11,7 +11,7 @@ import 'package:uuid/uuid.dart';
 
 part 'notifiers.g.dart';
 
-@riverpod
+@Riverpod(keepAlive: true)
 class ActiveProjectNotifier extends _$ActiveProjectNotifier {
   @override
   ActiveProjectState build(ActiveProjectState projectState) {
@@ -148,7 +148,7 @@ class AvailableProjectsNotifier extends _$AvailableProjectsNotifier {
   }
 }
 
-@riverpod
+@Riverpod(keepAlive: true)
 class AvailableProjectNotifier extends _$AvailableProjectNotifier {
   @override
   AvailableProjectState build(AvailableProjectState projectState) {

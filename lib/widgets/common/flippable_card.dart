@@ -77,14 +77,22 @@ class FlippableCard extends StatelessWidget {
       child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(16),
-          gradient: const LinearGradient(
+          gradient: LinearGradient(
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
-            colors: [Color(0xFF7C3AED), Color(0xFF2563EB)],
+            colors: [
+              Color((Random().nextDouble() * 0xFFFFFF).toInt() | 0xFF000000),
+              Color((Random().nextDouble() * 0xFFFFFF).toInt() | 0xFF000000),
+            ],
           ),
         ),
         child: Padding(
-          padding: const EdgeInsets.all(16.0),
+          padding: const EdgeInsets.only(
+            top: 12,
+            left: 12,
+            right: 12,
+            bottom: 8,
+          ),
           child: content,
         ),
       ),

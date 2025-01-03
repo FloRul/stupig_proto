@@ -5,7 +5,7 @@ import 'package:stupig_proto/systems/progression/notifiers.dart';
 
 part 'notifiers.g.dart';
 
-@riverpod
+@Riverpod(keepAlive: true)
 Future<void> initialization(Ref ref) async {
   print('Initializing...');
   await ref.read(progressionRepositoryProvider.future);

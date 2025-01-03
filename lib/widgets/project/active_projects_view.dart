@@ -4,7 +4,7 @@ import 'package:stupig_proto/systems/projects/project_state.dart';
 import 'package:stupig_proto/systems/projects/notifiers.dart';
 import 'package:stupig_proto/utils/constants.dart';
 import 'package:stupig_proto/widgets/common/glassmorphism_container.dart';
-import 'package:stupig_proto/widgets/project/project_card.dart';
+import 'package:stupig_proto/widgets/project/project_card/card.dart';
 
 class InprogressProjects extends ConsumerStatefulWidget {
   const InprogressProjects({super.key});
@@ -128,44 +128,6 @@ class _InprogressProjectsState extends ConsumerState<InprogressProjects> {
     return FadeTransition(
       opacity: animation,
       child: ActiveProjectCard(project: project),
-    );
-  }
-}
-
-class InactiveProjects extends ConsumerWidget {
-  const InactiveProjects({super.key});
-
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    var availableProjects = ref.watch(availableProjectsNotifierProvider);
-    return GlassmorphicContainer(
-      child: LayoutBuilder(
-        builder: (context, constraints) {
-          final crossAxisCount = (constraints.maxWidth / 250).ceil().toInt();
-          return GridView.builder(
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: crossAxisCount,
-              crossAxisSpacing: 16.0,
-              mainAxisSpacing: 16.0,
-              childAspectRatio: kCardAspectRatio,
-            ),
-            itemCount: availableProjects.length,
-            itemBuilder: (context, index) {
-              return Draggable<AvailableProjectState>(
-                feedback: SizedBox(
-                  width: 150,
-                  child: AspectRatio(
-                    aspectRatio: kCardAspectRatio,
-                    child: InactiveProjectCard(aPstate: availableProjects[index]),
-                  ),
-                ),
-                data: availableProjects[index],
-                child: InactiveProjectCard(aPstate: availableProjects[index]),
-              );
-            },
-          );
-        },
-      ),
     );
   }
 }

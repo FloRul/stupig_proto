@@ -5,58 +5,8 @@ import 'package:stupig_proto/systems/feature_unlock/notifiers.dart';
 import 'package:stupig_proto/systems/projects/notifiers.dart';
 import 'package:stupig_proto/systems/projects/project_state.dart';
 import 'package:stupig_proto/widgets/common/flippable_card.dart';
-import 'package:stupig_proto/widgets/project/reward.dart';
-
-// project_card_components.dart
-class ProjectCardTitle extends StatelessWidget {
-  final String title;
-  final bool showFlipIndicator;
-
-  const ProjectCardTitle({
-    super.key,
-    required this.title,
-    this.showFlipIndicator = true,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Expanded(
-          child: Text(
-            title,
-            style: const TextStyle(
-              fontSize: 16,
-              fontWeight: FontWeight.bold,
-              color: Colors.white,
-            ),
-            overflow: TextOverflow.ellipsis,
-          ),
-        ),
-        if (showFlipIndicator)
-          const Row(
-            children: [
-              Text(
-                'Flip',
-                style: TextStyle(
-                  color: Colors.white70,
-                  fontSize: 14,
-                ),
-              ),
-              SizedBox(width: 4),
-              Icon(
-                Icons.rotate_right,
-                color: Colors.white70,
-                size: 16,
-              ),
-            ],
-          ),
-      ],
-    );
-  }
-}
+import 'package:stupig_proto/widgets/project/project_card/reward.dart';
+import 'package:stupig_proto/widgets/project/project_card/title.dart';
 
 class ProjectProgress extends StatelessWidget {
   final double progress;
@@ -213,19 +163,19 @@ class _ActiveProjectCardState extends ConsumerState<ActiveProjectCard> with Tick
 }
 
 // inactive_project_card.dart
-class InactiveProjectCard extends ConsumerStatefulWidget {
+class AvailableProjectCard extends ConsumerStatefulWidget {
   final AvailableProjectState aPstate;
 
-  const InactiveProjectCard({
+  const AvailableProjectCard({
     super.key,
     required this.aPstate,
   });
 
   @override
-  ConsumerState<InactiveProjectCard> createState() => _InactiveProjectCardState();
+  ConsumerState<AvailableProjectCard> createState() => _InactiveProjectCardState();
 }
 
-class _InactiveProjectCardState extends ConsumerState<InactiveProjectCard> with SingleTickerProviderStateMixin {
+class _InactiveProjectCardState extends ConsumerState<AvailableProjectCard> with SingleTickerProviderStateMixin {
   final _flipController = FlipCardController();
 
   @override

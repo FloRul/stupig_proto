@@ -1,6 +1,5 @@
 ﻿import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-import 'package:stupig_proto/systems/event_bus.dart';
 import 'package:stupig_proto/systems/primary_resources/notifiers.dart';
 import 'package:stupig_proto/systems/progression/models.dart';
 import 'package:stupig_proto/systems/progression/services/db_service.dart';

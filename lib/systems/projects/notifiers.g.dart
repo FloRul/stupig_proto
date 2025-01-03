@@ -7,7 +7,7 @@ part of 'notifiers.dart';
 // **************************************************************************
 
 String _$activeProjectNotifierHash() =>
-    r'44d63fcdecf9d4d67d02a651f037e8c8408dbd03';
+    r'726bb42b644c4361ead52395e6c8f6dba385de11';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -31,7 +31,7 @@ class _SystemHash {
 }
 
 abstract class _$ActiveProjectNotifier
-    extends BuildlessAutoDisposeNotifier<ActiveProjectState> {
+    extends BuildlessNotifier<ActiveProjectState> {
   late final ActiveProjectState projectState;
 
   ActiveProjectState build(
@@ -82,8 +82,8 @@ class ActiveProjectNotifierFamily extends Family<ActiveProjectState> {
 }
 
 /// See also [ActiveProjectNotifier].
-class ActiveProjectNotifierProvider extends AutoDisposeNotifierProviderImpl<
-    ActiveProjectNotifier, ActiveProjectState> {
+class ActiveProjectNotifierProvider
+    extends NotifierProviderImpl<ActiveProjectNotifier, ActiveProjectState> {
   /// See also [ActiveProjectNotifier].
   ActiveProjectNotifierProvider(
     ActiveProjectState projectState,
@@ -139,7 +139,7 @@ class ActiveProjectNotifierProvider extends AutoDisposeNotifierProviderImpl<
   }
 
   @override
-  AutoDisposeNotifierProviderElement<ActiveProjectNotifier, ActiveProjectState>
+  NotifierProviderElement<ActiveProjectNotifier, ActiveProjectState>
       createElement() {
     return _ActiveProjectNotifierProviderElement(this);
   }
@@ -161,15 +161,14 @@ class ActiveProjectNotifierProvider extends AutoDisposeNotifierProviderImpl<
 
 @Deprecated('Will be removed in 3.0. Use Ref instead')
 // ignore: unused_element
-mixin ActiveProjectNotifierRef
-    on AutoDisposeNotifierProviderRef<ActiveProjectState> {
+mixin ActiveProjectNotifierRef on NotifierProviderRef<ActiveProjectState> {
   /// The parameter `projectState` of this provider.
   ActiveProjectState get projectState;
 }
 
 class _ActiveProjectNotifierProviderElement
-    extends AutoDisposeNotifierProviderElement<ActiveProjectNotifier,
-        ActiveProjectState> with ActiveProjectNotifierRef {
+    extends NotifierProviderElement<ActiveProjectNotifier, ActiveProjectState>
+    with ActiveProjectNotifierRef {
   _ActiveProjectNotifierProviderElement(super.provider);
 
   @override
@@ -211,10 +210,10 @@ final availableProjectsNotifierProvider = NotifierProvider<
 
 typedef _$AvailableProjectsNotifier = Notifier<List<AvailableProjectState>>;
 String _$availableProjectNotifierHash() =>
-    r'f65d6af1b1dfba10cb5717eb40719062b16f3d27';
+    r'2203c6f6b38e3ae32a047e52333f226e51ca4d0a';
 
 abstract class _$AvailableProjectNotifier
-    extends BuildlessAutoDisposeNotifier<AvailableProjectState> {
+    extends BuildlessNotifier<AvailableProjectState> {
   late final AvailableProjectState projectState;
 
   AvailableProjectState build(
@@ -265,7 +264,7 @@ class AvailableProjectNotifierFamily extends Family<AvailableProjectState> {
 }
 
 /// See also [AvailableProjectNotifier].
-class AvailableProjectNotifierProvider extends AutoDisposeNotifierProviderImpl<
+class AvailableProjectNotifierProvider extends NotifierProviderImpl<
     AvailableProjectNotifier, AvailableProjectState> {
   /// See also [AvailableProjectNotifier].
   AvailableProjectNotifierProvider(
@@ -322,8 +321,8 @@ class AvailableProjectNotifierProvider extends AutoDisposeNotifierProviderImpl<
   }
 
   @override
-  AutoDisposeNotifierProviderElement<AvailableProjectNotifier,
-      AvailableProjectState> createElement() {
+  NotifierProviderElement<AvailableProjectNotifier, AvailableProjectState>
+      createElement() {
     return _AvailableProjectNotifierProviderElement(this);
   }
 
@@ -345,14 +344,14 @@ class AvailableProjectNotifierProvider extends AutoDisposeNotifierProviderImpl<
 @Deprecated('Will be removed in 3.0. Use Ref instead')
 // ignore: unused_element
 mixin AvailableProjectNotifierRef
-    on AutoDisposeNotifierProviderRef<AvailableProjectState> {
+    on NotifierProviderRef<AvailableProjectState> {
   /// The parameter `projectState` of this provider.
   AvailableProjectState get projectState;
 }
 
-class _AvailableProjectNotifierProviderElement
-    extends AutoDisposeNotifierProviderElement<AvailableProjectNotifier,
-        AvailableProjectState> with AvailableProjectNotifierRef {
+class _AvailableProjectNotifierProviderElement extends NotifierProviderElement<
+    AvailableProjectNotifier,
+    AvailableProjectState> with AvailableProjectNotifierRef {
   _AvailableProjectNotifierProviderElement(super.provider);
 
   @override

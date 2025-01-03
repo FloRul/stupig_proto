@@ -69,7 +69,6 @@ class ThemesList extends ConsumerWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const ProgressionHeader(),
-          const Divider(),
           Expanded(
             child: ListView(
                 padding: const EdgeInsets.all(16),
@@ -196,22 +195,26 @@ class ThemeCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ExpansionTile(
-      title: Text(theme.name),
-      subtitle: Text('Unlocked: ${theme.progress.$1}/${theme.progress.$2}'),
-      children: [
-        ListView.builder(
-          shrinkWrap: true,
-          physics: const NeverScrollableScrollPhysics(),
-          itemCount: theme.subthemes.length,
-          itemBuilder: (context, index) {
-            return SubthemeCard(
-              onTap: onTap,
-              subtheme: theme.subthemes[index],
-            );
-          },
-        ),
-      ],
+    return Theme(
+      data: Theme.of(context).copyWith(dividerColor: Colors.transparent),
+      child: ExpansionTile(
+        childrenPadding: const EdgeInsets.only(left: 16),
+        title: Text(theme.name),
+        subtitle: Text('Unlocked: ${theme.progress.$1}/${theme.progress.$2}'),
+        children: [
+          ListView.builder(
+            shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
+            itemCount: theme.subthemes.length,
+            itemBuilder: (context, index) {
+              return SubthemeCard(
+                onTap: onTap,
+                subtheme: theme.subthemes[index],
+              );
+            },
+          ),
+        ],
+      ),
     );
   }
 }

@@ -138,20 +138,35 @@ class ProgressionService {
   Future<List<Concept>> getRandomLockedConcepts(int currentTier, int count) async {
     final db = await _databaseHelper.database;
 
-    // Get random locked concepts from themes with tier <= currentTier
+    // Using CASE statement to assign weights based on rarity
     final List<Map<String, dynamic>> conceptsData = await db.rawQuery('''
+    WITH weighted_concepts AS (
+      SELECT 
+        c.name as name,
+        c.rarity as rarity,
+        c.content as content,
+        up.unlocked as unlocked,
+        CASE c.rarity
+          WHEN 'common' THEN 100
+          WHEN 'uncommon' THEN 60
+          WHEN 'rare' THEN 30
+          WHEN 'epic' THEN 15
+          WHEN 'legendary' THEN 5
+        END as weight
+      FROM concepts c
+      JOIN subthemes s ON c.subtheme_id = s.id
+      JOIN themes t ON s.theme_id = t.id
+      JOIN user_progress up ON c.id = up.concept_id
+      WHERE up.unlocked = 0
+      AND t.tier <= ?
+    )
     SELECT 
-      c.name as name,
-      c.rarity as rarity,
-      c.content as content,
-      up.unlocked as unlocked
-    FROM concepts c
-    JOIN subthemes s ON c.subtheme_id = s.id
-    JOIN themes t ON s.theme_id = t.id
-    JOIN user_progress up ON c.id = up.concept_id
-    WHERE up.unlocked = 0
-    AND t.tier <= ?
-    ORDER BY RANDOM()
+      name,
+      rarity,
+      content,
+      unlocked
+    FROM weighted_concepts
+    ORDER BY RANDOM() * weight DESC
     LIMIT ?
   ''', [currentTier, count]);
 
