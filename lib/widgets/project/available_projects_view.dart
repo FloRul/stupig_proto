@@ -4,10 +4,10 @@ import 'package:stupig_proto/systems/projects/project_state.dart';
 import 'package:stupig_proto/systems/projects/notifiers.dart';
 import 'package:stupig_proto/utils/constants.dart';
 import 'package:stupig_proto/widgets/common/glassmorphism_container.dart';
-import 'package:stupig_proto/widgets/project/project_card/card.dart';
+import 'package:stupig_proto/widgets/project/project_card/available.dart';
 
 class AvailableProjects extends ConsumerWidget {
-  const AvailableProjects({super.key});
+  const AvailableProjects({super.key}); 
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

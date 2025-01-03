@@ -56,36 +56,44 @@ class FlippableCard extends StatelessWidget {
             transform: transform,
             alignment: Alignment.center,
             child: angle < pi / 2
-                ? _buildCardSide(frontContent)
+                ? CardSide(child: frontContent)
                 : Transform(
                     transform: Matrix4.identity()..rotateY(pi),
                     alignment: Alignment.center,
-                    child: _buildCardSide(backContent),
+                    child: CardSide(child: backContent),
                   ),
           );
         },
       ),
     );
   }
+}
 
-  Widget _buildCardSide(Widget content) {
+class CardSide extends StatelessWidget {
+  const CardSide({
+    super.key,
+    required this.child,
+    this.gradient= const LinearGradient(
+    begin: Alignment.topLeft,
+    end: Alignment.bottomRight,
+    colors: [
+      Colors.green,
+      Colors.blue,
+    ],
+  ),
+  });
+
+  final Widget child;
+  final Gradient gradient ;
+  @override
+  Widget build(BuildContext context) {
     return Card(
       elevation: 8,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(16),
       ),
       child: Container(
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(16),
-          gradient: LinearGradient(
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-            colors: [
-              Color((Random().nextDouble() * 0xFFFFFF).toInt() | 0xFF000000),
-              Color((Random().nextDouble() * 0xFFFFFF).toInt() | 0xFF000000),
-            ],
-          ),
-        ),
+        decoration: BoxDecoration(borderRadius: BorderRadius.circular(16), gradient: gradient),
         child: Padding(
           padding: const EdgeInsets.only(
             top: 12,
@@ -93,7 +101,7 @@ class FlippableCard extends StatelessWidget {
             right: 12,
             bottom: 8,
           ),
-          child: content,
+          child: child,
         ),
       ),
     );
