@@ -17,8 +17,9 @@ class Project with _$Project {
 }
 
 @freezed
-class ProjectBoardState with _$ProjectBoardState {
-  const factory ProjectBoardState({required List<Project> projects}) = _ProjectBoardState;
-
-  factory ProjectBoardState.fromJson(Map<String, Object?> json) => _$ProjectBoardStateFromJson(json);
+class AvailableProjectsState with _$AvailableProjectsState {
+  const factory AvailableProjectsState({
+    required List<Project> projects,
+    required Map<String, Completion> cooldowns,
+  }) = _AvailableProjectsState;
 }

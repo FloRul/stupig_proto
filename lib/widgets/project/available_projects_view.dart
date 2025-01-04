@@ -20,7 +20,7 @@ class AvailableProjects extends ConsumerWidget {
           mainAxisSpacing: 16.0,
           childAspectRatio: kCardAspectRatio,
         ),
-        itemCount: availableProjects.length,
+        itemCount: availableProjects.projects.length,
         itemBuilder: (context, index) {
           return LayoutBuilder(builder: (context, constraints) {
             return Draggable<Project>(
@@ -28,13 +28,13 @@ class AvailableProjects extends ConsumerWidget {
                 width: constraints.maxWidth,
                 height: constraints.maxHeight,
                 child: AvailableProjectCard(
-                  project: availableProjects[index],
+                  project: availableProjects.projects[index],
                   canFlip: true,
                 ),
               ),
-              data: availableProjects[index],
+              data: availableProjects.projects[index],
               child: AvailableProjectCard(
-                project: availableProjects[index],
+                project: availableProjects.projects[index],
                 canFlip: true,
               ),
             );

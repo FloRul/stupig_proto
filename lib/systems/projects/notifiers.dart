@@ -67,43 +67,97 @@ class ActiveProjectsNotifier extends _$ActiveProjectsNotifier {
 @Riverpod(keepAlive: true)
 class AvailableProjectsNotifier extends _$AvailableProjectsNotifier {
   @override
-  List<Project> build() {
+  AvailableProjectsState build() {
     ref.listen(
       eventBusProvider,
       (previous, next) {
         next.whenData(
           (event) => event.maybeMap(
-            projectStarted: (pStarted) => handleStartProject(pStarted.project),
+            projectStarted: (pStarted) => _handleStartProject(pStarted.project),
             orElse: () {},
           ),
         );
       },
     );
-    return [
-      Project(
-        id: const Uuid().v4(),
-        name: 'Project 1',
-        description: 'Project 1 Description',
-        reward: const ProjectReward(
-          moneyAmount: 1,
-          xpAmount: 1,
+
+    // Listen to global ticker for cooldown updates
+    ref.listen(
+      globalTickerProvider,
+      (previous, next) => _handleTick(),
+    );
+
+    return AvailableProjectsState(
+      projects: [
+        Project(
+          id: const Uuid().v4(),
+          name: 'Project 1',
+          description: 'Project 1 Description',
+          reward: const ProjectReward(
+            moneyAmount: 1,
+            xpAmount: 1,
+          ),
         ),
-      ),
-    ];
+      ],
+      cooldowns: {},
+    );
   }
 
-  Future<void> handleStartProject(Project project) async {
-    state = [
-      for (var p in state)
-        if (p.id != project.id) p,
-    ];
-    var nextProject = await fetchNewProject();
-    state = [...state, nextProject];
+  void _handleTick() {
+    if (state.cooldowns.isEmpty) return;
+
+    final newCooldowns = Map<String, Completion>.from(state.cooldowns);
+    var completedCooldowns = <String>[];
+
+    // Update each cooldown
+    for (var entry in newCooldowns.entries) {
+      final tickedCompletion = entry.value.tick();
+      if (tickedCompletion.isComplete) {
+        completedCooldowns.add(entry.key);
+      } else {
+        newCooldowns[entry.key] = tickedCompletion;
+      }
+    }
+
+    // Remove completed cooldowns and fetch new projects
+    for (var projectId in completedCooldowns) {
+      newCooldowns.remove(projectId);
+      _fetchProjectAfterCooldown(projectId);
+    }
+
+    if (newCooldowns != state.cooldowns) {
+      state = state.copyWith(cooldowns: newCooldowns);
+    }
   }
 
-  Future<Project> fetchNewProject() async {
+  Future<void> _handleStartProject(Project project) async {
+    state = state.copyWith(
+      projects: [
+        for (var p in state.projects)
+          if (p.id != project.id) p,
+      ],
+      cooldowns: {
+        ...state.cooldowns,
+        project.id: Completion.initial(
+          state.cooldowns.length,
+        ),
+      },
+    );
+  }
+
+  Future<void> _fetchProjectAfterCooldown(String projectId) async {
+    try {
+      final newProject = await _fetchNewProject();
+      state = state.copyWith(
+        projects: [...state.projects, newProject],
+      );
+    } catch (e) {
+      print('Error fetching new project: $e');
+    }
+  }
+
+  Future<Project> _fetchNewProject() async {
     await Future.delayed(const Duration(seconds: 1));
-    // TODO call API to fetch new project
+    // TODO: Replace with actual API call
     var id = Random().nextInt(100000).toString();
     return Project(
       id: const Uuid().v4(),
@@ -113,6 +167,20 @@ class AvailableProjectsNotifier extends _$AvailableProjectsNotifier {
         moneyAmount: 1,
         xpAmount: 1 + ref.read(experienceNotifierProvider).level * Random().nextInt(10),
       ),
+    );
+  }
+
+  void modifyCooldownRate(String projectId, double multiplier) {
+    if (!state.cooldowns.containsKey(projectId)) return;
+
+    final cooldown = state.cooldowns[projectId]!;
+    state = state.copyWith(
+      cooldowns: {
+        ...state.cooldowns,
+        projectId: cooldown.copyWith(
+          multipliers: [...cooldown.multipliers, multiplier],
+        ),
+      },
     );
   }
 }
