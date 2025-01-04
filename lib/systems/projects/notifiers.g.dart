@@ -6,12 +6,12 @@ part of 'notifiers.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$projectsNotifierHash() => r'009a2a6eb8e7fa156205baff8596feaa0e9620a6';
+String _$projectsNotifierHash() => r'2358e4e8486e35461c955be479add7fbd871d094';
 
 /// See also [ProjectsNotifier].
 @ProviderFor(ProjectsNotifier)
 final projectsNotifierProvider =
-    NotifierProvider<ProjectsNotifier, ProjectsState>.internal(
+    NotifierProvider<ProjectsNotifier, List<ProjectState>>.internal(
   ProjectsNotifier.new,
   name: r'projectsNotifierProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
@@ -21,14 +21,14 @@ final projectsNotifierProvider =
   allTransitiveDependencies: null,
 );
 
-typedef _$ProjectsNotifier = Notifier<ProjectsState>;
+typedef _$ProjectsNotifier = Notifier<List<ProjectState>>;
 String _$availableProjectsNotifierHash() =>
-    r'07976326c78f19cb38fd7c341e691a35ecbc8ecd';
+    r'e991dc55c80bd8a9492a4959f314bec28f69a9f6';
 
 /// See also [AvailableProjectsNotifier].
 @ProviderFor(AvailableProjectsNotifier)
-final availableProjectsNotifierProvider = NotifierProvider<
-    AvailableProjectsNotifier, List<AvailableProjectState>>.internal(
+final availableProjectsNotifierProvider =
+    NotifierProvider<AvailableProjectsNotifier, List<ProjectState>>.internal(
   AvailableProjectsNotifier.new,
   name: r'availableProjectsNotifierProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
@@ -38,9 +38,9 @@ final availableProjectsNotifierProvider = NotifierProvider<
   allTransitiveDependencies: null,
 );
 
-typedef _$AvailableProjectsNotifier = Notifier<List<AvailableProjectState>>;
+typedef _$AvailableProjectsNotifier = Notifier<List<ProjectState>>;
 String _$availableProjectNotifierHash() =>
-    r'2203c6f6b38e3ae32a047e52333f226e51ca4d0a';
+    r'db592b7ff73522cf8c9b0723ee2bc514638b82a3';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -64,11 +64,11 @@ class _SystemHash {
 }
 
 abstract class _$AvailableProjectNotifier
-    extends BuildlessNotifier<AvailableProjectState> {
-  late final AvailableProjectState projectState;
+    extends BuildlessNotifier<ProjectState> {
+  late final ProjectState projectState;
 
-  AvailableProjectState build(
-    AvailableProjectState projectState,
+  ProjectState build(
+    ProjectState projectState,
   );
 }
 
@@ -77,13 +77,13 @@ abstract class _$AvailableProjectNotifier
 const availableProjectNotifierProvider = AvailableProjectNotifierFamily();
 
 /// See also [AvailableProjectNotifier].
-class AvailableProjectNotifierFamily extends Family<AvailableProjectState> {
+class AvailableProjectNotifierFamily extends Family<ProjectState> {
   /// See also [AvailableProjectNotifier].
   const AvailableProjectNotifierFamily();
 
   /// See also [AvailableProjectNotifier].
   AvailableProjectNotifierProvider call(
-    AvailableProjectState projectState,
+    ProjectState projectState,
   ) {
     return AvailableProjectNotifierProvider(
       projectState,
@@ -115,11 +115,11 @@ class AvailableProjectNotifierFamily extends Family<AvailableProjectState> {
 }
 
 /// See also [AvailableProjectNotifier].
-class AvailableProjectNotifierProvider extends NotifierProviderImpl<
-    AvailableProjectNotifier, AvailableProjectState> {
+class AvailableProjectNotifierProvider
+    extends NotifierProviderImpl<AvailableProjectNotifier, ProjectState> {
   /// See also [AvailableProjectNotifier].
   AvailableProjectNotifierProvider(
-    AvailableProjectState projectState,
+    ProjectState projectState,
   ) : this._internal(
           () => AvailableProjectNotifier()..projectState = projectState,
           from: availableProjectNotifierProvider,
@@ -144,10 +144,10 @@ class AvailableProjectNotifierProvider extends NotifierProviderImpl<
     required this.projectState,
   }) : super.internal();
 
-  final AvailableProjectState projectState;
+  final ProjectState projectState;
 
   @override
-  AvailableProjectState runNotifierBuild(
+  ProjectState runNotifierBuild(
     covariant AvailableProjectNotifier notifier,
   ) {
     return notifier.build(
@@ -172,7 +172,7 @@ class AvailableProjectNotifierProvider extends NotifierProviderImpl<
   }
 
   @override
-  NotifierProviderElement<AvailableProjectNotifier, AvailableProjectState>
+  NotifierProviderElement<AvailableProjectNotifier, ProjectState>
       createElement() {
     return _AvailableProjectNotifierProviderElement(this);
   }
@@ -194,19 +194,18 @@ class AvailableProjectNotifierProvider extends NotifierProviderImpl<
 
 @Deprecated('Will be removed in 3.0. Use Ref instead')
 // ignore: unused_element
-mixin AvailableProjectNotifierRef
-    on NotifierProviderRef<AvailableProjectState> {
+mixin AvailableProjectNotifierRef on NotifierProviderRef<ProjectState> {
   /// The parameter `projectState` of this provider.
-  AvailableProjectState get projectState;
+  ProjectState get projectState;
 }
 
-class _AvailableProjectNotifierProviderElement extends NotifierProviderElement<
-    AvailableProjectNotifier,
-    AvailableProjectState> with AvailableProjectNotifierRef {
+class _AvailableProjectNotifierProviderElement
+    extends NotifierProviderElement<AvailableProjectNotifier, ProjectState>
+    with AvailableProjectNotifierRef {
   _AvailableProjectNotifierProviderElement(super.provider);
 
   @override
-  AvailableProjectState get projectState =>
+  ProjectState get projectState =>
       (origin as AvailableProjectNotifierProvider).projectState;
 }
 // ignore_for_file: type=lint

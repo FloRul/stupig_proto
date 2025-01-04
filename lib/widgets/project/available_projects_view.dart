@@ -23,7 +23,7 @@ class AvailableProjects extends ConsumerWidget {
         itemCount: availableProjects.length,
         itemBuilder: (context, index) {
           return LayoutBuilder(builder: (context, constraints) {
-            return Draggable<AvailableProjectState>(
+            return Draggable<ProjectState>(
               feedback: SizedBox(
                 width: constraints.maxWidth,
                 height: constraints.maxHeight,

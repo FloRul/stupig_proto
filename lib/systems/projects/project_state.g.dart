@@ -12,6 +12,7 @@ _$ActiveProjectStateImpl _$$ActiveProjectStateImplFromJson(
       project: Project.fromJson(json['project'] as Map<String, dynamic>),
       completion:
           Completion.fromJson(json['completion'] as Map<String, dynamic>),
+      $type: json['runtimeType'] as String?,
     );
 
 Map<String, dynamic> _$$ActiveProjectStateImplToJson(
@@ -19,6 +20,25 @@ Map<String, dynamic> _$$ActiveProjectStateImplToJson(
     <String, dynamic>{
       'project': instance.project,
       'completion': instance.completion,
+      'runtimeType': instance.$type,
+    };
+
+_$AvailableProjectStateImpl _$$AvailableProjectStateImplFromJson(
+        Map<String, dynamic> json) =>
+    _$AvailableProjectStateImpl(
+      project: Project.fromJson(json['project'] as Map<String, dynamic>),
+      cooldown: json['cooldown'] == null
+          ? null
+          : Completion.fromJson(json['cooldown'] as Map<String, dynamic>),
+      $type: json['runtimeType'] as String?,
+    );
+
+Map<String, dynamic> _$$AvailableProjectStateImplToJson(
+        _$AvailableProjectStateImpl instance) =>
+    <String, dynamic>{
+      'project': instance.project,
+      'cooldown': instance.cooldown,
+      'runtimeType': instance.$type,
     };
 
 _$ProjectRewardImpl _$$ProjectRewardImplFromJson(Map<String, dynamic> json) =>
@@ -49,18 +69,4 @@ Map<String, dynamic> _$$CompletionImplToJson(_$CompletionImpl instance) =>
       'completedAmount': instance.completedAmount,
       'baseRate': instance.baseRate,
       'multipliers': instance.multipliers,
-    };
-
-_$AvailableProjectStateImpl _$$AvailableProjectStateImplFromJson(
-        Map<String, dynamic> json) =>
-    _$AvailableProjectStateImpl(
-      project: Project.fromJson(json['project'] as Map<String, dynamic>),
-      cooldown: Completion.fromJson(json['cooldown'] as Map<String, dynamic>),
-    );
-
-Map<String, dynamic> _$$AvailableProjectStateImplToJson(
-        _$AvailableProjectStateImpl instance) =>
-    <String, dynamic>{
-      'project': instance.project,
-      'cooldown': instance.cooldown,
     };

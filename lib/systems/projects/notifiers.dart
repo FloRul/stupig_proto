@@ -14,74 +14,81 @@ part 'notifiers.g.dart';
 @Riverpod(keepAlive: true)
 class ProjectsNotifier extends _$ProjectsNotifier {
   @override
-  ProjectsState build() {
+  List<ProjectState> build() {
     ref.listen(
       eventBusProvider,
       (previous, next) {
         next.whenData(
           (event) => event.maybeMap(
-            projectStarted: (pStarted) => _handleStartProject(pStarted.project),
-            projectCompleted: (pCompleted) => _handleCompletedProject(pCompleted.project),
+            projectStarted: (e) => _handleStartProject(e.project),
+            projectCompleted: (e) => _handleCompletedProject(e.project),
             orElse: () {},
           ),
         );
       },
     );
-
-    return const ProjectsState(
-      activeProjects: [],
-      completedProjects: [],
+    ref.listen(
+      globalTickerProvider,
+      (previous, next) => _handleTick(),
     );
+    return [];
   }
 
   void _handleStartProject(Project project) {
-    state = state.copyWith(
-      activeProjects: [
-        ...state.activeProjects,
-        ActiveProjectState.fromProject(
-          project,
-          Random().nextInt(2),
-          false,
-        )
-      ],
-    );
+    state = [
+      ...state,
+      ProjectState.activeFromProject(
+        project,
+        Random().nextInt(2),
+      )
+    ];
+  }
+
+  void _handleTick() {
+    state = [
+      for (var p in state)
+        p.maybeMap(
+          available: (availableState) => availableState.copyWith(
+            cooldown: availableState.cooldown?.tick(),
+          ),
+          orElse: () => p,
+        ),
+    ];
   }
 
   void _handleCompletedProject(Project project) {
-    if (state.completedProjects.any((p) => p.id == project.id)) {
-      return;
-    }
-
     ref.read(eventBusProvider.notifier).publish(GameEvent.moneyEarned(amount: project.reward.moneyAmount));
     ref.read(eventBusProvider.notifier).publish(GameEvent.xpEarned(amount: project.reward.xpAmount));
 
-    var newActiveProjects = state.activeProjects.where((p) => p.project.id != project.id).toList();
-
-    state = state.copyWith(
-      activeProjects: newActiveProjects,
-      completedProjects: [...state.completedProjects, project],
-    );
+    state = [
+      for (var p in state)
+        if (p.project.id != project.id) p,
+    ];
   }
 }
 
 @Riverpod(keepAlive: true)
 class AvailableProjectsNotifier extends _$AvailableProjectsNotifier {
   @override
-  List<AvailableProjectState> build() {
+  List<ProjectState> build() {
     ref.listen(
       eventBusProvider,
       (previous, next) {
         next.whenData(
           (event) => event.maybeMap(
-            projectStarted: (pStarted) => _handleStartProject(pStarted.project),
+            projectStarted: (pStarted) => handleStartProject(pStarted.project),
             orElse: () {},
           ),
         );
       },
     );
+    ref.listen(
+      globalTickerProvider,
+      (previous, next) => handleTick(),
+    );
 
     return [
-      AvailableProjectState.initial(
+      ProjectState.availableInitial(
         Project(
           id: const Uuid().v4(),
           name: 'Project 1',
@@ -95,20 +102,32 @@ class AvailableProjectsNotifier extends _$AvailableProjectsNotifier {
     ];
   }
 
-  Future<void> _handleStartProject(Project project) async {
+  void handleTick() {
+    state = [
+      for (var p in state)
+        p.maybeMap(
+          available: (availableState) => availableState.copyWith(
+            cooldown: availableState.cooldown?.tick(),
+          ),
+          orElse: () => p,
+        ),
+    ];
+  }
+
+  Future<void> handleStartProject(Project project) async {
     state = [
       for (var p in state)
         if (p.project.id != project.id) p,
     ];
-    var nextProject = await _fetchNewProject();
+    var nextProject = await fetchNewProject();
     state = [...state, nextProject];
   }
 
-  Future<AvailableProjectState> _fetchNewProject() async {
+  Future<ProjectState> fetchNewProject() async {
     await Future.delayed(const Duration(seconds: 1));
     // TODO call API to fetch new project
     var id = Random().nextInt(100000).toString();
-    return AvailableProjectState.initial(
+    return ProjectState.availableInitial(
       Project(
         id: const Uuid().v4(),
         name: 'Project $id',
@@ -125,7 +144,7 @@ class AvailableProjectsNotifier extends _$AvailableProjectsNotifier {
 @Riverpod(keepAlive: true)
 class AvailableProjectNotifier extends _$AvailableProjectNotifier {
   @override
-  AvailableProjectState build(AvailableProjectState projectState) {
+  ProjectState build(ProjectState projectState) {
     ref.listen(
       globalTickerProvider,
       (previous, next) => tick(),
@@ -134,6 +153,13 @@ class AvailableProjectNotifier extends _$AvailableProjectNotifier {
   }
 
   void tick() {
-    state = state.copyWith(cooldown: state.cooldown.tick());
+    state = state.maybeMap(
+      available: (availableState) => availableState.copyWith(
+        cooldown: availableState.cooldown?.tick(),
+      ),
+      orElse: () {
+        throw StateError('Invalid state');
+      },
+    );
   }
 }
