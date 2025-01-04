@@ -5,7 +5,7 @@ import 'package:stupig_proto/systems/feature_unlock/notifiers.dart';
 import 'package:stupig_proto/systems/projects/models.dart';
 import 'package:stupig_proto/systems/projects/project_state.dart';
 import 'package:stupig_proto/widgets/common/flippable_card.dart';
-import 'package:stupig_proto/widgets/project/project_card/active.dart';
+import 'package:stupig_proto/widgets/project/project_card/backside.dart';
 import 'package:stupig_proto/widgets/project/project_card/cooldown_bar.dart';
 import 'package:stupig_proto/widgets/project/project_card/reward.dart';
 import 'package:stupig_proto/widgets/project/project_card/title.dart';
@@ -43,7 +43,6 @@ class AvailableProjectCardState extends ConsumerState<AvailableProjectCard> with
 
   @override
   Widget build(BuildContext context) {
-    // final aPstate = ref.watch(availableProjectNotifierProvider(widget.aPstate));
     final showRewards = ref.watch(featureUnlockNotifierProvider.select((value) => value.showRewards));
 
     return FlippableCard(

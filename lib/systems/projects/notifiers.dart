@@ -21,6 +21,7 @@ class ProjectsNotifier extends _$ProjectsNotifier {
         next.whenData(
           (event) => event.maybeMap(
             projectStarted: (pStarted) => _handleStartProject(pStarted.project),
+            projectCompleted: (pCompleted) => _handleCompletedProject(pCompleted.project),
             orElse: () {},
           ),
         );
@@ -41,31 +42,24 @@ class ProjectsNotifier extends _$ProjectsNotifier {
           project,
           Random().nextInt(2),
           false,
-          false,
         )
       ],
     );
   }
 
-  void completeProject(ActiveProjectState projectState) {
-    // TODO this is a temporary solution, we should probably use a Set instead of a List
-    if (state.completedProjects.contains(projectState.project)) {
+  void _handleCompletedProject(Project project) {
+    if (state.completedProjects.any((p) => p.id == project.id)) {
       return;
     }
 
-    ref.read(eventBusProvider.notifier).publish(GameEvent.projectCompleted(
-          project: projectState.project,
-          tag: runtimeType.toString(),
-        ));
+    ref.read(eventBusProvider.notifier).publish(GameEvent.moneyEarned(amount: project.reward.moneyAmount));
+    ref.read(eventBusProvider.notifier).publish(GameEvent.xpEarned(amount: project.reward.xpAmount));
 
-    ref.read(eventBusProvider.notifier).publish(GameEvent.moneyEarned(amount: projectState.project.reward.moneyAmount));
-    ref.read(eventBusProvider.notifier).publish(GameEvent.xpEarned(amount: projectState.project.reward.xpAmount));
-
-    var newActiveProjects = state.activeProjects.where((p) => p.project.id != projectState.project.id).toList();
+    var newActiveProjects = state.activeProjects.where((p) => p.project.id != project.id).toList();
 
     state = state.copyWith(
       activeProjects: newActiveProjects,
-      completedProjects: [...state.completedProjects, projectState.project],
+      completedProjects: [...state.completedProjects, project],
     );
   }
 }

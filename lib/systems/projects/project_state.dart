@@ -10,19 +10,16 @@ class ActiveProjectState with _$ActiveProjectState {
   const factory ActiveProjectState({
     required Project project,
     required Completion completion,
-    required bool displayCompletionDetails,
   }) = _ActiveProjectState;
 
   factory ActiveProjectState.fromProject(
     Project project,
     int seed,
     bool displayReward,
-    bool displayCompletionDetails,
   ) =>
       ActiveProjectState(
         project: project,
         completion: Completion.initial(seed),
-        displayCompletionDetails: displayCompletionDetails,
       );
 
   factory ActiveProjectState.fromJson(Map<String, Object?> json) => _$ActiveProjectStateFromJson(json);

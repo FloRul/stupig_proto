@@ -22,7 +22,6 @@ ActiveProjectState _$ActiveProjectStateFromJson(Map<String, dynamic> json) {
 mixin _$ActiveProjectState {
   Project get project => throw _privateConstructorUsedError;
   Completion get completion => throw _privateConstructorUsedError;
-  bool get displayCompletionDetails => throw _privateConstructorUsedError;
 
   /// Serializes this ActiveProjectState to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -40,8 +39,7 @@ abstract class $ActiveProjectStateCopyWith<$Res> {
           ActiveProjectState value, $Res Function(ActiveProjectState) then) =
       _$ActiveProjectStateCopyWithImpl<$Res, ActiveProjectState>;
   @useResult
-  $Res call(
-      {Project project, Completion completion, bool displayCompletionDetails});
+  $Res call({Project project, Completion completion});
 
   $ProjectCopyWith<$Res> get project;
   $CompletionCopyWith<$Res> get completion;
@@ -64,7 +62,6 @@ class _$ActiveProjectStateCopyWithImpl<$Res, $Val extends ActiveProjectState>
   $Res call({
     Object? project = null,
     Object? completion = null,
-    Object? displayCompletionDetails = null,
   }) {
     return _then(_value.copyWith(
       project: null == project
@@ -75,10 +72,6 @@ class _$ActiveProjectStateCopyWithImpl<$Res, $Val extends ActiveProjectState>
           ? _value.completion
           : completion // ignore: cast_nullable_to_non_nullable
               as Completion,
-      displayCompletionDetails: null == displayCompletionDetails
-          ? _value.displayCompletionDetails
-          : displayCompletionDetails // ignore: cast_nullable_to_non_nullable
-              as bool,
     ) as $Val);
   }
 
@@ -111,8 +104,7 @@ abstract class _$$ActiveProjectStateImplCopyWith<$Res>
       __$$ActiveProjectStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {Project project, Completion completion, bool displayCompletionDetails});
+  $Res call({Project project, Completion completion});
 
   @override
   $ProjectCopyWith<$Res> get project;
@@ -135,7 +127,6 @@ class __$$ActiveProjectStateImplCopyWithImpl<$Res>
   $Res call({
     Object? project = null,
     Object? completion = null,
-    Object? displayCompletionDetails = null,
   }) {
     return _then(_$ActiveProjectStateImpl(
       project: null == project
@@ -146,10 +137,6 @@ class __$$ActiveProjectStateImplCopyWithImpl<$Res>
           ? _value.completion
           : completion // ignore: cast_nullable_to_non_nullable
               as Completion,
-      displayCompletionDetails: null == displayCompletionDetails
-          ? _value.displayCompletionDetails
-          : displayCompletionDetails // ignore: cast_nullable_to_non_nullable
-              as bool,
     ));
   }
 }
@@ -158,9 +145,7 @@ class __$$ActiveProjectStateImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$ActiveProjectStateImpl implements _ActiveProjectState {
   const _$ActiveProjectStateImpl(
-      {required this.project,
-      required this.completion,
-      required this.displayCompletionDetails});
+      {required this.project, required this.completion});
 
   factory _$ActiveProjectStateImpl.fromJson(Map<String, dynamic> json) =>
       _$$ActiveProjectStateImplFromJson(json);
@@ -169,12 +154,10 @@ class _$ActiveProjectStateImpl implements _ActiveProjectState {
   final Project project;
   @override
   final Completion completion;
-  @override
-  final bool displayCompletionDetails;
 
   @override
   String toString() {
-    return 'ActiveProjectState(project: $project, completion: $completion, displayCompletionDetails: $displayCompletionDetails)';
+    return 'ActiveProjectState(project: $project, completion: $completion)';
   }
 
   @override
@@ -184,16 +167,12 @@ class _$ActiveProjectStateImpl implements _ActiveProjectState {
             other is _$ActiveProjectStateImpl &&
             (identical(other.project, project) || other.project == project) &&
             (identical(other.completion, completion) ||
-                other.completion == completion) &&
-            (identical(
-                    other.displayCompletionDetails, displayCompletionDetails) ||
-                other.displayCompletionDetails == displayCompletionDetails));
+                other.completion == completion));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, project, completion, displayCompletionDetails);
+  int get hashCode => Object.hash(runtimeType, project, completion);
 
   /// Create a copy of ActiveProjectState
   /// with the given fields replaced by the non-null parameter values.
@@ -215,8 +194,7 @@ class _$ActiveProjectStateImpl implements _ActiveProjectState {
 abstract class _ActiveProjectState implements ActiveProjectState {
   const factory _ActiveProjectState(
       {required final Project project,
-      required final Completion completion,
-      required final bool displayCompletionDetails}) = _$ActiveProjectStateImpl;
+      required final Completion completion}) = _$ActiveProjectStateImpl;
 
   factory _ActiveProjectState.fromJson(Map<String, dynamic> json) =
       _$ActiveProjectStateImpl.fromJson;
@@ -225,8 +203,6 @@ abstract class _ActiveProjectState implements ActiveProjectState {
   Project get project;
   @override
   Completion get completion;
-  @override
-  bool get displayCompletionDetails;
 
   /// Create a copy of ActiveProjectState
   /// with the given fields replaced by the non-null parameter values.
