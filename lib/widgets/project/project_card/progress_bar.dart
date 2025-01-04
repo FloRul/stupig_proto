@@ -4,12 +4,12 @@ import 'package:stupig_proto/systems/global_ticker.dart/global_ticker.dart';
 import 'package:stupig_proto/systems/projects/project_state.dart';
 
 class ProgressBar extends ConsumerStatefulWidget {
-  final Completion progress;
+  final Completion completion;
   final VoidCallback? onComplete;
 
   const ProgressBar({
     super.key,
-    required this.progress,
+    required this.completion,
     this.onComplete,
   });
 
@@ -23,8 +23,8 @@ class _ProjectProgressState extends ConsumerState<ProgressBar> {
 
   @override
   void initState() {
-    _isComplete = widget.progress.isComplete;
-    _completion = widget.progress;
+    _isComplete = widget.completion.isComplete;
+    _completion = widget.completion;
     super.initState();
   }
 

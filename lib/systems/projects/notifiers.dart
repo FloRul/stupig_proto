@@ -12,7 +12,7 @@ import 'package:uuid/uuid.dart';
 part 'notifiers.g.dart';
 
 @Riverpod(keepAlive: true)
-class ProjectsNotifier extends _$ProjectsNotifier {
+class ActiveProjectsNotifier extends _$ActiveProjectsNotifier {
   @override
   List<ProjectState> build() {
     ref.listen(
@@ -47,11 +47,8 @@ class ProjectsNotifier extends _$ProjectsNotifier {
   void _handleTick() {
     state = [
       for (var p in state)
-        p.maybeMap(
-          available: (availableState) => availableState.copyWith(
-            cooldown: availableState.cooldown?.tick(),
-          ),
-          orElse: () => p,
+        p.copyWith(
+          completion: p.completion.tick(),
         ),
     ];
   }
@@ -70,7 +67,7 @@ class ProjectsNotifier extends _$ProjectsNotifier {
 @Riverpod(keepAlive: true)
 class AvailableProjectsNotifier extends _$AvailableProjectsNotifier {
   @override
-  List<ProjectState> build() {
+  List<Project> build() {
     ref.listen(
       eventBusProvider,
       (previous, next) {
@@ -82,84 +79,40 @@ class AvailableProjectsNotifier extends _$AvailableProjectsNotifier {
         );
       },
     );
-    ref.listen(
-      globalTickerProvider,
-      (previous, next) => handleTick(),
-    );
-
     return [
-      ProjectState.availableInitial(
-        Project(
-          id: const Uuid().v4(),
-          name: 'Project 1',
-          description: 'Project 1 Description',
-          reward: const ProjectReward(
-            moneyAmount: 1,
-            xpAmount: 1,
-          ),
+      Project(
+        id: const Uuid().v4(),
+        name: 'Project 1',
+        description: 'Project 1 Description',
+        reward: const ProjectReward(
+          moneyAmount: 1,
+          xpAmount: 1,
         ),
       ),
-    ];
-  }
-
-  void handleTick() {
-    state = [
-      for (var p in state)
-        p.maybeMap(
-          available: (availableState) => availableState.copyWith(
-            cooldown: availableState.cooldown?.tick(),
-          ),
-          orElse: () => p,
-        ),
     ];
   }
 
   Future<void> handleStartProject(Project project) async {
     state = [
       for (var p in state)
-        if (p.project.id != project.id) p,
+        if (p.id != project.id) p,
     ];
     var nextProject = await fetchNewProject();
     state = [...state, nextProject];
   }
 
-  Future<ProjectState> fetchNewProject() async {
+  Future<Project> fetchNewProject() async {
     await Future.delayed(const Duration(seconds: 1));
     // TODO call API to fetch new project
     var id = Random().nextInt(100000).toString();
-    return ProjectState.availableInitial(
-      Project(
-        id: const Uuid().v4(),
-        name: 'Project $id',
-        description: 'Project $id Description',
-        reward: ProjectReward(
-          moneyAmount: 1,
-          xpAmount: 1 + ref.read(experienceNotifierProvider).level * Random().nextInt(10),
-        ),
+    return Project(
+      id: const Uuid().v4(),
+      name: 'Project $id',
+      description: 'Project $id Description',
+      reward: ProjectReward(
+        moneyAmount: 1,
+        xpAmount: 1 + ref.read(experienceNotifierProvider).level * Random().nextInt(10),
       ),
-    );
-  }
-}
-
-@Riverpod(keepAlive: true)
-class AvailableProjectNotifier extends _$AvailableProjectNotifier {
-  @override
-  ProjectState build(ProjectState projectState) {
-    ref.listen(
-      globalTickerProvider,
-      (previous, next) => tick(),
-    );
-    return projectState;
-  }
-
-  void tick() {
-    state = state.maybeMap(
-      available: (availableState) => availableState.copyWith(
-        cooldown: availableState.cooldown?.tick(),
-      ),
-      orElse: () {
-        throw StateError('Invalid state');
-      },
     );
   }
 }

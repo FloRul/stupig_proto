@@ -3,22 +3,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:stupig_proto/systems/feature_unlock/notifiers.dart';
 import 'package:stupig_proto/systems/projects/models.dart';
-import 'package:stupig_proto/systems/projects/project_state.dart';
 import 'package:stupig_proto/widgets/common/flippable_card.dart';
 import 'package:stupig_proto/widgets/project/project_card/backside.dart';
-import 'package:stupig_proto/widgets/project/project_card/cooldown_bar.dart';
 import 'package:stupig_proto/widgets/project/project_card/reward.dart';
 import 'package:stupig_proto/widgets/project/project_card/title.dart';
 
 class AvailableProjectCard extends ConsumerStatefulWidget {
   final Project project;
-  final Completion cooldown;
   final bool canFlip;
 
   const AvailableProjectCard({
     super.key,
     required this.project,
-    required this.cooldown,
     required this.canFlip,
   });
 
@@ -56,11 +52,6 @@ class AvailableProjectCardState extends ConsumerState<AvailableProjectCard> with
             title: widget.canFlip ? widget.project.name : '??????',
             showFlipIndicator: widget.canFlip,
           ),
-          const SizedBox(height: 16),
-          if (!widget.canFlip)
-            CooldownBar(
-              cooldown: widget.cooldown,
-            ),
           const SizedBox(height: 16),
           RewardWidget(
             reward: widget.project.reward,

@@ -1,6 +1,6 @@
 ﻿import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:stupig_proto/systems/projects/project_state.dart';
+import 'package:stupig_proto/systems/projects/models.dart';
 import 'package:stupig_proto/systems/projects/notifiers.dart';
 import 'package:stupig_proto/utils/constants.dart';
 import 'package:stupig_proto/widgets/common/glassmorphism_container.dart';
@@ -23,20 +23,18 @@ class AvailableProjects extends ConsumerWidget {
         itemCount: availableProjects.length,
         itemBuilder: (context, index) {
           return LayoutBuilder(builder: (context, constraints) {
-            return Draggable<ProjectState>(
+            return Draggable<Project>(
               feedback: SizedBox(
                 width: constraints.maxWidth,
                 height: constraints.maxHeight,
                 child: AvailableProjectCard(
-                  project: availableProjects[index].project,
-                  cooldown: availableProjects[index].completionOrCooldown!,
+                  project: availableProjects[index],
                   canFlip: true,
                 ),
               ),
               data: availableProjects[index],
               child: AvailableProjectCard(
-                project: availableProjects[index].project,
-                cooldown: availableProjects[index].completionOrCooldown!,
+                project: availableProjects[index],
                 canFlip: true,
               ),
             );

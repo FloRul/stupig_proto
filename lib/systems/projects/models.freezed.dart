@@ -230,3 +230,161 @@ abstract class _Project implements Project {
   _$$ProjectImplCopyWith<_$ProjectImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
+
+ProjectBoardState _$ProjectBoardStateFromJson(Map<String, dynamic> json) {
+  return _ProjectBoardState.fromJson(json);
+}
+
+/// @nodoc
+mixin _$ProjectBoardState {
+  List<Project> get projects => throw _privateConstructorUsedError;
+
+  /// Serializes this ProjectBoardState to a JSON map.
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+
+  /// Create a copy of ProjectBoardState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  $ProjectBoardStateCopyWith<ProjectBoardState> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $ProjectBoardStateCopyWith<$Res> {
+  factory $ProjectBoardStateCopyWith(
+          ProjectBoardState value, $Res Function(ProjectBoardState) then) =
+      _$ProjectBoardStateCopyWithImpl<$Res, ProjectBoardState>;
+  @useResult
+  $Res call({List<Project> projects});
+}
+
+/// @nodoc
+class _$ProjectBoardStateCopyWithImpl<$Res, $Val extends ProjectBoardState>
+    implements $ProjectBoardStateCopyWith<$Res> {
+  _$ProjectBoardStateCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  /// Create a copy of ProjectBoardState
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? projects = null,
+  }) {
+    return _then(_value.copyWith(
+      projects: null == projects
+          ? _value.projects
+          : projects // ignore: cast_nullable_to_non_nullable
+              as List<Project>,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$ProjectBoardStateImplCopyWith<$Res>
+    implements $ProjectBoardStateCopyWith<$Res> {
+  factory _$$ProjectBoardStateImplCopyWith(_$ProjectBoardStateImpl value,
+          $Res Function(_$ProjectBoardStateImpl) then) =
+      __$$ProjectBoardStateImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({List<Project> projects});
+}
+
+/// @nodoc
+class __$$ProjectBoardStateImplCopyWithImpl<$Res>
+    extends _$ProjectBoardStateCopyWithImpl<$Res, _$ProjectBoardStateImpl>
+    implements _$$ProjectBoardStateImplCopyWith<$Res> {
+  __$$ProjectBoardStateImplCopyWithImpl(_$ProjectBoardStateImpl _value,
+      $Res Function(_$ProjectBoardStateImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of ProjectBoardState
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? projects = null,
+  }) {
+    return _then(_$ProjectBoardStateImpl(
+      projects: null == projects
+          ? _value._projects
+          : projects // ignore: cast_nullable_to_non_nullable
+              as List<Project>,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$ProjectBoardStateImpl implements _ProjectBoardState {
+  const _$ProjectBoardStateImpl({required final List<Project> projects})
+      : _projects = projects;
+
+  factory _$ProjectBoardStateImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ProjectBoardStateImplFromJson(json);
+
+  final List<Project> _projects;
+  @override
+  List<Project> get projects {
+    if (_projects is EqualUnmodifiableListView) return _projects;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_projects);
+  }
+
+  @override
+  String toString() {
+    return 'ProjectBoardState(projects: $projects)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ProjectBoardStateImpl &&
+            const DeepCollectionEquality().equals(other._projects, _projects));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(_projects));
+
+  /// Create a copy of ProjectBoardState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ProjectBoardStateImplCopyWith<_$ProjectBoardStateImpl> get copyWith =>
+      __$$ProjectBoardStateImplCopyWithImpl<_$ProjectBoardStateImpl>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$ProjectBoardStateImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _ProjectBoardState implements ProjectBoardState {
+  const factory _ProjectBoardState({required final List<Project> projects}) =
+      _$ProjectBoardStateImpl;
+
+  factory _ProjectBoardState.fromJson(Map<String, dynamic> json) =
+      _$ProjectBoardStateImpl.fromJson;
+
+  @override
+  List<Project> get projects;
+
+  /// Create a copy of ProjectBoardState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$ProjectBoardStateImplCopyWith<_$ProjectBoardStateImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}

@@ -21,7 +21,7 @@ class _InprogressProjectsState extends ConsumerState<ActiveProjects> {
 
   @override
   Widget build(BuildContext context) {
-    var activeProjects = ref.watch(projectsNotifierProvider);
+    var activeProjects = ref.watch(activeProjectsNotifierProvider);
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
       _updateGrid(activeProjects);

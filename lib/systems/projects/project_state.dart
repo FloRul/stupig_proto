@@ -8,43 +8,15 @@ part 'project_state.g.dart';
 
 @freezed
 class ProjectState with _$ProjectState {
-  const factory ProjectState.active({
+  const factory ProjectState({
     required Project project,
     required Completion completion,
   }) = _ActiveProjectState;
 
-  const factory ProjectState.available({
-    required Project project,
-    required Completion? cooldown, // Nullable cooldown for always available
-  }) = _AvailableProjectState;
 
-  factory ProjectState.activeFromProject(Project project, int seed) => ProjectState.active(
+  factory ProjectState.activeFromProject(Project project, int seed) => ProjectState(
         project: project,
         completion: Completion.initial(seed),
-      );
-
-  factory ProjectState.availableInitial(Project project) => ProjectState.available(
-        project: project,
-        cooldown: const Completion(
-          baseAmount: 20,
-          completedAmount: 0,
-          baseRate: 1,
-          multipliers: [0],
-        ),
-      );
-
-  bool get isAvailable => this is _AvailableProjectState;
-  bool get isActive => this is _ActiveProjectState;
-
-  @override
-  Project get project => map(
-        active: (activeState) => activeState.project,
-        available: (availableState) => availableState.project,
-      );
-
-  Completion? get completionOrCooldown => map(
-        active: (activeState) => activeState.completion,
-        available: (availableState) => availableState.cooldown,
       );
 
   const ProjectState._();

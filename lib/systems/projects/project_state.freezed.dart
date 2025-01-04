@@ -15,59 +15,13 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 ProjectState _$ProjectStateFromJson(Map<String, dynamic> json) {
-  switch (json['runtimeType']) {
-    case 'active':
-      return _ActiveProjectState.fromJson(json);
-    case 'available':
-      return _AvailableProjectState.fromJson(json);
-
-    default:
-      throw CheckedFromJsonException(json, 'runtimeType', 'ProjectState',
-          'Invalid union type "${json['runtimeType']}"!');
-  }
+  return _ActiveProjectState.fromJson(json);
 }
 
 /// @nodoc
 mixin _$ProjectState {
   Project get project => throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(Project project, Completion completion) active,
-    required TResult Function(Project project, Completion? cooldown) available,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(Project project, Completion completion)? active,
-    TResult? Function(Project project, Completion? cooldown)? available,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Project project, Completion completion)? active,
-    TResult Function(Project project, Completion? cooldown)? available,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_ActiveProjectState value) active,
-    required TResult Function(_AvailableProjectState value) available,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_ActiveProjectState value)? active,
-    TResult? Function(_AvailableProjectState value)? available,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_ActiveProjectState value)? active,
-    TResult Function(_AvailableProjectState value)? available,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
+  Completion get completion => throw _privateConstructorUsedError;
 
   /// Serializes this ProjectState to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -85,9 +39,10 @@ abstract class $ProjectStateCopyWith<$Res> {
           ProjectState value, $Res Function(ProjectState) then) =
       _$ProjectStateCopyWithImpl<$Res, ProjectState>;
   @useResult
-  $Res call({Project project});
+  $Res call({Project project, Completion completion});
 
   $ProjectCopyWith<$Res> get project;
+  $CompletionCopyWith<$Res> get completion;
 }
 
 /// @nodoc
@@ -106,12 +61,17 @@ class _$ProjectStateCopyWithImpl<$Res, $Val extends ProjectState>
   @override
   $Res call({
     Object? project = null,
+    Object? completion = null,
   }) {
     return _then(_value.copyWith(
       project: null == project
           ? _value.project
           : project // ignore: cast_nullable_to_non_nullable
               as Project,
+      completion: null == completion
+          ? _value.completion
+          : completion // ignore: cast_nullable_to_non_nullable
+              as Completion,
     ) as $Val);
   }
 
@@ -122,6 +82,16 @@ class _$ProjectStateCopyWithImpl<$Res, $Val extends ProjectState>
   $ProjectCopyWith<$Res> get project {
     return $ProjectCopyWith<$Res>(_value.project, (value) {
       return _then(_value.copyWith(project: value) as $Val);
+    });
+  }
+
+  /// Create a copy of ProjectState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $CompletionCopyWith<$Res> get completion {
+    return $CompletionCopyWith<$Res>(_value.completion, (value) {
+      return _then(_value.copyWith(completion: value) as $Val);
     });
   }
 }
@@ -138,6 +108,7 @@ abstract class _$$ActiveProjectStateImplCopyWith<$Res>
 
   @override
   $ProjectCopyWith<$Res> get project;
+  @override
   $CompletionCopyWith<$Res> get completion;
 }
 
@@ -168,25 +139,14 @@ class __$$ActiveProjectStateImplCopyWithImpl<$Res>
               as Completion,
     ));
   }
-
-  /// Create a copy of ProjectState
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $CompletionCopyWith<$Res> get completion {
-    return $CompletionCopyWith<$Res>(_value.completion, (value) {
-      return _then(_value.copyWith(completion: value));
-    });
-  }
 }
 
 /// @nodoc
 @JsonSerializable()
 class _$ActiveProjectStateImpl extends _ActiveProjectState {
   const _$ActiveProjectStateImpl(
-      {required this.project, required this.completion, final String? $type})
-      : $type = $type ?? 'active',
-        super._();
+      {required this.project, required this.completion})
+      : super._();
 
   factory _$ActiveProjectStateImpl.fromJson(Map<String, dynamic> json) =>
       _$$ActiveProjectStateImplFromJson(json);
@@ -196,12 +156,9 @@ class _$ActiveProjectStateImpl extends _ActiveProjectState {
   @override
   final Completion completion;
 
-  @JsonKey(name: 'runtimeType')
-  final String $type;
-
   @override
   String toString() {
-    return 'ProjectState.active(project: $project, completion: $completion)';
+    return 'ProjectState(project: $project, completion: $completion)';
   }
 
   @override
@@ -228,68 +185,6 @@ class _$ActiveProjectStateImpl extends _ActiveProjectState {
           this, _$identity);
 
   @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(Project project, Completion completion) active,
-    required TResult Function(Project project, Completion? cooldown) available,
-  }) {
-    return active(project, completion);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(Project project, Completion completion)? active,
-    TResult? Function(Project project, Completion? cooldown)? available,
-  }) {
-    return active?.call(project, completion);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Project project, Completion completion)? active,
-    TResult Function(Project project, Completion? cooldown)? available,
-    required TResult orElse(),
-  }) {
-    if (active != null) {
-      return active(project, completion);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_ActiveProjectState value) active,
-    required TResult Function(_AvailableProjectState value) available,
-  }) {
-    return active(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_ActiveProjectState value)? active,
-    TResult? Function(_AvailableProjectState value)? available,
-  }) {
-    return active?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_ActiveProjectState value)? active,
-    TResult Function(_AvailableProjectState value)? available,
-    required TResult orElse(),
-  }) {
-    if (active != null) {
-      return active(this);
-    }
-    return orElse();
-  }
-
-  @override
   Map<String, dynamic> toJson() {
     return _$$ActiveProjectStateImplToJson(
       this,
@@ -308,6 +203,7 @@ abstract class _ActiveProjectState extends ProjectState {
 
   @override
   Project get project;
+  @override
   Completion get completion;
 
   /// Create a copy of ProjectState
@@ -316,203 +212,6 @@ abstract class _ActiveProjectState extends ProjectState {
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ActiveProjectStateImplCopyWith<_$ActiveProjectStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$AvailableProjectStateImplCopyWith<$Res>
-    implements $ProjectStateCopyWith<$Res> {
-  factory _$$AvailableProjectStateImplCopyWith(
-          _$AvailableProjectStateImpl value,
-          $Res Function(_$AvailableProjectStateImpl) then) =
-      __$$AvailableProjectStateImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({Project project, Completion? cooldown});
-
-  @override
-  $ProjectCopyWith<$Res> get project;
-  $CompletionCopyWith<$Res>? get cooldown;
-}
-
-/// @nodoc
-class __$$AvailableProjectStateImplCopyWithImpl<$Res>
-    extends _$ProjectStateCopyWithImpl<$Res, _$AvailableProjectStateImpl>
-    implements _$$AvailableProjectStateImplCopyWith<$Res> {
-  __$$AvailableProjectStateImplCopyWithImpl(_$AvailableProjectStateImpl _value,
-      $Res Function(_$AvailableProjectStateImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of ProjectState
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? project = null,
-    Object? cooldown = freezed,
-  }) {
-    return _then(_$AvailableProjectStateImpl(
-      project: null == project
-          ? _value.project
-          : project // ignore: cast_nullable_to_non_nullable
-              as Project,
-      cooldown: freezed == cooldown
-          ? _value.cooldown
-          : cooldown // ignore: cast_nullable_to_non_nullable
-              as Completion?,
-    ));
-  }
-
-  /// Create a copy of ProjectState
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $CompletionCopyWith<$Res>? get cooldown {
-    if (_value.cooldown == null) {
-      return null;
-    }
-
-    return $CompletionCopyWith<$Res>(_value.cooldown!, (value) {
-      return _then(_value.copyWith(cooldown: value));
-    });
-  }
-}
-
-/// @nodoc
-@JsonSerializable()
-class _$AvailableProjectStateImpl extends _AvailableProjectState {
-  const _$AvailableProjectStateImpl(
-      {required this.project, required this.cooldown, final String? $type})
-      : $type = $type ?? 'available',
-        super._();
-
-  factory _$AvailableProjectStateImpl.fromJson(Map<String, dynamic> json) =>
-      _$$AvailableProjectStateImplFromJson(json);
-
-  @override
-  final Project project;
-  @override
-  final Completion? cooldown;
-
-  @JsonKey(name: 'runtimeType')
-  final String $type;
-
-  @override
-  String toString() {
-    return 'ProjectState.available(project: $project, cooldown: $cooldown)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$AvailableProjectStateImpl &&
-            (identical(other.project, project) || other.project == project) &&
-            (identical(other.cooldown, cooldown) ||
-                other.cooldown == cooldown));
-  }
-
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  int get hashCode => Object.hash(runtimeType, project, cooldown);
-
-  /// Create a copy of ProjectState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$AvailableProjectStateImplCopyWith<_$AvailableProjectStateImpl>
-      get copyWith => __$$AvailableProjectStateImplCopyWithImpl<
-          _$AvailableProjectStateImpl>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(Project project, Completion completion) active,
-    required TResult Function(Project project, Completion? cooldown) available,
-  }) {
-    return available(project, cooldown);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(Project project, Completion completion)? active,
-    TResult? Function(Project project, Completion? cooldown)? available,
-  }) {
-    return available?.call(project, cooldown);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Project project, Completion completion)? active,
-    TResult Function(Project project, Completion? cooldown)? available,
-    required TResult orElse(),
-  }) {
-    if (available != null) {
-      return available(project, cooldown);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_ActiveProjectState value) active,
-    required TResult Function(_AvailableProjectState value) available,
-  }) {
-    return available(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_ActiveProjectState value)? active,
-    TResult? Function(_AvailableProjectState value)? available,
-  }) {
-    return available?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_ActiveProjectState value)? active,
-    TResult Function(_AvailableProjectState value)? available,
-    required TResult orElse(),
-  }) {
-    if (available != null) {
-      return available(this);
-    }
-    return orElse();
-  }
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$AvailableProjectStateImplToJson(
-      this,
-    );
-  }
-}
-
-abstract class _AvailableProjectState extends ProjectState {
-  const factory _AvailableProjectState(
-      {required final Project project,
-      required final Completion? cooldown}) = _$AvailableProjectStateImpl;
-  const _AvailableProjectState._() : super._();
-
-  factory _AvailableProjectState.fromJson(Map<String, dynamic> json) =
-      _$AvailableProjectStateImpl.fromJson;
-
-  @override
-  Project get project;
-  Completion? get cooldown;
-
-  /// Create a copy of ProjectState
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$AvailableProjectStateImplCopyWith<_$AvailableProjectStateImpl>
-      get copyWith => throw _privateConstructorUsedError;
 }
 
 ProjectReward _$ProjectRewardFromJson(Map<String, dynamic> json) {
