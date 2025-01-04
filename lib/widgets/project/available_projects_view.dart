@@ -29,15 +29,15 @@ class AvailableProjects extends ConsumerWidget {
                 height: constraints.maxHeight,
                 child: AvailableProjectCard(
                   project: availableProjects[index].project,
-                  cooldown: availableProjects[index].cooldown,
-                  canFlip: availableProjects[index].isReadyToStart,
+                  cooldown: availableProjects[index].completionOrCooldown!,
+                  canFlip: true,
                 ),
               ),
               data: availableProjects[index],
               child: AvailableProjectCard(
                 project: availableProjects[index].project,
-                cooldown: availableProjects[index].cooldown,
-                canFlip: availableProjects[index].isReadyToStart,
+                cooldown: availableProjects[index].completionOrCooldown!,
+                canFlip: true,
               ),
             );
           });

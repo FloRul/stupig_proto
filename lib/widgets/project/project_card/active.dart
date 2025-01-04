@@ -12,7 +12,7 @@ import 'package:stupig_proto/widgets/project/project_card/title.dart';
 
 // active_project_card.dart
 class ActiveProjectCard extends ConsumerStatefulWidget {
-  final ActiveProjectState pState;
+  final ProjectState pState;
 
   const ActiveProjectCard({
     super.key,
@@ -50,7 +50,7 @@ class _ActiveProjectCardState extends ConsumerState<ActiveProjectCard> with Tick
           ProjectCardTitle(title: widget.pState.project.name),
           const SizedBox(height: 16),
           ProgressBar(
-            progress: widget.pState.completion,
+            progress: widget.pState.completionOrCooldown!,
             onComplete: () =>
                 ref.read(eventBusProvider.notifier).publish(GameEvent.projectCompleted(project: widget.pState.project)),
           ),

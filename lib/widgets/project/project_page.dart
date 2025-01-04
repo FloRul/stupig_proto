@@ -30,7 +30,7 @@ class MainGamePage extends StatelessWidget {
                     title: 'Projects',
                     child: Column(
                       children: [
-                        Expanded(flex: 2, child: InprogressProjects()),
+                        Expanded(flex: 2, child: ActiveProjects()),
                         SizedBox(height: 16.0),
                         Expanded(child: AvailableProjects()),
                       ],

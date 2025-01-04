@@ -8,20 +8,20 @@ import 'package:stupig_proto/utils/constants.dart';
 import 'package:stupig_proto/widgets/common/glassmorphism_container.dart';
 import 'package:stupig_proto/widgets/project/project_card/active.dart';
 
-class InprogressProjects extends ConsumerStatefulWidget {
-  const InprogressProjects({super.key});
+class ActiveProjects extends ConsumerStatefulWidget {
+  const ActiveProjects({super.key});
 
   @override
-  ConsumerState<InprogressProjects> createState() => _InprogressProjectsState();
+  ConsumerState<ActiveProjects> createState() => _InprogressProjectsState();
 }
 
-class _InprogressProjectsState extends ConsumerState<InprogressProjects> {
+class _InprogressProjectsState extends ConsumerState<ActiveProjects> {
   final GlobalKey<SliverAnimatedGridState> _gridKey = GlobalKey<SliverAnimatedGridState>();
-  late final List<ActiveProjectState> _projects = [];
+  late final List<ProjectState> _projects = [];
 
   @override
   Widget build(BuildContext context) {
-    var activeProjects = ref.watch(projectsNotifierProvider).activeProjects;
+    var activeProjects = ref.watch(projectsNotifierProvider);
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
       _updateGrid(activeProjects);
@@ -48,7 +48,7 @@ class _InprogressProjectsState extends ConsumerState<InprogressProjects> {
           ),
         ),
         Expanded(
-          child: DragTarget<AvailableProjectState>(
+          child: DragTarget<ProjectState>(
             onWillAcceptWithDetails: (d) => true,
             onAcceptWithDetails: (details) async =>
                 ref.read(eventBusProvider.notifier).publish(GameEvent.projectStarted(project: details.data.project)),
@@ -88,7 +88,7 @@ class _InprogressProjectsState extends ConsumerState<InprogressProjects> {
     );
   }
 
-  Widget _buildAnimatedItem(ActiveProjectState project, Animation<double> animation) {
+  Widget _buildAnimatedItem(ProjectState project, Animation<double> animation) {
     return SlideTransition(
       position: animation.drive(
         Tween<Offset>(
@@ -103,7 +103,7 @@ class _InprogressProjectsState extends ConsumerState<InprogressProjects> {
     );
   }
 
-  void _updateGrid(List<ActiveProjectState> newProjects) {
+  void _updateGrid(List<ProjectState> newProjects) {
     for (var i = 0; i < _projects.length; i++) {
       if (!newProjects.contains(_projects[i])) {
         // Remove animation
@@ -126,7 +126,7 @@ class _InprogressProjectsState extends ConsumerState<InprogressProjects> {
     }
   }
 
-  Widget _buildRemovedItem(ActiveProjectState project, Animation<double> animation) {
+  Widget _buildRemovedItem(ProjectState project, Animation<double> animation) {
     return FadeTransition(
       opacity: animation,
       child: ActiveProjectCard(pState: project),

@@ -7,7 +7,6 @@ part 'notifiers.g.dart';
 
 @Riverpod(keepAlive: true)
 Future<void> initialization(Ref ref) async {
-  print('Initializing...');
   await ref.read(progressionRepositoryProvider.future);
   await ref.read(sharedPrefsProvider.future);
   await ref.read(themesProvider.future);
