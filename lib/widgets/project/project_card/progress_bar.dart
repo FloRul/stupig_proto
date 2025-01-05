@@ -42,18 +42,58 @@ class _ProjectProgressState extends ConsumerState<ProgressBar> {
     return AnimatedSwitcher(
       duration: const Duration(milliseconds: 250),
       child: _isComplete
-          ? FilledButton.icon(
-              onPressed: widget.onComplete,
-              icon: const Icon(Icons.check_circle),
-              label: const Text('Complete'),
+          ? Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                color: Colors.white.withValues(alpha: 0.1),
+                border: Border.all(
+                  color: Colors.white.withValues(alpha: 0.2),
+                ),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withValues(alpha: 0.1),
+                    blurRadius: 10,
+                    spreadRadius: 1,
+                  ),
+                ],
+              ),
+              child: FilledButton.icon(
+                style: FilledButton.styleFrom(
+                  backgroundColor: Colors.transparent,
+                ),
+                onPressed: widget.onComplete,
+                icon: const Icon(Icons.check_circle),
+                label: const Text(
+                  'Complete',
+                  style: TextStyle(
+                    fontSize: 12,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ),
+              ),
             )
-          : ClipRRect(
-              borderRadius: BorderRadius.circular(8),
-              child: LinearProgressIndicator(
-                value: _completion.progress,
-                backgroundColor: Colors.white24,
-                valueColor: const AlwaysStoppedAnimation<Color>(Colors.white),
-                minHeight: 8,
+          : Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                color: Colors.white.withValues(alpha: 0.1),
+                border: Border.all(
+                  color: Colors.white.withValues(alpha: 0.2),
+                ),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withValues(alpha: 0.1),
+                    blurRadius: 10,
+                    spreadRadius: 1,
+                  ),
+                ],
+              ),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(8),
+                child: LinearProgressIndicator(
+                  value: _completion.progress,
+                  minHeight: 12,
+                  backgroundColor: Colors.transparent,
+                ),
               ),
             ),
     );
