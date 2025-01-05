@@ -66,6 +66,9 @@ class ActiveProjectsNotifier extends _$ActiveProjectsNotifier {
 
 @Riverpod(keepAlive: true)
 class AvailableProjectsNotifier extends _$AvailableProjectsNotifier {
+  // Store future projects that are being fetched
+  final _pendingProjects = <String, Future<Project>>{};
+
   @override
   AvailableProjectsState build() {
     ref.listen(
@@ -74,13 +77,13 @@ class AvailableProjectsNotifier extends _$AvailableProjectsNotifier {
         next.whenData(
           (event) => event.maybeMap(
             projectStarted: (pStarted) => _handleStartProject(pStarted.project),
+            purchase: (e) => e.type == PurchaseType.availableSlot ? _addNewSlot() : null,
             orElse: () {},
           ),
         );
       },
     );
 
-    // Listen to global ticker for cooldown updates
     ref.listen(
       globalTickerProvider,
       (previous, next) => _handleTick(),
@@ -111,6 +114,12 @@ class AvailableProjectsNotifier extends _$AvailableProjectsNotifier {
     // Update each cooldown
     for (var entry in newCooldowns.entries) {
       final tickedCompletion = entry.value.tick();
+
+      // Start fetching when we're at 75% completion if we haven't started yet
+      if (tickedCompletion.progress >= 0.75 && !_pendingProjects.containsKey(entry.key)) {
+        _pendingProjects[entry.key] = _fetchNewProject();
+      }
+
       if (tickedCompletion.isComplete) {
         completedCooldowns.add(entry.key);
       } else {
@@ -118,10 +127,10 @@ class AvailableProjectsNotifier extends _$AvailableProjectsNotifier {
       }
     }
 
-    // Remove completed cooldowns and fetch new projects
+    // Handle completed cooldowns
     for (var projectId in completedCooldowns) {
       newCooldowns.remove(projectId);
-      _fetchProjectAfterCooldown(projectId);
+      _addCompletedProject(projectId);
     }
 
     if (newCooldowns != state.cooldowns) {
@@ -137,21 +146,32 @@ class AvailableProjectsNotifier extends _$AvailableProjectsNotifier {
       ],
       cooldowns: {
         ...state.cooldowns,
-        project.id: Completion.initial(
-          state.cooldowns.length,
-        ),
+        project.id: Completion.initial(1),
       },
     );
   }
 
-  Future<void> _fetchProjectAfterCooldown(String projectId) async {
+  Future<void> _addCompletedProject(String projectId) async {
     try {
-      final newProject = await _fetchNewProject();
-      state = state.copyWith(
-        projects: [...state.projects, newProject],
-      );
+      // If we have a pending project, use it
+      if (_pendingProjects.containsKey(projectId)) {
+        final newProject = await _pendingProjects[projectId]!;
+        _pendingProjects.remove(projectId);
+
+        state = state.copyWith(
+          projects: [...state.projects, newProject],
+        );
+      } else {
+        // Fallback in case we somehow don't have a pending project
+        final newProject = await _fetchNewProject();
+        state = state.copyWith(
+          projects: [...state.projects, newProject],
+        );
+      }
     } catch (e) {
-      print('Error fetching new project: $e');
+      print('Error adding completed project: $e');
+      // Clean up pending project if there was an error
+      _pendingProjects.remove(projectId);
     }
   }
 
@@ -182,5 +202,17 @@ class AvailableProjectsNotifier extends _$AvailableProjectsNotifier {
         ),
       },
     );
+  }
+
+  Future<void> _addNewSlot() async {
+    try {
+      final newProject = await _fetchNewProject();
+      state = state.copyWith(
+        projects: [...state.projects, newProject],
+      );
+    } catch (e) {
+      print('Error adding new project slot: $e');
+      // Optionally show an error message to the user
+    }
   }
 }

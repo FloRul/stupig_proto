@@ -23,6 +23,7 @@ mixin _$GameEvent {
     required TResult Function(int amount) moneyEarned,
     required TResult Function(Project project, String? tag) projectStarted,
     required TResult Function(String? tag) levelUp,
+    required TResult Function(PurchaseType type) purchase,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -32,6 +33,7 @@ mixin _$GameEvent {
     TResult? Function(int amount)? moneyEarned,
     TResult? Function(Project project, String? tag)? projectStarted,
     TResult? Function(String? tag)? levelUp,
+    TResult? Function(PurchaseType type)? purchase,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -41,6 +43,7 @@ mixin _$GameEvent {
     TResult Function(int amount)? moneyEarned,
     TResult Function(Project project, String? tag)? projectStarted,
     TResult Function(String? tag)? levelUp,
+    TResult Function(PurchaseType type)? purchase,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -51,6 +54,7 @@ mixin _$GameEvent {
     required TResult Function(MoneyEarned value) moneyEarned,
     required TResult Function(ProjectStarted value) projectStarted,
     required TResult Function(LevelUp value) levelUp,
+    required TResult Function(Purchase value) purchase,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -60,6 +64,7 @@ mixin _$GameEvent {
     TResult? Function(MoneyEarned value)? moneyEarned,
     TResult? Function(ProjectStarted value)? projectStarted,
     TResult? Function(LevelUp value)? levelUp,
+    TResult? Function(Purchase value)? purchase,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -69,6 +74,7 @@ mixin _$GameEvent {
     TResult Function(MoneyEarned value)? moneyEarned,
     TResult Function(ProjectStarted value)? projectStarted,
     TResult Function(LevelUp value)? levelUp,
+    TResult Function(Purchase value)? purchase,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -188,6 +194,7 @@ class _$ProjectCompletedImpl implements ProjectCompleted {
     required TResult Function(int amount) moneyEarned,
     required TResult Function(Project project, String? tag) projectStarted,
     required TResult Function(String? tag) levelUp,
+    required TResult Function(PurchaseType type) purchase,
   }) {
     return projectCompleted(project, tag);
   }
@@ -200,6 +207,7 @@ class _$ProjectCompletedImpl implements ProjectCompleted {
     TResult? Function(int amount)? moneyEarned,
     TResult? Function(Project project, String? tag)? projectStarted,
     TResult? Function(String? tag)? levelUp,
+    TResult? Function(PurchaseType type)? purchase,
   }) {
     return projectCompleted?.call(project, tag);
   }
@@ -212,6 +220,7 @@ class _$ProjectCompletedImpl implements ProjectCompleted {
     TResult Function(int amount)? moneyEarned,
     TResult Function(Project project, String? tag)? projectStarted,
     TResult Function(String? tag)? levelUp,
+    TResult Function(PurchaseType type)? purchase,
     required TResult orElse(),
   }) {
     if (projectCompleted != null) {
@@ -228,6 +237,7 @@ class _$ProjectCompletedImpl implements ProjectCompleted {
     required TResult Function(MoneyEarned value) moneyEarned,
     required TResult Function(ProjectStarted value) projectStarted,
     required TResult Function(LevelUp value) levelUp,
+    required TResult Function(Purchase value) purchase,
   }) {
     return projectCompleted(this);
   }
@@ -240,6 +250,7 @@ class _$ProjectCompletedImpl implements ProjectCompleted {
     TResult? Function(MoneyEarned value)? moneyEarned,
     TResult? Function(ProjectStarted value)? projectStarted,
     TResult? Function(LevelUp value)? levelUp,
+    TResult? Function(Purchase value)? purchase,
   }) {
     return projectCompleted?.call(this);
   }
@@ -252,6 +263,7 @@ class _$ProjectCompletedImpl implements ProjectCompleted {
     TResult Function(MoneyEarned value)? moneyEarned,
     TResult Function(ProjectStarted value)? projectStarted,
     TResult Function(LevelUp value)? levelUp,
+    TResult Function(Purchase value)? purchase,
     required TResult orElse(),
   }) {
     if (projectCompleted != null) {
@@ -349,6 +361,7 @@ class _$XpEarnedImpl implements XpEarned {
     required TResult Function(int amount) moneyEarned,
     required TResult Function(Project project, String? tag) projectStarted,
     required TResult Function(String? tag) levelUp,
+    required TResult Function(PurchaseType type) purchase,
   }) {
     return xpEarned(amount);
   }
@@ -361,6 +374,7 @@ class _$XpEarnedImpl implements XpEarned {
     TResult? Function(int amount)? moneyEarned,
     TResult? Function(Project project, String? tag)? projectStarted,
     TResult? Function(String? tag)? levelUp,
+    TResult? Function(PurchaseType type)? purchase,
   }) {
     return xpEarned?.call(amount);
   }
@@ -373,6 +387,7 @@ class _$XpEarnedImpl implements XpEarned {
     TResult Function(int amount)? moneyEarned,
     TResult Function(Project project, String? tag)? projectStarted,
     TResult Function(String? tag)? levelUp,
+    TResult Function(PurchaseType type)? purchase,
     required TResult orElse(),
   }) {
     if (xpEarned != null) {
@@ -389,6 +404,7 @@ class _$XpEarnedImpl implements XpEarned {
     required TResult Function(MoneyEarned value) moneyEarned,
     required TResult Function(ProjectStarted value) projectStarted,
     required TResult Function(LevelUp value) levelUp,
+    required TResult Function(Purchase value) purchase,
   }) {
     return xpEarned(this);
   }
@@ -401,6 +417,7 @@ class _$XpEarnedImpl implements XpEarned {
     TResult? Function(MoneyEarned value)? moneyEarned,
     TResult? Function(ProjectStarted value)? projectStarted,
     TResult? Function(LevelUp value)? levelUp,
+    TResult? Function(Purchase value)? purchase,
   }) {
     return xpEarned?.call(this);
   }
@@ -413,6 +430,7 @@ class _$XpEarnedImpl implements XpEarned {
     TResult Function(MoneyEarned value)? moneyEarned,
     TResult Function(ProjectStarted value)? projectStarted,
     TResult Function(LevelUp value)? levelUp,
+    TResult Function(Purchase value)? purchase,
     required TResult orElse(),
   }) {
     if (xpEarned != null) {
@@ -507,6 +525,7 @@ class _$MoneyEarnedImpl implements MoneyEarned {
     required TResult Function(int amount) moneyEarned,
     required TResult Function(Project project, String? tag) projectStarted,
     required TResult Function(String? tag) levelUp,
+    required TResult Function(PurchaseType type) purchase,
   }) {
     return moneyEarned(amount);
   }
@@ -519,6 +538,7 @@ class _$MoneyEarnedImpl implements MoneyEarned {
     TResult? Function(int amount)? moneyEarned,
     TResult? Function(Project project, String? tag)? projectStarted,
     TResult? Function(String? tag)? levelUp,
+    TResult? Function(PurchaseType type)? purchase,
   }) {
     return moneyEarned?.call(amount);
   }
@@ -531,6 +551,7 @@ class _$MoneyEarnedImpl implements MoneyEarned {
     TResult Function(int amount)? moneyEarned,
     TResult Function(Project project, String? tag)? projectStarted,
     TResult Function(String? tag)? levelUp,
+    TResult Function(PurchaseType type)? purchase,
     required TResult orElse(),
   }) {
     if (moneyEarned != null) {
@@ -547,6 +568,7 @@ class _$MoneyEarnedImpl implements MoneyEarned {
     required TResult Function(MoneyEarned value) moneyEarned,
     required TResult Function(ProjectStarted value) projectStarted,
     required TResult Function(LevelUp value) levelUp,
+    required TResult Function(Purchase value) purchase,
   }) {
     return moneyEarned(this);
   }
@@ -559,6 +581,7 @@ class _$MoneyEarnedImpl implements MoneyEarned {
     TResult? Function(MoneyEarned value)? moneyEarned,
     TResult? Function(ProjectStarted value)? projectStarted,
     TResult? Function(LevelUp value)? levelUp,
+    TResult? Function(Purchase value)? purchase,
   }) {
     return moneyEarned?.call(this);
   }
@@ -571,6 +594,7 @@ class _$MoneyEarnedImpl implements MoneyEarned {
     TResult Function(MoneyEarned value)? moneyEarned,
     TResult Function(ProjectStarted value)? projectStarted,
     TResult Function(LevelUp value)? levelUp,
+    TResult Function(Purchase value)? purchase,
     required TResult orElse(),
   }) {
     if (moneyEarned != null) {
@@ -686,6 +710,7 @@ class _$ProjectStartedImpl implements ProjectStarted {
     required TResult Function(int amount) moneyEarned,
     required TResult Function(Project project, String? tag) projectStarted,
     required TResult Function(String? tag) levelUp,
+    required TResult Function(PurchaseType type) purchase,
   }) {
     return projectStarted(project, tag);
   }
@@ -698,6 +723,7 @@ class _$ProjectStartedImpl implements ProjectStarted {
     TResult? Function(int amount)? moneyEarned,
     TResult? Function(Project project, String? tag)? projectStarted,
     TResult? Function(String? tag)? levelUp,
+    TResult? Function(PurchaseType type)? purchase,
   }) {
     return projectStarted?.call(project, tag);
   }
@@ -710,6 +736,7 @@ class _$ProjectStartedImpl implements ProjectStarted {
     TResult Function(int amount)? moneyEarned,
     TResult Function(Project project, String? tag)? projectStarted,
     TResult Function(String? tag)? levelUp,
+    TResult Function(PurchaseType type)? purchase,
     required TResult orElse(),
   }) {
     if (projectStarted != null) {
@@ -726,6 +753,7 @@ class _$ProjectStartedImpl implements ProjectStarted {
     required TResult Function(MoneyEarned value) moneyEarned,
     required TResult Function(ProjectStarted value) projectStarted,
     required TResult Function(LevelUp value) levelUp,
+    required TResult Function(Purchase value) purchase,
   }) {
     return projectStarted(this);
   }
@@ -738,6 +766,7 @@ class _$ProjectStartedImpl implements ProjectStarted {
     TResult? Function(MoneyEarned value)? moneyEarned,
     TResult? Function(ProjectStarted value)? projectStarted,
     TResult? Function(LevelUp value)? levelUp,
+    TResult? Function(Purchase value)? purchase,
   }) {
     return projectStarted?.call(this);
   }
@@ -750,6 +779,7 @@ class _$ProjectStartedImpl implements ProjectStarted {
     TResult Function(MoneyEarned value)? moneyEarned,
     TResult Function(ProjectStarted value)? projectStarted,
     TResult Function(LevelUp value)? levelUp,
+    TResult Function(Purchase value)? purchase,
     required TResult orElse(),
   }) {
     if (projectStarted != null) {
@@ -847,6 +877,7 @@ class _$LevelUpImpl implements LevelUp {
     required TResult Function(int amount) moneyEarned,
     required TResult Function(Project project, String? tag) projectStarted,
     required TResult Function(String? tag) levelUp,
+    required TResult Function(PurchaseType type) purchase,
   }) {
     return levelUp(tag);
   }
@@ -859,6 +890,7 @@ class _$LevelUpImpl implements LevelUp {
     TResult? Function(int amount)? moneyEarned,
     TResult? Function(Project project, String? tag)? projectStarted,
     TResult? Function(String? tag)? levelUp,
+    TResult? Function(PurchaseType type)? purchase,
   }) {
     return levelUp?.call(tag);
   }
@@ -871,6 +903,7 @@ class _$LevelUpImpl implements LevelUp {
     TResult Function(int amount)? moneyEarned,
     TResult Function(Project project, String? tag)? projectStarted,
     TResult Function(String? tag)? levelUp,
+    TResult Function(PurchaseType type)? purchase,
     required TResult orElse(),
   }) {
     if (levelUp != null) {
@@ -887,6 +920,7 @@ class _$LevelUpImpl implements LevelUp {
     required TResult Function(MoneyEarned value) moneyEarned,
     required TResult Function(ProjectStarted value) projectStarted,
     required TResult Function(LevelUp value) levelUp,
+    required TResult Function(Purchase value) purchase,
   }) {
     return levelUp(this);
   }
@@ -899,6 +933,7 @@ class _$LevelUpImpl implements LevelUp {
     TResult? Function(MoneyEarned value)? moneyEarned,
     TResult? Function(ProjectStarted value)? projectStarted,
     TResult? Function(LevelUp value)? levelUp,
+    TResult? Function(Purchase value)? purchase,
   }) {
     return levelUp?.call(this);
   }
@@ -911,6 +946,7 @@ class _$LevelUpImpl implements LevelUp {
     TResult Function(MoneyEarned value)? moneyEarned,
     TResult Function(ProjectStarted value)? projectStarted,
     TResult Function(LevelUp value)? levelUp,
+    TResult Function(Purchase value)? purchase,
     required TResult orElse(),
   }) {
     if (levelUp != null) {
@@ -929,5 +965,169 @@ abstract class LevelUp implements GameEvent {
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$LevelUpImplCopyWith<_$LevelUpImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$PurchaseImplCopyWith<$Res> {
+  factory _$$PurchaseImplCopyWith(
+          _$PurchaseImpl value, $Res Function(_$PurchaseImpl) then) =
+      __$$PurchaseImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({PurchaseType type});
+}
+
+/// @nodoc
+class __$$PurchaseImplCopyWithImpl<$Res>
+    extends _$GameEventCopyWithImpl<$Res, _$PurchaseImpl>
+    implements _$$PurchaseImplCopyWith<$Res> {
+  __$$PurchaseImplCopyWithImpl(
+      _$PurchaseImpl _value, $Res Function(_$PurchaseImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of GameEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? type = null,
+  }) {
+    return _then(_$PurchaseImpl(
+      type: null == type
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as PurchaseType,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$PurchaseImpl implements Purchase {
+  const _$PurchaseImpl({required this.type});
+
+  @override
+  final PurchaseType type;
+
+  @override
+  String toString() {
+    return 'GameEvent.purchase(type: $type)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$PurchaseImpl &&
+            (identical(other.type, type) || other.type == type));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, type);
+
+  /// Create a copy of GameEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$PurchaseImplCopyWith<_$PurchaseImpl> get copyWith =>
+      __$$PurchaseImplCopyWithImpl<_$PurchaseImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(Project project, String? tag) projectCompleted,
+    required TResult Function(int amount) xpEarned,
+    required TResult Function(int amount) moneyEarned,
+    required TResult Function(Project project, String? tag) projectStarted,
+    required TResult Function(String? tag) levelUp,
+    required TResult Function(PurchaseType type) purchase,
+  }) {
+    return purchase(type);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(Project project, String? tag)? projectCompleted,
+    TResult? Function(int amount)? xpEarned,
+    TResult? Function(int amount)? moneyEarned,
+    TResult? Function(Project project, String? tag)? projectStarted,
+    TResult? Function(String? tag)? levelUp,
+    TResult? Function(PurchaseType type)? purchase,
+  }) {
+    return purchase?.call(type);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(Project project, String? tag)? projectCompleted,
+    TResult Function(int amount)? xpEarned,
+    TResult Function(int amount)? moneyEarned,
+    TResult Function(Project project, String? tag)? projectStarted,
+    TResult Function(String? tag)? levelUp,
+    TResult Function(PurchaseType type)? purchase,
+    required TResult orElse(),
+  }) {
+    if (purchase != null) {
+      return purchase(type);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(ProjectCompleted value) projectCompleted,
+    required TResult Function(XpEarned value) xpEarned,
+    required TResult Function(MoneyEarned value) moneyEarned,
+    required TResult Function(ProjectStarted value) projectStarted,
+    required TResult Function(LevelUp value) levelUp,
+    required TResult Function(Purchase value) purchase,
+  }) {
+    return purchase(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(ProjectCompleted value)? projectCompleted,
+    TResult? Function(XpEarned value)? xpEarned,
+    TResult? Function(MoneyEarned value)? moneyEarned,
+    TResult? Function(ProjectStarted value)? projectStarted,
+    TResult? Function(LevelUp value)? levelUp,
+    TResult? Function(Purchase value)? purchase,
+  }) {
+    return purchase?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(ProjectCompleted value)? projectCompleted,
+    TResult Function(XpEarned value)? xpEarned,
+    TResult Function(MoneyEarned value)? moneyEarned,
+    TResult Function(ProjectStarted value)? projectStarted,
+    TResult Function(LevelUp value)? levelUp,
+    TResult Function(Purchase value)? purchase,
+    required TResult orElse(),
+  }) {
+    if (purchase != null) {
+      return purchase(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class Purchase implements GameEvent {
+  const factory Purchase({required final PurchaseType type}) = _$PurchaseImpl;
+
+  PurchaseType get type;
+
+  /// Create a copy of GameEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$PurchaseImplCopyWith<_$PurchaseImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
