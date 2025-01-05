@@ -1,5 +1,5 @@
 ﻿import 'package:flutter/material.dart';
-import 'package:stupig_proto/widgets/common/group_area.dart';
+import 'package:stupig_proto/widgets/debug/group_area.dart';
 import 'package:stupig_proto/widgets/debug/debug_panel.dart';
 import 'package:stupig_proto/widgets/project/available_projects_view.dart';
 import 'package:stupig_proto/widgets/project/active_projects_view.dart';

@@ -104,7 +104,6 @@ class AvailableProjects extends ConsumerWidget {
                     height: constraints.maxHeight,
                     child: AvailableProjectCard(
                       project: slot.project!,
-                      canFlip: true,
                     ),
                   ),
                   data: slot.project,
@@ -117,7 +116,6 @@ class AvailableProjects extends ConsumerWidget {
                   childWhenDragging: const EmptyProjectSlot(),
                   child: AvailableProjectCard(
                     project: slot.project!,
-                    canFlip: true,
                   ),
                 );
               },

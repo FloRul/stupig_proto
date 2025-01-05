@@ -41,6 +41,7 @@ unlockable features on progression
  - able to save/load game state
  - able to generate new projects
  - know the reward of an available project
+ - event: coffe boost: x2 project completion speed
 
  3 different pages
  - personnal page - own projects + hardware + upgrades
@@ -64,7 +65,7 @@ The secondary resources (hardware) are:
  - CPU speed -> speed up personal project completion
  - CPU power -> increase better project reward chances-bracket
  - GPU/Wram -> ???
- - RAM -> each project takes a specific amount of ram during completion, more ram = more project that can be completed at the same time.
+ - mental load -> each project takes a specific amount of mental load during completion, more mental load = more project that can be completed at the same time.
 
 The game is divided into 3 narrative phases, the first one is the student, the projects you complete can only reward experience
 Second one is employee, your projects can reward money as well to upgrade your hardware.
@@ -72,7 +73,7 @@ Third one is startup-company, you unlock the ability to hire freelancers who wil
 
 Projects are generated randomly using LLM to create fun and humorous project name/description to keep the player engaged.
 
-During gameplay random story events can appear, the player can choose a direction to influence the outcome of the event and affect its reputation level. Reputation level affects the probability to hire hire better freelancer (hiring process has some randomness in it)
+During gameplay random story events can appear, the player can choose a direction to influence the outcome of the event and affect its reputation level. Reputation level affects the probability to hire better freelancer (hiring process has some randomness in it)
 
 Reputation level also unlocks completion strategy that influence the way multiple projects are completed like :
 - FIFO - first active projects gets all the clicks
@@ -85,6 +86,42 @@ Ultimately multiple endings could be considered :
 - startup CEO (lots of freelancer - conversion to startup, allowing a lot of multiple projects to be active at the same time)
 - cloud wizard (cloud migration allowing for completion of ultra high project prerequisites to be taken)
 
+4 types of project:
+- learning: 
+  (-) + completion time
+  (+) + XP
+- design:
+  (-) takes more mental load
+  (+) if coupled with implementation gains + xp and + money
+- implementation:
+  (-) has a probability to fail
+  (+) if coupled with design gains + xp and + money
+- optimization:
+  (-) no reward
+  (+) permanently reduce probability of implementation failure
+
+
+feature/levels unlock
+1. save/load game
+2. 
+3.
+4.
+5.
+6.
+7.
+8.
+9.
+10.
+11.
+12.
+13.
+14.
+15.
+16.
+17.
+18.
+19.
+20.
 ```mermaid
 graph LR
   Projects -->|rewards| Experience

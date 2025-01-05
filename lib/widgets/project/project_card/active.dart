@@ -8,7 +8,7 @@ import 'package:stupig_proto/widgets/common/flippable_card.dart';
 import 'package:stupig_proto/widgets/project/project_card/backside.dart';
 import 'package:stupig_proto/widgets/project/project_card/progress_bar.dart';
 import 'package:stupig_proto/widgets/project/project_card/reward.dart';
-import 'package:stupig_proto/widgets/project/project_card/title.dart';
+import 'package:stupig_proto/widgets/project/project_card/project_title.dart';
 
 class ActiveProjectCard extends ConsumerStatefulWidget {
   final ProjectState pState;
@@ -46,7 +46,10 @@ class _ActiveProjectCardState extends ConsumerState<ActiveProjectCard> with Tick
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          ProjectCardTitle(title: widget.pState.project.name),
+          ProjectCardTitle(
+            title: widget.pState.project.name,
+            type: widget.pState.project.type,
+          ),
           const SizedBox(height: 16),
           ProgressBar(
             completion: widget.pState.completion,

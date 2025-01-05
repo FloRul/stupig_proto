@@ -31,12 +31,13 @@ class FlippableCard extends StatelessWidget {
   final Widget frontContent;
   final Widget backContent;
   final VoidCallback? onTap;
-
+  final Gradient? gradient;
   const FlippableCard({
     super.key,
     required this.flipController,
     required this.frontContent,
     required this.backContent,
+    this.gradient,
     this.onTap,
   });
 
@@ -56,11 +57,14 @@ class FlippableCard extends StatelessWidget {
             transform: transform,
             alignment: Alignment.center,
             child: angle < pi / 2
-                ? CardSide(child: frontContent)
+                ? CardSide(gradient: gradient, child: frontContent)
                 : Transform(
                     transform: Matrix4.identity()..rotateY(pi),
                     alignment: Alignment.center,
-                    child: CardSide(child: backContent),
+                    child: CardSide(
+                      gradient: gradient,
+                      child: backContent,
+                    ),
                   ),
           );
         },
@@ -73,18 +77,18 @@ class CardSide extends StatelessWidget {
   const CardSide({
     super.key,
     required this.child,
-    this.gradient= const LinearGradient(
-    begin: Alignment.topLeft,
-    end: Alignment.bottomRight,
-    colors: [
-      Colors.green,
-      Colors.blue,
-    ],
-  ),
+    this.gradient = const LinearGradient(
+      begin: Alignment.topLeft,
+      end: Alignment.bottomRight,
+      colors: [
+        Colors.green,
+        Colors.blue,
+      ],
+    ),
   });
 
   final Widget child;
-  final Gradient gradient ;
+  final Gradient? gradient;
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -93,7 +97,10 @@ class CardSide extends StatelessWidget {
         borderRadius: BorderRadius.circular(16),
       ),
       child: Container(
-        decoration: BoxDecoration(borderRadius: BorderRadius.circular(16), gradient: gradient),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(16),
+          gradient: gradient,
+        ),
         child: Padding(
           padding: const EdgeInsets.only(
             top: 12,

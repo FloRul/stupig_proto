@@ -46,6 +46,7 @@ class AvailableProjectsNotifier extends _$AvailableProjectsNotifier {
             moneyAmount: 1,
             xpAmount: 1,
           ),
+          type: ProjectType.learning,
         ),
       ],
       cooldowns: {},
@@ -134,6 +135,7 @@ class AvailableProjectsNotifier extends _$AvailableProjectsNotifier {
         moneyAmount: 1,
         xpAmount: 1 + ref.read(experienceNotifierProvider).level * Random().nextInt(10),
       ),
+      type: ProjectType.values[Random().nextInt(ProjectType.values.length)],
     );
   }
 

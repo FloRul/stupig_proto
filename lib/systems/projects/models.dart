@@ -11,6 +11,7 @@ class Project with _$Project {
     required String name,
     required String description,
     required ProjectReward reward,
+    required ProjectType type,
   }) = _Project;
 
   factory Project.fromJson(Map<String, Object?> json) => _$ProjectFromJson(json);
@@ -22,4 +23,11 @@ class AvailableProjectsState with _$AvailableProjectsState {
     required List<Project> projects,
     required Map<String, Completion> cooldowns,
   }) = _AvailableProjectsState;
+}
+
+enum ProjectType {
+  learning,
+  design,
+  implementation,
+  optimization,
 }

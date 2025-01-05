@@ -7,16 +7,14 @@ import 'package:stupig_proto/systems/projects/models.dart';
 import 'package:stupig_proto/widgets/common/flippable_card.dart';
 import 'package:stupig_proto/widgets/project/project_card/backside.dart';
 import 'package:stupig_proto/widgets/project/project_card/reward.dart';
-import 'package:stupig_proto/widgets/project/project_card/title.dart';
+import 'package:stupig_proto/widgets/project/project_card/project_title.dart';
 
 class AvailableProjectCard extends ConsumerStatefulWidget {
   final Project project;
-  final bool canFlip;
 
   const AvailableProjectCard({
     super.key,
     required this.project,
-    required this.canFlip,
   });
 
   @override
@@ -44,14 +42,14 @@ class AvailableProjectCardState extends ConsumerState<AvailableProjectCard> with
 
     return FlippableCard(
       flipController: _flipController,
-      onTap: widget.canFlip ? () => _flipController.flip() : null,
+      onTap: _flipController.flip,
       frontContent: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           ProjectCardTitle(
-            title: widget.canFlip ? widget.project.name : '??????',
-            showFlipIndicator: widget.canFlip,
+            title: '??????',
+            type: widget.project.type,
           ),
           const SizedBox(height: 16),
           RewardWidget(

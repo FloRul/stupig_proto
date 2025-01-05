@@ -24,6 +24,7 @@ mixin _$Project {
   String get name => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
   ProjectReward get reward => throw _privateConstructorUsedError;
+  ProjectType get type => throw _privateConstructorUsedError;
 
   /// Serializes this Project to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -39,7 +40,12 @@ abstract class $ProjectCopyWith<$Res> {
   factory $ProjectCopyWith(Project value, $Res Function(Project) then) =
       _$ProjectCopyWithImpl<$Res, Project>;
   @useResult
-  $Res call({String id, String name, String description, ProjectReward reward});
+  $Res call(
+      {String id,
+      String name,
+      String description,
+      ProjectReward reward,
+      ProjectType type});
 
   $ProjectRewardCopyWith<$Res> get reward;
 }
@@ -63,6 +69,7 @@ class _$ProjectCopyWithImpl<$Res, $Val extends Project>
     Object? name = null,
     Object? description = null,
     Object? reward = null,
+    Object? type = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -81,6 +88,10 @@ class _$ProjectCopyWithImpl<$Res, $Val extends Project>
           ? _value.reward
           : reward // ignore: cast_nullable_to_non_nullable
               as ProjectReward,
+      type: null == type
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as ProjectType,
     ) as $Val);
   }
 
@@ -102,7 +113,12 @@ abstract class _$$ProjectImplCopyWith<$Res> implements $ProjectCopyWith<$Res> {
       __$$ProjectImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String id, String name, String description, ProjectReward reward});
+  $Res call(
+      {String id,
+      String name,
+      String description,
+      ProjectReward reward,
+      ProjectType type});
 
   @override
   $ProjectRewardCopyWith<$Res> get reward;
@@ -125,6 +141,7 @@ class __$$ProjectImplCopyWithImpl<$Res>
     Object? name = null,
     Object? description = null,
     Object? reward = null,
+    Object? type = null,
   }) {
     return _then(_$ProjectImpl(
       id: null == id
@@ -143,6 +160,10 @@ class __$$ProjectImplCopyWithImpl<$Res>
           ? _value.reward
           : reward // ignore: cast_nullable_to_non_nullable
               as ProjectReward,
+      type: null == type
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as ProjectType,
     ));
   }
 }
@@ -154,7 +175,8 @@ class _$ProjectImpl implements _Project {
       {required this.id,
       required this.name,
       required this.description,
-      required this.reward});
+      required this.reward,
+      required this.type});
 
   factory _$ProjectImpl.fromJson(Map<String, dynamic> json) =>
       _$$ProjectImplFromJson(json);
@@ -167,10 +189,12 @@ class _$ProjectImpl implements _Project {
   final String description;
   @override
   final ProjectReward reward;
+  @override
+  final ProjectType type;
 
   @override
   String toString() {
-    return 'Project(id: $id, name: $name, description: $description, reward: $reward)';
+    return 'Project(id: $id, name: $name, description: $description, reward: $reward, type: $type)';
   }
 
   @override
@@ -182,12 +206,14 @@ class _$ProjectImpl implements _Project {
             (identical(other.name, name) || other.name == name) &&
             (identical(other.description, description) ||
                 other.description == description) &&
-            (identical(other.reward, reward) || other.reward == reward));
+            (identical(other.reward, reward) || other.reward == reward) &&
+            (identical(other.type, type) || other.type == type));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, id, name, description, reward);
+  int get hashCode =>
+      Object.hash(runtimeType, id, name, description, reward, type);
 
   /// Create a copy of Project
   /// with the given fields replaced by the non-null parameter values.
@@ -210,7 +236,8 @@ abstract class _Project implements Project {
       {required final String id,
       required final String name,
       required final String description,
-      required final ProjectReward reward}) = _$ProjectImpl;
+      required final ProjectReward reward,
+      required final ProjectType type}) = _$ProjectImpl;
 
   factory _Project.fromJson(Map<String, dynamic> json) = _$ProjectImpl.fromJson;
 
@@ -222,6 +249,8 @@ abstract class _Project implements Project {
   String get description;
   @override
   ProjectReward get reward;
+  @override
+  ProjectType get type;
 
   /// Create a copy of Project
   /// with the given fields replaced by the non-null parameter values.
