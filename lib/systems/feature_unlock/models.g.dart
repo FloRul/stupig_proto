@@ -8,10 +8,21 @@ part of 'models.dart';
 
 _$FeaturesStateImpl _$$FeaturesStateImplFromJson(Map<String, dynamic> json) =>
     _$FeaturesStateImpl(
-      showRewards: json['showRewards'] as bool,
+      features: (json['features'] as Map<String, dynamic>).map(
+        (k, e) => MapEntry($enumDecode(_$FeatureEnumMap, k), e as bool),
+      ),
     );
 
 Map<String, dynamic> _$$FeaturesStateImplToJson(_$FeaturesStateImpl instance) =>
     <String, dynamic>{
-      'showRewards': instance.showRewards,
+      'features':
+          instance.features.map((k, e) => MapEntry(_$FeatureEnumMap[k]!, e)),
     };
+
+const _$FeatureEnumMap = {
+  Feature.showRewards: 'showRewards',
+  Feature.canPurchaseAvailableSlot: 'canPurchaseAvailableSlot',
+  Feature.canPurchaseActiveSlot: 'canPurchaseActiveSlot',
+  Feature.canSaveLoadGame: 'canSaveLoadGame',
+  Feature.canSeePrgression: 'canSeePrgression',
+};

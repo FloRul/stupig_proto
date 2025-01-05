@@ -1,6 +1,7 @@
 ﻿import 'dart:math';
 
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:stupig_proto/systems/feature_unlock/models.dart';
 import 'package:stupig_proto/systems/projects/models.dart';
 
 part 'project_state.freezed.dart';
@@ -12,7 +13,6 @@ class ProjectState with _$ProjectState {
     required Project project,
     required Completion completion,
   }) = _ActiveProjectState;
-
 
   factory ProjectState.activeFromProject(Project project, int seed) => ProjectState(
         project: project,
@@ -28,6 +28,7 @@ class ProjectReward with _$ProjectReward {
   const factory ProjectReward({
     required int xpAmount,
     required int moneyAmount,
+    Feature? feature,
   }) = _ProjectReward;
 
   factory ProjectReward.fromJson(Map<String, Object?> json) => _$ProjectRewardFromJson(json);

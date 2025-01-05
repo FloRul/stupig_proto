@@ -20,7 +20,7 @@ FeaturesState _$FeaturesStateFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$FeaturesState {
-  bool get showRewards => throw _privateConstructorUsedError;
+  Map<Feature, bool> get features => throw _privateConstructorUsedError;
 
   /// Serializes this FeaturesState to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -38,7 +38,7 @@ abstract class $FeaturesStateCopyWith<$Res> {
           FeaturesState value, $Res Function(FeaturesState) then) =
       _$FeaturesStateCopyWithImpl<$Res, FeaturesState>;
   @useResult
-  $Res call({bool showRewards});
+  $Res call({Map<Feature, bool> features});
 }
 
 /// @nodoc
@@ -56,13 +56,13 @@ class _$FeaturesStateCopyWithImpl<$Res, $Val extends FeaturesState>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? showRewards = null,
+    Object? features = null,
   }) {
     return _then(_value.copyWith(
-      showRewards: null == showRewards
-          ? _value.showRewards
-          : showRewards // ignore: cast_nullable_to_non_nullable
-              as bool,
+      features: null == features
+          ? _value.features
+          : features // ignore: cast_nullable_to_non_nullable
+              as Map<Feature, bool>,
     ) as $Val);
   }
 }
@@ -75,7 +75,7 @@ abstract class _$$FeaturesStateImplCopyWith<$Res>
       __$$FeaturesStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({bool showRewards});
+  $Res call({Map<Feature, bool> features});
 }
 
 /// @nodoc
@@ -91,13 +91,13 @@ class __$$FeaturesStateImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? showRewards = null,
+    Object? features = null,
   }) {
     return _then(_$FeaturesStateImpl(
-      showRewards: null == showRewards
-          ? _value.showRewards
-          : showRewards // ignore: cast_nullable_to_non_nullable
-              as bool,
+      features: null == features
+          ? _value._features
+          : features // ignore: cast_nullable_to_non_nullable
+              as Map<Feature, bool>,
     ));
   }
 }
@@ -105,17 +105,23 @@ class __$$FeaturesStateImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$FeaturesStateImpl implements _FeaturesState {
-  const _$FeaturesStateImpl({required this.showRewards});
+  const _$FeaturesStateImpl({required final Map<Feature, bool> features})
+      : _features = features;
 
   factory _$FeaturesStateImpl.fromJson(Map<String, dynamic> json) =>
       _$$FeaturesStateImplFromJson(json);
 
+  final Map<Feature, bool> _features;
   @override
-  final bool showRewards;
+  Map<Feature, bool> get features {
+    if (_features is EqualUnmodifiableMapView) return _features;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableMapView(_features);
+  }
 
   @override
   String toString() {
-    return 'FeaturesState(showRewards: $showRewards)';
+    return 'FeaturesState(features: $features)';
   }
 
   @override
@@ -123,13 +129,13 @@ class _$FeaturesStateImpl implements _FeaturesState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$FeaturesStateImpl &&
-            (identical(other.showRewards, showRewards) ||
-                other.showRewards == showRewards));
+            const DeepCollectionEquality().equals(other._features, _features));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, showRewards);
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(_features));
 
   /// Create a copy of FeaturesState
   /// with the given fields replaced by the non-null parameter values.
@@ -148,14 +154,14 @@ class _$FeaturesStateImpl implements _FeaturesState {
 }
 
 abstract class _FeaturesState implements FeaturesState {
-  const factory _FeaturesState({required final bool showRewards}) =
+  const factory _FeaturesState({required final Map<Feature, bool> features}) =
       _$FeaturesStateImpl;
 
   factory _FeaturesState.fromJson(Map<String, dynamic> json) =
       _$FeaturesStateImpl.fromJson;
 
   @override
-  bool get showRewards;
+  Map<Feature, bool> get features;
 
   /// Create a copy of FeaturesState
   /// with the given fields replaced by the non-null parameter values.

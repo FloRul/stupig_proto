@@ -3,7 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:stupig_proto/systems/event_bus.dart';
 import 'package:stupig_proto/systems/game_event.dart';
 import 'package:stupig_proto/systems/projects/models.dart';
-import 'package:stupig_proto/systems/projects/notifiers.dart';
+import 'package:stupig_proto/systems/projects/available_project_notifier.dart';
 import 'package:stupig_proto/utils/constants.dart';
 import 'package:stupig_proto/widgets/common/glassmorphism_container.dart';
 import 'package:stupig_proto/widgets/project/project_card/available.dart';

@@ -25,13 +25,23 @@ _$ProjectRewardImpl _$$ProjectRewardImplFromJson(Map<String, dynamic> json) =>
     _$ProjectRewardImpl(
       xpAmount: (json['xpAmount'] as num).toInt(),
       moneyAmount: (json['moneyAmount'] as num).toInt(),
+      feature: $enumDecodeNullable(_$FeatureEnumMap, json['feature']),
     );
 
 Map<String, dynamic> _$$ProjectRewardImplToJson(_$ProjectRewardImpl instance) =>
     <String, dynamic>{
       'xpAmount': instance.xpAmount,
       'moneyAmount': instance.moneyAmount,
+      'feature': _$FeatureEnumMap[instance.feature],
     };
+
+const _$FeatureEnumMap = {
+  Feature.showRewards: 'showRewards',
+  Feature.canPurchaseAvailableSlot: 'canPurchaseAvailableSlot',
+  Feature.canPurchaseActiveSlot: 'canPurchaseActiveSlot',
+  Feature.canSaveLoadGame: 'canSaveLoadGame',
+  Feature.canSeePrgression: 'canSeePrgression',
+};
 
 _$CompletionImpl _$$CompletionImplFromJson(Map<String, dynamic> json) =>
     _$CompletionImpl(

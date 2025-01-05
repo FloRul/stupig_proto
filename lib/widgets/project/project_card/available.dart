@@ -1,6 +1,7 @@
 ﻿// base_project_card.dart
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:stupig_proto/systems/feature_unlock/models.dart';
 import 'package:stupig_proto/systems/feature_unlock/notifiers.dart';
 import 'package:stupig_proto/systems/projects/models.dart';
 import 'package:stupig_proto/widgets/common/flippable_card.dart';
@@ -39,7 +40,7 @@ class AvailableProjectCardState extends ConsumerState<AvailableProjectCard> with
 
   @override
   Widget build(BuildContext context) {
-    final showRewards = ref.watch(featureUnlockNotifierProvider.select((value) => value.showRewards));
+    final showRewards = ref.watch(featureUnlockNotifierProvider).features[Feature.showRewards];
 
     return FlippableCard(
       flipController: _flipController,
@@ -55,7 +56,7 @@ class AvailableProjectCardState extends ConsumerState<AvailableProjectCard> with
           const SizedBox(height: 16),
           RewardWidget(
             reward: widget.project.reward,
-            showRewards: showRewards,
+            showRewards: showRewards!,
           ),
         ],
       ),

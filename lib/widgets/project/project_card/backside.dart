@@ -13,11 +13,11 @@ class ProjectCardBack extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        const Row(
+        Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
+          crossAxisAlignment: CrossAxisAlignment.baseline,
+          children: const [
             Text(
               'Description',
               style: TextStyle(
@@ -26,22 +26,10 @@ class ProjectCardBack extends StatelessWidget {
                 color: Colors.white,
               ),
             ),
-            Row(
-              children: [
-                Text(
-                  'Back',
-                  style: TextStyle(
-                    color: Colors.white70,
-                    fontSize: 14,
-                  ),
-                ),
-                SizedBox(width: 4),
-                Icon(
-                  Icons.rotate_right,
-                  color: Colors.white70,
-                  size: 16,
-                ),
-              ],
+            Icon(
+              Icons.rotate_right,
+              color: Colors.white70,
+              size: 16,
             ),
           ],
         ),

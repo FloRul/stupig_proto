@@ -28,22 +28,10 @@ class ProjectCardTitle extends StatelessWidget {
           ),
         ),
         if (showFlipIndicator)
-          const Row(
-            children: [
-              Text(
-                'Flip',
-                style: TextStyle(
-                  color: Colors.white70,
-                  fontSize: 14,
-                ),
-              ),
-              SizedBox(width: 4),
-              Icon(
-                Icons.rotate_right,
-                color: Colors.white70,
-                size: 16,
-              ),
-            ],
+          const Icon(
+            Icons.rotate_right,
+            color: Colors.white70,
+            size: 16,
           ),
       ],
     );

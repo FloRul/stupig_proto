@@ -24,6 +24,9 @@ mixin _$GameEvent {
     required TResult Function(Project project, String? tag) projectStarted,
     required TResult Function(String? tag) levelUp,
     required TResult Function(PurchaseType type) purchase,
+    required TResult Function() saveGame,
+    required TResult Function() loadGame,
+    required TResult Function(Feature feature) unlockFeature,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -34,6 +37,9 @@ mixin _$GameEvent {
     TResult? Function(Project project, String? tag)? projectStarted,
     TResult? Function(String? tag)? levelUp,
     TResult? Function(PurchaseType type)? purchase,
+    TResult? Function()? saveGame,
+    TResult? Function()? loadGame,
+    TResult? Function(Feature feature)? unlockFeature,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -44,6 +50,9 @@ mixin _$GameEvent {
     TResult Function(Project project, String? tag)? projectStarted,
     TResult Function(String? tag)? levelUp,
     TResult Function(PurchaseType type)? purchase,
+    TResult Function()? saveGame,
+    TResult Function()? loadGame,
+    TResult Function(Feature feature)? unlockFeature,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -55,6 +64,9 @@ mixin _$GameEvent {
     required TResult Function(ProjectStarted value) projectStarted,
     required TResult Function(LevelUp value) levelUp,
     required TResult Function(Purchase value) purchase,
+    required TResult Function(SaveGame value) saveGame,
+    required TResult Function(LoadGame value) loadGame,
+    required TResult Function(UnlockFeature value) unlockFeature,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -65,6 +77,9 @@ mixin _$GameEvent {
     TResult? Function(ProjectStarted value)? projectStarted,
     TResult? Function(LevelUp value)? levelUp,
     TResult? Function(Purchase value)? purchase,
+    TResult? Function(SaveGame value)? saveGame,
+    TResult? Function(LoadGame value)? loadGame,
+    TResult? Function(UnlockFeature value)? unlockFeature,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -75,6 +90,9 @@ mixin _$GameEvent {
     TResult Function(ProjectStarted value)? projectStarted,
     TResult Function(LevelUp value)? levelUp,
     TResult Function(Purchase value)? purchase,
+    TResult Function(SaveGame value)? saveGame,
+    TResult Function(LoadGame value)? loadGame,
+    TResult Function(UnlockFeature value)? unlockFeature,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -195,6 +213,9 @@ class _$ProjectCompletedImpl implements ProjectCompleted {
     required TResult Function(Project project, String? tag) projectStarted,
     required TResult Function(String? tag) levelUp,
     required TResult Function(PurchaseType type) purchase,
+    required TResult Function() saveGame,
+    required TResult Function() loadGame,
+    required TResult Function(Feature feature) unlockFeature,
   }) {
     return projectCompleted(project, tag);
   }
@@ -208,6 +229,9 @@ class _$ProjectCompletedImpl implements ProjectCompleted {
     TResult? Function(Project project, String? tag)? projectStarted,
     TResult? Function(String? tag)? levelUp,
     TResult? Function(PurchaseType type)? purchase,
+    TResult? Function()? saveGame,
+    TResult? Function()? loadGame,
+    TResult? Function(Feature feature)? unlockFeature,
   }) {
     return projectCompleted?.call(project, tag);
   }
@@ -221,6 +245,9 @@ class _$ProjectCompletedImpl implements ProjectCompleted {
     TResult Function(Project project, String? tag)? projectStarted,
     TResult Function(String? tag)? levelUp,
     TResult Function(PurchaseType type)? purchase,
+    TResult Function()? saveGame,
+    TResult Function()? loadGame,
+    TResult Function(Feature feature)? unlockFeature,
     required TResult orElse(),
   }) {
     if (projectCompleted != null) {
@@ -238,6 +265,9 @@ class _$ProjectCompletedImpl implements ProjectCompleted {
     required TResult Function(ProjectStarted value) projectStarted,
     required TResult Function(LevelUp value) levelUp,
     required TResult Function(Purchase value) purchase,
+    required TResult Function(SaveGame value) saveGame,
+    required TResult Function(LoadGame value) loadGame,
+    required TResult Function(UnlockFeature value) unlockFeature,
   }) {
     return projectCompleted(this);
   }
@@ -251,6 +281,9 @@ class _$ProjectCompletedImpl implements ProjectCompleted {
     TResult? Function(ProjectStarted value)? projectStarted,
     TResult? Function(LevelUp value)? levelUp,
     TResult? Function(Purchase value)? purchase,
+    TResult? Function(SaveGame value)? saveGame,
+    TResult? Function(LoadGame value)? loadGame,
+    TResult? Function(UnlockFeature value)? unlockFeature,
   }) {
     return projectCompleted?.call(this);
   }
@@ -264,6 +297,9 @@ class _$ProjectCompletedImpl implements ProjectCompleted {
     TResult Function(ProjectStarted value)? projectStarted,
     TResult Function(LevelUp value)? levelUp,
     TResult Function(Purchase value)? purchase,
+    TResult Function(SaveGame value)? saveGame,
+    TResult Function(LoadGame value)? loadGame,
+    TResult Function(UnlockFeature value)? unlockFeature,
     required TResult orElse(),
   }) {
     if (projectCompleted != null) {
@@ -362,6 +398,9 @@ class _$XpEarnedImpl implements XpEarned {
     required TResult Function(Project project, String? tag) projectStarted,
     required TResult Function(String? tag) levelUp,
     required TResult Function(PurchaseType type) purchase,
+    required TResult Function() saveGame,
+    required TResult Function() loadGame,
+    required TResult Function(Feature feature) unlockFeature,
   }) {
     return xpEarned(amount);
   }
@@ -375,6 +414,9 @@ class _$XpEarnedImpl implements XpEarned {
     TResult? Function(Project project, String? tag)? projectStarted,
     TResult? Function(String? tag)? levelUp,
     TResult? Function(PurchaseType type)? purchase,
+    TResult? Function()? saveGame,
+    TResult? Function()? loadGame,
+    TResult? Function(Feature feature)? unlockFeature,
   }) {
     return xpEarned?.call(amount);
   }
@@ -388,6 +430,9 @@ class _$XpEarnedImpl implements XpEarned {
     TResult Function(Project project, String? tag)? projectStarted,
     TResult Function(String? tag)? levelUp,
     TResult Function(PurchaseType type)? purchase,
+    TResult Function()? saveGame,
+    TResult Function()? loadGame,
+    TResult Function(Feature feature)? unlockFeature,
     required TResult orElse(),
   }) {
     if (xpEarned != null) {
@@ -405,6 +450,9 @@ class _$XpEarnedImpl implements XpEarned {
     required TResult Function(ProjectStarted value) projectStarted,
     required TResult Function(LevelUp value) levelUp,
     required TResult Function(Purchase value) purchase,
+    required TResult Function(SaveGame value) saveGame,
+    required TResult Function(LoadGame value) loadGame,
+    required TResult Function(UnlockFeature value) unlockFeature,
   }) {
     return xpEarned(this);
   }
@@ -418,6 +466,9 @@ class _$XpEarnedImpl implements XpEarned {
     TResult? Function(ProjectStarted value)? projectStarted,
     TResult? Function(LevelUp value)? levelUp,
     TResult? Function(Purchase value)? purchase,
+    TResult? Function(SaveGame value)? saveGame,
+    TResult? Function(LoadGame value)? loadGame,
+    TResult? Function(UnlockFeature value)? unlockFeature,
   }) {
     return xpEarned?.call(this);
   }
@@ -431,6 +482,9 @@ class _$XpEarnedImpl implements XpEarned {
     TResult Function(ProjectStarted value)? projectStarted,
     TResult Function(LevelUp value)? levelUp,
     TResult Function(Purchase value)? purchase,
+    TResult Function(SaveGame value)? saveGame,
+    TResult Function(LoadGame value)? loadGame,
+    TResult Function(UnlockFeature value)? unlockFeature,
     required TResult orElse(),
   }) {
     if (xpEarned != null) {
@@ -526,6 +580,9 @@ class _$MoneyEarnedImpl implements MoneyEarned {
     required TResult Function(Project project, String? tag) projectStarted,
     required TResult Function(String? tag) levelUp,
     required TResult Function(PurchaseType type) purchase,
+    required TResult Function() saveGame,
+    required TResult Function() loadGame,
+    required TResult Function(Feature feature) unlockFeature,
   }) {
     return moneyEarned(amount);
   }
@@ -539,6 +596,9 @@ class _$MoneyEarnedImpl implements MoneyEarned {
     TResult? Function(Project project, String? tag)? projectStarted,
     TResult? Function(String? tag)? levelUp,
     TResult? Function(PurchaseType type)? purchase,
+    TResult? Function()? saveGame,
+    TResult? Function()? loadGame,
+    TResult? Function(Feature feature)? unlockFeature,
   }) {
     return moneyEarned?.call(amount);
   }
@@ -552,6 +612,9 @@ class _$MoneyEarnedImpl implements MoneyEarned {
     TResult Function(Project project, String? tag)? projectStarted,
     TResult Function(String? tag)? levelUp,
     TResult Function(PurchaseType type)? purchase,
+    TResult Function()? saveGame,
+    TResult Function()? loadGame,
+    TResult Function(Feature feature)? unlockFeature,
     required TResult orElse(),
   }) {
     if (moneyEarned != null) {
@@ -569,6 +632,9 @@ class _$MoneyEarnedImpl implements MoneyEarned {
     required TResult Function(ProjectStarted value) projectStarted,
     required TResult Function(LevelUp value) levelUp,
     required TResult Function(Purchase value) purchase,
+    required TResult Function(SaveGame value) saveGame,
+    required TResult Function(LoadGame value) loadGame,
+    required TResult Function(UnlockFeature value) unlockFeature,
   }) {
     return moneyEarned(this);
   }
@@ -582,6 +648,9 @@ class _$MoneyEarnedImpl implements MoneyEarned {
     TResult? Function(ProjectStarted value)? projectStarted,
     TResult? Function(LevelUp value)? levelUp,
     TResult? Function(Purchase value)? purchase,
+    TResult? Function(SaveGame value)? saveGame,
+    TResult? Function(LoadGame value)? loadGame,
+    TResult? Function(UnlockFeature value)? unlockFeature,
   }) {
     return moneyEarned?.call(this);
   }
@@ -595,6 +664,9 @@ class _$MoneyEarnedImpl implements MoneyEarned {
     TResult Function(ProjectStarted value)? projectStarted,
     TResult Function(LevelUp value)? levelUp,
     TResult Function(Purchase value)? purchase,
+    TResult Function(SaveGame value)? saveGame,
+    TResult Function(LoadGame value)? loadGame,
+    TResult Function(UnlockFeature value)? unlockFeature,
     required TResult orElse(),
   }) {
     if (moneyEarned != null) {
@@ -711,6 +783,9 @@ class _$ProjectStartedImpl implements ProjectStarted {
     required TResult Function(Project project, String? tag) projectStarted,
     required TResult Function(String? tag) levelUp,
     required TResult Function(PurchaseType type) purchase,
+    required TResult Function() saveGame,
+    required TResult Function() loadGame,
+    required TResult Function(Feature feature) unlockFeature,
   }) {
     return projectStarted(project, tag);
   }
@@ -724,6 +799,9 @@ class _$ProjectStartedImpl implements ProjectStarted {
     TResult? Function(Project project, String? tag)? projectStarted,
     TResult? Function(String? tag)? levelUp,
     TResult? Function(PurchaseType type)? purchase,
+    TResult? Function()? saveGame,
+    TResult? Function()? loadGame,
+    TResult? Function(Feature feature)? unlockFeature,
   }) {
     return projectStarted?.call(project, tag);
   }
@@ -737,6 +815,9 @@ class _$ProjectStartedImpl implements ProjectStarted {
     TResult Function(Project project, String? tag)? projectStarted,
     TResult Function(String? tag)? levelUp,
     TResult Function(PurchaseType type)? purchase,
+    TResult Function()? saveGame,
+    TResult Function()? loadGame,
+    TResult Function(Feature feature)? unlockFeature,
     required TResult orElse(),
   }) {
     if (projectStarted != null) {
@@ -754,6 +835,9 @@ class _$ProjectStartedImpl implements ProjectStarted {
     required TResult Function(ProjectStarted value) projectStarted,
     required TResult Function(LevelUp value) levelUp,
     required TResult Function(Purchase value) purchase,
+    required TResult Function(SaveGame value) saveGame,
+    required TResult Function(LoadGame value) loadGame,
+    required TResult Function(UnlockFeature value) unlockFeature,
   }) {
     return projectStarted(this);
   }
@@ -767,6 +851,9 @@ class _$ProjectStartedImpl implements ProjectStarted {
     TResult? Function(ProjectStarted value)? projectStarted,
     TResult? Function(LevelUp value)? levelUp,
     TResult? Function(Purchase value)? purchase,
+    TResult? Function(SaveGame value)? saveGame,
+    TResult? Function(LoadGame value)? loadGame,
+    TResult? Function(UnlockFeature value)? unlockFeature,
   }) {
     return projectStarted?.call(this);
   }
@@ -780,6 +867,9 @@ class _$ProjectStartedImpl implements ProjectStarted {
     TResult Function(ProjectStarted value)? projectStarted,
     TResult Function(LevelUp value)? levelUp,
     TResult Function(Purchase value)? purchase,
+    TResult Function(SaveGame value)? saveGame,
+    TResult Function(LoadGame value)? loadGame,
+    TResult Function(UnlockFeature value)? unlockFeature,
     required TResult orElse(),
   }) {
     if (projectStarted != null) {
@@ -878,6 +968,9 @@ class _$LevelUpImpl implements LevelUp {
     required TResult Function(Project project, String? tag) projectStarted,
     required TResult Function(String? tag) levelUp,
     required TResult Function(PurchaseType type) purchase,
+    required TResult Function() saveGame,
+    required TResult Function() loadGame,
+    required TResult Function(Feature feature) unlockFeature,
   }) {
     return levelUp(tag);
   }
@@ -891,6 +984,9 @@ class _$LevelUpImpl implements LevelUp {
     TResult? Function(Project project, String? tag)? projectStarted,
     TResult? Function(String? tag)? levelUp,
     TResult? Function(PurchaseType type)? purchase,
+    TResult? Function()? saveGame,
+    TResult? Function()? loadGame,
+    TResult? Function(Feature feature)? unlockFeature,
   }) {
     return levelUp?.call(tag);
   }
@@ -904,6 +1000,9 @@ class _$LevelUpImpl implements LevelUp {
     TResult Function(Project project, String? tag)? projectStarted,
     TResult Function(String? tag)? levelUp,
     TResult Function(PurchaseType type)? purchase,
+    TResult Function()? saveGame,
+    TResult Function()? loadGame,
+    TResult Function(Feature feature)? unlockFeature,
     required TResult orElse(),
   }) {
     if (levelUp != null) {
@@ -921,6 +1020,9 @@ class _$LevelUpImpl implements LevelUp {
     required TResult Function(ProjectStarted value) projectStarted,
     required TResult Function(LevelUp value) levelUp,
     required TResult Function(Purchase value) purchase,
+    required TResult Function(SaveGame value) saveGame,
+    required TResult Function(LoadGame value) loadGame,
+    required TResult Function(UnlockFeature value) unlockFeature,
   }) {
     return levelUp(this);
   }
@@ -934,6 +1036,9 @@ class _$LevelUpImpl implements LevelUp {
     TResult? Function(ProjectStarted value)? projectStarted,
     TResult? Function(LevelUp value)? levelUp,
     TResult? Function(Purchase value)? purchase,
+    TResult? Function(SaveGame value)? saveGame,
+    TResult? Function(LoadGame value)? loadGame,
+    TResult? Function(UnlockFeature value)? unlockFeature,
   }) {
     return levelUp?.call(this);
   }
@@ -947,6 +1052,9 @@ class _$LevelUpImpl implements LevelUp {
     TResult Function(ProjectStarted value)? projectStarted,
     TResult Function(LevelUp value)? levelUp,
     TResult Function(Purchase value)? purchase,
+    TResult Function(SaveGame value)? saveGame,
+    TResult Function(LoadGame value)? loadGame,
+    TResult Function(UnlockFeature value)? unlockFeature,
     required TResult orElse(),
   }) {
     if (levelUp != null) {
@@ -1042,6 +1150,9 @@ class _$PurchaseImpl implements Purchase {
     required TResult Function(Project project, String? tag) projectStarted,
     required TResult Function(String? tag) levelUp,
     required TResult Function(PurchaseType type) purchase,
+    required TResult Function() saveGame,
+    required TResult Function() loadGame,
+    required TResult Function(Feature feature) unlockFeature,
   }) {
     return purchase(type);
   }
@@ -1055,6 +1166,9 @@ class _$PurchaseImpl implements Purchase {
     TResult? Function(Project project, String? tag)? projectStarted,
     TResult? Function(String? tag)? levelUp,
     TResult? Function(PurchaseType type)? purchase,
+    TResult? Function()? saveGame,
+    TResult? Function()? loadGame,
+    TResult? Function(Feature feature)? unlockFeature,
   }) {
     return purchase?.call(type);
   }
@@ -1068,6 +1182,9 @@ class _$PurchaseImpl implements Purchase {
     TResult Function(Project project, String? tag)? projectStarted,
     TResult Function(String? tag)? levelUp,
     TResult Function(PurchaseType type)? purchase,
+    TResult Function()? saveGame,
+    TResult Function()? loadGame,
+    TResult Function(Feature feature)? unlockFeature,
     required TResult orElse(),
   }) {
     if (purchase != null) {
@@ -1085,6 +1202,9 @@ class _$PurchaseImpl implements Purchase {
     required TResult Function(ProjectStarted value) projectStarted,
     required TResult Function(LevelUp value) levelUp,
     required TResult Function(Purchase value) purchase,
+    required TResult Function(SaveGame value) saveGame,
+    required TResult Function(LoadGame value) loadGame,
+    required TResult Function(UnlockFeature value) unlockFeature,
   }) {
     return purchase(this);
   }
@@ -1098,6 +1218,9 @@ class _$PurchaseImpl implements Purchase {
     TResult? Function(ProjectStarted value)? projectStarted,
     TResult? Function(LevelUp value)? levelUp,
     TResult? Function(Purchase value)? purchase,
+    TResult? Function(SaveGame value)? saveGame,
+    TResult? Function(LoadGame value)? loadGame,
+    TResult? Function(UnlockFeature value)? unlockFeature,
   }) {
     return purchase?.call(this);
   }
@@ -1111,6 +1234,9 @@ class _$PurchaseImpl implements Purchase {
     TResult Function(ProjectStarted value)? projectStarted,
     TResult Function(LevelUp value)? levelUp,
     TResult Function(Purchase value)? purchase,
+    TResult Function(SaveGame value)? saveGame,
+    TResult Function(LoadGame value)? loadGame,
+    TResult Function(UnlockFeature value)? unlockFeature,
     required TResult orElse(),
   }) {
     if (purchase != null) {
@@ -1129,5 +1255,482 @@ abstract class Purchase implements GameEvent {
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$PurchaseImplCopyWith<_$PurchaseImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$SaveGameImplCopyWith<$Res> {
+  factory _$$SaveGameImplCopyWith(
+          _$SaveGameImpl value, $Res Function(_$SaveGameImpl) then) =
+      __$$SaveGameImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$SaveGameImplCopyWithImpl<$Res>
+    extends _$GameEventCopyWithImpl<$Res, _$SaveGameImpl>
+    implements _$$SaveGameImplCopyWith<$Res> {
+  __$$SaveGameImplCopyWithImpl(
+      _$SaveGameImpl _value, $Res Function(_$SaveGameImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of GameEvent
+  /// with the given fields replaced by the non-null parameter values.
+}
+
+/// @nodoc
+
+class _$SaveGameImpl implements SaveGame {
+  const _$SaveGameImpl();
+
+  @override
+  String toString() {
+    return 'GameEvent.saveGame()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$SaveGameImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(Project project, String? tag) projectCompleted,
+    required TResult Function(int amount) xpEarned,
+    required TResult Function(int amount) moneyEarned,
+    required TResult Function(Project project, String? tag) projectStarted,
+    required TResult Function(String? tag) levelUp,
+    required TResult Function(PurchaseType type) purchase,
+    required TResult Function() saveGame,
+    required TResult Function() loadGame,
+    required TResult Function(Feature feature) unlockFeature,
+  }) {
+    return saveGame();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(Project project, String? tag)? projectCompleted,
+    TResult? Function(int amount)? xpEarned,
+    TResult? Function(int amount)? moneyEarned,
+    TResult? Function(Project project, String? tag)? projectStarted,
+    TResult? Function(String? tag)? levelUp,
+    TResult? Function(PurchaseType type)? purchase,
+    TResult? Function()? saveGame,
+    TResult? Function()? loadGame,
+    TResult? Function(Feature feature)? unlockFeature,
+  }) {
+    return saveGame?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(Project project, String? tag)? projectCompleted,
+    TResult Function(int amount)? xpEarned,
+    TResult Function(int amount)? moneyEarned,
+    TResult Function(Project project, String? tag)? projectStarted,
+    TResult Function(String? tag)? levelUp,
+    TResult Function(PurchaseType type)? purchase,
+    TResult Function()? saveGame,
+    TResult Function()? loadGame,
+    TResult Function(Feature feature)? unlockFeature,
+    required TResult orElse(),
+  }) {
+    if (saveGame != null) {
+      return saveGame();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(ProjectCompleted value) projectCompleted,
+    required TResult Function(XpEarned value) xpEarned,
+    required TResult Function(MoneyEarned value) moneyEarned,
+    required TResult Function(ProjectStarted value) projectStarted,
+    required TResult Function(LevelUp value) levelUp,
+    required TResult Function(Purchase value) purchase,
+    required TResult Function(SaveGame value) saveGame,
+    required TResult Function(LoadGame value) loadGame,
+    required TResult Function(UnlockFeature value) unlockFeature,
+  }) {
+    return saveGame(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(ProjectCompleted value)? projectCompleted,
+    TResult? Function(XpEarned value)? xpEarned,
+    TResult? Function(MoneyEarned value)? moneyEarned,
+    TResult? Function(ProjectStarted value)? projectStarted,
+    TResult? Function(LevelUp value)? levelUp,
+    TResult? Function(Purchase value)? purchase,
+    TResult? Function(SaveGame value)? saveGame,
+    TResult? Function(LoadGame value)? loadGame,
+    TResult? Function(UnlockFeature value)? unlockFeature,
+  }) {
+    return saveGame?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(ProjectCompleted value)? projectCompleted,
+    TResult Function(XpEarned value)? xpEarned,
+    TResult Function(MoneyEarned value)? moneyEarned,
+    TResult Function(ProjectStarted value)? projectStarted,
+    TResult Function(LevelUp value)? levelUp,
+    TResult Function(Purchase value)? purchase,
+    TResult Function(SaveGame value)? saveGame,
+    TResult Function(LoadGame value)? loadGame,
+    TResult Function(UnlockFeature value)? unlockFeature,
+    required TResult orElse(),
+  }) {
+    if (saveGame != null) {
+      return saveGame(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class SaveGame implements GameEvent {
+  const factory SaveGame() = _$SaveGameImpl;
+}
+
+/// @nodoc
+abstract class _$$LoadGameImplCopyWith<$Res> {
+  factory _$$LoadGameImplCopyWith(
+          _$LoadGameImpl value, $Res Function(_$LoadGameImpl) then) =
+      __$$LoadGameImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$LoadGameImplCopyWithImpl<$Res>
+    extends _$GameEventCopyWithImpl<$Res, _$LoadGameImpl>
+    implements _$$LoadGameImplCopyWith<$Res> {
+  __$$LoadGameImplCopyWithImpl(
+      _$LoadGameImpl _value, $Res Function(_$LoadGameImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of GameEvent
+  /// with the given fields replaced by the non-null parameter values.
+}
+
+/// @nodoc
+
+class _$LoadGameImpl implements LoadGame {
+  const _$LoadGameImpl();
+
+  @override
+  String toString() {
+    return 'GameEvent.loadGame()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$LoadGameImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(Project project, String? tag) projectCompleted,
+    required TResult Function(int amount) xpEarned,
+    required TResult Function(int amount) moneyEarned,
+    required TResult Function(Project project, String? tag) projectStarted,
+    required TResult Function(String? tag) levelUp,
+    required TResult Function(PurchaseType type) purchase,
+    required TResult Function() saveGame,
+    required TResult Function() loadGame,
+    required TResult Function(Feature feature) unlockFeature,
+  }) {
+    return loadGame();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(Project project, String? tag)? projectCompleted,
+    TResult? Function(int amount)? xpEarned,
+    TResult? Function(int amount)? moneyEarned,
+    TResult? Function(Project project, String? tag)? projectStarted,
+    TResult? Function(String? tag)? levelUp,
+    TResult? Function(PurchaseType type)? purchase,
+    TResult? Function()? saveGame,
+    TResult? Function()? loadGame,
+    TResult? Function(Feature feature)? unlockFeature,
+  }) {
+    return loadGame?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(Project project, String? tag)? projectCompleted,
+    TResult Function(int amount)? xpEarned,
+    TResult Function(int amount)? moneyEarned,
+    TResult Function(Project project, String? tag)? projectStarted,
+    TResult Function(String? tag)? levelUp,
+    TResult Function(PurchaseType type)? purchase,
+    TResult Function()? saveGame,
+    TResult Function()? loadGame,
+    TResult Function(Feature feature)? unlockFeature,
+    required TResult orElse(),
+  }) {
+    if (loadGame != null) {
+      return loadGame();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(ProjectCompleted value) projectCompleted,
+    required TResult Function(XpEarned value) xpEarned,
+    required TResult Function(MoneyEarned value) moneyEarned,
+    required TResult Function(ProjectStarted value) projectStarted,
+    required TResult Function(LevelUp value) levelUp,
+    required TResult Function(Purchase value) purchase,
+    required TResult Function(SaveGame value) saveGame,
+    required TResult Function(LoadGame value) loadGame,
+    required TResult Function(UnlockFeature value) unlockFeature,
+  }) {
+    return loadGame(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(ProjectCompleted value)? projectCompleted,
+    TResult? Function(XpEarned value)? xpEarned,
+    TResult? Function(MoneyEarned value)? moneyEarned,
+    TResult? Function(ProjectStarted value)? projectStarted,
+    TResult? Function(LevelUp value)? levelUp,
+    TResult? Function(Purchase value)? purchase,
+    TResult? Function(SaveGame value)? saveGame,
+    TResult? Function(LoadGame value)? loadGame,
+    TResult? Function(UnlockFeature value)? unlockFeature,
+  }) {
+    return loadGame?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(ProjectCompleted value)? projectCompleted,
+    TResult Function(XpEarned value)? xpEarned,
+    TResult Function(MoneyEarned value)? moneyEarned,
+    TResult Function(ProjectStarted value)? projectStarted,
+    TResult Function(LevelUp value)? levelUp,
+    TResult Function(Purchase value)? purchase,
+    TResult Function(SaveGame value)? saveGame,
+    TResult Function(LoadGame value)? loadGame,
+    TResult Function(UnlockFeature value)? unlockFeature,
+    required TResult orElse(),
+  }) {
+    if (loadGame != null) {
+      return loadGame(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class LoadGame implements GameEvent {
+  const factory LoadGame() = _$LoadGameImpl;
+}
+
+/// @nodoc
+abstract class _$$UnlockFeatureImplCopyWith<$Res> {
+  factory _$$UnlockFeatureImplCopyWith(
+          _$UnlockFeatureImpl value, $Res Function(_$UnlockFeatureImpl) then) =
+      __$$UnlockFeatureImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({Feature feature});
+}
+
+/// @nodoc
+class __$$UnlockFeatureImplCopyWithImpl<$Res>
+    extends _$GameEventCopyWithImpl<$Res, _$UnlockFeatureImpl>
+    implements _$$UnlockFeatureImplCopyWith<$Res> {
+  __$$UnlockFeatureImplCopyWithImpl(
+      _$UnlockFeatureImpl _value, $Res Function(_$UnlockFeatureImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of GameEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? feature = null,
+  }) {
+    return _then(_$UnlockFeatureImpl(
+      feature: null == feature
+          ? _value.feature
+          : feature // ignore: cast_nullable_to_non_nullable
+              as Feature,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$UnlockFeatureImpl implements UnlockFeature {
+  const _$UnlockFeatureImpl({required this.feature});
+
+  @override
+  final Feature feature;
+
+  @override
+  String toString() {
+    return 'GameEvent.unlockFeature(feature: $feature)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$UnlockFeatureImpl &&
+            (identical(other.feature, feature) || other.feature == feature));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, feature);
+
+  /// Create a copy of GameEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$UnlockFeatureImplCopyWith<_$UnlockFeatureImpl> get copyWith =>
+      __$$UnlockFeatureImplCopyWithImpl<_$UnlockFeatureImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(Project project, String? tag) projectCompleted,
+    required TResult Function(int amount) xpEarned,
+    required TResult Function(int amount) moneyEarned,
+    required TResult Function(Project project, String? tag) projectStarted,
+    required TResult Function(String? tag) levelUp,
+    required TResult Function(PurchaseType type) purchase,
+    required TResult Function() saveGame,
+    required TResult Function() loadGame,
+    required TResult Function(Feature feature) unlockFeature,
+  }) {
+    return unlockFeature(feature);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(Project project, String? tag)? projectCompleted,
+    TResult? Function(int amount)? xpEarned,
+    TResult? Function(int amount)? moneyEarned,
+    TResult? Function(Project project, String? tag)? projectStarted,
+    TResult? Function(String? tag)? levelUp,
+    TResult? Function(PurchaseType type)? purchase,
+    TResult? Function()? saveGame,
+    TResult? Function()? loadGame,
+    TResult? Function(Feature feature)? unlockFeature,
+  }) {
+    return unlockFeature?.call(feature);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(Project project, String? tag)? projectCompleted,
+    TResult Function(int amount)? xpEarned,
+    TResult Function(int amount)? moneyEarned,
+    TResult Function(Project project, String? tag)? projectStarted,
+    TResult Function(String? tag)? levelUp,
+    TResult Function(PurchaseType type)? purchase,
+    TResult Function()? saveGame,
+    TResult Function()? loadGame,
+    TResult Function(Feature feature)? unlockFeature,
+    required TResult orElse(),
+  }) {
+    if (unlockFeature != null) {
+      return unlockFeature(feature);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(ProjectCompleted value) projectCompleted,
+    required TResult Function(XpEarned value) xpEarned,
+    required TResult Function(MoneyEarned value) moneyEarned,
+    required TResult Function(ProjectStarted value) projectStarted,
+    required TResult Function(LevelUp value) levelUp,
+    required TResult Function(Purchase value) purchase,
+    required TResult Function(SaveGame value) saveGame,
+    required TResult Function(LoadGame value) loadGame,
+    required TResult Function(UnlockFeature value) unlockFeature,
+  }) {
+    return unlockFeature(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(ProjectCompleted value)? projectCompleted,
+    TResult? Function(XpEarned value)? xpEarned,
+    TResult? Function(MoneyEarned value)? moneyEarned,
+    TResult? Function(ProjectStarted value)? projectStarted,
+    TResult? Function(LevelUp value)? levelUp,
+    TResult? Function(Purchase value)? purchase,
+    TResult? Function(SaveGame value)? saveGame,
+    TResult? Function(LoadGame value)? loadGame,
+    TResult? Function(UnlockFeature value)? unlockFeature,
+  }) {
+    return unlockFeature?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(ProjectCompleted value)? projectCompleted,
+    TResult Function(XpEarned value)? xpEarned,
+    TResult Function(MoneyEarned value)? moneyEarned,
+    TResult Function(ProjectStarted value)? projectStarted,
+    TResult Function(LevelUp value)? levelUp,
+    TResult Function(Purchase value)? purchase,
+    TResult Function(SaveGame value)? saveGame,
+    TResult Function(LoadGame value)? loadGame,
+    TResult Function(UnlockFeature value)? unlockFeature,
+    required TResult orElse(),
+  }) {
+    if (unlockFeature != null) {
+      return unlockFeature(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class UnlockFeature implements GameEvent {
+  const factory UnlockFeature({required final Feature feature}) =
+      _$UnlockFeatureImpl;
+
+  Feature get feature;
+
+  /// Create a copy of GameEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$UnlockFeatureImplCopyWith<_$UnlockFeatureImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

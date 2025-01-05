@@ -222,6 +222,7 @@ ProjectReward _$ProjectRewardFromJson(Map<String, dynamic> json) {
 mixin _$ProjectReward {
   int get xpAmount => throw _privateConstructorUsedError;
   int get moneyAmount => throw _privateConstructorUsedError;
+  Feature? get feature => throw _privateConstructorUsedError;
 
   /// Serializes this ProjectReward to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -239,7 +240,7 @@ abstract class $ProjectRewardCopyWith<$Res> {
           ProjectReward value, $Res Function(ProjectReward) then) =
       _$ProjectRewardCopyWithImpl<$Res, ProjectReward>;
   @useResult
-  $Res call({int xpAmount, int moneyAmount});
+  $Res call({int xpAmount, int moneyAmount, Feature? feature});
 }
 
 /// @nodoc
@@ -259,6 +260,7 @@ class _$ProjectRewardCopyWithImpl<$Res, $Val extends ProjectReward>
   $Res call({
     Object? xpAmount = null,
     Object? moneyAmount = null,
+    Object? feature = freezed,
   }) {
     return _then(_value.copyWith(
       xpAmount: null == xpAmount
@@ -269,6 +271,10 @@ class _$ProjectRewardCopyWithImpl<$Res, $Val extends ProjectReward>
           ? _value.moneyAmount
           : moneyAmount // ignore: cast_nullable_to_non_nullable
               as int,
+      feature: freezed == feature
+          ? _value.feature
+          : feature // ignore: cast_nullable_to_non_nullable
+              as Feature?,
     ) as $Val);
   }
 }
@@ -281,7 +287,7 @@ abstract class _$$ProjectRewardImplCopyWith<$Res>
       __$$ProjectRewardImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int xpAmount, int moneyAmount});
+  $Res call({int xpAmount, int moneyAmount, Feature? feature});
 }
 
 /// @nodoc
@@ -299,6 +305,7 @@ class __$$ProjectRewardImplCopyWithImpl<$Res>
   $Res call({
     Object? xpAmount = null,
     Object? moneyAmount = null,
+    Object? feature = freezed,
   }) {
     return _then(_$ProjectRewardImpl(
       xpAmount: null == xpAmount
@@ -309,6 +316,10 @@ class __$$ProjectRewardImplCopyWithImpl<$Res>
           ? _value.moneyAmount
           : moneyAmount // ignore: cast_nullable_to_non_nullable
               as int,
+      feature: freezed == feature
+          ? _value.feature
+          : feature // ignore: cast_nullable_to_non_nullable
+              as Feature?,
     ));
   }
 }
@@ -317,7 +328,7 @@ class __$$ProjectRewardImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$ProjectRewardImpl implements _ProjectReward {
   const _$ProjectRewardImpl(
-      {required this.xpAmount, required this.moneyAmount});
+      {required this.xpAmount, required this.moneyAmount, this.feature});
 
   factory _$ProjectRewardImpl.fromJson(Map<String, dynamic> json) =>
       _$$ProjectRewardImplFromJson(json);
@@ -326,10 +337,12 @@ class _$ProjectRewardImpl implements _ProjectReward {
   final int xpAmount;
   @override
   final int moneyAmount;
+  @override
+  final Feature? feature;
 
   @override
   String toString() {
-    return 'ProjectReward(xpAmount: $xpAmount, moneyAmount: $moneyAmount)';
+    return 'ProjectReward(xpAmount: $xpAmount, moneyAmount: $moneyAmount, feature: $feature)';
   }
 
   @override
@@ -340,12 +353,13 @@ class _$ProjectRewardImpl implements _ProjectReward {
             (identical(other.xpAmount, xpAmount) ||
                 other.xpAmount == xpAmount) &&
             (identical(other.moneyAmount, moneyAmount) ||
-                other.moneyAmount == moneyAmount));
+                other.moneyAmount == moneyAmount) &&
+            (identical(other.feature, feature) || other.feature == feature));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, xpAmount, moneyAmount);
+  int get hashCode => Object.hash(runtimeType, xpAmount, moneyAmount, feature);
 
   /// Create a copy of ProjectReward
   /// with the given fields replaced by the non-null parameter values.
@@ -366,7 +380,8 @@ class _$ProjectRewardImpl implements _ProjectReward {
 abstract class _ProjectReward implements ProjectReward {
   const factory _ProjectReward(
       {required final int xpAmount,
-      required final int moneyAmount}) = _$ProjectRewardImpl;
+      required final int moneyAmount,
+      final Feature? feature}) = _$ProjectRewardImpl;
 
   factory _ProjectReward.fromJson(Map<String, dynamic> json) =
       _$ProjectRewardImpl.fromJson;
@@ -375,6 +390,8 @@ abstract class _ProjectReward implements ProjectReward {
   int get xpAmount;
   @override
   int get moneyAmount;
+  @override
+  Feature? get feature;
 
   /// Create a copy of ProjectReward
   /// with the given fields replaced by the non-null parameter values.
