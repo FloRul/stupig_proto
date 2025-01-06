@@ -1,7 +1,5 @@
 ﻿import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:stupig_proto/systems/event_bus.dart';
-import 'package:stupig_proto/systems/game_event.dart';
 import 'package:stupig_proto/systems/projects/models.dart';
 import 'package:stupig_proto/systems/projects/available_project_notifier.dart';
 import 'package:stupig_proto/utils/constants.dart';
@@ -91,16 +89,16 @@ class AvailableProjects extends ConsumerWidget {
           childAspectRatio: kCardAspectRatio,
         ),
         // Add 1 to itemCount for the Add Slot card
-        itemCount: allSlots.length + 1,
+        itemCount: allSlots.length,
         itemBuilder: (context, index) {
           // If it's the last item, show the Add Slot card
-          if (index == allSlots.length) {
-            return AddSlotCard(
-              onTap: () {
-                ref.read(eventBusProvider.notifier).publish(const GameEvent.purchase(type: PurchaseType.availableSlot));
-              },
-            );
-          }
+          // if (index == allSlots.length) {
+          //   return AddSlotCard(
+          //     onTap: () {
+          //       ref.read(eventBusProvider.notifier).publish(const GameEvent.purchase(type: PurchaseType.availableSlot));
+          //     },
+          //   );
+          // }
 
           final slot = allSlots[index];
 

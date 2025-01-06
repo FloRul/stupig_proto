@@ -4,6 +4,7 @@ import 'package:stupig_proto/widgets/debug/debug_panel.dart';
 import 'package:stupig_proto/widgets/project/available_projects_view.dart';
 import 'package:stupig_proto/widgets/project/active_projects_view.dart';
 import 'package:stupig_proto/widgets/resources_panel.dart';
+import 'package:stupig_proto/widgets/upgrade_shop.dart';
 
 class MainGamePage extends StatelessWidget {
   const MainGamePage({super.key});
@@ -37,6 +38,7 @@ class MainGamePage extends StatelessWidget {
                 Expanded(
                   child: GroupArea(
                     title: 'Upgrades',
+                    child: UpgradesShop(),
                   ),
                 )
               ],

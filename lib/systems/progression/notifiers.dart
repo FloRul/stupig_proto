@@ -29,7 +29,7 @@ Future<List<ProjectTheme>> themes(Ref ref) async {
 // TODO: include in the progression notifier state
 @Riverpod(keepAlive: true)
 int playerTier(Ref ref) {
-  var currentLevel = ref.watch(experienceNotifierProvider.select((value) => value.level));
+  var currentLevel = ref.watch(experienceProvider.select((value) => value.level));
   switch (currentLevel) {
     case > 4 && <= 15:
       return 2;

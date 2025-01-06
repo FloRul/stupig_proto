@@ -11,7 +11,7 @@ class ResourcesView extends ConsumerWidget {
       children: [
         const XpWidget(),
         ResourceContainer<int>(
-          resource: ref.watch(moneyNotifierProvider),
+          resource: ref.watch(moneyProvider),
           label: 'Money',
           resourceToString: (value) => '${value.toString()} \$',
           description: 'The amount of money you have.',
@@ -63,7 +63,7 @@ class XpWidget extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    var xpState = ref.watch(experienceNotifierProvider);
+    var xpState = ref.watch(experienceProvider);
     return Tooltip(
       message: '${xpState.xp} / ${xpState.xpToNextLevel}',
       child: Container(

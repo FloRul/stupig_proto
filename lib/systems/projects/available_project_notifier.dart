@@ -3,7 +3,6 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:stupig_proto/systems/global_ticker.dart/global_ticker.dart';
 import 'package:stupig_proto/systems/event_bus.dart';
-import 'package:stupig_proto/systems/game_event.dart';
 import 'package:stupig_proto/systems/primary_resources/notifiers.dart';
 import 'package:stupig_proto/systems/projects/models.dart';
 import 'package:stupig_proto/systems/projects/project_state.dart';
@@ -24,7 +23,7 @@ class AvailableProjectsNotifier extends _$AvailableProjectsNotifier {
         next.whenData(
           (event) => event.maybeMap(
             projectStarted: (pStarted) => _handleStartProject(pStarted.project),
-            purchase: (e) => e.type == PurchaseType.availableSlot ? _addNewSlot() : null,
+            // purchase: (e) => e.type == PurchaseType.focusPoints ? _addNewSlot() : null,
             orElse: () {},
           ),
         );
@@ -37,7 +36,7 @@ class AvailableProjectsNotifier extends _$AvailableProjectsNotifier {
     );
 
     // Create 3 initial projects
-    final experienceLevel = ref.read(experienceNotifierProvider).level;
+    final experienceLevel = ref.read(experienceProvider).level;
     final initialProjects = List.generate(3, (index) {
       final projectType = ProjectType.values[Random().nextInt(ProjectType.values.length)];
       return Project(
@@ -141,7 +140,7 @@ class AvailableProjectsNotifier extends _$AvailableProjectsNotifier {
       description: 'Project $id Description',
       reward: ProjectReward.fromGameState(
         type: ProjectType.values[Random().nextInt(ProjectType.values.length)],
-        level: ref.read(experienceNotifierProvider).level,
+        level: ref.read(experienceProvider).level,
         failRate: Random().nextDouble(),
         isCombined: Random().nextBool(),
       ),
@@ -164,15 +163,15 @@ class AvailableProjectsNotifier extends _$AvailableProjectsNotifier {
     );
   }
 
-  Future<void> _addNewSlot() async {
-    try {
-      final newProject = await _fetchNewProject();
-      state = state.copyWith(
-        projects: [...state.projects, newProject],
-      );
-    } catch (e) {
-      print('Error adding new project slot: $e');
-      // Optionally show an error message to the user
-    }
-  }
+  // Future<void> _addNewSlot() async {
+  //   try {
+  //     final newProject = await _fetchNewProject();
+  //     state = state.copyWith(
+  //       projects: [...state.projects, newProject],
+  //     );
+  //   } catch (e) {
+  //     print('Error adding new project slot: $e');
+  //     // Optionally show an error message to the user
+  //   }
+  // }
 }

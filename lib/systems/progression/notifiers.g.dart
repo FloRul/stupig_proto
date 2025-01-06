@@ -59,7 +59,7 @@ final themesProvider = FutureProvider<List<ProjectTheme>>.internal(
 @Deprecated('Will be removed in 3.0. Use Ref instead')
 // ignore: unused_element
 typedef ThemesRef = FutureProviderRef<List<ProjectTheme>>;
-String _$playerTierHash() => r'2d0c15137f381720366e97307fb0699d086af726';
+String _$playerTierHash() => r'ce4c7a32aa4b3981903a1c3aa4e915239216d44f';
 
 /// See also [playerTier].
 @ProviderFor(playerTier)

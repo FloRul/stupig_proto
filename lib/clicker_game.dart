@@ -3,7 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:stupig_proto/systems/event_bus.dart';
 import 'package:stupig_proto/widgets/progression/booster_opening_dialog.dart';
 import 'package:stupig_proto/widgets/progression/progression_page.dart';
-import 'package:stupig_proto/widgets/project/project_page.dart';
+import 'package:stupig_proto/widgets/main_game_page.dart';
 
 enum GamePage {
   main,

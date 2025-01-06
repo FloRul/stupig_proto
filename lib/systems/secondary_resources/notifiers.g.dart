@@ -7,7 +7,7 @@ part of 'notifiers.dart';
 // **************************************************************************
 
 String _$secondaryResourcesNotifierHash() =>
-    r'ccb02e383b46a457cc1686eb842a29da5c68adfc';
+    r'2ff758bb4eeb1e6a56bef46156d56e1104e52732';
 
 /// See also [SecondaryResourcesNotifier].
 @ProviderFor(SecondaryResourcesNotifier)

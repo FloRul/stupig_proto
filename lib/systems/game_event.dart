@@ -17,6 +17,5 @@ sealed class GameEvent with _$GameEvent {
 }
 
 enum PurchaseType {
-  availableSlot,
-  feature,
+  focusPoints,
 }
