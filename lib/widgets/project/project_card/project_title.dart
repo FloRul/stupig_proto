@@ -16,33 +16,45 @@ class ProjectCardTitle extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          title,
-          style: const TextStyle(
-            fontSize: 16,
-            fontWeight: FontWeight.bold,
-            color: Colors.white,
+        Expanded(
+          child: Text(
+            title,
+            style: const TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.bold,
+              color: Colors.white,
+            ),
+            overflow: TextOverflow.ellipsis,
           ),
-          overflow: TextOverflow.ellipsis,
         ),
-        switch (type) {
-          ProjectType.learning => const Icon(
-              Icons.school,
-              color: Colors.white,
-            ),
-          ProjectType.design => const Icon(
-              Icons.design_services,
-              color: Colors.white,
-            ),
-          ProjectType.implementation => const Icon(
-              Icons.build,
-              color: Colors.white,
-            ),
-          ProjectType.optimization => const Icon(
-              Icons.flash_on,
-              color: Colors.white,
-            ),
-        }
+        const SizedBox(width: 8),
+        Tooltip(
+          message: switch (type) {
+            ProjectType.learning => 'Learning\nNo money reward',
+            ProjectType.design => 'Design project',
+            ProjectType.implementation => 'Implementation project',
+            ProjectType.optimization =>
+              'Optimization project\nNo reward\nReduces design and implementation failure chances',
+          },
+          child: switch (type) {
+            ProjectType.learning => const Icon(
+                Icons.school,
+                color: Colors.white,
+              ),
+            ProjectType.design => const Icon(
+                Icons.design_services,
+                color: Colors.white,
+              ),
+            ProjectType.implementation => const Icon(
+                Icons.build,
+                color: Colors.white,
+              ),
+            ProjectType.optimization => const Icon(
+                Icons.flash_on,
+                color: Colors.white,
+              ),
+          },
+        )
       ],
     );
   }

@@ -1,9 +1,9 @@
 ﻿import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:stupig_proto/systems/global_ticker.dart/global_ticker.dart';
 import 'package:stupig_proto/systems/projects/project_state.dart';
+import 'package:stupig_proto/utils/constants.dart';
 
-class ProgressBar extends ConsumerStatefulWidget {
+class ProgressBar extends ConsumerWidget {
   final Completion completion;
   final VoidCallback? onComplete;
 
@@ -14,34 +14,10 @@ class ProgressBar extends ConsumerStatefulWidget {
   });
 
   @override
-  ConsumerState<ProgressBar> createState() => _ProjectProgressState();
-}
-
-class _ProjectProgressState extends ConsumerState<ProgressBar> {
-  late bool _isComplete;
-  late Completion _completion;
-
-  @override
-  void initState() {
-    _isComplete = widget.completion.isComplete;
-    _completion = widget.completion;
-    super.initState();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    ref.listen(globalTickerProvider, (prev, next) {
-      setState(() {
-        _completion = _completion.tick();
-        if (_completion.isComplete && !_isComplete) {
-          _isComplete = true;
-        }
-      });
-    });
-
+  Widget build(BuildContext context, WidgetRef ref) {
     return AnimatedSwitcher(
       duration: const Duration(milliseconds: 250),
-      child: _isComplete
+      child: completion.isComplete
           ? Container(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
@@ -61,7 +37,7 @@ class _ProjectProgressState extends ConsumerState<ProgressBar> {
                 style: FilledButton.styleFrom(
                   backgroundColor: Colors.transparent,
                 ),
-                onPressed: widget.onComplete,
+                onPressed: onComplete,
                 icon: const Icon(Icons.check_circle),
                 label: const Text(
                   'Complete',
@@ -89,11 +65,17 @@ class _ProjectProgressState extends ConsumerState<ProgressBar> {
               ),
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(8),
-                child: LinearProgressIndicator(
-                  value: _completion.progress,
-                  minHeight: 12,
-                  backgroundColor: Colors.transparent,
-                ),
+                child: TweenAnimationBuilder<double>(
+                    tween: Tween<double>(begin: 0, end: completion.progress),
+                    duration: const Duration(milliseconds: kTickInterval),
+                    curve: Curves.linear,
+                    builder: (context, animatedProgress, child) {
+                      return LinearProgressIndicator(
+                        value: animatedProgress,
+                        minHeight: 12,
+                        backgroundColor: Colors.transparent,
+                      );
+                    }),
               ),
             ),
     );

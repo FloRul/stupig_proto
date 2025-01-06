@@ -1,0 +1,96 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+  <title>Project Combination Game</title>
+</head>
+<body>
+  <h1>Projects</h1>
+  <div id="projects"></div>
+  <h2>Combine Projects</h2>
+  <select id="project1"></select>
+  <select id="project2"></select>
+  <button onclick="combineSelectedProjects()">Combine Projects</button>
+
+  <script>
+    let projects = [
+      { id: 1, name: "Project 1", status: "available", completionTime: 2 },
+      { id: 2, name: "Project 2", status: "available", completionTime: 12 },
+      { id: 72715, name: "Project 72715", status: "available", completionTime: 5 },
+    ];
+
+    function completeProject(projectId) {
+      const project = projects.find(p => p.id === projectId);
+      if (project && project.status === "available") {
+        project.status = "in progress";
+        setTimeout(() => {
+          project.status = "completed";
+          updateUI();
+          updateProjectSelects();
+        }, project.completionTime * 1000);
+      }
+    }
+
+    function canCombine(project1, project2) {
+      return project1.status === "completed" && project2.status === "completed";
+    }
+
+    function combineProjects(project1, project2) {
+      if (canCombine(project1, project2)) {
+        const newProject = {
+          id: Date.now(),
+          name: `${project1.name} + ${project2.name}`,
+          status: "available",
+          completionTime: project1.completionTime + project2.completionTime,
+        };
+        projects.push(newProject);
+        project1.status = "combined";
+        project2.status = "combined";
+        updateUI();
+        updateProjectSelects();
+      } else {
+        alert("Projects cannot be combined.");
+      }
+    }
+
+    function combineSelectedProjects() {
+      const project1Id = parseInt(document.getElementById('project1').value);
+      const project2Id = parseInt(document.getElementById('project2').value);
+      const project1 = projects.find(p => p.id === project1Id);
+      const project2 = projects.find(p => p.id === project2Id);
+      combineProjects(project1, project2);
+    }
+
+    function updateUI() {
+      const projectsContainer = document.getElementById('projects');
+      projectsContainer.innerHTML = '';
+
+      projects.forEach(project => {
+        const div = document.createElement('div');
+        div.className = 'project';
+        div.innerHTML = `
+          <h3>${project.name}</h3>
+          <p>Status: ${project.status}</p>
+          <button onclick="completeProject(${project.id})">Complete</button>
+        `;
+        projectsContainer.appendChild(div);
+      });
+    }
+
+    function updateProjectSelects() {
+      const project1Select = document.getElementById('project1');
+      const project2Select = document.getElementById('project2');
+      project1Select.innerHTML = '';
+      project2Select.innerHTML = '';
+      projects.forEach(project => {
+        if (project.status === "completed") {
+          project1Select.innerHTML += `<option value="${project.id}">${project.name}</option>`;
+          project2Select.innerHTML += `<option value="${project.id}">${project.name}</option>`;
+        }
+      });
+    }
+
+    updateUI();
+    updateProjectSelects();
+  </script>
+</body>
+</html>

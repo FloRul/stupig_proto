@@ -29,9 +29,16 @@ class ProjectCooldownCard extends ConsumerWidget {
           children: [
             const Icon(Icons.hourglass_empty),
             const SizedBox(height: 8),
-            CircularProgressIndicator(
-              value: progress,
-            ),
+            TweenAnimationBuilder<double>(
+                tween: Tween<double>(begin: 0, end: progress),
+                duration: const Duration(milliseconds: kTickInterval),
+                curve: Curves.linear,
+                builder: (context, animatedProgress, child) {
+                  return CircularProgressIndicator(
+                    value: animatedProgress,
+                    backgroundColor: Colors.transparent,
+                  );
+                }),
             const SizedBox(height: 8),
             Text('${(progress * 100).toInt()}%'),
           ],
