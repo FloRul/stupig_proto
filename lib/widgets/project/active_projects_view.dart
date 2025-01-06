@@ -34,7 +34,10 @@ class _ActiveProjectsState extends ConsumerState<ActiveProjects> {
                 isHighlighted: candidateData.isNotEmpty,
                 trailing: Row(
                   children: [
-                    const Icon(Icons.memory),
+                    const Tooltip(
+                        message:
+                            'Available focus points\nDetermine the amount of project you can fit in that little head of yours...',
+                        child: Icon(Icons.memory)),
                     const SizedBox(width: 8),
                     Text('${state.totalFocusPoints} / $focusPoints'),
                   ],
