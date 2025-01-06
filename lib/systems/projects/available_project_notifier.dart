@@ -36,21 +36,26 @@ class AvailableProjectsNotifier extends _$AvailableProjectsNotifier {
       (previous, next) => _handleTick(),
     );
 
-    return AvailableProjectsState(
-      projects: [
-        Project(
-          id: const Uuid().v4(),
-          name: 'Project 1',
-          description: 'Project 1 Description',
-          reward: ProjectReward.fromGameState(
-            type: ProjectType.learning,
-            level: ref.read(experienceNotifierProvider).level,
-            failRate: 0.5,
-            isCombined: false,
-          ),
-          type: ProjectType.learning,
+    // Create 3 initial projects
+    final experienceLevel = ref.read(experienceNotifierProvider).level;
+    final initialProjects = List.generate(3, (index) {
+      final projectType = ProjectType.values[Random().nextInt(ProjectType.values.length)];
+      return Project(
+        id: const Uuid().v4(),
+        name: 'Project ${index + 1}',
+        description: 'Project ${index + 1} Description',
+        reward: ProjectReward.fromGameState(
+          type: projectType,
+          level: experienceLevel,
+          failRate: Random().nextDouble(),
+          isCombined: Random().nextBool(),
         ),
-      ],
+        type: projectType,
+      );
+    });
+
+    return AvailableProjectsState(
+      projects: initialProjects,
       cooldowns: {},
     );
   }

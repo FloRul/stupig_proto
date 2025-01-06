@@ -6,6 +6,7 @@ import 'package:stupig_proto/systems/projects/models.dart';
 import 'package:stupig_proto/systems/projects/available_project_notifier.dart';
 import 'package:stupig_proto/utils/constants.dart';
 import 'package:stupig_proto/widgets/common/glassmorphism_container.dart';
+import 'package:stupig_proto/widgets/debug/group_area.dart';
 import 'package:stupig_proto/widgets/project/project_card/available.dart';
 
 class ProjectCooldownCard extends ConsumerWidget {
@@ -80,75 +81,58 @@ class AvailableProjects extends ConsumerWidget {
     // Sort slots to maintain consistent ordering
     allSlots.sort((a, b) => (a.project?.id ?? a.cooldownId!).compareTo(b.project?.id ?? b.cooldownId!));
 
-    return GlassmorphicContainer(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          Text(
-            'Available',
-            style: TextStyle(
-              fontSize: 20,
-              fontWeight: FontWeight.bold,
-              color: Colors.white.withValues(alpha: 0.9),
-            ),
-            textAlign: TextAlign.left,
-          ),
-          Expanded(
-            child: GridView.builder(
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 3,
-                crossAxisSpacing: 16.0,
-                mainAxisSpacing: 16.0,
-                childAspectRatio: kCardAspectRatio,
-              ),
-              // Add 1 to itemCount for the Add Slot card
-              itemCount: allSlots.length + 1,
-              itemBuilder: (context, index) {
-                // If it's the last item, show the Add Slot card
-                if (index == allSlots.length) {
-                  return AddSlotCard(
-                    onTap: () {
-                      ref
-                          .read(eventBusProvider.notifier)
-                          .publish(const GameEvent.purchase(type: PurchaseType.availableSlot));
-                    },
-                  );
-                }
-
-                final slot = allSlots[index];
-
-                if (slot.project != null) {
-                  return LayoutBuilder(
-                    builder: (context, constraints) {
-                      return Draggable<Project>(
-                        feedback: SizedBox(
-                          width: constraints.maxWidth,
-                          height: constraints.maxHeight,
-                          child: AvailableProjectCard(
-                            project: slot.project!,
-                          ),
-                        ),
-                        data: slot.project,
-                        onDragStarted: () {
-                          // Optional: Add any drag start animations or effects
-                        },
-                        onDraggableCanceled: (_, __) {
-                          // Optional: Handle drag cancel
-                        },
-                        childWhenDragging: const EmptyProjectSlot(),
-                        child: AvailableProjectCard(
-                          project: slot.project!,
-                        ),
-                      );
-                    },
-                  );
-                } else {
-                  return ProjectCooldownCard(projectId: slot.cooldownId!);
-                }
+    return GroupArea(
+      title: 'Available Projects',
+      child: GridView.builder(
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 3,
+          crossAxisSpacing: 16.0,
+          mainAxisSpacing: 16.0,
+          childAspectRatio: kCardAspectRatio,
+        ),
+        // Add 1 to itemCount for the Add Slot card
+        itemCount: allSlots.length + 1,
+        itemBuilder: (context, index) {
+          // If it's the last item, show the Add Slot card
+          if (index == allSlots.length) {
+            return AddSlotCard(
+              onTap: () {
+                ref.read(eventBusProvider.notifier).publish(const GameEvent.purchase(type: PurchaseType.availableSlot));
               },
-            ),
-          ),
-        ],
+            );
+          }
+
+          final slot = allSlots[index];
+
+          if (slot.project != null) {
+            return LayoutBuilder(
+              builder: (context, constraints) {
+                return Draggable<Project>(
+                  feedback: SizedBox(
+                    width: constraints.maxWidth,
+                    height: constraints.maxHeight,
+                    child: AvailableProjectCard(
+                      project: slot.project!,
+                    ),
+                  ),
+                  data: slot.project,
+                  onDragStarted: () {
+                    // Optional: Add any drag start animations or effects
+                  },
+                  onDraggableCanceled: (_, __) {
+                    // Optional: Handle drag cancel
+                  },
+                  childWhenDragging: const EmptyProjectSlot(),
+                  child: AvailableProjectCard(
+                    project: slot.project!,
+                  ),
+                );
+              },
+            );
+          } else {
+            return ProjectCooldownCard(projectId: slot.cooldownId!);
+          }
+        },
       ),
     );
   }

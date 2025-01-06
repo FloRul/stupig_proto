@@ -26,15 +26,12 @@ class MainGamePage extends StatelessWidget {
                 ),
                 Expanded(
                   flex: 2,
-                  child: GroupArea(
-                    title: 'Projects',
-                    child: Column(
-                      children: [
-                        Expanded(child: ActiveProjects()),
-                        SizedBox(height: 16.0),
-                        Expanded(child: AvailableProjects()),
-                      ],
-                    ),
+                  child: Column(
+                    children: [
+                      Expanded(child: ActiveProjects()),
+                      SizedBox(height: 16.0),
+                      Expanded(child: AvailableProjects()),
+                    ],
                   ),
                 ),
                 Expanded(
