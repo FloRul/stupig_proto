@@ -12,34 +12,16 @@ class ActiveProjects extends ConsumerStatefulWidget {
   const ActiveProjects({super.key});
 
   @override
-  ConsumerState<ActiveProjects> createState() => _InprogressProjectsState();
+  ConsumerState<ActiveProjects> createState() => _ActiveProjectsState();
 }
 
-class _InprogressProjectsState extends ConsumerState<ActiveProjects> {
+class _ActiveProjectsState extends ConsumerState<ActiveProjects> {
   @override
   Widget build(BuildContext context) {
     var activeProjects = ref.watch(activeProjectsNotifierProvider);
 
     return Column(
       children: [
-        Padding(
-          padding: const EdgeInsets.symmetric(vertical: 16.0),
-          child: GlassmorphicContainer(
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  'In progress',
-                  style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white.withValues(alpha: 0.9),
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ),
         Expanded(
           child: DragTarget<Project>(
             onWillAcceptWithDetails: (d) => true,
@@ -48,17 +30,33 @@ class _InprogressProjectsState extends ConsumerState<ActiveProjects> {
             builder: (context, candidateData, rejectedData) {
               return GlassmorphicContainer(
                 isHighlighted: candidateData.isNotEmpty,
-                child: GridView.builder(
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 3,
-                    crossAxisSpacing: 16.0,
-                    mainAxisSpacing: 16.0,
-                    childAspectRatio: kCardAspectRatio,
-                  ),
-                  itemCount: activeProjects.length,
-                  itemBuilder: (context, index) {
-                    return ActiveProjectCard(pState: activeProjects[index]);
-                  },
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    Text(
+                      'In progress',
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white.withValues(alpha: 0.9),
+                      ),
+                      textAlign: TextAlign.left,
+                    ),
+                    Expanded(
+                      child: GridView.builder(
+                        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 3,
+                          crossAxisSpacing: 16.0,
+                          mainAxisSpacing: 16.0,
+                          childAspectRatio: kCardAspectRatio,
+                        ),
+                        itemCount: activeProjects.length,
+                        itemBuilder: (context, index) {
+                          return ActiveProjectCard(pState: activeProjects[index]);
+                        },
+                      ),
+                    ),
+                  ],
                 ),
               );
             },

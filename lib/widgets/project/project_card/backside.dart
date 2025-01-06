@@ -14,10 +14,9 @@ class ProjectCardBack extends StatelessWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Row(
+        const Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          crossAxisAlignment: CrossAxisAlignment.baseline,
-          children: const [
+          children: [
             Text(
               'Description',
               style: TextStyle(

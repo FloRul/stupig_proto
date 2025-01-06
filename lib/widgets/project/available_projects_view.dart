@@ -74,56 +74,74 @@ class AvailableProjects extends ConsumerWidget {
     allSlots.sort((a, b) => (a.project?.id ?? a.cooldownId!).compareTo(b.project?.id ?? b.cooldownId!));
 
     return GlassmorphicContainer(
-      child: GridView.builder(
-        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 3,
-          crossAxisSpacing: 16.0,
-          mainAxisSpacing: 16.0,
-          childAspectRatio: kCardAspectRatio,
-        ),
-        // Add 1 to itemCount for the Add Slot card
-        itemCount: allSlots.length + 1,
-        itemBuilder: (context, index) {
-          // If it's the last item, show the Add Slot card
-          if (index == allSlots.length) {
-            return AddSlotCard(
-              onTap: () {
-                ref.read(eventBusProvider.notifier).publish(const GameEvent.purchase(type: PurchaseType.availableSlot));
-              },
-            );
-          }
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Text(
+            'Available',
+            style: TextStyle(
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
+              color: Colors.white.withValues(alpha: 0.9),
+            ),
+            textAlign: TextAlign.left,
+          ),
+          Expanded(
+            child: GridView.builder(
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 3,
+                crossAxisSpacing: 16.0,
+                mainAxisSpacing: 16.0,
+                childAspectRatio: kCardAspectRatio,
+              ),
+              // Add 1 to itemCount for the Add Slot card
+              itemCount: allSlots.length + 1,
+              itemBuilder: (context, index) {
+                // If it's the last item, show the Add Slot card
+                if (index == allSlots.length) {
+                  return AddSlotCard(
+                    onTap: () {
+                      ref
+                          .read(eventBusProvider.notifier)
+                          .publish(const GameEvent.purchase(type: PurchaseType.availableSlot));
+                    },
+                  );
+                }
 
-          final slot = allSlots[index];
+                final slot = allSlots[index];
 
-          if (slot.project != null) {
-            return LayoutBuilder(
-              builder: (context, constraints) {
-                return Draggable<Project>(
-                  feedback: SizedBox(
-                    width: constraints.maxWidth,
-                    height: constraints.maxHeight,
-                    child: AvailableProjectCard(
-                      project: slot.project!,
-                    ),
-                  ),
-                  data: slot.project,
-                  onDragStarted: () {
-                    // Optional: Add any drag start animations or effects
-                  },
-                  onDraggableCanceled: (_, __) {
-                    // Optional: Handle drag cancel
-                  },
-                  childWhenDragging: const EmptyProjectSlot(),
-                  child: AvailableProjectCard(
-                    project: slot.project!,
-                  ),
-                );
+                if (slot.project != null) {
+                  return LayoutBuilder(
+                    builder: (context, constraints) {
+                      return Draggable<Project>(
+                        feedback: SizedBox(
+                          width: constraints.maxWidth,
+                          height: constraints.maxHeight,
+                          child: AvailableProjectCard(
+                            project: slot.project!,
+                          ),
+                        ),
+                        data: slot.project,
+                        onDragStarted: () {
+                          // Optional: Add any drag start animations or effects
+                        },
+                        onDraggableCanceled: (_, __) {
+                          // Optional: Handle drag cancel
+                        },
+                        childWhenDragging: const EmptyProjectSlot(),
+                        child: AvailableProjectCard(
+                          project: slot.project!,
+                        ),
+                      );
+                    },
+                  );
+                } else {
+                  return ProjectCooldownCard(projectId: slot.cooldownId!);
+                }
               },
-            );
-          } else {
-            return ProjectCooldownCard(projectId: slot.cooldownId!);
-          }
-        },
+            ),
+          ),
+        ],
       ),
     );
   }
