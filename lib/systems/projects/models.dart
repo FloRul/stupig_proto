@@ -11,6 +11,7 @@ class Project with _$Project {
     required String name,
     required String description,
     required ProjectReward reward,
+    required int requiredfocusPoints,
     required ProjectType type,
   }) = _Project;
 

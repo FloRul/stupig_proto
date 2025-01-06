@@ -6,20 +6,37 @@ part of 'project_state.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$ActiveProjectStateImpl _$$ActiveProjectStateImplFromJson(
+_$ActiveProjectsStateImpl _$$ActiveProjectsStateImplFromJson(
         Map<String, dynamic> json) =>
-    _$ActiveProjectStateImpl(
-      project: Project.fromJson(json['project'] as Map<String, dynamic>),
-      completion:
-          Completion.fromJson(json['completion'] as Map<String, dynamic>),
+    _$ActiveProjectsStateImpl(
+      activeProjects: (json['activeProjects'] as List<dynamic>)
+          .map((e) => _$recordConvert(
+                e,
+                ($jsonValue) => (
+                  Project.fromJson($jsonValue[r'$1'] as Map<String, dynamic>),
+                  Completion.fromJson(
+                      $jsonValue[r'$2'] as Map<String, dynamic>),
+                ),
+              ))
+          .toList(),
     );
 
-Map<String, dynamic> _$$ActiveProjectStateImplToJson(
-        _$ActiveProjectStateImpl instance) =>
+Map<String, dynamic> _$$ActiveProjectsStateImplToJson(
+        _$ActiveProjectsStateImpl instance) =>
     <String, dynamic>{
-      'project': instance.project,
-      'completion': instance.completion,
+      'activeProjects': instance.activeProjects
+          .map((e) => <String, dynamic>{
+                r'$1': e.$1,
+                r'$2': e.$2,
+              })
+          .toList(),
     };
+
+$Rec _$recordConvert<$Rec>(
+  Object? value,
+  $Rec Function(Map) convert,
+) =>
+    convert(value as Map<String, dynamic>);
 
 _$ProjectRewardImpl _$$ProjectRewardImplFromJson(Map<String, dynamic> json) =>
     _$ProjectRewardImpl(

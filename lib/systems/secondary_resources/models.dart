@@ -5,19 +5,17 @@ part 'models.g.dart';
 @freezed
 class SecondaryResourceState with _$SecondaryResourceState {
   const factory SecondaryResourceState({
-    required double cpuPower,
-    required int ram,
-    required int gpuVram,
-    required int availableProjectSlots,
-    required int reputationPoints,
+    required double techSkills,
+    required double devTools,
+    required double hardware,
+    required int focusPoints,
   }) = _SecondaryResourceState;
 
   factory SecondaryResourceState.initial() => const SecondaryResourceState(
-        cpuPower: 0,
-        ram: 0,
-        gpuVram: 0,
-        availableProjectSlots: 1,
-        reputationPoints: 0,
+        techSkills: 0,
+        devTools: 0,
+        hardware: 0,
+        focusPoints: 2,
       );
 
   factory SecondaryResourceState.fromJson(Map<String, Object?> json) => _$SecondaryResourceStateFromJson(json);

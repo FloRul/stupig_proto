@@ -1,10 +1,10 @@
 ﻿// base_project_card.dart
 import 'package:flutter/material.dart';
 
-class ProjectCardBack extends StatelessWidget {
+class ProjectBackside extends StatelessWidget {
   final String description;
 
-  const ProjectCardBack({
+  const ProjectBackside({
     super.key,
     required this.description,
   });

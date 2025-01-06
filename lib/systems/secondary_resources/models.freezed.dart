@@ -21,11 +21,10 @@ SecondaryResourceState _$SecondaryResourceStateFromJson(
 
 /// @nodoc
 mixin _$SecondaryResourceState {
-  double get cpuPower => throw _privateConstructorUsedError;
-  int get ram => throw _privateConstructorUsedError;
-  int get gpuVram => throw _privateConstructorUsedError;
-  int get availableProjectSlots => throw _privateConstructorUsedError;
-  int get reputationPoints => throw _privateConstructorUsedError;
+  double get techSkills => throw _privateConstructorUsedError;
+  double get devTools => throw _privateConstructorUsedError;
+  double get hardware => throw _privateConstructorUsedError;
+  int get focusPoints => throw _privateConstructorUsedError;
 
   /// Serializes this SecondaryResourceState to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -44,11 +43,7 @@ abstract class $SecondaryResourceStateCopyWith<$Res> {
       _$SecondaryResourceStateCopyWithImpl<$Res, SecondaryResourceState>;
   @useResult
   $Res call(
-      {double cpuPower,
-      int ram,
-      int gpuVram,
-      int availableProjectSlots,
-      int reputationPoints});
+      {double techSkills, double devTools, double hardware, int focusPoints});
 }
 
 /// @nodoc
@@ -67,32 +62,27 @@ class _$SecondaryResourceStateCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? cpuPower = null,
-    Object? ram = null,
-    Object? gpuVram = null,
-    Object? availableProjectSlots = null,
-    Object? reputationPoints = null,
+    Object? techSkills = null,
+    Object? devTools = null,
+    Object? hardware = null,
+    Object? focusPoints = null,
   }) {
     return _then(_value.copyWith(
-      cpuPower: null == cpuPower
-          ? _value.cpuPower
-          : cpuPower // ignore: cast_nullable_to_non_nullable
+      techSkills: null == techSkills
+          ? _value.techSkills
+          : techSkills // ignore: cast_nullable_to_non_nullable
               as double,
-      ram: null == ram
-          ? _value.ram
-          : ram // ignore: cast_nullable_to_non_nullable
-              as int,
-      gpuVram: null == gpuVram
-          ? _value.gpuVram
-          : gpuVram // ignore: cast_nullable_to_non_nullable
-              as int,
-      availableProjectSlots: null == availableProjectSlots
-          ? _value.availableProjectSlots
-          : availableProjectSlots // ignore: cast_nullable_to_non_nullable
-              as int,
-      reputationPoints: null == reputationPoints
-          ? _value.reputationPoints
-          : reputationPoints // ignore: cast_nullable_to_non_nullable
+      devTools: null == devTools
+          ? _value.devTools
+          : devTools // ignore: cast_nullable_to_non_nullable
+              as double,
+      hardware: null == hardware
+          ? _value.hardware
+          : hardware // ignore: cast_nullable_to_non_nullable
+              as double,
+      focusPoints: null == focusPoints
+          ? _value.focusPoints
+          : focusPoints // ignore: cast_nullable_to_non_nullable
               as int,
     ) as $Val);
   }
@@ -108,11 +98,7 @@ abstract class _$$SecondaryResourceStateImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {double cpuPower,
-      int ram,
-      int gpuVram,
-      int availableProjectSlots,
-      int reputationPoints});
+      {double techSkills, double devTools, double hardware, int focusPoints});
 }
 
 /// @nodoc
@@ -130,32 +116,27 @@ class __$$SecondaryResourceStateImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? cpuPower = null,
-    Object? ram = null,
-    Object? gpuVram = null,
-    Object? availableProjectSlots = null,
-    Object? reputationPoints = null,
+    Object? techSkills = null,
+    Object? devTools = null,
+    Object? hardware = null,
+    Object? focusPoints = null,
   }) {
     return _then(_$SecondaryResourceStateImpl(
-      cpuPower: null == cpuPower
-          ? _value.cpuPower
-          : cpuPower // ignore: cast_nullable_to_non_nullable
+      techSkills: null == techSkills
+          ? _value.techSkills
+          : techSkills // ignore: cast_nullable_to_non_nullable
               as double,
-      ram: null == ram
-          ? _value.ram
-          : ram // ignore: cast_nullable_to_non_nullable
-              as int,
-      gpuVram: null == gpuVram
-          ? _value.gpuVram
-          : gpuVram // ignore: cast_nullable_to_non_nullable
-              as int,
-      availableProjectSlots: null == availableProjectSlots
-          ? _value.availableProjectSlots
-          : availableProjectSlots // ignore: cast_nullable_to_non_nullable
-              as int,
-      reputationPoints: null == reputationPoints
-          ? _value.reputationPoints
-          : reputationPoints // ignore: cast_nullable_to_non_nullable
+      devTools: null == devTools
+          ? _value.devTools
+          : devTools // ignore: cast_nullable_to_non_nullable
+              as double,
+      hardware: null == hardware
+          ? _value.hardware
+          : hardware // ignore: cast_nullable_to_non_nullable
+              as double,
+      focusPoints: null == focusPoints
+          ? _value.focusPoints
+          : focusPoints // ignore: cast_nullable_to_non_nullable
               as int,
     ));
   }
@@ -165,29 +146,26 @@ class __$$SecondaryResourceStateImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$SecondaryResourceStateImpl implements _SecondaryResourceState {
   const _$SecondaryResourceStateImpl(
-      {required this.cpuPower,
-      required this.ram,
-      required this.gpuVram,
-      required this.availableProjectSlots,
-      required this.reputationPoints});
+      {required this.techSkills,
+      required this.devTools,
+      required this.hardware,
+      required this.focusPoints});
 
   factory _$SecondaryResourceStateImpl.fromJson(Map<String, dynamic> json) =>
       _$$SecondaryResourceStateImplFromJson(json);
 
   @override
-  final double cpuPower;
+  final double techSkills;
   @override
-  final int ram;
+  final double devTools;
   @override
-  final int gpuVram;
+  final double hardware;
   @override
-  final int availableProjectSlots;
-  @override
-  final int reputationPoints;
+  final int focusPoints;
 
   @override
   String toString() {
-    return 'SecondaryResourceState(cpuPower: $cpuPower, ram: $ram, gpuVram: $gpuVram, availableProjectSlots: $availableProjectSlots, reputationPoints: $reputationPoints)';
+    return 'SecondaryResourceState(techSkills: $techSkills, devTools: $devTools, hardware: $hardware, focusPoints: $focusPoints)';
   }
 
   @override
@@ -195,20 +173,20 @@ class _$SecondaryResourceStateImpl implements _SecondaryResourceState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$SecondaryResourceStateImpl &&
-            (identical(other.cpuPower, cpuPower) ||
-                other.cpuPower == cpuPower) &&
-            (identical(other.ram, ram) || other.ram == ram) &&
-            (identical(other.gpuVram, gpuVram) || other.gpuVram == gpuVram) &&
-            (identical(other.availableProjectSlots, availableProjectSlots) ||
-                other.availableProjectSlots == availableProjectSlots) &&
-            (identical(other.reputationPoints, reputationPoints) ||
-                other.reputationPoints == reputationPoints));
+            (identical(other.techSkills, techSkills) ||
+                other.techSkills == techSkills) &&
+            (identical(other.devTools, devTools) ||
+                other.devTools == devTools) &&
+            (identical(other.hardware, hardware) ||
+                other.hardware == hardware) &&
+            (identical(other.focusPoints, focusPoints) ||
+                other.focusPoints == focusPoints));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, cpuPower, ram, gpuVram,
-      availableProjectSlots, reputationPoints);
+  int get hashCode =>
+      Object.hash(runtimeType, techSkills, devTools, hardware, focusPoints);
 
   /// Create a copy of SecondaryResourceState
   /// with the given fields replaced by the non-null parameter values.
@@ -229,25 +207,22 @@ class _$SecondaryResourceStateImpl implements _SecondaryResourceState {
 
 abstract class _SecondaryResourceState implements SecondaryResourceState {
   const factory _SecondaryResourceState(
-      {required final double cpuPower,
-      required final int ram,
-      required final int gpuVram,
-      required final int availableProjectSlots,
-      required final int reputationPoints}) = _$SecondaryResourceStateImpl;
+      {required final double techSkills,
+      required final double devTools,
+      required final double hardware,
+      required final int focusPoints}) = _$SecondaryResourceStateImpl;
 
   factory _SecondaryResourceState.fromJson(Map<String, dynamic> json) =
       _$SecondaryResourceStateImpl.fromJson;
 
   @override
-  double get cpuPower;
+  double get techSkills;
   @override
-  int get ram;
+  double get devTools;
   @override
-  int get gpuVram;
+  double get hardware;
   @override
-  int get availableProjectSlots;
-  @override
-  int get reputationPoints;
+  int get focusPoints;
 
   /// Create a copy of SecondaryResourceState
   /// with the given fields replaced by the non-null parameter values.

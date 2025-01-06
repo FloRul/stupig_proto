@@ -11,7 +11,7 @@ part 'active_project_notifier.g.dart';
 @Riverpod(keepAlive: true)
 class ActiveProjectsNotifier extends _$ActiveProjectsNotifier {
   @override
-  List<ProjectState> build() {
+  ActiveProjectsState build() {
     ref.listen(
       eventBusProvider,
       (previous, next) {
@@ -28,26 +28,25 @@ class ActiveProjectsNotifier extends _$ActiveProjectsNotifier {
       globalTickerProvider,
       (previous, next) => _handleTick(),
     );
-    return [];
+    return ActiveProjectsState.initial();
   }
 
   void _handleStartProject(Project project) {
-    state = [
-      ...state,
-      ProjectState.activeFromProject(
-        project,
-        kBaseCompletionTime,
-      )
-    ];
+    state = state.copyWith(
+      activeProjects: [
+        ...state.activeProjects,
+        (project, Completion.initial(kBaseCompletionTime)),
+      ],
+    );
+    // ];
   }
 
   void _handleTick() {
-    state = [
-      for (var p in state)
-        p.copyWith(
-          completion: p.completion.tick(),
-        ),
-    ];
+    state = state.copyWith(
+      activeProjects: [
+        for (var p in state.activeProjects) (p.$1, p.$2.tick()),
+      ],
+    );
   }
 
   void _handleCompletedProject(Project project) {
@@ -57,9 +56,8 @@ class ActiveProjectsNotifier extends _$ActiveProjectsNotifier {
           ),
         );
 
-    state = [
-      for (var p in state)
-        if (p.project.id != project.id) p,
-    ];
+    state = state.copyWith(
+      activeProjects: state.activeProjects.where((p) => p.$1 != project).toList(),
+    );
   }
 }

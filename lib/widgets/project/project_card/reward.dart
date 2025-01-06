@@ -73,7 +73,6 @@ class _RewardPill extends StatelessWidget {
       builder: (context, constraints) {
         final TextStyle valueStyle = TextStyle(
           color: Colors.white,
-          fontWeight: FontWeight.bold,
           // Scale text size based on container width
           fontSize: constraints.maxWidth < 100 ? 12 : 14,
         );

@@ -12,6 +12,7 @@ _$ProjectImpl _$$ProjectImplFromJson(Map<String, dynamic> json) =>
       name: json['name'] as String,
       description: json['description'] as String,
       reward: ProjectReward.fromJson(json['reward'] as Map<String, dynamic>),
+      requiredfocusPoints: (json['requiredfocusPoints'] as num).toInt(),
       type: $enumDecode(_$ProjectTypeEnumMap, json['type']),
     );
 
@@ -21,6 +22,7 @@ Map<String, dynamic> _$$ProjectImplToJson(_$ProjectImpl instance) =>
       'name': instance.name,
       'description': instance.description,
       'reward': instance.reward,
+      'requiredfocusPoints': instance.requiredfocusPoints,
       'type': _$ProjectTypeEnumMap[instance.type]!,
     };
 

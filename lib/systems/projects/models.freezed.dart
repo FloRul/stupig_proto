@@ -24,6 +24,7 @@ mixin _$Project {
   String get name => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
   ProjectReward get reward => throw _privateConstructorUsedError;
+  int get requiredfocusPoints => throw _privateConstructorUsedError;
   ProjectType get type => throw _privateConstructorUsedError;
 
   /// Serializes this Project to a JSON map.
@@ -45,6 +46,7 @@ abstract class $ProjectCopyWith<$Res> {
       String name,
       String description,
       ProjectReward reward,
+      int requiredfocusPoints,
       ProjectType type});
 
   $ProjectRewardCopyWith<$Res> get reward;
@@ -69,6 +71,7 @@ class _$ProjectCopyWithImpl<$Res, $Val extends Project>
     Object? name = null,
     Object? description = null,
     Object? reward = null,
+    Object? requiredfocusPoints = null,
     Object? type = null,
   }) {
     return _then(_value.copyWith(
@@ -88,6 +91,10 @@ class _$ProjectCopyWithImpl<$Res, $Val extends Project>
           ? _value.reward
           : reward // ignore: cast_nullable_to_non_nullable
               as ProjectReward,
+      requiredfocusPoints: null == requiredfocusPoints
+          ? _value.requiredfocusPoints
+          : requiredfocusPoints // ignore: cast_nullable_to_non_nullable
+              as int,
       type: null == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
@@ -118,6 +125,7 @@ abstract class _$$ProjectImplCopyWith<$Res> implements $ProjectCopyWith<$Res> {
       String name,
       String description,
       ProjectReward reward,
+      int requiredfocusPoints,
       ProjectType type});
 
   @override
@@ -141,6 +149,7 @@ class __$$ProjectImplCopyWithImpl<$Res>
     Object? name = null,
     Object? description = null,
     Object? reward = null,
+    Object? requiredfocusPoints = null,
     Object? type = null,
   }) {
     return _then(_$ProjectImpl(
@@ -160,6 +169,10 @@ class __$$ProjectImplCopyWithImpl<$Res>
           ? _value.reward
           : reward // ignore: cast_nullable_to_non_nullable
               as ProjectReward,
+      requiredfocusPoints: null == requiredfocusPoints
+          ? _value.requiredfocusPoints
+          : requiredfocusPoints // ignore: cast_nullable_to_non_nullable
+              as int,
       type: null == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
@@ -176,6 +189,7 @@ class _$ProjectImpl implements _Project {
       required this.name,
       required this.description,
       required this.reward,
+      required this.requiredfocusPoints,
       required this.type});
 
   factory _$ProjectImpl.fromJson(Map<String, dynamic> json) =>
@@ -190,11 +204,13 @@ class _$ProjectImpl implements _Project {
   @override
   final ProjectReward reward;
   @override
+  final int requiredfocusPoints;
+  @override
   final ProjectType type;
 
   @override
   String toString() {
-    return 'Project(id: $id, name: $name, description: $description, reward: $reward, type: $type)';
+    return 'Project(id: $id, name: $name, description: $description, reward: $reward, requiredfocusPoints: $requiredfocusPoints, type: $type)';
   }
 
   @override
@@ -207,13 +223,15 @@ class _$ProjectImpl implements _Project {
             (identical(other.description, description) ||
                 other.description == description) &&
             (identical(other.reward, reward) || other.reward == reward) &&
+            (identical(other.requiredfocusPoints, requiredfocusPoints) ||
+                other.requiredfocusPoints == requiredfocusPoints) &&
             (identical(other.type, type) || other.type == type));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, id, name, description, reward, type);
+  int get hashCode => Object.hash(
+      runtimeType, id, name, description, reward, requiredfocusPoints, type);
 
   /// Create a copy of Project
   /// with the given fields replaced by the non-null parameter values.
@@ -237,6 +255,7 @@ abstract class _Project implements Project {
       required final String name,
       required final String description,
       required final ProjectReward reward,
+      required final int requiredfocusPoints,
       required final ProjectType type}) = _$ProjectImpl;
 
   factory _Project.fromJson(Map<String, dynamic> json) = _$ProjectImpl.fromJson;
@@ -249,6 +268,8 @@ abstract class _Project implements Project {
   String get description;
   @override
   ProjectReward get reward;
+  @override
+  int get requiredfocusPoints;
   @override
   ProjectType get type;
 

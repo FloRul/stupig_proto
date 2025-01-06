@@ -9,19 +9,17 @@ part of 'models.dart';
 _$SecondaryResourceStateImpl _$$SecondaryResourceStateImplFromJson(
         Map<String, dynamic> json) =>
     _$SecondaryResourceStateImpl(
-      cpuPower: (json['cpuPower'] as num).toDouble(),
-      ram: (json['ram'] as num).toInt(),
-      gpuVram: (json['gpuVram'] as num).toInt(),
-      availableProjectSlots: (json['availableProjectSlots'] as num).toInt(),
-      reputationPoints: (json['reputationPoints'] as num).toInt(),
+      techSkills: (json['techSkills'] as num).toDouble(),
+      devTools: (json['devTools'] as num).toDouble(),
+      hardware: (json['hardware'] as num).toDouble(),
+      focusPoints: (json['focusPoints'] as num).toInt(),
     );
 
 Map<String, dynamic> _$$SecondaryResourceStateImplToJson(
         _$SecondaryResourceStateImpl instance) =>
     <String, dynamic>{
-      'cpuPower': instance.cpuPower,
-      'ram': instance.ram,
-      'gpuVram': instance.gpuVram,
-      'availableProjectSlots': instance.availableProjectSlots,
-      'reputationPoints': instance.reputationPoints,
+      'techSkills': instance.techSkills,
+      'devTools': instance.devTools,
+      'hardware': instance.hardware,
+      'focusPoints': instance.focusPoints,
     };

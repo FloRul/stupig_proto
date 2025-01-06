@@ -6,11 +6,13 @@ class GroupArea extends StatelessWidget {
     this.title,
     this.child,
     this.isHighlighted = false,
+    this.trailing,
   });
 
   final String? title;
   final Widget? child;
   final bool isHighlighted;
+  final Widget? trailing;
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +31,14 @@ class GroupArea extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          if (title != null) Text(title!, style: const TextStyle(fontSize: 20)),
+          if (title != null)
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(title!, style: const TextStyle(fontSize: 20)),
+                if (trailing != null) trailing!,
+              ],
+            ),
           Expanded(child: child ?? const Placeholder()),
         ],
       ),

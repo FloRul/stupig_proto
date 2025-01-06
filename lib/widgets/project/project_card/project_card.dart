@@ -1,5 +1,4 @@
-﻿// base_project_card.dart
-import 'package:flutter/material.dart';
+﻿import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:stupig_proto/systems/event_bus.dart';
 import 'package:stupig_proto/systems/game_event.dart';
@@ -7,23 +6,26 @@ import 'package:stupig_proto/systems/projects/models.dart';
 import 'package:stupig_proto/systems/projects/project_state.dart';
 import 'package:stupig_proto/widgets/common/flippable_card.dart';
 import 'package:stupig_proto/widgets/project/project_card/backside.dart';
+import 'package:stupig_proto/widgets/project/project_card/frontside.dart';
 import 'package:stupig_proto/widgets/project/project_card/progress_bar.dart';
 import 'package:stupig_proto/widgets/project/project_card/reward.dart';
 import 'package:stupig_proto/widgets/project/project_card/project_title.dart';
 
-class ActiveProjectCard extends ConsumerStatefulWidget {
-  final ProjectState pState;
+class ProjectCard extends ConsumerStatefulWidget {
+  final Project project;
+  final Completion? completion;
 
-  const ActiveProjectCard({
+  const ProjectCard({
     super.key,
-    required this.pState,
+    required this.project,
+    this.completion,
   });
 
   @override
-  ConsumerState<ActiveProjectCard> createState() => _ActiveProjectCardState();
+  ConsumerState<ProjectCard> createState() => _ProjectCardState();
 }
 
-class _ActiveProjectCardState extends ConsumerState<ActiveProjectCard> with TickerProviderStateMixin {
+class _ProjectCardState extends ConsumerState<ProjectCard> with TickerProviderStateMixin {
   final _flipController = FlipCardController();
 
   @override
@@ -46,33 +48,19 @@ class _ActiveProjectCardState extends ConsumerState<ActiveProjectCard> with Tick
       gradient: LinearGradient(
         begin: Alignment.topLeft,
         end: Alignment.bottomRight,
-        colors: switch (widget.pState.project.type) {
+        colors: switch (widget.project.type) {
           ProjectType.learning => [Colors.green.shade200, Colors.green.shade400],
           ProjectType.design => [Colors.blue.shade200, Colors.blue.shade400],
           ProjectType.implementation => [Colors.purple.shade200, Colors.purple.shade400],
           ProjectType.optimization => [Colors.orange.shade200, Colors.orange.shade400],
         },
       ),
-      frontContent: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          ProjectCardTitle(
-            title: widget.pState.project.name,
-            type: widget.pState.project.type,
-          ),
-          const SizedBox(height: 16),
-          ProgressBar(
-            completion: widget.pState.completion,
-            onComplete: () =>
-                ref.read(eventBusProvider.notifier).publish(GameEvent.projectCompleted(project: widget.pState.project)),
-          ),
-          const SizedBox(height: 16),
-          RewardWidget(reward: widget.pState.project.reward),
-        ],
+      frontContent: ProjectFrontside(
+        project: widget.project,
+        completion: widget.completion,
       ),
-      backContent: ProjectCardBack(
-        description: widget.pState.project.description,
+      backContent: ProjectBackside(
+        description: widget.project.description,
       ),
     );
   }

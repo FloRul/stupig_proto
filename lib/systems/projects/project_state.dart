@@ -9,19 +9,14 @@ part 'project_state.freezed.dart';
 part 'project_state.g.dart';
 
 @freezed
-class ProjectState with _$ProjectState {
-  const factory ProjectState({
-    required Project project,
-    required Completion completion,
-  }) = _ActiveProjectState;
+class ActiveProjectsState with _$ActiveProjectsState {
+  const factory ActiveProjectsState({required List<(Project, Completion)> activeProjects}) = _ActiveProjectsState;
+  factory ActiveProjectsState.initial() => const ActiveProjectsState(activeProjects: []);
+  const ActiveProjectsState._();
 
-  factory ProjectState.activeFromProject(Project project, int seed) => ProjectState(
-        project: project,
-        completion: Completion.initial(seed),
-      );
+  int get totalFocusPoints => activeProjects.fold(0, (acc, p) => acc + p.$1.requiredfocusPoints);
 
-  const ProjectState._();
-  factory ProjectState.fromJson(Map<String, Object?> json) => _$ProjectStateFromJson(json);
+  factory ActiveProjectsState.fromJson(Map<String, Object?> json) => _$ActiveProjectsStateFromJson(json);
 }
 
 @freezed

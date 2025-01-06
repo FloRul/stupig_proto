@@ -7,7 +7,7 @@ import 'package:stupig_proto/systems/projects/available_project_notifier.dart';
 import 'package:stupig_proto/utils/constants.dart';
 import 'package:stupig_proto/widgets/common/glassmorphism_container.dart';
 import 'package:stupig_proto/widgets/debug/group_area.dart';
-import 'package:stupig_proto/widgets/project/project_card/available.dart';
+import 'package:stupig_proto/widgets/project/project_card/project_card.dart';
 
 class ProjectCooldownCard extends ConsumerWidget {
   final String projectId;
@@ -111,7 +111,7 @@ class AvailableProjects extends ConsumerWidget {
                   feedback: SizedBox(
                     width: constraints.maxWidth,
                     height: constraints.maxHeight,
-                    child: AvailableProjectCard(
+                    child: ProjectCard(
                       project: slot.project!,
                     ),
                   ),
@@ -123,7 +123,7 @@ class AvailableProjects extends ConsumerWidget {
                     // Optional: Handle drag cancel
                   },
                   childWhenDragging: const EmptyProjectSlot(),
-                  child: AvailableProjectCard(
+                  child: ProjectCard(
                     project: slot.project!,
                   ),
                 );

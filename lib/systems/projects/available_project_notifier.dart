@@ -51,6 +51,7 @@ class AvailableProjectsNotifier extends _$AvailableProjectsNotifier {
           isCombined: Random().nextBool(),
         ),
         type: projectType,
+        requiredfocusPoints: 1,
       );
     });
 
@@ -144,6 +145,7 @@ class AvailableProjectsNotifier extends _$AvailableProjectsNotifier {
         failRate: Random().nextDouble(),
         isCombined: Random().nextBool(),
       ),
+      requiredfocusPoints: Random().nextInt(3) + 1,
       type: ProjectType.values[Random().nextInt(ProjectType.values.length)],
     );
   }
