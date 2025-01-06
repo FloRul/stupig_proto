@@ -1,7 +1,6 @@
 ﻿import 'dart:math';
 
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:stupig_proto/systems/feature_unlock/models.dart';
 import 'package:stupig_proto/systems/projects/models.dart';
 import 'package:stupig_proto/utils/constants.dart';
 

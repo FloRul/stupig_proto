@@ -1,15 +1,10 @@
 ﻿import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:stupig_proto/systems/event_bus.dart';
-import 'package:stupig_proto/systems/game_event.dart';
 import 'package:stupig_proto/systems/projects/models.dart';
 import 'package:stupig_proto/systems/projects/project_state.dart';
 import 'package:stupig_proto/widgets/common/flippable_card.dart';
 import 'package:stupig_proto/widgets/project/project_card/backside.dart';
 import 'package:stupig_proto/widgets/project/project_card/frontside.dart';
-import 'package:stupig_proto/widgets/project/project_card/progress_bar.dart';
-import 'package:stupig_proto/widgets/project/project_card/reward.dart';
-import 'package:stupig_proto/widgets/project/project_card/project_title.dart';
 
 class ProjectCard extends ConsumerStatefulWidget {
   final Project project;
