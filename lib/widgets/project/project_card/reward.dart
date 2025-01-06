@@ -5,11 +5,9 @@ class RewardWidget extends StatelessWidget {
   const RewardWidget({
     super.key,
     required this.reward,
-    this.showRewards = true,
   });
 
   final ProjectReward reward;
-  final bool showRewards;
 
   @override
   Widget build(BuildContext context) {
@@ -18,14 +16,14 @@ class RewardWidget extends StatelessWidget {
         final pills = [
           _RewardPill(
             icon: Icons.stars,
-            value: showRewards ? '${reward.xpAmount}' : '???',
-            label: 'XP',
+            value: '${reward.minXpAmount} - ${reward.maxXpAmount}',
+            label: '',
           ),
-          if (reward.moneyAmount > 0)
+          if (reward.minMoneyAmount > 0)
             _RewardPill(
               icon: Icons.monetization_on,
-              value: showRewards ? '${reward.moneyAmount}' : '???',
-              label: '\$',
+              value: '${reward.minMoneyAmount} - ${reward.maxMoneyAmount}',
+              label: '',
               valueFirst: false,
             ),
         ];

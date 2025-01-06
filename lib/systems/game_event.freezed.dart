@@ -19,8 +19,7 @@ mixin _$GameEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(Project project, String? tag) projectCompleted,
-    required TResult Function(int amount) xpEarned,
-    required TResult Function(int amount) moneyEarned,
+    required TResult Function(ProjectReward reward) rewardEarned,
     required TResult Function(Project project, String? tag) projectStarted,
     required TResult Function(String? tag) levelUp,
     required TResult Function(PurchaseType type) purchase,
@@ -32,8 +31,7 @@ mixin _$GameEvent {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(Project project, String? tag)? projectCompleted,
-    TResult? Function(int amount)? xpEarned,
-    TResult? Function(int amount)? moneyEarned,
+    TResult? Function(ProjectReward reward)? rewardEarned,
     TResult? Function(Project project, String? tag)? projectStarted,
     TResult? Function(String? tag)? levelUp,
     TResult? Function(PurchaseType type)? purchase,
@@ -45,8 +43,7 @@ mixin _$GameEvent {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Project project, String? tag)? projectCompleted,
-    TResult Function(int amount)? xpEarned,
-    TResult Function(int amount)? moneyEarned,
+    TResult Function(ProjectReward reward)? rewardEarned,
     TResult Function(Project project, String? tag)? projectStarted,
     TResult Function(String? tag)? levelUp,
     TResult Function(PurchaseType type)? purchase,
@@ -59,8 +56,7 @@ mixin _$GameEvent {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(ProjectCompleted value) projectCompleted,
-    required TResult Function(XpEarned value) xpEarned,
-    required TResult Function(MoneyEarned value) moneyEarned,
+    required TResult Function(RewardEarned value) rewardEarned,
     required TResult Function(ProjectStarted value) projectStarted,
     required TResult Function(LevelUp value) levelUp,
     required TResult Function(Purchase value) purchase,
@@ -72,8 +68,7 @@ mixin _$GameEvent {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(ProjectCompleted value)? projectCompleted,
-    TResult? Function(XpEarned value)? xpEarned,
-    TResult? Function(MoneyEarned value)? moneyEarned,
+    TResult? Function(RewardEarned value)? rewardEarned,
     TResult? Function(ProjectStarted value)? projectStarted,
     TResult? Function(LevelUp value)? levelUp,
     TResult? Function(Purchase value)? purchase,
@@ -85,8 +80,7 @@ mixin _$GameEvent {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(ProjectCompleted value)? projectCompleted,
-    TResult Function(XpEarned value)? xpEarned,
-    TResult Function(MoneyEarned value)? moneyEarned,
+    TResult Function(RewardEarned value)? rewardEarned,
     TResult Function(ProjectStarted value)? projectStarted,
     TResult Function(LevelUp value)? levelUp,
     TResult Function(Purchase value)? purchase,
@@ -208,8 +202,7 @@ class _$ProjectCompletedImpl implements ProjectCompleted {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(Project project, String? tag) projectCompleted,
-    required TResult Function(int amount) xpEarned,
-    required TResult Function(int amount) moneyEarned,
+    required TResult Function(ProjectReward reward) rewardEarned,
     required TResult Function(Project project, String? tag) projectStarted,
     required TResult Function(String? tag) levelUp,
     required TResult Function(PurchaseType type) purchase,
@@ -224,8 +217,7 @@ class _$ProjectCompletedImpl implements ProjectCompleted {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(Project project, String? tag)? projectCompleted,
-    TResult? Function(int amount)? xpEarned,
-    TResult? Function(int amount)? moneyEarned,
+    TResult? Function(ProjectReward reward)? rewardEarned,
     TResult? Function(Project project, String? tag)? projectStarted,
     TResult? Function(String? tag)? levelUp,
     TResult? Function(PurchaseType type)? purchase,
@@ -240,8 +232,7 @@ class _$ProjectCompletedImpl implements ProjectCompleted {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Project project, String? tag)? projectCompleted,
-    TResult Function(int amount)? xpEarned,
-    TResult Function(int amount)? moneyEarned,
+    TResult Function(ProjectReward reward)? rewardEarned,
     TResult Function(Project project, String? tag)? projectStarted,
     TResult Function(String? tag)? levelUp,
     TResult Function(PurchaseType type)? purchase,
@@ -260,8 +251,7 @@ class _$ProjectCompletedImpl implements ProjectCompleted {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(ProjectCompleted value) projectCompleted,
-    required TResult Function(XpEarned value) xpEarned,
-    required TResult Function(MoneyEarned value) moneyEarned,
+    required TResult Function(RewardEarned value) rewardEarned,
     required TResult Function(ProjectStarted value) projectStarted,
     required TResult Function(LevelUp value) levelUp,
     required TResult Function(Purchase value) purchase,
@@ -276,8 +266,7 @@ class _$ProjectCompletedImpl implements ProjectCompleted {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(ProjectCompleted value)? projectCompleted,
-    TResult? Function(XpEarned value)? xpEarned,
-    TResult? Function(MoneyEarned value)? moneyEarned,
+    TResult? Function(RewardEarned value)? rewardEarned,
     TResult? Function(ProjectStarted value)? projectStarted,
     TResult? Function(LevelUp value)? levelUp,
     TResult? Function(Purchase value)? purchase,
@@ -292,8 +281,7 @@ class _$ProjectCompletedImpl implements ProjectCompleted {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(ProjectCompleted value)? projectCompleted,
-    TResult Function(XpEarned value)? xpEarned,
-    TResult Function(MoneyEarned value)? moneyEarned,
+    TResult Function(RewardEarned value)? rewardEarned,
     TResult Function(ProjectStarted value)? projectStarted,
     TResult Function(LevelUp value)? levelUp,
     TResult Function(Purchase value)? purchase,
@@ -325,20 +313,22 @@ abstract class ProjectCompleted implements GameEvent {
 }
 
 /// @nodoc
-abstract class _$$XpEarnedImplCopyWith<$Res> {
-  factory _$$XpEarnedImplCopyWith(
-          _$XpEarnedImpl value, $Res Function(_$XpEarnedImpl) then) =
-      __$$XpEarnedImplCopyWithImpl<$Res>;
+abstract class _$$RewardEarnedImplCopyWith<$Res> {
+  factory _$$RewardEarnedImplCopyWith(
+          _$RewardEarnedImpl value, $Res Function(_$RewardEarnedImpl) then) =
+      __$$RewardEarnedImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({int amount});
+  $Res call({ProjectReward reward});
+
+  $ProjectRewardCopyWith<$Res> get reward;
 }
 
 /// @nodoc
-class __$$XpEarnedImplCopyWithImpl<$Res>
-    extends _$GameEventCopyWithImpl<$Res, _$XpEarnedImpl>
-    implements _$$XpEarnedImplCopyWith<$Res> {
-  __$$XpEarnedImplCopyWithImpl(
-      _$XpEarnedImpl _value, $Res Function(_$XpEarnedImpl) _then)
+class __$$RewardEarnedImplCopyWithImpl<$Res>
+    extends _$GameEventCopyWithImpl<$Res, _$RewardEarnedImpl>
+    implements _$$RewardEarnedImplCopyWith<$Res> {
+  __$$RewardEarnedImplCopyWithImpl(
+      _$RewardEarnedImpl _value, $Res Function(_$RewardEarnedImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of GameEvent
@@ -346,55 +336,64 @@ class __$$XpEarnedImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? amount = null,
+    Object? reward = null,
   }) {
-    return _then(_$XpEarnedImpl(
-      amount: null == amount
-          ? _value.amount
-          : amount // ignore: cast_nullable_to_non_nullable
-              as int,
+    return _then(_$RewardEarnedImpl(
+      reward: null == reward
+          ? _value.reward
+          : reward // ignore: cast_nullable_to_non_nullable
+              as ProjectReward,
     ));
+  }
+
+  /// Create a copy of GameEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ProjectRewardCopyWith<$Res> get reward {
+    return $ProjectRewardCopyWith<$Res>(_value.reward, (value) {
+      return _then(_value.copyWith(reward: value));
+    });
   }
 }
 
 /// @nodoc
 
-class _$XpEarnedImpl implements XpEarned {
-  const _$XpEarnedImpl({required this.amount});
+class _$RewardEarnedImpl implements RewardEarned {
+  const _$RewardEarnedImpl({required this.reward});
 
   @override
-  final int amount;
+  final ProjectReward reward;
 
   @override
   String toString() {
-    return 'GameEvent.xpEarned(amount: $amount)';
+    return 'GameEvent.rewardEarned(reward: $reward)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$XpEarnedImpl &&
-            (identical(other.amount, amount) || other.amount == amount));
+            other is _$RewardEarnedImpl &&
+            (identical(other.reward, reward) || other.reward == reward));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, amount);
+  int get hashCode => Object.hash(runtimeType, reward);
 
   /// Create a copy of GameEvent
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$XpEarnedImplCopyWith<_$XpEarnedImpl> get copyWith =>
-      __$$XpEarnedImplCopyWithImpl<_$XpEarnedImpl>(this, _$identity);
+  _$$RewardEarnedImplCopyWith<_$RewardEarnedImpl> get copyWith =>
+      __$$RewardEarnedImplCopyWithImpl<_$RewardEarnedImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(Project project, String? tag) projectCompleted,
-    required TResult Function(int amount) xpEarned,
-    required TResult Function(int amount) moneyEarned,
+    required TResult Function(ProjectReward reward) rewardEarned,
     required TResult Function(Project project, String? tag) projectStarted,
     required TResult Function(String? tag) levelUp,
     required TResult Function(PurchaseType type) purchase,
@@ -402,15 +401,14 @@ class _$XpEarnedImpl implements XpEarned {
     required TResult Function() loadGame,
     required TResult Function(Feature feature) unlockFeature,
   }) {
-    return xpEarned(amount);
+    return rewardEarned(reward);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(Project project, String? tag)? projectCompleted,
-    TResult? Function(int amount)? xpEarned,
-    TResult? Function(int amount)? moneyEarned,
+    TResult? Function(ProjectReward reward)? rewardEarned,
     TResult? Function(Project project, String? tag)? projectStarted,
     TResult? Function(String? tag)? levelUp,
     TResult? Function(PurchaseType type)? purchase,
@@ -418,15 +416,14 @@ class _$XpEarnedImpl implements XpEarned {
     TResult? Function()? loadGame,
     TResult? Function(Feature feature)? unlockFeature,
   }) {
-    return xpEarned?.call(amount);
+    return rewardEarned?.call(reward);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Project project, String? tag)? projectCompleted,
-    TResult Function(int amount)? xpEarned,
-    TResult Function(int amount)? moneyEarned,
+    TResult Function(ProjectReward reward)? rewardEarned,
     TResult Function(Project project, String? tag)? projectStarted,
     TResult Function(String? tag)? levelUp,
     TResult Function(PurchaseType type)? purchase,
@@ -435,8 +432,8 @@ class _$XpEarnedImpl implements XpEarned {
     TResult Function(Feature feature)? unlockFeature,
     required TResult orElse(),
   }) {
-    if (xpEarned != null) {
-      return xpEarned(amount);
+    if (rewardEarned != null) {
+      return rewardEarned(reward);
     }
     return orElse();
   }
@@ -445,8 +442,7 @@ class _$XpEarnedImpl implements XpEarned {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(ProjectCompleted value) projectCompleted,
-    required TResult Function(XpEarned value) xpEarned,
-    required TResult Function(MoneyEarned value) moneyEarned,
+    required TResult Function(RewardEarned value) rewardEarned,
     required TResult Function(ProjectStarted value) projectStarted,
     required TResult Function(LevelUp value) levelUp,
     required TResult Function(Purchase value) purchase,
@@ -454,15 +450,14 @@ class _$XpEarnedImpl implements XpEarned {
     required TResult Function(LoadGame value) loadGame,
     required TResult Function(UnlockFeature value) unlockFeature,
   }) {
-    return xpEarned(this);
+    return rewardEarned(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(ProjectCompleted value)? projectCompleted,
-    TResult? Function(XpEarned value)? xpEarned,
-    TResult? Function(MoneyEarned value)? moneyEarned,
+    TResult? Function(RewardEarned value)? rewardEarned,
     TResult? Function(ProjectStarted value)? projectStarted,
     TResult? Function(LevelUp value)? levelUp,
     TResult? Function(Purchase value)? purchase,
@@ -470,15 +465,14 @@ class _$XpEarnedImpl implements XpEarned {
     TResult? Function(LoadGame value)? loadGame,
     TResult? Function(UnlockFeature value)? unlockFeature,
   }) {
-    return xpEarned?.call(this);
+    return rewardEarned?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(ProjectCompleted value)? projectCompleted,
-    TResult Function(XpEarned value)? xpEarned,
-    TResult Function(MoneyEarned value)? moneyEarned,
+    TResult Function(RewardEarned value)? rewardEarned,
     TResult Function(ProjectStarted value)? projectStarted,
     TResult Function(LevelUp value)? levelUp,
     TResult Function(Purchase value)? purchase,
@@ -487,204 +481,23 @@ class _$XpEarnedImpl implements XpEarned {
     TResult Function(UnlockFeature value)? unlockFeature,
     required TResult orElse(),
   }) {
-    if (xpEarned != null) {
-      return xpEarned(this);
+    if (rewardEarned != null) {
+      return rewardEarned(this);
     }
     return orElse();
   }
 }
 
-abstract class XpEarned implements GameEvent {
-  const factory XpEarned({required final int amount}) = _$XpEarnedImpl;
+abstract class RewardEarned implements GameEvent {
+  const factory RewardEarned({required final ProjectReward reward}) =
+      _$RewardEarnedImpl;
 
-  int get amount;
-
-  /// Create a copy of GameEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$XpEarnedImplCopyWith<_$XpEarnedImpl> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$MoneyEarnedImplCopyWith<$Res> {
-  factory _$$MoneyEarnedImplCopyWith(
-          _$MoneyEarnedImpl value, $Res Function(_$MoneyEarnedImpl) then) =
-      __$$MoneyEarnedImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({int amount});
-}
-
-/// @nodoc
-class __$$MoneyEarnedImplCopyWithImpl<$Res>
-    extends _$GameEventCopyWithImpl<$Res, _$MoneyEarnedImpl>
-    implements _$$MoneyEarnedImplCopyWith<$Res> {
-  __$$MoneyEarnedImplCopyWithImpl(
-      _$MoneyEarnedImpl _value, $Res Function(_$MoneyEarnedImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of GameEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? amount = null,
-  }) {
-    return _then(_$MoneyEarnedImpl(
-      amount: null == amount
-          ? _value.amount
-          : amount // ignore: cast_nullable_to_non_nullable
-              as int,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$MoneyEarnedImpl implements MoneyEarned {
-  const _$MoneyEarnedImpl({required this.amount});
-
-  @override
-  final int amount;
-
-  @override
-  String toString() {
-    return 'GameEvent.moneyEarned(amount: $amount)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$MoneyEarnedImpl &&
-            (identical(other.amount, amount) || other.amount == amount));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, amount);
+  ProjectReward get reward;
 
   /// Create a copy of GameEvent
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$MoneyEarnedImplCopyWith<_$MoneyEarnedImpl> get copyWith =>
-      __$$MoneyEarnedImplCopyWithImpl<_$MoneyEarnedImpl>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(Project project, String? tag) projectCompleted,
-    required TResult Function(int amount) xpEarned,
-    required TResult Function(int amount) moneyEarned,
-    required TResult Function(Project project, String? tag) projectStarted,
-    required TResult Function(String? tag) levelUp,
-    required TResult Function(PurchaseType type) purchase,
-    required TResult Function() saveGame,
-    required TResult Function() loadGame,
-    required TResult Function(Feature feature) unlockFeature,
-  }) {
-    return moneyEarned(amount);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(Project project, String? tag)? projectCompleted,
-    TResult? Function(int amount)? xpEarned,
-    TResult? Function(int amount)? moneyEarned,
-    TResult? Function(Project project, String? tag)? projectStarted,
-    TResult? Function(String? tag)? levelUp,
-    TResult? Function(PurchaseType type)? purchase,
-    TResult? Function()? saveGame,
-    TResult? Function()? loadGame,
-    TResult? Function(Feature feature)? unlockFeature,
-  }) {
-    return moneyEarned?.call(amount);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Project project, String? tag)? projectCompleted,
-    TResult Function(int amount)? xpEarned,
-    TResult Function(int amount)? moneyEarned,
-    TResult Function(Project project, String? tag)? projectStarted,
-    TResult Function(String? tag)? levelUp,
-    TResult Function(PurchaseType type)? purchase,
-    TResult Function()? saveGame,
-    TResult Function()? loadGame,
-    TResult Function(Feature feature)? unlockFeature,
-    required TResult orElse(),
-  }) {
-    if (moneyEarned != null) {
-      return moneyEarned(amount);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(ProjectCompleted value) projectCompleted,
-    required TResult Function(XpEarned value) xpEarned,
-    required TResult Function(MoneyEarned value) moneyEarned,
-    required TResult Function(ProjectStarted value) projectStarted,
-    required TResult Function(LevelUp value) levelUp,
-    required TResult Function(Purchase value) purchase,
-    required TResult Function(SaveGame value) saveGame,
-    required TResult Function(LoadGame value) loadGame,
-    required TResult Function(UnlockFeature value) unlockFeature,
-  }) {
-    return moneyEarned(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(ProjectCompleted value)? projectCompleted,
-    TResult? Function(XpEarned value)? xpEarned,
-    TResult? Function(MoneyEarned value)? moneyEarned,
-    TResult? Function(ProjectStarted value)? projectStarted,
-    TResult? Function(LevelUp value)? levelUp,
-    TResult? Function(Purchase value)? purchase,
-    TResult? Function(SaveGame value)? saveGame,
-    TResult? Function(LoadGame value)? loadGame,
-    TResult? Function(UnlockFeature value)? unlockFeature,
-  }) {
-    return moneyEarned?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(ProjectCompleted value)? projectCompleted,
-    TResult Function(XpEarned value)? xpEarned,
-    TResult Function(MoneyEarned value)? moneyEarned,
-    TResult Function(ProjectStarted value)? projectStarted,
-    TResult Function(LevelUp value)? levelUp,
-    TResult Function(Purchase value)? purchase,
-    TResult Function(SaveGame value)? saveGame,
-    TResult Function(LoadGame value)? loadGame,
-    TResult Function(UnlockFeature value)? unlockFeature,
-    required TResult orElse(),
-  }) {
-    if (moneyEarned != null) {
-      return moneyEarned(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class MoneyEarned implements GameEvent {
-  const factory MoneyEarned({required final int amount}) = _$MoneyEarnedImpl;
-
-  int get amount;
-
-  /// Create a copy of GameEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$MoneyEarnedImplCopyWith<_$MoneyEarnedImpl> get copyWith =>
+  _$$RewardEarnedImplCopyWith<_$RewardEarnedImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -778,8 +591,7 @@ class _$ProjectStartedImpl implements ProjectStarted {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(Project project, String? tag) projectCompleted,
-    required TResult Function(int amount) xpEarned,
-    required TResult Function(int amount) moneyEarned,
+    required TResult Function(ProjectReward reward) rewardEarned,
     required TResult Function(Project project, String? tag) projectStarted,
     required TResult Function(String? tag) levelUp,
     required TResult Function(PurchaseType type) purchase,
@@ -794,8 +606,7 @@ class _$ProjectStartedImpl implements ProjectStarted {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(Project project, String? tag)? projectCompleted,
-    TResult? Function(int amount)? xpEarned,
-    TResult? Function(int amount)? moneyEarned,
+    TResult? Function(ProjectReward reward)? rewardEarned,
     TResult? Function(Project project, String? tag)? projectStarted,
     TResult? Function(String? tag)? levelUp,
     TResult? Function(PurchaseType type)? purchase,
@@ -810,8 +621,7 @@ class _$ProjectStartedImpl implements ProjectStarted {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Project project, String? tag)? projectCompleted,
-    TResult Function(int amount)? xpEarned,
-    TResult Function(int amount)? moneyEarned,
+    TResult Function(ProjectReward reward)? rewardEarned,
     TResult Function(Project project, String? tag)? projectStarted,
     TResult Function(String? tag)? levelUp,
     TResult Function(PurchaseType type)? purchase,
@@ -830,8 +640,7 @@ class _$ProjectStartedImpl implements ProjectStarted {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(ProjectCompleted value) projectCompleted,
-    required TResult Function(XpEarned value) xpEarned,
-    required TResult Function(MoneyEarned value) moneyEarned,
+    required TResult Function(RewardEarned value) rewardEarned,
     required TResult Function(ProjectStarted value) projectStarted,
     required TResult Function(LevelUp value) levelUp,
     required TResult Function(Purchase value) purchase,
@@ -846,8 +655,7 @@ class _$ProjectStartedImpl implements ProjectStarted {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(ProjectCompleted value)? projectCompleted,
-    TResult? Function(XpEarned value)? xpEarned,
-    TResult? Function(MoneyEarned value)? moneyEarned,
+    TResult? Function(RewardEarned value)? rewardEarned,
     TResult? Function(ProjectStarted value)? projectStarted,
     TResult? Function(LevelUp value)? levelUp,
     TResult? Function(Purchase value)? purchase,
@@ -862,8 +670,7 @@ class _$ProjectStartedImpl implements ProjectStarted {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(ProjectCompleted value)? projectCompleted,
-    TResult Function(XpEarned value)? xpEarned,
-    TResult Function(MoneyEarned value)? moneyEarned,
+    TResult Function(RewardEarned value)? rewardEarned,
     TResult Function(ProjectStarted value)? projectStarted,
     TResult Function(LevelUp value)? levelUp,
     TResult Function(Purchase value)? purchase,
@@ -963,8 +770,7 @@ class _$LevelUpImpl implements LevelUp {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(Project project, String? tag) projectCompleted,
-    required TResult Function(int amount) xpEarned,
-    required TResult Function(int amount) moneyEarned,
+    required TResult Function(ProjectReward reward) rewardEarned,
     required TResult Function(Project project, String? tag) projectStarted,
     required TResult Function(String? tag) levelUp,
     required TResult Function(PurchaseType type) purchase,
@@ -979,8 +785,7 @@ class _$LevelUpImpl implements LevelUp {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(Project project, String? tag)? projectCompleted,
-    TResult? Function(int amount)? xpEarned,
-    TResult? Function(int amount)? moneyEarned,
+    TResult? Function(ProjectReward reward)? rewardEarned,
     TResult? Function(Project project, String? tag)? projectStarted,
     TResult? Function(String? tag)? levelUp,
     TResult? Function(PurchaseType type)? purchase,
@@ -995,8 +800,7 @@ class _$LevelUpImpl implements LevelUp {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Project project, String? tag)? projectCompleted,
-    TResult Function(int amount)? xpEarned,
-    TResult Function(int amount)? moneyEarned,
+    TResult Function(ProjectReward reward)? rewardEarned,
     TResult Function(Project project, String? tag)? projectStarted,
     TResult Function(String? tag)? levelUp,
     TResult Function(PurchaseType type)? purchase,
@@ -1015,8 +819,7 @@ class _$LevelUpImpl implements LevelUp {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(ProjectCompleted value) projectCompleted,
-    required TResult Function(XpEarned value) xpEarned,
-    required TResult Function(MoneyEarned value) moneyEarned,
+    required TResult Function(RewardEarned value) rewardEarned,
     required TResult Function(ProjectStarted value) projectStarted,
     required TResult Function(LevelUp value) levelUp,
     required TResult Function(Purchase value) purchase,
@@ -1031,8 +834,7 @@ class _$LevelUpImpl implements LevelUp {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(ProjectCompleted value)? projectCompleted,
-    TResult? Function(XpEarned value)? xpEarned,
-    TResult? Function(MoneyEarned value)? moneyEarned,
+    TResult? Function(RewardEarned value)? rewardEarned,
     TResult? Function(ProjectStarted value)? projectStarted,
     TResult? Function(LevelUp value)? levelUp,
     TResult? Function(Purchase value)? purchase,
@@ -1047,8 +849,7 @@ class _$LevelUpImpl implements LevelUp {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(ProjectCompleted value)? projectCompleted,
-    TResult Function(XpEarned value)? xpEarned,
-    TResult Function(MoneyEarned value)? moneyEarned,
+    TResult Function(RewardEarned value)? rewardEarned,
     TResult Function(ProjectStarted value)? projectStarted,
     TResult Function(LevelUp value)? levelUp,
     TResult Function(Purchase value)? purchase,
@@ -1145,8 +946,7 @@ class _$PurchaseImpl implements Purchase {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(Project project, String? tag) projectCompleted,
-    required TResult Function(int amount) xpEarned,
-    required TResult Function(int amount) moneyEarned,
+    required TResult Function(ProjectReward reward) rewardEarned,
     required TResult Function(Project project, String? tag) projectStarted,
     required TResult Function(String? tag) levelUp,
     required TResult Function(PurchaseType type) purchase,
@@ -1161,8 +961,7 @@ class _$PurchaseImpl implements Purchase {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(Project project, String? tag)? projectCompleted,
-    TResult? Function(int amount)? xpEarned,
-    TResult? Function(int amount)? moneyEarned,
+    TResult? Function(ProjectReward reward)? rewardEarned,
     TResult? Function(Project project, String? tag)? projectStarted,
     TResult? Function(String? tag)? levelUp,
     TResult? Function(PurchaseType type)? purchase,
@@ -1177,8 +976,7 @@ class _$PurchaseImpl implements Purchase {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Project project, String? tag)? projectCompleted,
-    TResult Function(int amount)? xpEarned,
-    TResult Function(int amount)? moneyEarned,
+    TResult Function(ProjectReward reward)? rewardEarned,
     TResult Function(Project project, String? tag)? projectStarted,
     TResult Function(String? tag)? levelUp,
     TResult Function(PurchaseType type)? purchase,
@@ -1197,8 +995,7 @@ class _$PurchaseImpl implements Purchase {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(ProjectCompleted value) projectCompleted,
-    required TResult Function(XpEarned value) xpEarned,
-    required TResult Function(MoneyEarned value) moneyEarned,
+    required TResult Function(RewardEarned value) rewardEarned,
     required TResult Function(ProjectStarted value) projectStarted,
     required TResult Function(LevelUp value) levelUp,
     required TResult Function(Purchase value) purchase,
@@ -1213,8 +1010,7 @@ class _$PurchaseImpl implements Purchase {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(ProjectCompleted value)? projectCompleted,
-    TResult? Function(XpEarned value)? xpEarned,
-    TResult? Function(MoneyEarned value)? moneyEarned,
+    TResult? Function(RewardEarned value)? rewardEarned,
     TResult? Function(ProjectStarted value)? projectStarted,
     TResult? Function(LevelUp value)? levelUp,
     TResult? Function(Purchase value)? purchase,
@@ -1229,8 +1025,7 @@ class _$PurchaseImpl implements Purchase {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(ProjectCompleted value)? projectCompleted,
-    TResult Function(XpEarned value)? xpEarned,
-    TResult Function(MoneyEarned value)? moneyEarned,
+    TResult Function(RewardEarned value)? rewardEarned,
     TResult Function(ProjectStarted value)? projectStarted,
     TResult Function(LevelUp value)? levelUp,
     TResult Function(Purchase value)? purchase,
@@ -1300,8 +1095,7 @@ class _$SaveGameImpl implements SaveGame {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(Project project, String? tag) projectCompleted,
-    required TResult Function(int amount) xpEarned,
-    required TResult Function(int amount) moneyEarned,
+    required TResult Function(ProjectReward reward) rewardEarned,
     required TResult Function(Project project, String? tag) projectStarted,
     required TResult Function(String? tag) levelUp,
     required TResult Function(PurchaseType type) purchase,
@@ -1316,8 +1110,7 @@ class _$SaveGameImpl implements SaveGame {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(Project project, String? tag)? projectCompleted,
-    TResult? Function(int amount)? xpEarned,
-    TResult? Function(int amount)? moneyEarned,
+    TResult? Function(ProjectReward reward)? rewardEarned,
     TResult? Function(Project project, String? tag)? projectStarted,
     TResult? Function(String? tag)? levelUp,
     TResult? Function(PurchaseType type)? purchase,
@@ -1332,8 +1125,7 @@ class _$SaveGameImpl implements SaveGame {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Project project, String? tag)? projectCompleted,
-    TResult Function(int amount)? xpEarned,
-    TResult Function(int amount)? moneyEarned,
+    TResult Function(ProjectReward reward)? rewardEarned,
     TResult Function(Project project, String? tag)? projectStarted,
     TResult Function(String? tag)? levelUp,
     TResult Function(PurchaseType type)? purchase,
@@ -1352,8 +1144,7 @@ class _$SaveGameImpl implements SaveGame {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(ProjectCompleted value) projectCompleted,
-    required TResult Function(XpEarned value) xpEarned,
-    required TResult Function(MoneyEarned value) moneyEarned,
+    required TResult Function(RewardEarned value) rewardEarned,
     required TResult Function(ProjectStarted value) projectStarted,
     required TResult Function(LevelUp value) levelUp,
     required TResult Function(Purchase value) purchase,
@@ -1368,8 +1159,7 @@ class _$SaveGameImpl implements SaveGame {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(ProjectCompleted value)? projectCompleted,
-    TResult? Function(XpEarned value)? xpEarned,
-    TResult? Function(MoneyEarned value)? moneyEarned,
+    TResult? Function(RewardEarned value)? rewardEarned,
     TResult? Function(ProjectStarted value)? projectStarted,
     TResult? Function(LevelUp value)? levelUp,
     TResult? Function(Purchase value)? purchase,
@@ -1384,8 +1174,7 @@ class _$SaveGameImpl implements SaveGame {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(ProjectCompleted value)? projectCompleted,
-    TResult Function(XpEarned value)? xpEarned,
-    TResult Function(MoneyEarned value)? moneyEarned,
+    TResult Function(RewardEarned value)? rewardEarned,
     TResult Function(ProjectStarted value)? projectStarted,
     TResult Function(LevelUp value)? levelUp,
     TResult Function(Purchase value)? purchase,
@@ -1447,8 +1236,7 @@ class _$LoadGameImpl implements LoadGame {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(Project project, String? tag) projectCompleted,
-    required TResult Function(int amount) xpEarned,
-    required TResult Function(int amount) moneyEarned,
+    required TResult Function(ProjectReward reward) rewardEarned,
     required TResult Function(Project project, String? tag) projectStarted,
     required TResult Function(String? tag) levelUp,
     required TResult Function(PurchaseType type) purchase,
@@ -1463,8 +1251,7 @@ class _$LoadGameImpl implements LoadGame {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(Project project, String? tag)? projectCompleted,
-    TResult? Function(int amount)? xpEarned,
-    TResult? Function(int amount)? moneyEarned,
+    TResult? Function(ProjectReward reward)? rewardEarned,
     TResult? Function(Project project, String? tag)? projectStarted,
     TResult? Function(String? tag)? levelUp,
     TResult? Function(PurchaseType type)? purchase,
@@ -1479,8 +1266,7 @@ class _$LoadGameImpl implements LoadGame {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Project project, String? tag)? projectCompleted,
-    TResult Function(int amount)? xpEarned,
-    TResult Function(int amount)? moneyEarned,
+    TResult Function(ProjectReward reward)? rewardEarned,
     TResult Function(Project project, String? tag)? projectStarted,
     TResult Function(String? tag)? levelUp,
     TResult Function(PurchaseType type)? purchase,
@@ -1499,8 +1285,7 @@ class _$LoadGameImpl implements LoadGame {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(ProjectCompleted value) projectCompleted,
-    required TResult Function(XpEarned value) xpEarned,
-    required TResult Function(MoneyEarned value) moneyEarned,
+    required TResult Function(RewardEarned value) rewardEarned,
     required TResult Function(ProjectStarted value) projectStarted,
     required TResult Function(LevelUp value) levelUp,
     required TResult Function(Purchase value) purchase,
@@ -1515,8 +1300,7 @@ class _$LoadGameImpl implements LoadGame {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(ProjectCompleted value)? projectCompleted,
-    TResult? Function(XpEarned value)? xpEarned,
-    TResult? Function(MoneyEarned value)? moneyEarned,
+    TResult? Function(RewardEarned value)? rewardEarned,
     TResult? Function(ProjectStarted value)? projectStarted,
     TResult? Function(LevelUp value)? levelUp,
     TResult? Function(Purchase value)? purchase,
@@ -1531,8 +1315,7 @@ class _$LoadGameImpl implements LoadGame {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(ProjectCompleted value)? projectCompleted,
-    TResult Function(XpEarned value)? xpEarned,
-    TResult Function(MoneyEarned value)? moneyEarned,
+    TResult Function(RewardEarned value)? rewardEarned,
     TResult Function(ProjectStarted value)? projectStarted,
     TResult Function(LevelUp value)? levelUp,
     TResult Function(Purchase value)? purchase,
@@ -1621,8 +1404,7 @@ class _$UnlockFeatureImpl implements UnlockFeature {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(Project project, String? tag) projectCompleted,
-    required TResult Function(int amount) xpEarned,
-    required TResult Function(int amount) moneyEarned,
+    required TResult Function(ProjectReward reward) rewardEarned,
     required TResult Function(Project project, String? tag) projectStarted,
     required TResult Function(String? tag) levelUp,
     required TResult Function(PurchaseType type) purchase,
@@ -1637,8 +1419,7 @@ class _$UnlockFeatureImpl implements UnlockFeature {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(Project project, String? tag)? projectCompleted,
-    TResult? Function(int amount)? xpEarned,
-    TResult? Function(int amount)? moneyEarned,
+    TResult? Function(ProjectReward reward)? rewardEarned,
     TResult? Function(Project project, String? tag)? projectStarted,
     TResult? Function(String? tag)? levelUp,
     TResult? Function(PurchaseType type)? purchase,
@@ -1653,8 +1434,7 @@ class _$UnlockFeatureImpl implements UnlockFeature {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Project project, String? tag)? projectCompleted,
-    TResult Function(int amount)? xpEarned,
-    TResult Function(int amount)? moneyEarned,
+    TResult Function(ProjectReward reward)? rewardEarned,
     TResult Function(Project project, String? tag)? projectStarted,
     TResult Function(String? tag)? levelUp,
     TResult Function(PurchaseType type)? purchase,
@@ -1673,8 +1453,7 @@ class _$UnlockFeatureImpl implements UnlockFeature {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(ProjectCompleted value) projectCompleted,
-    required TResult Function(XpEarned value) xpEarned,
-    required TResult Function(MoneyEarned value) moneyEarned,
+    required TResult Function(RewardEarned value) rewardEarned,
     required TResult Function(ProjectStarted value) projectStarted,
     required TResult Function(LevelUp value) levelUp,
     required TResult Function(Purchase value) purchase,
@@ -1689,8 +1468,7 @@ class _$UnlockFeatureImpl implements UnlockFeature {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(ProjectCompleted value)? projectCompleted,
-    TResult? Function(XpEarned value)? xpEarned,
-    TResult? Function(MoneyEarned value)? moneyEarned,
+    TResult? Function(RewardEarned value)? rewardEarned,
     TResult? Function(ProjectStarted value)? projectStarted,
     TResult? Function(LevelUp value)? levelUp,
     TResult? Function(Purchase value)? purchase,
@@ -1705,8 +1483,7 @@ class _$UnlockFeatureImpl implements UnlockFeature {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(ProjectCompleted value)? projectCompleted,
-    TResult Function(XpEarned value)? xpEarned,
-    TResult Function(MoneyEarned value)? moneyEarned,
+    TResult Function(RewardEarned value)? rewardEarned,
     TResult Function(ProjectStarted value)? projectStarted,
     TResult Function(LevelUp value)? levelUp,
     TResult Function(Purchase value)? purchase,

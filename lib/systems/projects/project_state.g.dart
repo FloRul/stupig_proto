@@ -23,25 +23,21 @@ Map<String, dynamic> _$$ActiveProjectStateImplToJson(
 
 _$ProjectRewardImpl _$$ProjectRewardImplFromJson(Map<String, dynamic> json) =>
     _$ProjectRewardImpl(
-      xpAmount: (json['xpAmount'] as num).toInt(),
-      moneyAmount: (json['moneyAmount'] as num).toInt(),
-      feature: $enumDecodeNullable(_$FeatureEnumMap, json['feature']),
+      minXpAmount: (json['minXpAmount'] as num).toInt(),
+      maxXpAmount: (json['maxXpAmount'] as num).toInt(),
+      minMoneyAmount: (json['minMoneyAmount'] as num).toInt(),
+      maxMoneyAmount: (json['maxMoneyAmount'] as num).toInt(),
+      failRate: (json['failRate'] as num).toDouble(),
     );
 
 Map<String, dynamic> _$$ProjectRewardImplToJson(_$ProjectRewardImpl instance) =>
     <String, dynamic>{
-      'xpAmount': instance.xpAmount,
-      'moneyAmount': instance.moneyAmount,
-      'feature': _$FeatureEnumMap[instance.feature],
+      'minXpAmount': instance.minXpAmount,
+      'maxXpAmount': instance.maxXpAmount,
+      'minMoneyAmount': instance.minMoneyAmount,
+      'maxMoneyAmount': instance.maxMoneyAmount,
+      'failRate': instance.failRate,
     };
-
-const _$FeatureEnumMap = {
-  Feature.showRewards: 'showRewards',
-  Feature.canPurchaseAvailableSlot: 'canPurchaseAvailableSlot',
-  Feature.canPurchaseActiveSlot: 'canPurchaseActiveSlot',
-  Feature.canSaveLoadGame: 'canSaveLoadGame',
-  Feature.canSeePrgression: 'canSeePrgression',
-};
 
 _$CompletionImpl _$$CompletionImplFromJson(Map<String, dynamic> json) =>
     _$CompletionImpl(

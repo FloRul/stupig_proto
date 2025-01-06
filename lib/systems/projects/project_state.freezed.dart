@@ -220,9 +220,11 @@ ProjectReward _$ProjectRewardFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$ProjectReward {
-  int get xpAmount => throw _privateConstructorUsedError;
-  int get moneyAmount => throw _privateConstructorUsedError;
-  Feature? get feature => throw _privateConstructorUsedError;
+  int get minXpAmount => throw _privateConstructorUsedError;
+  int get maxXpAmount => throw _privateConstructorUsedError;
+  int get minMoneyAmount => throw _privateConstructorUsedError;
+  int get maxMoneyAmount => throw _privateConstructorUsedError;
+  double get failRate => throw _privateConstructorUsedError;
 
   /// Serializes this ProjectReward to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -240,7 +242,12 @@ abstract class $ProjectRewardCopyWith<$Res> {
           ProjectReward value, $Res Function(ProjectReward) then) =
       _$ProjectRewardCopyWithImpl<$Res, ProjectReward>;
   @useResult
-  $Res call({int xpAmount, int moneyAmount, Feature? feature});
+  $Res call(
+      {int minXpAmount,
+      int maxXpAmount,
+      int minMoneyAmount,
+      int maxMoneyAmount,
+      double failRate});
 }
 
 /// @nodoc
@@ -258,23 +265,33 @@ class _$ProjectRewardCopyWithImpl<$Res, $Val extends ProjectReward>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? xpAmount = null,
-    Object? moneyAmount = null,
-    Object? feature = freezed,
+    Object? minXpAmount = null,
+    Object? maxXpAmount = null,
+    Object? minMoneyAmount = null,
+    Object? maxMoneyAmount = null,
+    Object? failRate = null,
   }) {
     return _then(_value.copyWith(
-      xpAmount: null == xpAmount
-          ? _value.xpAmount
-          : xpAmount // ignore: cast_nullable_to_non_nullable
+      minXpAmount: null == minXpAmount
+          ? _value.minXpAmount
+          : minXpAmount // ignore: cast_nullable_to_non_nullable
               as int,
-      moneyAmount: null == moneyAmount
-          ? _value.moneyAmount
-          : moneyAmount // ignore: cast_nullable_to_non_nullable
+      maxXpAmount: null == maxXpAmount
+          ? _value.maxXpAmount
+          : maxXpAmount // ignore: cast_nullable_to_non_nullable
               as int,
-      feature: freezed == feature
-          ? _value.feature
-          : feature // ignore: cast_nullable_to_non_nullable
-              as Feature?,
+      minMoneyAmount: null == minMoneyAmount
+          ? _value.minMoneyAmount
+          : minMoneyAmount // ignore: cast_nullable_to_non_nullable
+              as int,
+      maxMoneyAmount: null == maxMoneyAmount
+          ? _value.maxMoneyAmount
+          : maxMoneyAmount // ignore: cast_nullable_to_non_nullable
+              as int,
+      failRate: null == failRate
+          ? _value.failRate
+          : failRate // ignore: cast_nullable_to_non_nullable
+              as double,
     ) as $Val);
   }
 }
@@ -287,7 +304,12 @@ abstract class _$$ProjectRewardImplCopyWith<$Res>
       __$$ProjectRewardImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int xpAmount, int moneyAmount, Feature? feature});
+  $Res call(
+      {int minXpAmount,
+      int maxXpAmount,
+      int minMoneyAmount,
+      int maxMoneyAmount,
+      double failRate});
 }
 
 /// @nodoc
@@ -303,23 +325,33 @@ class __$$ProjectRewardImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? xpAmount = null,
-    Object? moneyAmount = null,
-    Object? feature = freezed,
+    Object? minXpAmount = null,
+    Object? maxXpAmount = null,
+    Object? minMoneyAmount = null,
+    Object? maxMoneyAmount = null,
+    Object? failRate = null,
   }) {
     return _then(_$ProjectRewardImpl(
-      xpAmount: null == xpAmount
-          ? _value.xpAmount
-          : xpAmount // ignore: cast_nullable_to_non_nullable
+      minXpAmount: null == minXpAmount
+          ? _value.minXpAmount
+          : minXpAmount // ignore: cast_nullable_to_non_nullable
               as int,
-      moneyAmount: null == moneyAmount
-          ? _value.moneyAmount
-          : moneyAmount // ignore: cast_nullable_to_non_nullable
+      maxXpAmount: null == maxXpAmount
+          ? _value.maxXpAmount
+          : maxXpAmount // ignore: cast_nullable_to_non_nullable
               as int,
-      feature: freezed == feature
-          ? _value.feature
-          : feature // ignore: cast_nullable_to_non_nullable
-              as Feature?,
+      minMoneyAmount: null == minMoneyAmount
+          ? _value.minMoneyAmount
+          : minMoneyAmount // ignore: cast_nullable_to_non_nullable
+              as int,
+      maxMoneyAmount: null == maxMoneyAmount
+          ? _value.maxMoneyAmount
+          : maxMoneyAmount // ignore: cast_nullable_to_non_nullable
+              as int,
+      failRate: null == failRate
+          ? _value.failRate
+          : failRate // ignore: cast_nullable_to_non_nullable
+              as double,
     ));
   }
 }
@@ -328,21 +360,29 @@ class __$$ProjectRewardImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$ProjectRewardImpl implements _ProjectReward {
   const _$ProjectRewardImpl(
-      {required this.xpAmount, required this.moneyAmount, this.feature});
+      {required this.minXpAmount,
+      required this.maxXpAmount,
+      required this.minMoneyAmount,
+      required this.maxMoneyAmount,
+      required this.failRate});
 
   factory _$ProjectRewardImpl.fromJson(Map<String, dynamic> json) =>
       _$$ProjectRewardImplFromJson(json);
 
   @override
-  final int xpAmount;
+  final int minXpAmount;
   @override
-  final int moneyAmount;
+  final int maxXpAmount;
   @override
-  final Feature? feature;
+  final int minMoneyAmount;
+  @override
+  final int maxMoneyAmount;
+  @override
+  final double failRate;
 
   @override
   String toString() {
-    return 'ProjectReward(xpAmount: $xpAmount, moneyAmount: $moneyAmount, feature: $feature)';
+    return 'ProjectReward(minXpAmount: $minXpAmount, maxXpAmount: $maxXpAmount, minMoneyAmount: $minMoneyAmount, maxMoneyAmount: $maxMoneyAmount, failRate: $failRate)';
   }
 
   @override
@@ -350,16 +390,22 @@ class _$ProjectRewardImpl implements _ProjectReward {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ProjectRewardImpl &&
-            (identical(other.xpAmount, xpAmount) ||
-                other.xpAmount == xpAmount) &&
-            (identical(other.moneyAmount, moneyAmount) ||
-                other.moneyAmount == moneyAmount) &&
-            (identical(other.feature, feature) || other.feature == feature));
+            (identical(other.minXpAmount, minXpAmount) ||
+                other.minXpAmount == minXpAmount) &&
+            (identical(other.maxXpAmount, maxXpAmount) ||
+                other.maxXpAmount == maxXpAmount) &&
+            (identical(other.minMoneyAmount, minMoneyAmount) ||
+                other.minMoneyAmount == minMoneyAmount) &&
+            (identical(other.maxMoneyAmount, maxMoneyAmount) ||
+                other.maxMoneyAmount == maxMoneyAmount) &&
+            (identical(other.failRate, failRate) ||
+                other.failRate == failRate));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, xpAmount, moneyAmount, feature);
+  int get hashCode => Object.hash(runtimeType, minXpAmount, maxXpAmount,
+      minMoneyAmount, maxMoneyAmount, failRate);
 
   /// Create a copy of ProjectReward
   /// with the given fields replaced by the non-null parameter values.
@@ -379,19 +425,25 @@ class _$ProjectRewardImpl implements _ProjectReward {
 
 abstract class _ProjectReward implements ProjectReward {
   const factory _ProjectReward(
-      {required final int xpAmount,
-      required final int moneyAmount,
-      final Feature? feature}) = _$ProjectRewardImpl;
+      {required final int minXpAmount,
+      required final int maxXpAmount,
+      required final int minMoneyAmount,
+      required final int maxMoneyAmount,
+      required final double failRate}) = _$ProjectRewardImpl;
 
   factory _ProjectReward.fromJson(Map<String, dynamic> json) =
       _$ProjectRewardImpl.fromJson;
 
   @override
-  int get xpAmount;
+  int get minXpAmount;
   @override
-  int get moneyAmount;
+  int get maxXpAmount;
   @override
-  Feature? get feature;
+  int get minMoneyAmount;
+  @override
+  int get maxMoneyAmount;
+  @override
+  double get failRate;
 
   /// Create a copy of ProjectReward
   /// with the given fields replaced by the non-null parameter values.

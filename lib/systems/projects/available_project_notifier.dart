@@ -42,9 +42,11 @@ class AvailableProjectsNotifier extends _$AvailableProjectsNotifier {
           id: const Uuid().v4(),
           name: 'Project 1',
           description: 'Project 1 Description',
-          reward: const ProjectReward(
-            moneyAmount: 1,
-            xpAmount: 1,
+          reward: ProjectReward.fromGameState(
+            type: ProjectType.learning,
+            level: ref.read(experienceNotifierProvider).level,
+            failRate: 0.5,
+            isCombined: false,
           ),
           type: ProjectType.learning,
         ),
@@ -131,9 +133,11 @@ class AvailableProjectsNotifier extends _$AvailableProjectsNotifier {
       id: const Uuid().v4(),
       name: 'Project $id',
       description: 'Project $id Description',
-      reward: ProjectReward(
-        moneyAmount: 1,
-        xpAmount: 1 + ref.read(experienceNotifierProvider).level * Random().nextInt(10),
+      reward: ProjectReward.fromGameState(
+        type: ProjectType.values[Random().nextInt(ProjectType.values.length)],
+        level: ref.read(experienceNotifierProvider).level,
+        failRate: Random().nextDouble(),
+        isCombined: Random().nextBool(),
       ),
       type: ProjectType.values[Random().nextInt(ProjectType.values.length)],
     );

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:stupig_proto/systems/event_bus.dart';
 import 'package:stupig_proto/systems/game_event.dart';
+import 'package:stupig_proto/systems/projects/models.dart';
 import 'package:stupig_proto/systems/projects/project_state.dart';
 import 'package:stupig_proto/widgets/common/flippable_card.dart';
 import 'package:stupig_proto/widgets/project/project_card/backside.dart';
@@ -42,6 +43,16 @@ class _ActiveProjectCardState extends ConsumerState<ActiveProjectCard> with Tick
     return FlippableCard(
       flipController: _flipController,
       onTap: () => _flipController.flip(),
+      gradient: LinearGradient(
+        begin: Alignment.topLeft,
+        end: Alignment.bottomRight,
+        colors: switch (widget.pState.project.type) {
+          ProjectType.learning => [Colors.green.shade200, Colors.green.shade400],
+          ProjectType.design => [Colors.blue.shade200, Colors.blue.shade400],
+          ProjectType.implementation => [Colors.purple.shade200, Colors.purple.shade400],
+          ProjectType.optimization => [Colors.orange.shade200, Colors.orange.shade400],
+        },
+      ),
       frontContent: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.stretch,

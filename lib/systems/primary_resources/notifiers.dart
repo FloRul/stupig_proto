@@ -1,4 +1,6 @@
-﻿import 'package:riverpod_annotation/riverpod_annotation.dart';
+﻿import 'dart:math';
+
+import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:stupig_proto/systems/event_bus.dart';
 import 'package:stupig_proto/systems/game_event.dart';
 import 'package:stupig_proto/systems/primary_resources/models.dart';
@@ -11,8 +13,8 @@ class ExperienceNotifier extends _$ExperienceNotifier {
     ref.listen(eventBusProvider, (previous, next) {
       next.whenData(
         (event) => event.maybeMap(
-          xpEarned: (xpEarned) {
-            var newXp = state.xp + xpEarned.amount;
+          rewardEarned: (e) {
+            var newXp = state.xp + Random().nextInt(e.reward.maxXpAmount + 1) + e.reward.minXpAmount;
             if (newXp >= state.xpToNextLevel) {
               ref.read(eventBusProvider.notifier).publish(const GameEvent.levelUp());
             } else {
@@ -43,8 +45,10 @@ class MoneyNotifier extends _$MoneyNotifier {
   int build() {
     ref.listen(eventBusProvider, (previous, next) {
       next.whenData(
-        (event) => event.maybeMap(
-          moneyEarned: (moneyEarned) => state = state + moneyEarned.amount,
+        (e) => e.maybeMap(
+          rewardEarned: (e) {
+            state = state + Random().nextInt(e.reward.maxMoneyAmount + 1) + e.reward.minMoneyAmount;
+          },
           orElse: () {},
         ),
       );

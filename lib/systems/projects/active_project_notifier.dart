@@ -51,8 +51,11 @@ class ActiveProjectsNotifier extends _$ActiveProjectsNotifier {
   }
 
   void _handleCompletedProject(Project project) {
-    ref.read(eventBusProvider.notifier).publish(GameEvent.moneyEarned(amount: project.reward.moneyAmount));
-    ref.read(eventBusProvider.notifier).publish(GameEvent.xpEarned(amount: project.reward.xpAmount));
+    ref.read(eventBusProvider.notifier).publish(
+          GameEvent.rewardEarned(
+            reward: project.reward,
+          ),
+        );
 
     state = [
       for (var p in state)
