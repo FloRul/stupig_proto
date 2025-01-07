@@ -1,4 +1,8 @@
-﻿import 'package:riverpod_annotation/riverpod_annotation.dart';
+﻿import 'dart:convert';
+import 'dart:math';
+
+import 'package:flutter/services.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:stupig_proto/systems/game_event.dart';
 import 'package:stupig_proto/systems/global_ticker.dart/global_ticker.dart';
 import 'package:stupig_proto/systems/event_bus.dart';
@@ -120,8 +124,19 @@ class AvailableProjectsNotifier extends _$AvailableProjectsNotifier {
 
   Future<Project> _fetchNewProject() async {
     await Future.delayed(const Duration(seconds: 1));
+
+    final jsonString = await rootBundle.loadString('data/projects.json');
+    final projectType = ProjectType.values[Random().nextInt(ProjectType.values.length)];
+    final Map<String, dynamic> jsonData = json.decode(jsonString);
+    final List<dynamic> projectData = jsonData[projectType.name];
+
+    final randomIndex = Random().nextInt(projectData.length);
+
     // TODO: Replace with actual API call
-    return Project.random(
+    return Project.fromNameDescType(
+      name: projectData[randomIndex]['name'],
+      description: projectData[randomIndex]['description'],
+      type: projectType,
       level: ref.read(experienceProvider).level,
     );
   }

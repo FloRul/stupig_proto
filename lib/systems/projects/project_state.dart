@@ -43,18 +43,18 @@ class ProjectReward with _$ProjectReward {
     required bool isCombined,
   }) {
     var minLvlSeed = (2 + pow(kGlobalSeed, level / 17) * level / 17).toDouble();
-    var maxLvlSeed = (10 + pow(kGlobalSeed, level / 15) * level / 10).toDouble();
+    var maxLvlSeed = (5 + pow(kGlobalSeed, level / 15) * level / 10).toDouble();
     return switch (type) {
       ProjectType.learning => ProjectReward(
-          minXpAmount: (minLvlSeed * 1.2).toInt(),
-          maxXpAmount: (maxLvlSeed * 1.2).toInt(),
+          minXpAmount: (minLvlSeed * 1.5).toInt(),
+          maxXpAmount: (maxLvlSeed * 1.5).toInt(),
           minMoneyAmount: 0,
           maxMoneyAmount: 0,
           failRate: 0,
         ),
       ProjectType.design => ProjectReward(
-          minXpAmount: (minLvlSeed * (isCombined ? 1.5 : 0.8)).toInt(),
-          maxXpAmount: (maxLvlSeed * (isCombined ? 1.5 : 0.8)).toInt(),
+          minXpAmount: (minLvlSeed * (isCombined ? 1 : 0.8)).toInt(),
+          maxXpAmount: (maxLvlSeed * (isCombined ? 1 : 0.8)).toInt(),
           minMoneyAmount: minLvlSeed.toInt(),
           maxMoneyAmount: maxLvlSeed.toInt(),
           failRate: failRate,

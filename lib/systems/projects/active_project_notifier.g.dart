@@ -7,7 +7,7 @@ part of 'active_project_notifier.dart';
 // **************************************************************************
 
 String _$activeProjectsNotifierHash() =>
-    r'15f4adf7a9b5beb15a9eef39cb046de1d5bbd85d';
+    r'a2b520fd26fe332c69fcbe45f34c227b8d09a81e';
 
 /// See also [ActiveProjectsNotifier].
 @ProviderFor(ActiveProjectsNotifier)

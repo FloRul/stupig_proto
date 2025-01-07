@@ -38,7 +38,7 @@ class ProjectCardTitle extends StatelessWidget {
           },
           child: switch (type) {
             ProjectType.learning => const Icon(
-                Icons.school,
+                Icons.import_contacts,
                 color: Colors.white,
               ),
             ProjectType.design => const Icon(
@@ -46,11 +46,11 @@ class ProjectCardTitle extends StatelessWidget {
                 color: Colors.white,
               ),
             ProjectType.implementation => const Icon(
-                Icons.build,
+                Icons.dvr,
                 color: Colors.white,
               ),
             ProjectType.optimization => const Icon(
-                Icons.flash_on,
+                Icons.build,
                 color: Colors.white,
               ),
           },

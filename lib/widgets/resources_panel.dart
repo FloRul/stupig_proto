@@ -15,7 +15,8 @@ class ResourcesView extends ConsumerWidget {
           resource: ref.watch(moneyProvider),
           label: 'Money',
           resourceToString: (value) => '${value.toString()} \$',
-          description: 'The amount of money you have.',
+          description:
+              'Money: What clients think you\'re swimming in because \'it\'s just typing.\'\nUse it to upgrade your setup from \'potato PC\' to \'builds without crashing.\'',
         ),
         ResourceContainer<double>(
           resource: ref.watch(secondaryResourcesProvider.select(
@@ -24,7 +25,7 @@ class ResourcesView extends ConsumerWidget {
           label: 'Dev tools',
           resourceToString: (value) => value.toString(),
           description:
-              'Turn your "it works on my machine" into "it works on everyone\'s machine."\nSpeeds up projects and enables automation features.',
+              'Turn your \'it works on my machine\' into \'it works on everyone\'s machine.\'\nSpeeds up projects and enables automation features.',
         ),
         ResourceContainer<double>(
           resource: ref.watch(secondaryResourcesProvider.select(
@@ -33,7 +34,16 @@ class ResourcesView extends ConsumerWidget {
           label: 'Tech skills',
           resourceToString: (value) => value.toString(),
           description:
-              'Because Stack Overflow doesn\'t count as a skill by itself.\nEnables complex projects, better rewards, and eventually the power to mentor others without googling everything first.',
+              'Because Stack Overflow nor ChatGpt do not count as a skill by themselves.\nEnables more complex projects, better rewards, and eventually the power to mentor others without googling everything first.',
+        ),
+        ResourceContainer<double>(
+          resource: ref.watch(secondaryResourcesProvider.select(
+            (value) => value.hardware,
+          )),
+          label: 'Hardware power',
+          resourceToString: (value) => value.toString(),
+          description:
+              'From \'Not sure it can even run Doom\' to \'Yes, it can run Crysis AND Docker.\'\nReduces project cooldowns and enables passive gains from your totally unique SaaS projects.',
         )
       ],
     );

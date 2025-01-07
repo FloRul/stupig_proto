@@ -51,7 +51,7 @@ class ActiveProjectsNotifier extends _$ActiveProjectsNotifier {
   }
 
   bool handleCompletedProject(Project project) {
-    bool success = Random().nextInt(100) + 1 > (project.reward.failRate * 100).toInt();
+    bool success = Random().nextDouble() * 100 > project.reward.failRate;
     ref.read(eventBusProvider.notifier).publish(
           GameEvent.rewardEarned(
             reward: project.reward,

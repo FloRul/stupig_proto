@@ -1,7 +1,5 @@
 ﻿import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:stupig_proto/systems/event_bus.dart';
-import 'package:stupig_proto/systems/game_event.dart';
 import 'package:stupig_proto/systems/projects/active_project_notifier.dart';
 import 'package:stupig_proto/systems/projects/available_project_notifier.dart';
 import 'package:stupig_proto/systems/projects/models.dart';
@@ -42,9 +40,12 @@ class ProjectFrontside extends ConsumerWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             if (completion == null) ...[
-              IconButton.filled(
-                icon: const Icon(Icons.delete_forever),
-                onPressed: () async => ref.read(availableProjectsNotifierProvider.notifier).declineProject(project),
+              Tooltip(
+                message: 'Decline project',
+                child: IconButton(
+                  icon: const Icon(Icons.clear),
+                  onPressed: () async => ref.read(availableProjectsNotifierProvider.notifier).declineProject(project),
+                ),
               )
             ],
             FailureRateIndicator(failureRate: project.reward.failRate),

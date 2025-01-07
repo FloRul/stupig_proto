@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:stupig_proto/systems/projects/models.dart';
 import 'package:stupig_proto/systems/projects/available_project_notifier.dart';
 import 'package:stupig_proto/utils/constants.dart';
+import 'package:stupig_proto/widgets/common/animated_icon_progress_bar.dart';
 import 'package:stupig_proto/widgets/common/glassmorphism_container.dart';
 import 'package:stupig_proto/widgets/debug/group_area.dart';
 import 'package:stupig_proto/widgets/project/project_card/project_card.dart';
@@ -81,6 +82,11 @@ class AvailableProjects extends ConsumerWidget {
 
     return GroupArea(
       title: 'Available Projects',
+      trailing: const AnimatedIconProgressBar(
+        icon: Icons.clear,
+        totalIcons: 3,
+        progress: 1,
+      ),
       child: GridView.builder(
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 3,
@@ -91,17 +97,7 @@ class AvailableProjects extends ConsumerWidget {
         // Add 1 to itemCount for the Add Slot card
         itemCount: allSlots.length,
         itemBuilder: (context, index) {
-          // If it's the last item, show the Add Slot card
-          // if (index == allSlots.length) {
-          //   return AddSlotCard(
-          //     onTap: () {
-          //       ref.read(eventBusProvider.notifier).publish(const GameEvent.purchase(type: PurchaseType.availableSlot));
-          //     },
-          //   );
-          // }
-
           final slot = allSlots[index];
-
           if (slot.project != null) {
             return LayoutBuilder(
               builder: (context, constraints) {

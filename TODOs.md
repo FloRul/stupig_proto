@@ -43,8 +43,11 @@ everytime a project is started or declined the next one has a cooldown before be
 
 ## Secondary resources
  - Tech skills -> Determines the complexity of projects you can take on, Affects the probability of getting better rewards, Could influence the ability to mentor/train hired freelancers later
+ 
  - Development Tools -> Affects project completion speed, Could unlock automation features later in the game, Influences the efficiency of your freelancer team
- - Hardware -> Determines the scale of projects you can handle, Could enable passive resource generation (SaaS type project-reward taht would enable passive resource gain)
+ 
+ - Hardware -> Determines the scale of projects you can handle, Could enable passive resource generation (SaaS type project-reward taht would enable passive resource gain), determine also the cooldown to fetch a new project.
+ 
  - focus point -> each project takes a specific amount of focus point during completion, more focus point = more project that can be completed at the same time. Could add a quality multiplier to project rewards when you have excess focus
 
 
