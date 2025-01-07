@@ -5,12 +5,12 @@ import 'package:stupig_proto/utils/constants.dart';
 
 class ProgressBar extends ConsumerWidget {
   final Completion completion;
-  final VoidCallback? onComplete;
+  final VoidCallback? onceCompleted;
 
   const ProgressBar({
     super.key,
     required this.completion,
-    this.onComplete,
+    this.onceCompleted,
   });
 
   @override
@@ -37,7 +37,7 @@ class ProgressBar extends ConsumerWidget {
                 style: FilledButton.styleFrom(
                   backgroundColor: Colors.transparent,
                 ),
-                onPressed: onComplete,
+                onPressed: onceCompleted,
                 icon: const Icon(Icons.check_circle),
                 label: const Text(
                   'Complete',

@@ -1,4 +1,6 @@
-﻿import 'package:riverpod_annotation/riverpod_annotation.dart';
+﻿import 'dart:math';
+
+import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:stupig_proto/systems/global_ticker.dart/global_ticker.dart';
 import 'package:stupig_proto/systems/event_bus.dart';
 import 'package:stupig_proto/systems/game_event.dart';
@@ -18,7 +20,6 @@ class ActiveProjectsNotifier extends _$ActiveProjectsNotifier {
         next.whenData(
           (event) => event.maybeMap(
             projectStarted: (e) => _handleStartProject(e.project),
-            projectCompleted: (e) => _handleCompletedProject(e.project),
             orElse: () {},
           ),
         );
@@ -49,7 +50,8 @@ class ActiveProjectsNotifier extends _$ActiveProjectsNotifier {
     );
   }
 
-  void _handleCompletedProject(Project project) {
+  bool handleCompletedProject(Project project) {
+    bool success = Random().nextInt(100) + 1 > (project.reward.failRate * 100).toInt();
     ref.read(eventBusProvider.notifier).publish(
           GameEvent.rewardEarned(
             reward: project.reward,
@@ -59,5 +61,6 @@ class ActiveProjectsNotifier extends _$ActiveProjectsNotifier {
     state = state.copyWith(
       activeProjects: state.activeProjects.where((p) => p.$1 != project).toList(),
     );
+    return success;
   }
 }

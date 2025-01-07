@@ -2,6 +2,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:stupig_proto/systems/event_bus.dart';
 import 'package:stupig_proto/systems/game_event.dart';
+import 'package:stupig_proto/systems/projects/active_project_notifier.dart';
 import 'package:stupig_proto/systems/projects/available_project_notifier.dart';
 import 'package:stupig_proto/systems/projects/models.dart';
 import 'package:stupig_proto/systems/projects/project_state.dart';
@@ -32,7 +33,7 @@ class ProjectFrontside extends ConsumerWidget {
         if (completion != null) ...[
           ProgressBar(
             completion: completion!,
-            onComplete: () => ref.read(eventBusProvider.notifier).publish(GameEvent.projectCompleted(project: project)),
+            onceCompleted: () => ref.read(activeProjectsNotifierProvider.notifier).handleCompletedProject(project),
           ),
           const SizedBox(height: 16),
         ],
