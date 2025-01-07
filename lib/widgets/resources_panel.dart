@@ -1,6 +1,7 @@
 ﻿import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:stupig_proto/systems/primary_resources/notifiers.dart';
+import 'package:stupig_proto/systems/secondary_resources/notifiers.dart';
 
 class ResourcesView extends ConsumerWidget {
   const ResourcesView({super.key});
@@ -16,6 +17,24 @@ class ResourcesView extends ConsumerWidget {
           resourceToString: (value) => '${value.toString()} \$',
           description: 'The amount of money you have.',
         ),
+        ResourceContainer<double>(
+          resource: ref.watch(secondaryResourcesProvider.select(
+            (value) => value.techSkills,
+          )),
+          label: 'Dev tools',
+          resourceToString: (value) => value.toString(),
+          description:
+              'Turn your "it works on my machine" into "it works on everyone\'s machine."\nSpeeds up projects and enables automation features.',
+        ),
+        ResourceContainer<double>(
+          resource: ref.watch(secondaryResourcesProvider.select(
+            (value) => value.devTools,
+          )),
+          label: 'Tech skills',
+          resourceToString: (value) => value.toString(),
+          description:
+              'Because Stack Overflow doesn\'t count as a skill by itself.\nEnables complex projects, better rewards, and eventually the power to mentor others without googling everything first.',
+        )
       ],
     );
   }
@@ -92,8 +111,9 @@ class XpWidget extends ConsumerWidget {
                 ),
               ),
             ),
+            const SizedBox(width: 8),
             Text(
-              '  Level ${xpState.level}',
+              'Level ${xpState.level}',
               style: const TextStyle(fontSize: 16),
             ),
           ],

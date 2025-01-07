@@ -6,7 +6,7 @@ import 'package:stupig_proto/systems/secondary_resources/models.dart';
 part 'notifiers.g.dart';
 
 @Riverpod(keepAlive: true)
-class SecondaryResourcesNotifier extends _$SecondaryResourcesNotifier {
+class SecondaryResources extends _$SecondaryResources {
   @override
   SecondaryResourceState build() {
     ref.listen(

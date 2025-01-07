@@ -9,7 +9,7 @@ The secondary resources (hardware) are:
  - Tech skills -> Determines the complexity of projects you can take on, Affects the probability of getting better rewards, Could influence the ability to mentor/train hired freelancers later
  - Development Tools -> Affects project completion speed, Could unlock automation features later in the game, Influences the efficiency of your freelancer team
  - Hardware -> Determines the scale of projects you can handle, Could enable passive resource generation (SaaS type project-reward taht would enable passive resource gain)
- - Mental load -> each project takes a specific amount of mental load during completion, more mental load = more project that can be completed at the same time. Could add a quality multiplier to project rewards when you have excess focus
+ - focus point -> each project takes a specific amount of focus point during completion, more focus point = more project that can be completed at the same time. Could add a quality multiplier to project rewards when you have excess focus
 
 The game is divided into 3 narrative phases, the first one is the intern-freelancer.
 Second one is employee, your projects can reward money as well to upgrade your hardware.
@@ -27,7 +27,7 @@ Ultimately multiple endings could be considered :
   (-) + completion time
   (+) + XP
 - design -> blue:
-  (-) takes more mental load
+  (-) takes more focus point
   (+) if coupled with implementation gains + xp and + money
 - implementation -> purple:
   (-) has a probability to fail

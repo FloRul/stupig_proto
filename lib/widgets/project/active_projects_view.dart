@@ -20,7 +20,7 @@ class _ActiveProjectsState extends ConsumerState<ActiveProjects> {
   @override
   Widget build(BuildContext context) {
     var state = ref.watch(activeProjectsNotifierProvider);
-    var focusPoints = ref.read(secondaryResourcesNotifierProvider).focusPoints;
+    var focusPoints = ref.read(secondaryResourcesProvider).focusPoints;
     return Column(
       children: [
         Expanded(

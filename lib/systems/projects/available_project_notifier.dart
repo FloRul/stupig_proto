@@ -38,20 +38,7 @@ class AvailableProjectsNotifier extends _$AvailableProjectsNotifier {
     // Create 3 initial projects
     final experienceLevel = ref.read(experienceProvider).level;
     final initialProjects = List.generate(3, (index) {
-      final projectType = ProjectType.values[Random().nextInt(ProjectType.values.length)];
-      return Project(
-        id: const Uuid().v4(),
-        name: 'Project ${index + 1}',
-        description: 'Project ${index + 1} Description',
-        reward: ProjectReward.fromGameState(
-          type: projectType,
-          level: experienceLevel,
-          failRate: Random().nextDouble(),
-          isCombined: Random().nextBool(),
-        ),
-        type: projectType,
-        requiredfocusPoints: 1,
-      );
+      return Project.random(level: experienceLevel);
     });
 
     return AvailableProjectsState(
@@ -133,19 +120,8 @@ class AvailableProjectsNotifier extends _$AvailableProjectsNotifier {
   Future<Project> _fetchNewProject() async {
     await Future.delayed(const Duration(seconds: 1));
     // TODO: Replace with actual API call
-    var id = Random().nextInt(100000).toString();
-    return Project(
-      id: const Uuid().v4(),
-      name: 'Project $id',
-      description: 'Project $id Description',
-      reward: ProjectReward.fromGameState(
-        type: ProjectType.values[Random().nextInt(ProjectType.values.length)],
-        level: ref.read(experienceProvider).level,
-        failRate: Random().nextDouble(),
-        isCombined: Random().nextBool(),
-      ),
-      requiredfocusPoints: Random().nextInt(3) + 1,
-      type: ProjectType.values[Random().nextInt(ProjectType.values.length)],
+    return Project.random(
+      level: ref.read(experienceProvider).level,
     );
   }
 
