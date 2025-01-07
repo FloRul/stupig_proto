@@ -1,12 +1,12 @@
 ﻿import 'dart:math';
 
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:stupig_proto/systems/game_event.dart';
 import 'package:stupig_proto/systems/global_ticker.dart/global_ticker.dart';
 import 'package:stupig_proto/systems/event_bus.dart';
 import 'package:stupig_proto/systems/primary_resources/notifiers.dart';
 import 'package:stupig_proto/systems/projects/models.dart';
 import 'package:stupig_proto/systems/projects/project_state.dart';
-import 'package:uuid/uuid.dart';
 
 part 'available_project_notifier.g.dart';
 
@@ -22,8 +22,12 @@ class AvailableProjectsNotifier extends _$AvailableProjectsNotifier {
       (previous, next) {
         next.whenData(
           (event) => event.maybeMap(
-            projectStarted: (pStarted) => _handleStartProject(pStarted.project),
-            // purchase: (e) => e.type == PurchaseType.focusPoints ? _addNewSlot() : null,
+            projectStarted: (e) => _handleStartProject(e.project),
+            purchase: (e) async {
+              if (e.type == PurchaseType.focusPoints) {
+                await _addNewSlot();
+              }
+            },
             orElse: () {},
           ),
         );
@@ -112,7 +116,6 @@ class AvailableProjectsNotifier extends _$AvailableProjectsNotifier {
       }
     } catch (e) {
       print('Error adding completed project: $e');
-      // Clean up pending project if there was an error
       _pendingProjects.remove(projectId);
     }
   }
@@ -139,15 +142,29 @@ class AvailableProjectsNotifier extends _$AvailableProjectsNotifier {
     );
   }
 
-  // Future<void> _addNewSlot() async {
-  //   try {
-  //     final newProject = await _fetchNewProject();
-  //     state = state.copyWith(
-  //       projects: [...state.projects, newProject],
-  //     );
-  //   } catch (e) {
-  //     print('Error adding new project slot: $e');
-  //     // Optionally show an error message to the user
-  //   }
-  // }
+  Future<void> _addNewSlot() async {
+    try {
+      final newProject = await _fetchNewProject();
+      state = state.copyWith(
+        projects: [...state.projects, newProject],
+      );
+    } catch (e) {
+      print('Error adding new project slot: $e');
+      // Optionally show an error message to the user
+    }
+  }
+
+  /// Declines a project and replaces it with a new one
+  Future<void> declineProject(Project project) async {
+    state = state.copyWith(
+      projects: [
+        for (var p in state.projects)
+          if (p.id != project.id) p,
+      ],
+      cooldowns: {
+        ...state.cooldowns,
+        project.id: Completion.initial(1),
+      },
+    );
+  }
 }

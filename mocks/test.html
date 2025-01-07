@@ -1,96 +1,125 @@
 ﻿<!DOCTYPE html>
 <html>
+
 <head>
-  <title>Project Combination Game</title>
+  <style>
+    body {
+      background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: 'Arial', sans-serif;
+    }
+
+    .card {
+      width: 280px;
+      /* 70% of height (400px) */
+      height: 400px;
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border-radius: 20px;
+      padding: 20px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .title {
+      font-size: 1.5em;
+      color: white;
+      font-weight: bold;
+    }
+
+    .type-icon {
+      width: 30px;
+      height: 30px;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .rewards {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 10px;
+      padding: 15px;
+      margin: 10px 0;
+    }
+
+    .reward-item {
+      color: white;
+      margin: 5px 0;
+    }
+
+    .stats {
+      margin-top: auto;
+    }
+
+    .stat {
+      display: flex;
+      justify-content: space-between;
+      color: white;
+      margin: 5px 0;
+      padding: 8px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 8px;
+    }
+
+    .delete-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: rgba(255, 0, 0, 0.2);
+      border: none;
+      color: white;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .delete-btn:hover {
+      background: rgba(255, 0, 0, 0.4);
+    }
+  </style>
 </head>
+
 <body>
-  <h1>Projects</h1>
-  <div id="projects"></div>
-  <h2>Combine Projects</h2>
-  <select id="project1"></select>
-  <select id="project2"></select>
-  <button onclick="combineSelectedProjects()">Combine Projects</button>
-
-  <script>
-    let projects = [
-      { id: 1, name: "Project 1", status: "available", completionTime: 2 },
-      { id: 2, name: "Project 2", status: "available", completionTime: 12 },
-      { id: 72715, name: "Project 72715", status: "available", completionTime: 5 },
-    ];
-
-    function completeProject(projectId) {
-      const project = projects.find(p => p.id === projectId);
-      if (project && project.status === "available") {
-        project.status = "in progress";
-        setTimeout(() => {
-          project.status = "completed";
-          updateUI();
-          updateProjectSelects();
-        }, project.completionTime * 1000);
-      }
-    }
-
-    function canCombine(project1, project2) {
-      return project1.status === "completed" && project2.status === "completed";
-    }
-
-    function combineProjects(project1, project2) {
-      if (canCombine(project1, project2)) {
-        const newProject = {
-          id: Date.now(),
-          name: `${project1.name} + ${project2.name}`,
-          status: "available",
-          completionTime: project1.completionTime + project2.completionTime,
-        };
-        projects.push(newProject);
-        project1.status = "combined";
-        project2.status = "combined";
-        updateUI();
-        updateProjectSelects();
-      } else {
-        alert("Projects cannot be combined.");
-      }
-    }
-
-    function combineSelectedProjects() {
-      const project1Id = parseInt(document.getElementById('project1').value);
-      const project2Id = parseInt(document.getElementById('project2').value);
-      const project1 = projects.find(p => p.id === project1Id);
-      const project2 = projects.find(p => p.id === project2Id);
-      combineProjects(project1, project2);
-    }
-
-    function updateUI() {
-      const projectsContainer = document.getElementById('projects');
-      projectsContainer.innerHTML = '';
-
-      projects.forEach(project => {
-        const div = document.createElement('div');
-        div.className = 'project';
-        div.innerHTML = `
-          <h3>${project.name}</h3>
-          <p>Status: ${project.status}</p>
-          <button onclick="completeProject(${project.id})">Complete</button>
-        `;
-        projectsContainer.appendChild(div);
-      });
-    }
-
-    function updateProjectSelects() {
-      const project1Select = document.getElementById('project1');
-      const project2Select = document.getElementById('project2');
-      project1Select.innerHTML = '';
-      project2Select.innerHTML = '';
-      projects.forEach(project => {
-        if (project.status === "completed") {
-          project1Select.innerHTML += `<option value="${project.id}">${project.name}</option>`;
-          project2Select.innerHTML += `<option value="${project.id}">${project.name}</option>`;
-        }
-      });
-    }
-
-    updateUI();
-    updateProjectSelects();
-  </script>
+  <div class="card">
+    <button class="delete-btn">×</button>
+    <div class="header">
+      <div class="title">Quest Name</div>
+      <div class="type-icon">⚔️</div>
+    </div>
+    <div class="rewards">
+      <div class="reward-item">💰 100-200 gold</div>
+      <div class="reward-item">✨ 50-75 XP</div>
+    </div>
+    <div class="stats">
+      <div class="stat">
+        <span>Failure Rate</span>
+        <span>25%</span>
+      </div>
+      <div class="stat">
+        <span>Mana Required</span>
+        <span>50</span>
+      </div>
+    </div>
+  </div>
 </body>
+
 </html>
