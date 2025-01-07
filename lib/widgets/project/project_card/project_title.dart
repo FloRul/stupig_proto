@@ -19,6 +19,7 @@ class ProjectCardTitle extends StatelessWidget {
         Expanded(
           child: Text(
             title,
+            maxLines: 3,
             style: const TextStyle(
               fontSize: 16,
               fontWeight: FontWeight.bold,
