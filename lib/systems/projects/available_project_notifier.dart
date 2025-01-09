@@ -9,6 +9,8 @@ import 'package:stupig_proto/systems/event_bus.dart';
 import 'package:stupig_proto/systems/primary_resources/notifiers.dart';
 import 'package:stupig_proto/systems/projects/models.dart';
 import 'package:stupig_proto/systems/projects/project_state.dart';
+import 'package:stupig_proto/systems/secondary_resources/models.dart';
+import 'package:stupig_proto/systems/secondary_resources/notifiers.dart';
 
 part 'available_project_notifier.g.dart';
 
@@ -25,9 +27,9 @@ class AvailableProjectsNotifier extends _$AvailableProjectsNotifier {
         next.whenData(
           (event) => event.maybeMap(
             projectStarted: (e) => _handleStartProject(e.project),
-            purchase: (e) async {
-              if (e.type == PurchaseType.focusPoints) {
-                await _addNewSlot();
+            purchase: (e) {
+              if (e is ResourceUpgrade) {
+                if (e.type.type == ResourceType.focusPoints) _addNewSlot();
               }
             },
             orElse: () {},
@@ -50,6 +52,7 @@ class AvailableProjectsNotifier extends _$AvailableProjectsNotifier {
     return AvailableProjectsState(
       projects: initialProjects,
       cooldowns: {},
+      availableDecline: 3,
     );
   }
 
@@ -123,8 +126,6 @@ class AvailableProjectsNotifier extends _$AvailableProjectsNotifier {
   }
 
   Future<Project> _fetchNewProject() async {
-    await Future.delayed(const Duration(seconds: 1));
-
     final jsonString = await rootBundle.loadString('data/projects.json');
     final projectType = ProjectType.values[Random().nextInt(ProjectType.values.length)];
     final Map<String, dynamic> jsonData = json.decode(jsonString);
@@ -132,12 +133,11 @@ class AvailableProjectsNotifier extends _$AvailableProjectsNotifier {
 
     final randomIndex = Random().nextInt(projectData.length);
 
-    // TODO: Replace with actual API call
     return Project.fromNameDescType(
       name: projectData[randomIndex]['name'],
       description: projectData[randomIndex]['description'],
       type: projectType,
-      level: ref.read(experienceProvider).level,
+      techSkillslevelL: ref.read(secResourcesProvider)[ResourceType.techSkills]!.value.toInt(),
     );
   }
 
@@ -178,6 +178,8 @@ class AvailableProjectsNotifier extends _$AvailableProjectsNotifier {
         ...state.cooldowns,
         project.id: Completion.initial(1),
       },
+      // TODO: implement the decline management mechanic
+      availableDecline: state.availableDecline - 1,
     );
   }
 }

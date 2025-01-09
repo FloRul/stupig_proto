@@ -6,22 +6,20 @@ part of 'notifiers.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$secondaryResourcesHash() =>
-    r'712336e2defcfbbf484db86c8c177766465fb30a';
+String _$secResourcesHash() => r'549f31810fe94ee3efe2af92e6a1b665342b0275';
 
-/// See also [SecondaryResources].
-@ProviderFor(SecondaryResources)
-final secondaryResourcesProvider =
-    NotifierProvider<SecondaryResources, SecondaryResourceState>.internal(
-  SecondaryResources.new,
-  name: r'secondaryResourcesProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$secondaryResourcesHash,
+/// See also [SecResources].
+@ProviderFor(SecResources)
+final secResourcesProvider =
+    NotifierProvider<SecResources, Map<ResourceType, Resource>>.internal(
+  SecResources.new,
+  name: r'secResourcesProvider',
+  debugGetCreateSourceHash:
+      const bool.fromEnvironment('dart.vm.product') ? null : _$secResourcesHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-typedef _$SecondaryResources = Notifier<SecondaryResourceState>;
+typedef _$SecResources = Notifier<Map<ResourceType, Resource>>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

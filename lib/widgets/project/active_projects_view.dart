@@ -4,6 +4,7 @@ import 'package:stupig_proto/systems/event_bus.dart';
 import 'package:stupig_proto/systems/game_event.dart';
 import 'package:stupig_proto/systems/projects/active_project_notifier.dart';
 import 'package:stupig_proto/systems/projects/models.dart';
+import 'package:stupig_proto/systems/secondary_resources/models.dart';
 import 'package:stupig_proto/systems/secondary_resources/notifiers.dart';
 import 'package:stupig_proto/utils/constants.dart';
 import 'package:stupig_proto/widgets/debug/group_area.dart';
@@ -20,7 +21,7 @@ class _ActiveProjectsState extends ConsumerState<ActiveProjects> {
   @override
   Widget build(BuildContext context) {
     var state = ref.watch(activeProjectsNotifierProvider);
-    var focusPoints = ref.read(secondaryResourcesProvider).focusPoints;
+    var focusPoints = ref.read(secResourcesProvider)[ResourceType.focusPoints]!.value.toInt();
     return Column(
       children: [
         Expanded(

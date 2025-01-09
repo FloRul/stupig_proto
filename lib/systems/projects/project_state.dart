@@ -36,14 +36,17 @@ class ProjectReward with _$ProjectReward {
         failRate: 0,
       );
 
-  factory ProjectReward.fromGameState({
+  factory ProjectReward.fromSeeds({
     required ProjectType type,
-    required int level,
+    required int techSkillsLevel,
     required double failRate,
+    required int requiredFocusPoints,
     required bool isCombined,
   }) {
-    var minLvlSeed = (2 + pow(kGlobalSeed, level / 17) * level / 17).toDouble();
-    var maxLvlSeed = (5 + pow(kGlobalSeed, level / 15) * level / 10).toDouble();
+    var minLvlSeed =
+        (2 + pow(kGlobalSeed, techSkillsLevel / 17) * techSkillsLevel / 17 + requiredFocusPoints).toDouble();
+    var maxLvlSeed =
+        (5 + pow(kGlobalSeed, techSkillsLevel / 15) * techSkillsLevel / 10 + requiredFocusPoints).toDouble();
     return switch (type) {
       ProjectType.learning => ProjectReward(
           minXpAmount: (minLvlSeed * 1.5).toInt(),

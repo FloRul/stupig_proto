@@ -50,28 +50,32 @@ everytime a project is started or declined the next one has a cooldown before be
  
  - focus point -> each project takes a specific amount of focus point during completion, more focus point = more project that can be completed at the same time. Could add a quality multiplier to project rewards when you have excess focus
 
-
-feature/levels unlock
-1. save/load game
-2. 
-3.
-4.
-5.
-6.
-7.
-8.
-9.
-10.
-11.
-12.
-13.
-14.
-15.
-16.
-17.
-18.
-19.
-20.
+generate 10  task names and humorous description (ex: todo app, calculator app, pipeline debug etc...) in the computer science/development domain that relates to the corresponding project type, the 4 project types are : learning, optimization, design and implementation, answer in json inthe following structure : 
+{
+  "learning":[
+    {
+      "name":"project name 1",
+      "description":"project description 1"
+    },
+    {
+      "name":"project name 2",
+      "description":"project description 2"
+    },
+    ...
+  ],
+  "optimization":[
+    {
+      "name":"project name 1",
+      "description":"project description 1"
+    },
+    {
+      "name":"project name 2",
+      "description":"project description 2"
+    },
+    ...
+  ],
+  ...
+}
 ```mermaid
 graph LR
   Projects -->|rewards| Experience

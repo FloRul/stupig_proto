@@ -14,11 +14,78 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
+Resource _$ResourceFromJson(Map<String, dynamic> json) {
+  switch (json['runtimeType']) {
+    case 'multiplied':
+      return Multiplied.fromJson(json);
+    case 'incremented':
+      return Incremented.fromJson(json);
+
+    default:
+      throw CheckedFromJsonException(json, 'runtimeType', 'Resource',
+          'Invalid union type "${json['runtimeType']}"!');
+  }
+}
+
 /// @nodoc
 mixin _$Resource {
-  String get key => throw _privateConstructorUsedError;
-  String get name => throw _privateConstructorUsedError;
-  double get value => throw _privateConstructorUsedError;
+  num get baseValue => throw _privateConstructorUsedError;
+  int get baseCost => throw _privateConstructorUsedError;
+  double get costMultiplier => throw _privateConstructorUsedError;
+  int get level => throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(double baseValue, int baseCost,
+            double valueMultiplier, double costMultiplier, int level)
+        multiplied,
+    required TResult Function(int baseValue, int baseCost,
+            int valueIncrementStep, double costMultiplier, int level)
+        incremented,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(double baseValue, int baseCost, double valueMultiplier,
+            double costMultiplier, int level)?
+        multiplied,
+    TResult? Function(int baseValue, int baseCost, int valueIncrementStep,
+            double costMultiplier, int level)?
+        incremented,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(double baseValue, int baseCost, double valueMultiplier,
+            double costMultiplier, int level)?
+        multiplied,
+    TResult Function(int baseValue, int baseCost, int valueIncrementStep,
+            double costMultiplier, int level)?
+        incremented,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(Multiplied value) multiplied,
+    required TResult Function(Incremented value) incremented,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(Multiplied value)? multiplied,
+    TResult? Function(Incremented value)? incremented,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(Multiplied value)? multiplied,
+    TResult Function(Incremented value)? incremented,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+
+  /// Serializes this Resource to a JSON map.
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 
   /// Create a copy of Resource
   /// with the given fields replaced by the non-null parameter values.
@@ -32,7 +99,7 @@ abstract class $ResourceCopyWith<$Res> {
   factory $ResourceCopyWith(Resource value, $Res Function(Resource) then) =
       _$ResourceCopyWithImpl<$Res, Resource>;
   @useResult
-  $Res call({String key, String name, double value});
+  $Res call({int baseCost, double costMultiplier, int level});
 }
 
 /// @nodoc
@@ -50,44 +117,49 @@ class _$ResourceCopyWithImpl<$Res, $Val extends Resource>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? key = null,
-    Object? name = null,
-    Object? value = null,
+    Object? baseCost = null,
+    Object? costMultiplier = null,
+    Object? level = null,
   }) {
     return _then(_value.copyWith(
-      key: null == key
-          ? _value.key
-          : key // ignore: cast_nullable_to_non_nullable
-              as String,
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String,
-      value: null == value
-          ? _value.value
-          : value // ignore: cast_nullable_to_non_nullable
+      baseCost: null == baseCost
+          ? _value.baseCost
+          : baseCost // ignore: cast_nullable_to_non_nullable
+              as int,
+      costMultiplier: null == costMultiplier
+          ? _value.costMultiplier
+          : costMultiplier // ignore: cast_nullable_to_non_nullable
               as double,
+      level: null == level
+          ? _value.level
+          : level // ignore: cast_nullable_to_non_nullable
+              as int,
     ) as $Val);
   }
 }
 
 /// @nodoc
-abstract class _$$ResourceImplCopyWith<$Res>
+abstract class _$$MultipliedImplCopyWith<$Res>
     implements $ResourceCopyWith<$Res> {
-  factory _$$ResourceImplCopyWith(
-          _$ResourceImpl value, $Res Function(_$ResourceImpl) then) =
-      __$$ResourceImplCopyWithImpl<$Res>;
+  factory _$$MultipliedImplCopyWith(
+          _$MultipliedImpl value, $Res Function(_$MultipliedImpl) then) =
+      __$$MultipliedImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String key, String name, double value});
+  $Res call(
+      {double baseValue,
+      int baseCost,
+      double valueMultiplier,
+      double costMultiplier,
+      int level});
 }
 
 /// @nodoc
-class __$$ResourceImplCopyWithImpl<$Res>
-    extends _$ResourceCopyWithImpl<$Res, _$ResourceImpl>
-    implements _$$ResourceImplCopyWith<$Res> {
-  __$$ResourceImplCopyWithImpl(
-      _$ResourceImpl _value, $Res Function(_$ResourceImpl) _then)
+class __$$MultipliedImplCopyWithImpl<$Res>
+    extends _$ResourceCopyWithImpl<$Res, _$MultipliedImpl>
+    implements _$$MultipliedImplCopyWith<$Res> {
+  __$$MultipliedImplCopyWithImpl(
+      _$MultipliedImpl _value, $Res Function(_$MultipliedImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of Resource
@@ -95,149 +167,24 @@ class __$$ResourceImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? key = null,
-    Object? name = null,
-    Object? value = null,
-  }) {
-    return _then(_$ResourceImpl(
-      key: null == key
-          ? _value.key
-          : key // ignore: cast_nullable_to_non_nullable
-              as String,
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String,
-      value: null == value
-          ? _value.value
-          : value // ignore: cast_nullable_to_non_nullable
-              as double,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$ResourceImpl implements _Resource {
-  const _$ResourceImpl(
-      {required this.key, required this.name, this.value = 0.0});
-
-  @override
-  final String key;
-  @override
-  final String name;
-  @override
-  @JsonKey()
-  final double value;
-
-  @override
-  String toString() {
-    return 'Resource(key: $key, name: $name, value: $value)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$ResourceImpl &&
-            (identical(other.key, key) || other.key == key) &&
-            (identical(other.name, name) || other.name == name) &&
-            (identical(other.value, value) || other.value == value));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, key, name, value);
-
-  /// Create a copy of Resource
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$ResourceImplCopyWith<_$ResourceImpl> get copyWith =>
-      __$$ResourceImplCopyWithImpl<_$ResourceImpl>(this, _$identity);
-}
-
-abstract class _Resource implements Resource {
-  const factory _Resource(
-      {required final String key,
-      required final String name,
-      final double value}) = _$ResourceImpl;
-
-  @override
-  String get key;
-  @override
-  String get name;
-  @override
-  double get value;
-
-  /// Create a copy of Resource
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$ResourceImplCopyWith<_$ResourceImpl> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-mixin _$Upgrade {
-  String get id => throw _privateConstructorUsedError;
-  String get targetResourceId => throw _privateConstructorUsedError;
-  double get baseCost => throw _privateConstructorUsedError;
-  double get costMultiplier => throw _privateConstructorUsedError;
-  int get level => throw _privateConstructorUsedError;
-
-  /// Create a copy of Upgrade
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $UpgradeCopyWith<Upgrade> get copyWith => throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $UpgradeCopyWith<$Res> {
-  factory $UpgradeCopyWith(Upgrade value, $Res Function(Upgrade) then) =
-      _$UpgradeCopyWithImpl<$Res, Upgrade>;
-  @useResult
-  $Res call(
-      {String id,
-      String targetResourceId,
-      double baseCost,
-      double costMultiplier,
-      int level});
-}
-
-/// @nodoc
-class _$UpgradeCopyWithImpl<$Res, $Val extends Upgrade>
-    implements $UpgradeCopyWith<$Res> {
-  _$UpgradeCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  /// Create a copy of Upgrade
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? id = null,
-    Object? targetResourceId = null,
+    Object? baseValue = null,
     Object? baseCost = null,
+    Object? valueMultiplier = null,
     Object? costMultiplier = null,
     Object? level = null,
   }) {
-    return _then(_value.copyWith(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      targetResourceId: null == targetResourceId
-          ? _value.targetResourceId
-          : targetResourceId // ignore: cast_nullable_to_non_nullable
-              as String,
+    return _then(_$MultipliedImpl(
+      baseValue: null == baseValue
+          ? _value.baseValue
+          : baseValue // ignore: cast_nullable_to_non_nullable
+              as double,
       baseCost: null == baseCost
           ? _value.baseCost
           : baseCost // ignore: cast_nullable_to_non_nullable
+              as int,
+      valueMultiplier: null == valueMultiplier
+          ? _value.valueMultiplier
+          : valueMultiplier // ignore: cast_nullable_to_non_nullable
               as double,
       costMultiplier: null == costMultiplier
           ? _value.costMultiplier
@@ -246,276 +193,6 @@ class _$UpgradeCopyWithImpl<$Res, $Val extends Upgrade>
       level: null == level
           ? _value.level
           : level // ignore: cast_nullable_to_non_nullable
-              as int,
-    ) as $Val);
-  }
-}
-
-/// @nodoc
-abstract class _$$UpgradeImplCopyWith<$Res> implements $UpgradeCopyWith<$Res> {
-  factory _$$UpgradeImplCopyWith(
-          _$UpgradeImpl value, $Res Function(_$UpgradeImpl) then) =
-      __$$UpgradeImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call(
-      {String id,
-      String targetResourceId,
-      double baseCost,
-      double costMultiplier,
-      int level});
-}
-
-/// @nodoc
-class __$$UpgradeImplCopyWithImpl<$Res>
-    extends _$UpgradeCopyWithImpl<$Res, _$UpgradeImpl>
-    implements _$$UpgradeImplCopyWith<$Res> {
-  __$$UpgradeImplCopyWithImpl(
-      _$UpgradeImpl _value, $Res Function(_$UpgradeImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of Upgrade
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? id = null,
-    Object? targetResourceId = null,
-    Object? baseCost = null,
-    Object? costMultiplier = null,
-    Object? level = null,
-  }) {
-    return _then(_$UpgradeImpl(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      targetResourceId: null == targetResourceId
-          ? _value.targetResourceId
-          : targetResourceId // ignore: cast_nullable_to_non_nullable
-              as String,
-      baseCost: null == baseCost
-          ? _value.baseCost
-          : baseCost // ignore: cast_nullable_to_non_nullable
-              as double,
-      costMultiplier: null == costMultiplier
-          ? _value.costMultiplier
-          : costMultiplier // ignore: cast_nullable_to_non_nullable
-              as double,
-      level: null == level
-          ? _value.level
-          : level // ignore: cast_nullable_to_non_nullable
-              as int,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$UpgradeImpl implements _Upgrade {
-  const _$UpgradeImpl(
-      {required this.id,
-      required this.targetResourceId,
-      required this.baseCost,
-      this.costMultiplier = 1.0,
-      this.level = 0});
-
-  @override
-  final String id;
-  @override
-  final String targetResourceId;
-  @override
-  final double baseCost;
-  @override
-  @JsonKey()
-  final double costMultiplier;
-  @override
-  @JsonKey()
-  final int level;
-
-  @override
-  String toString() {
-    return 'Upgrade(id: $id, targetResourceId: $targetResourceId, baseCost: $baseCost, costMultiplier: $costMultiplier, level: $level)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$UpgradeImpl &&
-            (identical(other.id, id) || other.id == id) &&
-            (identical(other.targetResourceId, targetResourceId) ||
-                other.targetResourceId == targetResourceId) &&
-            (identical(other.baseCost, baseCost) ||
-                other.baseCost == baseCost) &&
-            (identical(other.costMultiplier, costMultiplier) ||
-                other.costMultiplier == costMultiplier) &&
-            (identical(other.level, level) || other.level == level));
-  }
-
-  @override
-  int get hashCode => Object.hash(
-      runtimeType, id, targetResourceId, baseCost, costMultiplier, level);
-
-  /// Create a copy of Upgrade
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$UpgradeImplCopyWith<_$UpgradeImpl> get copyWith =>
-      __$$UpgradeImplCopyWithImpl<_$UpgradeImpl>(this, _$identity);
-}
-
-abstract class _Upgrade implements Upgrade {
-  const factory _Upgrade(
-      {required final String id,
-      required final String targetResourceId,
-      required final double baseCost,
-      final double costMultiplier,
-      final int level}) = _$UpgradeImpl;
-
-  @override
-  String get id;
-  @override
-  String get targetResourceId;
-  @override
-  double get baseCost;
-  @override
-  double get costMultiplier;
-  @override
-  int get level;
-
-  /// Create a copy of Upgrade
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$UpgradeImplCopyWith<_$UpgradeImpl> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-SecondaryResourceState _$SecondaryResourceStateFromJson(
-    Map<String, dynamic> json) {
-  return _SecondaryResourceState.fromJson(json);
-}
-
-/// @nodoc
-mixin _$SecondaryResourceState {
-  double get techSkills => throw _privateConstructorUsedError;
-  double get devTools => throw _privateConstructorUsedError;
-  double get hardware => throw _privateConstructorUsedError;
-  int get focusPoints => throw _privateConstructorUsedError;
-
-  /// Serializes this SecondaryResourceState to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of SecondaryResourceState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $SecondaryResourceStateCopyWith<SecondaryResourceState> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $SecondaryResourceStateCopyWith<$Res> {
-  factory $SecondaryResourceStateCopyWith(SecondaryResourceState value,
-          $Res Function(SecondaryResourceState) then) =
-      _$SecondaryResourceStateCopyWithImpl<$Res, SecondaryResourceState>;
-  @useResult
-  $Res call(
-      {double techSkills, double devTools, double hardware, int focusPoints});
-}
-
-/// @nodoc
-class _$SecondaryResourceStateCopyWithImpl<$Res,
-        $Val extends SecondaryResourceState>
-    implements $SecondaryResourceStateCopyWith<$Res> {
-  _$SecondaryResourceStateCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  /// Create a copy of SecondaryResourceState
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? techSkills = null,
-    Object? devTools = null,
-    Object? hardware = null,
-    Object? focusPoints = null,
-  }) {
-    return _then(_value.copyWith(
-      techSkills: null == techSkills
-          ? _value.techSkills
-          : techSkills // ignore: cast_nullable_to_non_nullable
-              as double,
-      devTools: null == devTools
-          ? _value.devTools
-          : devTools // ignore: cast_nullable_to_non_nullable
-              as double,
-      hardware: null == hardware
-          ? _value.hardware
-          : hardware // ignore: cast_nullable_to_non_nullable
-              as double,
-      focusPoints: null == focusPoints
-          ? _value.focusPoints
-          : focusPoints // ignore: cast_nullable_to_non_nullable
-              as int,
-    ) as $Val);
-  }
-}
-
-/// @nodoc
-abstract class _$$SecondaryResourceStateImplCopyWith<$Res>
-    implements $SecondaryResourceStateCopyWith<$Res> {
-  factory _$$SecondaryResourceStateImplCopyWith(
-          _$SecondaryResourceStateImpl value,
-          $Res Function(_$SecondaryResourceStateImpl) then) =
-      __$$SecondaryResourceStateImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call(
-      {double techSkills, double devTools, double hardware, int focusPoints});
-}
-
-/// @nodoc
-class __$$SecondaryResourceStateImplCopyWithImpl<$Res>
-    extends _$SecondaryResourceStateCopyWithImpl<$Res,
-        _$SecondaryResourceStateImpl>
-    implements _$$SecondaryResourceStateImplCopyWith<$Res> {
-  __$$SecondaryResourceStateImplCopyWithImpl(
-      _$SecondaryResourceStateImpl _value,
-      $Res Function(_$SecondaryResourceStateImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of SecondaryResourceState
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? techSkills = null,
-    Object? devTools = null,
-    Object? hardware = null,
-    Object? focusPoints = null,
-  }) {
-    return _then(_$SecondaryResourceStateImpl(
-      techSkills: null == techSkills
-          ? _value.techSkills
-          : techSkills // ignore: cast_nullable_to_non_nullable
-              as double,
-      devTools: null == devTools
-          ? _value.devTools
-          : devTools // ignore: cast_nullable_to_non_nullable
-              as double,
-      hardware: null == hardware
-          ? _value.hardware
-          : hardware // ignore: cast_nullable_to_non_nullable
-              as double,
-      focusPoints: null == focusPoints
-          ? _value.focusPoints
-          : focusPoints // ignore: cast_nullable_to_non_nullable
               as int,
     ));
   }
@@ -523,90 +200,411 @@ class __$$SecondaryResourceStateImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$SecondaryResourceStateImpl implements _SecondaryResourceState {
-  const _$SecondaryResourceStateImpl(
-      {required this.techSkills,
-      required this.devTools,
-      required this.hardware,
-      required this.focusPoints});
+class _$MultipliedImpl extends Multiplied {
+  const _$MultipliedImpl(
+      {required this.baseValue,
+      required this.baseCost,
+      required this.valueMultiplier,
+      required this.costMultiplier,
+      this.level = 0,
+      final String? $type})
+      : $type = $type ?? 'multiplied',
+        super._();
 
-  factory _$SecondaryResourceStateImpl.fromJson(Map<String, dynamic> json) =>
-      _$$SecondaryResourceStateImplFromJson(json);
-
-  @override
-  final double techSkills;
-  @override
-  final double devTools;
-  @override
-  final double hardware;
-  @override
-  final int focusPoints;
+  factory _$MultipliedImpl.fromJson(Map<String, dynamic> json) =>
+      _$$MultipliedImplFromJson(json);
 
   @override
-  String toString() {
-    return 'SecondaryResourceState(techSkills: $techSkills, devTools: $devTools, hardware: $hardware, focusPoints: $focusPoints)';
-  }
+  final double baseValue;
+  @override
+  final int baseCost;
+  @override
+  final double valueMultiplier;
+  @override
+  final double costMultiplier;
+  @override
+  @JsonKey()
+  final int level;
+
+  @JsonKey(name: 'runtimeType')
+  final String $type;
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$SecondaryResourceStateImpl &&
-            (identical(other.techSkills, techSkills) ||
-                other.techSkills == techSkills) &&
-            (identical(other.devTools, devTools) ||
-                other.devTools == devTools) &&
-            (identical(other.hardware, hardware) ||
-                other.hardware == hardware) &&
-            (identical(other.focusPoints, focusPoints) ||
-                other.focusPoints == focusPoints));
+            other is _$MultipliedImpl &&
+            (identical(other.baseValue, baseValue) ||
+                other.baseValue == baseValue) &&
+            (identical(other.baseCost, baseCost) ||
+                other.baseCost == baseCost) &&
+            (identical(other.valueMultiplier, valueMultiplier) ||
+                other.valueMultiplier == valueMultiplier) &&
+            (identical(other.costMultiplier, costMultiplier) ||
+                other.costMultiplier == costMultiplier) &&
+            (identical(other.level, level) || other.level == level));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, techSkills, devTools, hardware, focusPoints);
+  int get hashCode => Object.hash(
+      runtimeType, baseValue, baseCost, valueMultiplier, costMultiplier, level);
 
-  /// Create a copy of SecondaryResourceState
+  /// Create a copy of Resource
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$SecondaryResourceStateImplCopyWith<_$SecondaryResourceStateImpl>
-      get copyWith => __$$SecondaryResourceStateImplCopyWithImpl<
-          _$SecondaryResourceStateImpl>(this, _$identity);
+  _$$MultipliedImplCopyWith<_$MultipliedImpl> get copyWith =>
+      __$$MultipliedImplCopyWithImpl<_$MultipliedImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(double baseValue, int baseCost,
+            double valueMultiplier, double costMultiplier, int level)
+        multiplied,
+    required TResult Function(int baseValue, int baseCost,
+            int valueIncrementStep, double costMultiplier, int level)
+        incremented,
+  }) {
+    return multiplied(
+        baseValue, baseCost, valueMultiplier, costMultiplier, level);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(double baseValue, int baseCost, double valueMultiplier,
+            double costMultiplier, int level)?
+        multiplied,
+    TResult? Function(int baseValue, int baseCost, int valueIncrementStep,
+            double costMultiplier, int level)?
+        incremented,
+  }) {
+    return multiplied?.call(
+        baseValue, baseCost, valueMultiplier, costMultiplier, level);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(double baseValue, int baseCost, double valueMultiplier,
+            double costMultiplier, int level)?
+        multiplied,
+    TResult Function(int baseValue, int baseCost, int valueIncrementStep,
+            double costMultiplier, int level)?
+        incremented,
+    required TResult orElse(),
+  }) {
+    if (multiplied != null) {
+      return multiplied(
+          baseValue, baseCost, valueMultiplier, costMultiplier, level);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(Multiplied value) multiplied,
+    required TResult Function(Incremented value) incremented,
+  }) {
+    return multiplied(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(Multiplied value)? multiplied,
+    TResult? Function(Incremented value)? incremented,
+  }) {
+    return multiplied?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(Multiplied value)? multiplied,
+    TResult Function(Incremented value)? incremented,
+    required TResult orElse(),
+  }) {
+    if (multiplied != null) {
+      return multiplied(this);
+    }
+    return orElse();
+  }
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$SecondaryResourceStateImplToJson(
+    return _$$MultipliedImplToJson(
       this,
     );
   }
 }
 
-abstract class _SecondaryResourceState implements SecondaryResourceState {
-  const factory _SecondaryResourceState(
-      {required final double techSkills,
-      required final double devTools,
-      required final double hardware,
-      required final int focusPoints}) = _$SecondaryResourceStateImpl;
+abstract class Multiplied extends Resource {
+  const factory Multiplied(
+      {required final double baseValue,
+      required final int baseCost,
+      required final double valueMultiplier,
+      required final double costMultiplier,
+      final int level}) = _$MultipliedImpl;
+  const Multiplied._() : super._();
 
-  factory _SecondaryResourceState.fromJson(Map<String, dynamic> json) =
-      _$SecondaryResourceStateImpl.fromJson;
+  factory Multiplied.fromJson(Map<String, dynamic> json) =
+      _$MultipliedImpl.fromJson;
 
   @override
-  double get techSkills;
+  double get baseValue;
   @override
-  double get devTools;
+  int get baseCost;
+  double get valueMultiplier;
   @override
-  double get hardware;
+  double get costMultiplier;
   @override
-  int get focusPoints;
+  int get level;
 
-  /// Create a copy of SecondaryResourceState
+  /// Create a copy of Resource
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$SecondaryResourceStateImplCopyWith<_$SecondaryResourceStateImpl>
-      get copyWith => throw _privateConstructorUsedError;
+  _$$MultipliedImplCopyWith<_$MultipliedImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$IncrementedImplCopyWith<$Res>
+    implements $ResourceCopyWith<$Res> {
+  factory _$$IncrementedImplCopyWith(
+          _$IncrementedImpl value, $Res Function(_$IncrementedImpl) then) =
+      __$$IncrementedImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {int baseValue,
+      int baseCost,
+      int valueIncrementStep,
+      double costMultiplier,
+      int level});
+}
+
+/// @nodoc
+class __$$IncrementedImplCopyWithImpl<$Res>
+    extends _$ResourceCopyWithImpl<$Res, _$IncrementedImpl>
+    implements _$$IncrementedImplCopyWith<$Res> {
+  __$$IncrementedImplCopyWithImpl(
+      _$IncrementedImpl _value, $Res Function(_$IncrementedImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of Resource
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? baseValue = null,
+    Object? baseCost = null,
+    Object? valueIncrementStep = null,
+    Object? costMultiplier = null,
+    Object? level = null,
+  }) {
+    return _then(_$IncrementedImpl(
+      baseValue: null == baseValue
+          ? _value.baseValue
+          : baseValue // ignore: cast_nullable_to_non_nullable
+              as int,
+      baseCost: null == baseCost
+          ? _value.baseCost
+          : baseCost // ignore: cast_nullable_to_non_nullable
+              as int,
+      valueIncrementStep: null == valueIncrementStep
+          ? _value.valueIncrementStep
+          : valueIncrementStep // ignore: cast_nullable_to_non_nullable
+              as int,
+      costMultiplier: null == costMultiplier
+          ? _value.costMultiplier
+          : costMultiplier // ignore: cast_nullable_to_non_nullable
+              as double,
+      level: null == level
+          ? _value.level
+          : level // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$IncrementedImpl extends Incremented {
+  const _$IncrementedImpl(
+      {required this.baseValue,
+      required this.baseCost,
+      this.valueIncrementStep = 1,
+      required this.costMultiplier,
+      this.level = 0,
+      final String? $type})
+      : $type = $type ?? 'incremented',
+        super._();
+
+  factory _$IncrementedImpl.fromJson(Map<String, dynamic> json) =>
+      _$$IncrementedImplFromJson(json);
+
+  @override
+  final int baseValue;
+  @override
+  final int baseCost;
+  @override
+  @JsonKey()
+  final int valueIncrementStep;
+  @override
+  final double costMultiplier;
+  @override
+  @JsonKey()
+  final int level;
+
+  @JsonKey(name: 'runtimeType')
+  final String $type;
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$IncrementedImpl &&
+            (identical(other.baseValue, baseValue) ||
+                other.baseValue == baseValue) &&
+            (identical(other.baseCost, baseCost) ||
+                other.baseCost == baseCost) &&
+            (identical(other.valueIncrementStep, valueIncrementStep) ||
+                other.valueIncrementStep == valueIncrementStep) &&
+            (identical(other.costMultiplier, costMultiplier) ||
+                other.costMultiplier == costMultiplier) &&
+            (identical(other.level, level) || other.level == level));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(runtimeType, baseValue, baseCost,
+      valueIncrementStep, costMultiplier, level);
+
+  /// Create a copy of Resource
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$IncrementedImplCopyWith<_$IncrementedImpl> get copyWith =>
+      __$$IncrementedImplCopyWithImpl<_$IncrementedImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(double baseValue, int baseCost,
+            double valueMultiplier, double costMultiplier, int level)
+        multiplied,
+    required TResult Function(int baseValue, int baseCost,
+            int valueIncrementStep, double costMultiplier, int level)
+        incremented,
+  }) {
+    return incremented(
+        baseValue, baseCost, valueIncrementStep, costMultiplier, level);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(double baseValue, int baseCost, double valueMultiplier,
+            double costMultiplier, int level)?
+        multiplied,
+    TResult? Function(int baseValue, int baseCost, int valueIncrementStep,
+            double costMultiplier, int level)?
+        incremented,
+  }) {
+    return incremented?.call(
+        baseValue, baseCost, valueIncrementStep, costMultiplier, level);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(double baseValue, int baseCost, double valueMultiplier,
+            double costMultiplier, int level)?
+        multiplied,
+    TResult Function(int baseValue, int baseCost, int valueIncrementStep,
+            double costMultiplier, int level)?
+        incremented,
+    required TResult orElse(),
+  }) {
+    if (incremented != null) {
+      return incremented(
+          baseValue, baseCost, valueIncrementStep, costMultiplier, level);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(Multiplied value) multiplied,
+    required TResult Function(Incremented value) incremented,
+  }) {
+    return incremented(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(Multiplied value)? multiplied,
+    TResult? Function(Incremented value)? incremented,
+  }) {
+    return incremented?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(Multiplied value)? multiplied,
+    TResult Function(Incremented value)? incremented,
+    required TResult orElse(),
+  }) {
+    if (incremented != null) {
+      return incremented(this);
+    }
+    return orElse();
+  }
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$IncrementedImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class Incremented extends Resource {
+  const factory Incremented(
+      {required final int baseValue,
+      required final int baseCost,
+      final int valueIncrementStep,
+      required final double costMultiplier,
+      final int level}) = _$IncrementedImpl;
+  const Incremented._() : super._();
+
+  factory Incremented.fromJson(Map<String, dynamic> json) =
+      _$IncrementedImpl.fromJson;
+
+  @override
+  int get baseValue;
+  @override
+  int get baseCost;
+  int get valueIncrementStep;
+  @override
+  double get costMultiplier;
+  @override
+  int get level;
+
+  /// Create a copy of Resource
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$IncrementedImplCopyWith<_$IncrementedImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }

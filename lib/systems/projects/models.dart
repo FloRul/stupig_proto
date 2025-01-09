@@ -47,10 +47,11 @@ class Project with _$Project {
       id: id,
       name: 'Project $id',
       description: 'Project $id Description',
-      reward: ProjectReward.fromGameState(
+      reward: ProjectReward.fromSeeds(
         type: projectType,
-        level: level,
+        techSkillsLevel: level,
         failRate: constraints.baseFailRate,
+        requiredFocusPoints: constraints.requiredFocusPoints,
         isCombined: Random().nextBool(),
       ),
       requiredfocusPoints: constraints.requiredFocusPoints,
@@ -62,7 +63,7 @@ class Project with _$Project {
     required String name,
     required String description,
     required ProjectType type,
-    required int level,
+    required int techSkillslevelL,
   }) {
     var id = const Uuid().v4();
     var constraints = _getConstraints(type);
@@ -71,10 +72,11 @@ class Project with _$Project {
       id: id,
       name: name,
       description: description,
-      reward: ProjectReward.fromGameState(
+      reward: ProjectReward.fromSeeds(
         type: type,
-        level: level,
+        techSkillsLevel: techSkillslevelL,
         failRate: constraints.baseFailRate,
+        requiredFocusPoints: constraints.requiredFocusPoints,
         isCombined: Random().nextBool(),
       ),
       requiredfocusPoints: constraints.requiredFocusPoints,
@@ -90,6 +92,7 @@ class AvailableProjectsState with _$AvailableProjectsState {
   const factory AvailableProjectsState({
     required List<Project> projects,
     required Map<String, Completion> cooldowns,
+    required int availableDecline,
   }) = _AvailableProjectsState;
 }
 

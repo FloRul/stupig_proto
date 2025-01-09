@@ -1,170 +1,170 @@
 ﻿{
   "learning": [
     {
-      "name": "Neural Network for Cat Memes",
-      "description": "Teaching AI to understand why cats knocking things off tables is universally funny"
+      "name": "Hello World Marathon",
+      "description": "Print 'Hello World' in 10 different languages while questioning life choices"
     },
     {
-      "name": "Bug Prediction Algorithm",
-      "description": "Like a weather forecast, but for when your code will inevitably break"
+      "name": "Git Basics Training",
+      "description": "Learn to git gud or git rekt with version control fundamentals"
     },
     {
-      "name": "Stack Overflow Answer Analyzer",
-      "description": "Learn why 'marked as duplicate' is everyone's favorite phrase"
+      "name": "Algorithm study",
+      "description": "Attempt to understand sorting algorithms while sorting pizza toppings"
     },
     {
-      "name": "Code Review Pattern Recognition",
-      "description": "Detecting passive-aggressive comments in pull requests"
+      "name": "Docker Deep Dive",
+      "description": "Containerize everything including your coffee maker"
     },
     {
-      "name": "Documentation Reading Bot",
-      "description": "Because someone has to read the manual, might as well be a robot"
+      "name": "Python for Beginners",
+      "description": "Learn why Python has no braces and cope with the indentation crisis"
     },
     {
-      "name": "Git Blame Predictor",
-      "description": "Find out who'll be responsible for future bugs before they happen"
+      "name": "React Tutorial",
+      "description": "Experience existential crisis while managing component state"
     },
     {
-      "name": "Meeting Time Waste Calculator",
-      "description": "Quantifying how many lines of code weren't written during meetings"
+      "name": "Database Fundamentals",
+      "description": "Master SQL joins until your brain joins the party"
     },
     {
-      "name": "Coffee-to-Code Correlation Study",
-      "description": "Analyzing the relationship between caffeine intake and bug count"
+      "name": "Machine Learning 101",
+      "description": "Teach computers to think while questioning if humans can think"
     },
     {
-      "name": "Deadline Estimation AI",
-      "description": "Teaching computers to be as optimistic as project managers"
+      "name": "REST API Basics",
+      "description": "Learn to REST while never getting any actual rest"
     },
     {
-      "name": "Legacy Code Interpreter",
-      "description": "Translating ancient code comments into modern developer speak"
+      "name": "Unit Testing Workshop",
+      "description": "Write tests that test your patience more than your code"
     }
   ],
   "optimization": [
     {
-      "name": "Loop Unroller 9000",
-      "description": "Making your code faster by adding more lines - because more is better, right?"
+      "name": "Cache Optimization",
+      "description": "Make the app faster or convince users their internet is slow"
     },
     {
-      "name": "Cache Whisperer",
-      "description": "Convincing your cache to actually cache the right things for once"
+      "name": "Memory Leak Hunt",
+      "description": "Find and fix memory leaks while losing your own memory"
     },
     {
-      "name": "Memory Leak Hunter",
-      "description": "Like hunting for Easter eggs, but for forgotten pointers"
+      "name": "Database Query Tuning",
+      "description": "Transform 3-minute queries into 3-second queries through dark magic"
     },
     {
-      "name": "Quantum Bit Flipper",
-      "description": "Making your code faster by not looking at it (may or may not work)"
+      "name": "Code Refactoring",
+      "description": "Clean up spaghetti code until it becomes angel hair pasta"
     },
     {
-      "name": "Thread Untangler",
-      "description": "Like detangling headphones, but for concurrent processes"
+      "name": "Load Balancer Tweaking",
+      "description": "Balance server load like a circus performer on a unicycle"
     },
     {
-      "name": "Database Index Maximizer",
-      "description": "Because you can never have too many indices (until you can)"
+      "name": "Image Compression",
+      "description": "Make images smaller without making them look like pixel art"
     },
     {
-      "name": "Regex Simplifier",
-      "description": "Making regular expressions slightly less irregular"
+      "name": "API Response Time",
+      "description": "Speed up API calls from 'eventually' to 'right now'"
     },
     {
-      "name": "Docker Image Dieter",
-      "description": "Putting your containers on a strict byte-reduction diet"
+      "name": "Browser Caching",
+      "description": "Implement caching strategy that doesn't cache developer sanity"
     },
     {
-      "name": "API Response Trimmer",
-      "description": "Teaching JSON responses the value of minimalism"
+      "name": "Algorithm Optimization",
+      "description": "Convert O(n²) to O(n) while maintaining O(mg) coffee consumption"
     },
     {
-      "name": "Dependency Diet Master",
-      "description": "Helping your package.json lose those unnecessary dependencies"
+      "name": "Network Latency",
+      "description": "Reduce network latency or perfect the 'slow internet' excuse"
     }
   ],
   "design": [
     {
-      "name": "Pattern Pattern Generator",
-      "description": "Generates design patterns to solve problems you didn't know you had"
+      "name": "Mobile-First UI",
+      "description": "Design for phones while pretending desktop doesn't exist"
     },
     {
-      "name": "Architecture Astronaut",
-      "description": "Making simple systems complicated, one abstraction at a time"
+      "name": "Microservice Architecture",
+      "description": "Split monolith into microservices until you can't find anything"
     },
     {
-      "name": "UML Doodler Pro",
-      "description": "Turn your coffee stains into class diagrams"
+      "name": "Database Schema",
+      "description": "Design tables that won't make future you curse past you"
     },
     {
-      "name": "Microservice Multiplier",
-      "description": "Split your monolith into 1000 services because why not?"
+      "name": "API Structure",
+      "description": "Create REST endpoints that actually give developers rest"
     },
     {
-      "name": "REST vs GraphQL Referee",
-      "description": "Mediating the eternal API design debate"
+      "name": "Security Framework",
+      "description": "Design security so tight even you can't access the system"
     },
     {
-      "name": "Interface Interface",
-      "description": "An interface to help you design better interfaces"
+      "name": "CI/CD Pipeline",
+      "description": "Design deployment pipeline that doesn't deploy developers' tears"
     },
     {
-      "name": "SOLID Principle Enforcer",
-      "description": "Making your code so SOLID it's practically concrete"
+      "name": "Error Handling",
+      "description": "Create error messages that humans can actually understand"
     },
     {
-      "name": "Schema Schema Generator",
-      "description": "Generate schemas to generate your schemas"
+      "name": "Cloud Architecture",
+      "description": "Design cloud infrastructure while head stays in the clouds"
     },
     {
-      "name": "Domain Model Philosopher",
-      "description": "Contemplating the true meaning of your business logic"
+      "name": "UX Workflow",
+      "description": "Design user experience that doesn't experience user rage"
     },
     {
-      "name": "Event Storming Simulator",
-      "description": "Like brainstorming, but with more sticky notes and confusion"
+      "name": "Logging System",
+      "description": "Design logging that logs everything except what you need later"
     }
   ],
   "implementation": [
     {
-      "name": "Copy-Paste Enhancer",
-      "description": "Making Stack Overflow copies blend seamlessly into your codebase"
+      "name": "Auth System",
+      "description": "Implement authentication that authenticates everyone except the user"
     },
     {
-      "name": "TODO List Procrastinator",
-      "description": "Automatically pushing tasks to next sprint's backlog"
+      "name": "Shopping Cart",
+      "description": "Build e-commerce cart that encourages impulse buying"
     },
     {
-      "name": "Comment Composer",
-      "description": "Generating elaborate explanations for simple one-liners"
+      "name": "Chat Feature",
+      "description": "Create messaging system that delivers messages faster than thoughts"
     },
     {
-      "name": "Variable Name Generator",
-      "description": "Because 'x', 'y', and 'z' weren't confusing enough"
+      "name": "PDF Generator",
+      "description": "Generate PDFs that actually look like the HTML you designed"
     },
     {
-      "name": "Unit Test Avoider",
-      "description": "Finding creative ways to mark code as 'untestable'"
+      "name": "Email Service",
+      "description": "Implement email system that doesn't end up in spam folder"
     },
     {
-      "name": "Merge Conflict Creator",
-      "description": "Because your day wasn't interesting enough"
+      "name": "Search Function",
+      "description": "Build search that finds everything except what user wants"
     },
     {
-      "name": "Documentation Excuse Generator",
-      "description": "Automated reasons why your code is 'self-documenting'"
+      "name": "Payment Gateway",
+      "description": "Implement payment system that doesn't lose anyone's money"
     },
     {
-      "name": "Feature Flag Juggler",
-      "description": "Toggle features until something works"
+      "name": "File Upload",
+      "description": "Create upload system that handles files larger than developer's patience"
     },
     {
-      "name": "Emergency Hotfix Helper",
-      "description": "Patches that definitely won't need patches later"
+      "name": "Dashboard Analytics",
+      "description": "Build analytics that tell you more than 'users clicked stuff'"
     },
     {
-      "name": "Legacy Code Preservator",
-      "description": "Keeping ancient code alive 'because it works'"
+      "name": "Notification System",
+      "description": "Implement notifications that don't notify users to death"
     }
   ]
 }

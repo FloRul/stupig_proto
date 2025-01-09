@@ -285,6 +285,7 @@ abstract class _Project implements Project {
 mixin _$AvailableProjectsState {
   List<Project> get projects => throw _privateConstructorUsedError;
   Map<String, Completion> get cooldowns => throw _privateConstructorUsedError;
+  int get availableDecline => throw _privateConstructorUsedError;
 
   /// Create a copy of AvailableProjectsState
   /// with the given fields replaced by the non-null parameter values.
@@ -299,7 +300,10 @@ abstract class $AvailableProjectsStateCopyWith<$Res> {
           $Res Function(AvailableProjectsState) then) =
       _$AvailableProjectsStateCopyWithImpl<$Res, AvailableProjectsState>;
   @useResult
-  $Res call({List<Project> projects, Map<String, Completion> cooldowns});
+  $Res call(
+      {List<Project> projects,
+      Map<String, Completion> cooldowns,
+      int availableDecline});
 }
 
 /// @nodoc
@@ -320,6 +324,7 @@ class _$AvailableProjectsStateCopyWithImpl<$Res,
   $Res call({
     Object? projects = null,
     Object? cooldowns = null,
+    Object? availableDecline = null,
   }) {
     return _then(_value.copyWith(
       projects: null == projects
@@ -330,6 +335,10 @@ class _$AvailableProjectsStateCopyWithImpl<$Res,
           ? _value.cooldowns
           : cooldowns // ignore: cast_nullable_to_non_nullable
               as Map<String, Completion>,
+      availableDecline: null == availableDecline
+          ? _value.availableDecline
+          : availableDecline // ignore: cast_nullable_to_non_nullable
+              as int,
     ) as $Val);
   }
 }
@@ -343,7 +352,10 @@ abstract class _$$AvailableProjectsStateImplCopyWith<$Res>
       __$$AvailableProjectsStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({List<Project> projects, Map<String, Completion> cooldowns});
+  $Res call(
+      {List<Project> projects,
+      Map<String, Completion> cooldowns,
+      int availableDecline});
 }
 
 /// @nodoc
@@ -363,6 +375,7 @@ class __$$AvailableProjectsStateImplCopyWithImpl<$Res>
   $Res call({
     Object? projects = null,
     Object? cooldowns = null,
+    Object? availableDecline = null,
   }) {
     return _then(_$AvailableProjectsStateImpl(
       projects: null == projects
@@ -373,6 +386,10 @@ class __$$AvailableProjectsStateImplCopyWithImpl<$Res>
           ? _value._cooldowns
           : cooldowns // ignore: cast_nullable_to_non_nullable
               as Map<String, Completion>,
+      availableDecline: null == availableDecline
+          ? _value.availableDecline
+          : availableDecline // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
@@ -382,7 +399,8 @@ class __$$AvailableProjectsStateImplCopyWithImpl<$Res>
 class _$AvailableProjectsStateImpl implements _AvailableProjectsState {
   const _$AvailableProjectsStateImpl(
       {required final List<Project> projects,
-      required final Map<String, Completion> cooldowns})
+      required final Map<String, Completion> cooldowns,
+      required this.availableDecline})
       : _projects = projects,
         _cooldowns = cooldowns;
 
@@ -403,8 +421,11 @@ class _$AvailableProjectsStateImpl implements _AvailableProjectsState {
   }
 
   @override
+  final int availableDecline;
+
+  @override
   String toString() {
-    return 'AvailableProjectsState(projects: $projects, cooldowns: $cooldowns)';
+    return 'AvailableProjectsState(projects: $projects, cooldowns: $cooldowns, availableDecline: $availableDecline)';
   }
 
   @override
@@ -414,14 +435,17 @@ class _$AvailableProjectsStateImpl implements _AvailableProjectsState {
             other is _$AvailableProjectsStateImpl &&
             const DeepCollectionEquality().equals(other._projects, _projects) &&
             const DeepCollectionEquality()
-                .equals(other._cooldowns, _cooldowns));
+                .equals(other._cooldowns, _cooldowns) &&
+            (identical(other.availableDecline, availableDecline) ||
+                other.availableDecline == availableDecline));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(_projects),
-      const DeepCollectionEquality().hash(_cooldowns));
+      const DeepCollectionEquality().hash(_cooldowns),
+      availableDecline);
 
   /// Create a copy of AvailableProjectsState
   /// with the given fields replaced by the non-null parameter values.
@@ -435,14 +459,16 @@ class _$AvailableProjectsStateImpl implements _AvailableProjectsState {
 
 abstract class _AvailableProjectsState implements AvailableProjectsState {
   const factory _AvailableProjectsState(
-          {required final List<Project> projects,
-          required final Map<String, Completion> cooldowns}) =
-      _$AvailableProjectsStateImpl;
+      {required final List<Project> projects,
+      required final Map<String, Completion> cooldowns,
+      required final int availableDecline}) = _$AvailableProjectsStateImpl;
 
   @override
   List<Project> get projects;
   @override
   Map<String, Completion> get cooldowns;
+  @override
+  int get availableDecline;
 
   /// Create a copy of AvailableProjectsState
   /// with the given fields replaced by the non-null parameter values.
