@@ -53,7 +53,10 @@ class _ActiveProjectsState extends ConsumerState<ActiveProjects> {
                   itemCount: state.activeProjects.length,
                   itemBuilder: (context, index) {
                     return ProjectCard(
-                        project: state.activeProjects[index].$1, completion: state.activeProjects[index].$2);
+                      project: state.activeProjects[index].$1,
+                      completion: state.activeProjects[index].$2,
+                      completionResult: state.activeProjects[index].$3,
+                    );
                   },
                 ),
               );

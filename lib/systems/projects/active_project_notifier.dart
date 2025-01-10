@@ -42,30 +42,39 @@ class ActiveProjectsNotifier extends _$ActiveProjectsNotifier {
   }
 
   void _handleTick() {
-    List<(Project, Completion, bool?)> ongoing = [];
-    List<(Project, Completion, bool?)> completed = [];
+    List<(Project, Completion, bool?)> updatedProjects = [];
 
     for (var t in state.activeProjects) {
-      final newC = t.$2.tick();
-      bool? success;
+      if (t.$3 != null) {
+        // Project already has completion result, keep as is
+        updatedProjects.add(t);
+        continue;
+      }
 
-      if (newC.isComplete) {
-        success = Random().nextDouble() * 100 > t.$1.reward.failRate;
-        if (success) {
-          ref.read(eventBusProvider.notifier).publish(
-                GameEvent.rewardEarned(reward: t.$1.reward),
-              );
-        }
-        completed.add((t.$1, newC, success));
+      final newC = t.$2.tick();
+
+      if (newC.isComplete && t.$3 == null) {
+        // Only calculate success if not already determined
+        final success = Random().nextDouble() * 100 > t.$1.reward.failRate;
+        updatedProjects.add((t.$1, newC, success));
       } else {
-        ongoing.add((t.$1, newC, null));
+        updatedProjects.add((t.$1, newC, t.$3));
       }
     }
 
-    state = state.copyWith(activeProjects: ongoing);
+    state = state.copyWith(activeProjects: updatedProjects);
   }
 
-  void completedProject(Project project) {
+  void completeProject(Project project) {
+    final projectTuple = state.activeProjects.firstWhere((p) => p.$1 == project);
+
+    if (projectTuple.$3 == true) {
+      // Check if project was successful
+      ref.read(eventBusProvider.notifier).publish(
+            GameEvent.rewardEarned(reward: project.reward),
+          );
+    }
+
     state = state.copyWith(
       activeProjects: state.activeProjects.where((p) => p.$1 != project).toList(),
     );

@@ -33,7 +33,8 @@ class ProjectFrontside extends ConsumerWidget {
         if (completion != null) ...[
           ProgressBar(
             completion: completion!,
-            onceCompleted: () => ref.read(activeProjectsNotifierProvider.notifier).completedProject(project),
+            onceCompleted: () => ref.read(activeProjectsNotifierProvider.notifier).completeProject(project),
+            completionResult: completionResult,
           ),
           const SizedBox(height: 16),
         ],

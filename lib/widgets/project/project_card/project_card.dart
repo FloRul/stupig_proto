@@ -9,11 +9,13 @@ import 'package:stupig_proto/widgets/project/project_card/frontside.dart';
 class ProjectCard extends ConsumerStatefulWidget {
   final Project project;
   final Completion? completion;
+  final bool? completionResult;
 
   const ProjectCard({
     super.key,
     required this.project,
     this.completion,
+    this.completionResult,
   });
 
   @override
@@ -53,6 +55,7 @@ class _ProjectCardState extends ConsumerState<ProjectCard> with TickerProviderSt
       frontContent: ProjectFrontside(
         project: widget.project,
         completion: widget.completion,
+        completionResult: widget.completionResult,
       ),
       backContent: ProjectBackside(
         description: widget.project.description,

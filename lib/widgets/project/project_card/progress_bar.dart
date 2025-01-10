@@ -25,13 +25,13 @@ class ProgressBar extends ConsumerWidget {
                   style: FilledButton.styleFrom(
                     backgroundColor: Colors.transparent,
                   ),
-                  onPressed: null,
+                  onPressed: onceCompleted,
                   icon: Icon(
                     completionResult! ? Icons.check_circle : Icons.error_outline,
                     color: completionResult! ? Colors.green : Colors.red,
                   ),
                   label: Text(
-                    completionResult! ? 'Success' : 'Failed',
+                    completionResult! ? 'Complete' : 'Discard',
                     style: TextStyle(
                       fontSize: 12,
                       color: completionResult! ? Colors.green : Colors.red,
