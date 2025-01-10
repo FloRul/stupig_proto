@@ -16,6 +16,7 @@ _$ActiveProjectsStateImpl _$$ActiveProjectsStateImplFromJson(
                   Project.fromJson($jsonValue[r'$1'] as Map<String, dynamic>),
                   Completion.fromJson(
                       $jsonValue[r'$2'] as Map<String, dynamic>),
+                  $jsonValue[r'$3'] as bool?,
                 ),
               ))
           .toList(),
@@ -28,6 +29,7 @@ Map<String, dynamic> _$$ActiveProjectsStateImplToJson(
           .map((e) => <String, dynamic>{
                 r'$1': e.$1,
                 r'$2': e.$2,
+                r'$3': e.$3,
               })
           .toList(),
     };

@@ -5,12 +5,14 @@ import 'package:stupig_proto/utils/constants.dart';
 
 class ProgressBar extends ConsumerWidget {
   final Completion completion;
-  final VoidCallback? onceCompleted;
+  final bool? completionResult;
+  final VoidCallback onceCompleted;
 
   const ProgressBar({
     super.key,
     required this.completion,
-    this.onceCompleted,
+    required this.onceCompleted,
+    this.completionResult,
   });
 
   @override
@@ -18,36 +20,26 @@ class ProgressBar extends ConsumerWidget {
     return AnimatedSwitcher(
       duration: const Duration(milliseconds: 250),
       child: completion.isComplete
-          ? Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10),
-                color: Colors.white.withValues(alpha: 0.1),
-                border: Border.all(
-                  color: Colors.white.withValues(alpha: 0.2),
-                ),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black.withValues(alpha: 0.1),
-                    blurRadius: 10,
-                    spreadRadius: 1,
+          ? completionResult != null
+              ? FilledButton.icon(
+                  style: FilledButton.styleFrom(
+                    backgroundColor: Colors.transparent,
                   ),
-                ],
-              ),
-              child: FilledButton.icon(
-                style: FilledButton.styleFrom(
-                  backgroundColor: Colors.transparent,
-                ),
-                onPressed: onceCompleted,
-                icon: const Icon(Icons.check_circle),
-                label: const Text(
-                  'Complete',
-                  style: TextStyle(
-                    fontSize: 12,
-                    overflow: TextOverflow.ellipsis,
+                  onPressed: null,
+                  icon: Icon(
+                    completionResult! ? Icons.check_circle : Icons.error_outline,
+                    color: completionResult! ? Colors.green : Colors.red,
                   ),
-                ),
-              ),
-            )
+                  label: Text(
+                    completionResult! ? 'Success' : 'Failed',
+                    style: TextStyle(
+                      fontSize: 12,
+                      color: completionResult! ? Colors.green : Colors.red,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ),
+                )
+              : const SizedBox.shrink()
           : Container(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),

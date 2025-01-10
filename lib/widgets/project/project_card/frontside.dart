@@ -14,9 +14,11 @@ class ProjectFrontside extends ConsumerWidget {
     super.key,
     required this.project,
     this.completion,
+    this.completionResult,
   });
   final Project project;
   final Completion? completion;
+  final bool? completionResult;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -31,7 +33,7 @@ class ProjectFrontside extends ConsumerWidget {
         if (completion != null) ...[
           ProgressBar(
             completion: completion!,
-            onceCompleted: () => ref.read(activeProjectsNotifierProvider.notifier).handleCompletedProject(project),
+            onceCompleted: () => ref.read(activeProjectsNotifierProvider.notifier).completedProject(project),
           ),
           const SizedBox(height: 16),
         ],

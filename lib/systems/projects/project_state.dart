@@ -1,4 +1,5 @@
 ﻿import 'dart:math';
+import 'dart:ui';
 
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:stupig_proto/systems/projects/models.dart';
@@ -9,7 +10,8 @@ part 'project_state.g.dart';
 
 @freezed
 class ActiveProjectsState with _$ActiveProjectsState {
-  const factory ActiveProjectsState({required List<(Project, Completion)> activeProjects}) = _ActiveProjectsState;
+  const factory ActiveProjectsState({required List<(Project, Completion, bool?)> activeProjects}) =
+      _ActiveProjectsState;
   factory ActiveProjectsState.initial() => const ActiveProjectsState(activeProjects: []);
   const ActiveProjectsState._();
 
@@ -92,10 +94,14 @@ class Completion with _$Completion {
         multipliers: [1], // changed from 0 to 1 to avoid rate being 0
       );
 
-  Completion tick() {
-    return copyWith(
+  Completion tick({VoidCallback? onComplete}) {
+    final newC = copyWith(
       completedAmount: min(completedAmount + rate, baseAmount),
     );
+    if (!isComplete) {
+      onComplete?.call();
+    }
+    return newC;
   }
 
   double get progress => completedAmount / baseAmount;

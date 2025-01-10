@@ -1,9 +1,9 @@
 ﻿import 'dart:math';
 
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:stupig_proto/systems/game_event.dart';
 import 'package:stupig_proto/systems/global_ticker.dart/global_ticker.dart';
 import 'package:stupig_proto/systems/event_bus.dart';
-import 'package:stupig_proto/systems/game_event.dart';
 import 'package:stupig_proto/systems/projects/models.dart';
 import 'package:stupig_proto/systems/projects/project_state.dart';
 import 'package:stupig_proto/utils/constants.dart';
@@ -36,31 +36,38 @@ class ActiveProjectsNotifier extends _$ActiveProjectsNotifier {
     state = state.copyWith(
       activeProjects: [
         ...state.activeProjects,
-        (project, Completion.initial(kBaseCompletionTime)),
+        (project, Completion.initial(kBaseCompletionTime), null),
       ],
     );
-    // ];
   }
 
   void _handleTick() {
-    state = state.copyWith(
-      activeProjects: [
-        for (var p in state.activeProjects) (p.$1, p.$2.tick()),
-      ],
-    );
+    List<(Project, Completion, bool?)> ongoing = [];
+    List<(Project, Completion, bool?)> completed = [];
+
+    for (var t in state.activeProjects) {
+      final newC = t.$2.tick();
+      bool? success;
+
+      if (newC.isComplete) {
+        success = Random().nextDouble() * 100 > t.$1.reward.failRate;
+        if (success) {
+          ref.read(eventBusProvider.notifier).publish(
+                GameEvent.rewardEarned(reward: t.$1.reward),
+              );
+        }
+        completed.add((t.$1, newC, success));
+      } else {
+        ongoing.add((t.$1, newC, null));
+      }
+    }
+
+    state = state.copyWith(activeProjects: ongoing);
   }
 
-  bool handleCompletedProject(Project project) {
-    bool success = Random().nextDouble() * 100 > project.reward.failRate;
-    ref.read(eventBusProvider.notifier).publish(
-          GameEvent.rewardEarned(
-            reward: project.reward,
-          ),
-        );
-
+  void completedProject(Project project) {
     state = state.copyWith(
       activeProjects: state.activeProjects.where((p) => p.$1 != project).toList(),
     );
-    return success;
   }
 }

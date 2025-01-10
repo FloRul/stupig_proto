@@ -20,7 +20,7 @@ ActiveProjectsState _$ActiveProjectsStateFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$ActiveProjectsState {
-  List<(Project, Completion)> get activeProjects =>
+  List<(Project, Completion, bool?)> get activeProjects =>
       throw _privateConstructorUsedError;
 
   /// Serializes this ActiveProjectsState to a JSON map.
@@ -39,7 +39,7 @@ abstract class $ActiveProjectsStateCopyWith<$Res> {
           ActiveProjectsState value, $Res Function(ActiveProjectsState) then) =
       _$ActiveProjectsStateCopyWithImpl<$Res, ActiveProjectsState>;
   @useResult
-  $Res call({List<(Project, Completion)> activeProjects});
+  $Res call({List<(Project, Completion, bool?)> activeProjects});
 }
 
 /// @nodoc
@@ -63,7 +63,7 @@ class _$ActiveProjectsStateCopyWithImpl<$Res, $Val extends ActiveProjectsState>
       activeProjects: null == activeProjects
           ? _value.activeProjects
           : activeProjects // ignore: cast_nullable_to_non_nullable
-              as List<(Project, Completion)>,
+              as List<(Project, Completion, bool?)>,
     ) as $Val);
   }
 }
@@ -76,7 +76,7 @@ abstract class _$$ActiveProjectsStateImplCopyWith<$Res>
       __$$ActiveProjectsStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({List<(Project, Completion)> activeProjects});
+  $Res call({List<(Project, Completion, bool?)> activeProjects});
 }
 
 /// @nodoc
@@ -98,7 +98,7 @@ class __$$ActiveProjectsStateImplCopyWithImpl<$Res>
       activeProjects: null == activeProjects
           ? _value._activeProjects
           : activeProjects // ignore: cast_nullable_to_non_nullable
-              as List<(Project, Completion)>,
+              as List<(Project, Completion, bool?)>,
     ));
   }
 }
@@ -107,16 +107,16 @@ class __$$ActiveProjectsStateImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$ActiveProjectsStateImpl extends _ActiveProjectsState {
   const _$ActiveProjectsStateImpl(
-      {required final List<(Project, Completion)> activeProjects})
+      {required final List<(Project, Completion, bool?)> activeProjects})
       : _activeProjects = activeProjects,
         super._();
 
   factory _$ActiveProjectsStateImpl.fromJson(Map<String, dynamic> json) =>
       _$$ActiveProjectsStateImplFromJson(json);
 
-  final List<(Project, Completion)> _activeProjects;
+  final List<(Project, Completion, bool?)> _activeProjects;
   @override
-  List<(Project, Completion)> get activeProjects {
+  List<(Project, Completion, bool?)> get activeProjects {
     if (_activeProjects is EqualUnmodifiableListView) return _activeProjects;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_activeProjects);
@@ -160,7 +160,7 @@ class _$ActiveProjectsStateImpl extends _ActiveProjectsState {
 
 abstract class _ActiveProjectsState extends ActiveProjectsState {
   const factory _ActiveProjectsState(
-          {required final List<(Project, Completion)> activeProjects}) =
+          {required final List<(Project, Completion, bool?)> activeProjects}) =
       _$ActiveProjectsStateImpl;
   const _ActiveProjectsState._() : super._();
 
@@ -168,7 +168,7 @@ abstract class _ActiveProjectsState extends ActiveProjectsState {
       _$ActiveProjectsStateImpl.fromJson;
 
   @override
-  List<(Project, Completion)> get activeProjects;
+  List<(Project, Completion, bool?)> get activeProjects;
 
   /// Create a copy of ActiveProjectsState
   /// with the given fields replaced by the non-null parameter values.
