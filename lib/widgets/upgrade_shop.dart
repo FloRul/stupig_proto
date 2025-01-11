@@ -2,6 +2,8 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:stupig_proto/systems/primary_resources/notifiers.dart';
 import 'package:stupig_proto/systems/purchase/notifiers.dart';
+import 'package:stupig_proto/systems/secondary_resources/models.dart';
+import 'package:stupig_proto/systems/secondary_resources/notifiers.dart';
 import 'package:stupig_proto/widgets/common/glassmorphism_container.dart';
 
 class UpgradesShop extends ConsumerWidget {
@@ -10,34 +12,37 @@ class UpgradesShop extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Column(
+      spacing: 8,
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         PurchaseUpgradeButton(
-          canPurchase: ref.watch(moneyProvider) >= 500,
           label: 'Buy 1 focus point',
           price: 100,
           onTap: () => ref.read(purchaseProvider.notifier).tryPurchase(100),
+        ),
+        PurchaseUpgradeButton(
+          label: 'Upgrade tech skills',
+          price: ref.watch(secResourcesProvider)[ResourceType.techSkills]!.cost,
+          onTap: () => ref.read(secResourcesProvider.notifier).upgrade(ResourceType.techSkills),
         ),
       ],
     );
   }
 }
 
-class PurchaseUpgradeButton extends StatelessWidget {
+class PurchaseUpgradeButton extends ConsumerWidget {
   const PurchaseUpgradeButton({
     super.key,
     required this.price,
-    required this.canPurchase,
     required this.label,
     required this.onTap,
   });
 
   final int price;
-  final bool canPurchase;
   final String label;
   final VoidCallback onTap;
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return GlassmorphicContainer(
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -45,7 +50,7 @@ class PurchaseUpgradeButton extends StatelessWidget {
           Text(label),
           const SizedBox(width: 8),
           ElevatedButton(
-            onPressed: canPurchase ? onTap : null,
+            onPressed: ref.watch(moneyProvider) >= price ? onTap : null,
             child: Text(price.toString()),
           )
         ],

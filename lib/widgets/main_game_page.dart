@@ -28,9 +28,9 @@ class MainGamePage extends StatelessWidget {
                 Expanded(
                   flex: 2,
                   child: Column(
+                    spacing: 16,
                     children: [
                       Expanded(child: ActiveProjects()),
-                      SizedBox(height: 16.0),
                       Expanded(child: AvailableProjects()),
                     ],
                   ),

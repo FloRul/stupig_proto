@@ -21,7 +21,7 @@ final experienceProvider =
 );
 
 typedef _$Experience = Notifier<ExperienceState>;
-String _$moneyHash() => r'593ee6a581f408dcf1d03d012e579c0a9f368e3c';
+String _$moneyHash() => r'860f71f2c8a69a19cf5f43b37244ef24298ab071';
 
 /// See also [Money].
 @ProviderFor(Money)

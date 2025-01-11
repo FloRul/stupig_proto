@@ -160,6 +160,7 @@ class ClosedPackWidget extends StatelessWidget {
       ),
       child: const Center(
         child: Column(
+          spacing: 16,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Icon(
@@ -167,7 +168,6 @@ class ClosedPackWidget extends StatelessWidget {
               size: 64,
               color: Colors.white,
             ),
-            SizedBox(height: 16),
             Text(
               'Tap to Open!',
               style: TextStyle(

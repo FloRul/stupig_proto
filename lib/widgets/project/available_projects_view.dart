@@ -25,10 +25,10 @@ class ProjectCooldownCard extends ConsumerWidget {
     return GlassmorphicContainer(
       child: Center(
         child: Column(
+          spacing:8,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             const Icon(Icons.hourglass_empty),
-            const SizedBox(height: 8),
             TweenAnimationBuilder<double>(
                 tween: Tween<double>(begin: 0, end: progress),
                 duration: const Duration(milliseconds: kTickInterval),
@@ -39,7 +39,6 @@ class ProjectCooldownCard extends ConsumerWidget {
                     backgroundColor: Colors.transparent,
                   );
                 }),
-            const SizedBox(height: 8),
             Text('${(progress * 100).toInt()}%'),
           ],
         ),
@@ -158,6 +157,7 @@ class AddSlotCard extends StatelessWidget {
       child: const GlassmorphicContainer(
         child: Center(
           child: Column(
+            spacing: 8,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Icon(
@@ -165,7 +165,6 @@ class AddSlotCard extends StatelessWidget {
                 color: Colors.white70,
                 size: 32,
               ),
-              SizedBox(height: 8),
               Text(
                 'Add Slot',
                 style: TextStyle(

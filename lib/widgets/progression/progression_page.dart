@@ -106,6 +106,7 @@ class ProgressionHeader extends ConsumerWidget {
 
     return progress.when(
       data: (data) => Column(
+        spacing: 8,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const Text(
@@ -115,15 +116,14 @@ class ProgressionHeader extends ConsumerWidget {
               fontWeight: FontWeight.bold,
             ),
           ),
-          const SizedBox(height: 8),
           Row(
+            spacing: 16,
             children: [
               ProgressCard(
                 title: 'Total Progress',
                 value: '${(data.$1 / data.$2).toStringAsFixed(2)}%',
                 color: Colors.blue,
               ),
-              const SizedBox(width: 16),
               ProgressCard(
                 title: 'Unlocked Concepts',
                 value: '${data.$1}/${data.$2}',
@@ -160,6 +160,7 @@ class ProgressCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(8),
       ),
       child: Column(
+        spacing: 4,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
@@ -169,7 +170,6 @@ class ProgressCard extends StatelessWidget {
               fontWeight: FontWeight.bold,
             ),
           ),
-          const SizedBox(height: 4),
           Text(
             value,
             style: TextStyle(

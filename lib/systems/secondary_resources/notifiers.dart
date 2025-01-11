@@ -1,4 +1,6 @@
 ﻿import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:stupig_proto/systems/event_bus.dart';
+import 'package:stupig_proto/systems/game_event.dart';
 import 'package:stupig_proto/systems/primary_resources/notifiers.dart';
 import 'package:stupig_proto/systems/secondary_resources/models.dart';
 
@@ -37,6 +39,11 @@ class SecResources extends _$SecResources {
   void upgrade(ResourceType type) {
     final currentMoney = ref.read(moneyProvider);
     if (currentMoney >= state[type]!.cost) {
+      ref.read(eventBusProvider.notifier).publish(GameEvent.purchase(
+            type: PurchaseType.resourceUpgrade(
+              type: type,
+            ),
+          ));
       state = {...state, type: state[type]!.upgrade()};
     }
   }

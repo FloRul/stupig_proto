@@ -4,6 +4,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:stupig_proto/systems/event_bus.dart';
 import 'package:stupig_proto/systems/game_event.dart';
 import 'package:stupig_proto/systems/primary_resources/models.dart';
+import 'package:stupig_proto/systems/secondary_resources/notifiers.dart';
 part 'notifiers.g.dart';
 
 @Riverpod(keepAlive: true)
@@ -47,7 +48,12 @@ class Money extends _$Money {
       next.whenData(
         (e) => e.maybeMap(
           rewardEarned: (e) {
-            state = state + Random().nextInt(e.reward.maxMoneyAmount + 1) + e.reward.minMoneyAmount;
+            state += Random().nextInt(e.reward.maxMoneyAmount + 1 - e.reward.minMoneyAmount) + e.reward.minMoneyAmount;
+          },
+          purchase: (e) {
+            final cost = ref.read(secResourcesProvider)[e.type.type]!.cost;
+            assert(state >= cost);
+            state -= cost;
           },
           orElse: () {},
         ),

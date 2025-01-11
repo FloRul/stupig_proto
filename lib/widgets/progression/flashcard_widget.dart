@@ -39,6 +39,7 @@ class FlashCardWidget extends StatelessWidget {
       child: Stack(
         children: [
           Column(
+            spacing: 4,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
@@ -49,7 +50,6 @@ class FlashCardWidget extends StatelessWidget {
                   color: rarityColor,
                 ),
               ),
-              const SizedBox(height: 4),
               Text(
                 card.concept.content,
                 maxLines: 5,
