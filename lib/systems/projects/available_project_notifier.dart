@@ -120,33 +120,27 @@ class AvailableProjectsNotifier extends _$AvailableProjectsNotifier {
 
   Future<void> _addCompletedProject(String projectId) async {
     try {
-      // Find the index where the project was originally
-      final originalIndex = state.cooldowns.keys.toList().indexOf(projectId);
+      // Get the index based on the cooldowns map order
+      final index = state.cooldowns.keys.toList().indexOf(projectId);
 
-      // If we have a pending project, use it
       if (_pendingProjects.containsKey(projectId)) {
         final newProject = await _pendingProjects[projectId]!;
         _pendingProjects.remove(projectId);
 
-        // Create a new list and insert the project at the correct position
         final updatedProjects = List<Project>.from(state.projects);
-        updatedProjects.insert(originalIndex, newProject);
+        updatedProjects.insert(index, newProject);
 
-        state = state.copyWith(
-          projects: updatedProjects,
-        );
+        state = state.copyWith(projects: updatedProjects);
       } else {
-        // Fallback in case we somehow don't have a pending project
+        // Fallback case
         final newProject = await _fetchNewProject(ref);
         final updatedProjects = List<Project>.from(state.projects);
-        updatedProjects.insert(originalIndex, newProject);
+        updatedProjects.insert(index, newProject);
 
-        state = state.copyWith(
-          projects: updatedProjects,
-        );
+        state = state.copyWith(projects: updatedProjects);
       }
     } catch (e) {
-      print('Error adding completed project: $e');
+      print('Error adding completed project: \$e');
       _pendingProjects.remove(projectId);
     }
   }
