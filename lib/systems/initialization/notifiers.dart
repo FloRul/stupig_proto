@@ -2,6 +2,7 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:stupig_proto/systems/common/notifiers.dart';
 import 'package:stupig_proto/systems/progression/notifiers.dart';
+import 'package:stupig_proto/systems/projects/available_project_notifier.dart';
 
 part 'notifiers.g.dart';
 
@@ -9,5 +10,6 @@ part 'notifiers.g.dart';
 Future<void> initialization(Ref ref) async {
   await ref.read(progressionRepositoryProvider.future);
   await ref.read(sharedPrefsProvider.future);
+  await ref.read(initialProjectsProvider.future);
   await ref.read(themesProvider.future);
 }

@@ -6,8 +6,25 @@ part of 'available_project_notifier.dart';
 // RiverpodGenerator
 // **************************************************************************
 
+String _$initialProjectsHash() => r'3a83a76d4b913ad11380abfe18fd51b439bd7a38';
+
+/// See also [initialProjects].
+@ProviderFor(initialProjects)
+final initialProjectsProvider = FutureProvider<List<Project>>.internal(
+  initialProjects,
+  name: r'initialProjectsProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$initialProjectsHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
+typedef InitialProjectsRef = FutureProviderRef<List<Project>>;
 String _$availableProjectsNotifierHash() =>
-    r'8cdbc975cc2a09f464454db46176991992dccef3';
+    r'cc41f4caf8adf8f773cc7e37bc579c458e4a4e7a';
 
 /// See also [AvailableProjectsNotifier].
 @ProviderFor(AvailableProjectsNotifier)

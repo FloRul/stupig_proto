@@ -6,7 +6,7 @@ part of 'notifiers.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$initializationHash() => r'e1fef118ec8f04cdbc5b34a897f6695d0244db55';
+String _$initializationHash() => r'b77b3004cc424428969b1e2a6729fc874027a5a7';
 
 /// See also [initialization].
 @ProviderFor(initialization)

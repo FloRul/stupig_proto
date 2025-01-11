@@ -2,11 +2,11 @@
 import 'dart:math';
 
 import 'package:flutter/services.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:stupig_proto/systems/game_event.dart';
 import 'package:stupig_proto/systems/global_ticker.dart/global_ticker.dart';
 import 'package:stupig_proto/systems/event_bus.dart';
-import 'package:stupig_proto/systems/primary_resources/notifiers.dart';
 import 'package:stupig_proto/systems/projects/models.dart';
 import 'package:stupig_proto/systems/projects/project_state.dart';
 import 'package:stupig_proto/systems/secondary_resources/models.dart';
@@ -15,8 +15,29 @@ import 'package:stupig_proto/systems/secondary_resources/notifiers.dart';
 part 'available_project_notifier.g.dart';
 
 @Riverpod(keepAlive: true)
+Future<List<Project>> initialProjects(Ref ref) async {
+  final futures = List.generate(3, (index) => _fetchNewProject(ref));
+  return Future.wait(futures);
+}
+
+Future<Project> _fetchNewProject(Ref ref) async {
+  final jsonString = await rootBundle.loadString('data/projects.json');
+  final projectType = ProjectType.values[Random().nextInt(ProjectType.values.length)];
+  final Map<String, dynamic> jsonData = json.decode(jsonString);
+  final List<dynamic> projectData = jsonData[projectType.name];
+
+  final randomIndex = Random().nextInt(projectData.length);
+
+  return Project.fromNameDescType(
+    name: projectData[randomIndex]['name'],
+    description: projectData[randomIndex]['description'],
+    type: projectType,
+    techSkillslevelL: ref.read(secResourcesProvider)[ResourceType.techSkills]!.value.toInt(),
+  );
+}
+
+@Riverpod(keepAlive: true)
 class AvailableProjectsNotifier extends _$AvailableProjectsNotifier {
-  // Store future projects that are being fetched
   final _pendingProjects = <String, Future<Project>>{};
 
   @override
@@ -43,14 +64,9 @@ class AvailableProjectsNotifier extends _$AvailableProjectsNotifier {
       (previous, next) => _handleTick(),
     );
 
-    // Create 3 initial projects
-    final experienceLevel = ref.read(experienceProvider).level;
-    final initialProjects = List.generate(3, (index) {
-      return Project.random(level: experienceLevel);
-    });
-
+    // Start with empty state, will be populated when initial projects are loaded
     return AvailableProjectsState(
-      projects: initialProjects,
+      projects: ref.watch(initialProjectsProvider).value!,
       cooldowns: {},
       availableDecline: 3,
     );
@@ -68,7 +84,7 @@ class AvailableProjectsNotifier extends _$AvailableProjectsNotifier {
 
       // Start fetching when we're at 75% completion if we haven't started yet
       if (tickedCompletion.progress >= 0.75 && !_pendingProjects.containsKey(entry.key)) {
-        _pendingProjects[entry.key] = _fetchNewProject();
+        _pendingProjects[entry.key] = _fetchNewProject(ref);
       }
 
       if (tickedCompletion.isComplete) {
@@ -121,7 +137,7 @@ class AvailableProjectsNotifier extends _$AvailableProjectsNotifier {
         );
       } else {
         // Fallback in case we somehow don't have a pending project
-        final newProject = await _fetchNewProject();
+        final newProject = await _fetchNewProject(ref);
         final updatedProjects = List<Project>.from(state.projects);
         updatedProjects.insert(originalIndex, newProject);
 
@@ -133,22 +149,6 @@ class AvailableProjectsNotifier extends _$AvailableProjectsNotifier {
       print('Error adding completed project: $e');
       _pendingProjects.remove(projectId);
     }
-  }
-
-  Future<Project> _fetchNewProject() async {
-    final jsonString = await rootBundle.loadString('data/projects.json');
-    final projectType = ProjectType.values[Random().nextInt(ProjectType.values.length)];
-    final Map<String, dynamic> jsonData = json.decode(jsonString);
-    final List<dynamic> projectData = jsonData[projectType.name];
-
-    final randomIndex = Random().nextInt(projectData.length);
-
-    return Project.fromNameDescType(
-      name: projectData[randomIndex]['name'],
-      description: projectData[randomIndex]['description'],
-      type: projectType,
-      techSkillslevelL: ref.read(secResourcesProvider)[ResourceType.techSkills]!.value.toInt(),
-    );
   }
 
   void modifyCooldownRate(String projectId, double multiplier) {
@@ -167,7 +167,7 @@ class AvailableProjectsNotifier extends _$AvailableProjectsNotifier {
 
   Future<void> _addNewSlot() async {
     try {
-      final newProject = await _fetchNewProject();
+      final newProject = await _fetchNewProject(ref);
       state = state.copyWith(
         projects: [...state.projects, newProject],
       );
