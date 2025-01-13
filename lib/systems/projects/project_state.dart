@@ -83,15 +83,13 @@ class Completion with _$Completion {
   const factory Completion({
     required double baseAmount,
     required double completedAmount,
-    required double baseRate,
-    required List<double> multipliers,
+    required double rate,
   }) = _Completion;
 
-  factory Completion.initial(int seed) => Completion(
-        baseAmount: 1 + seed * 20,
+  factory Completion.initial(double rate) => Completion(
+        baseAmount: kBaseCompletionTime.toDouble(),
         completedAmount: 0,
-        baseRate: 1,
-        multipliers: [1], // changed from 0 to 1 to avoid rate being 0
+        rate: rate,
       );
 
   Completion tick({VoidCallback? onComplete}) {
@@ -105,7 +103,6 @@ class Completion with _$Completion {
   }
 
   double get progress => completedAmount / baseAmount;
-  double get rate => baseRate * multipliers.reduce((a, b) => a * b); // corrected calculation
   bool get isComplete => completedAmount >= baseAmount;
 
   const Completion._();

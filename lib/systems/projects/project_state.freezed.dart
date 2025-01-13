@@ -425,8 +425,7 @@ Completion _$CompletionFromJson(Map<String, dynamic> json) {
 mixin _$Completion {
   double get baseAmount => throw _privateConstructorUsedError;
   double get completedAmount => throw _privateConstructorUsedError;
-  double get baseRate => throw _privateConstructorUsedError;
-  List<double> get multipliers => throw _privateConstructorUsedError;
+  double get rate => throw _privateConstructorUsedError;
 
   /// Serializes this Completion to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -444,11 +443,7 @@ abstract class $CompletionCopyWith<$Res> {
           Completion value, $Res Function(Completion) then) =
       _$CompletionCopyWithImpl<$Res, Completion>;
   @useResult
-  $Res call(
-      {double baseAmount,
-      double completedAmount,
-      double baseRate,
-      List<double> multipliers});
+  $Res call({double baseAmount, double completedAmount, double rate});
 }
 
 /// @nodoc
@@ -468,8 +463,7 @@ class _$CompletionCopyWithImpl<$Res, $Val extends Completion>
   $Res call({
     Object? baseAmount = null,
     Object? completedAmount = null,
-    Object? baseRate = null,
-    Object? multipliers = null,
+    Object? rate = null,
   }) {
     return _then(_value.copyWith(
       baseAmount: null == baseAmount
@@ -480,14 +474,10 @@ class _$CompletionCopyWithImpl<$Res, $Val extends Completion>
           ? _value.completedAmount
           : completedAmount // ignore: cast_nullable_to_non_nullable
               as double,
-      baseRate: null == baseRate
-          ? _value.baseRate
-          : baseRate // ignore: cast_nullable_to_non_nullable
+      rate: null == rate
+          ? _value.rate
+          : rate // ignore: cast_nullable_to_non_nullable
               as double,
-      multipliers: null == multipliers
-          ? _value.multipliers
-          : multipliers // ignore: cast_nullable_to_non_nullable
-              as List<double>,
     ) as $Val);
   }
 }
@@ -500,11 +490,7 @@ abstract class _$$CompletionImplCopyWith<$Res>
       __$$CompletionImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {double baseAmount,
-      double completedAmount,
-      double baseRate,
-      List<double> multipliers});
+  $Res call({double baseAmount, double completedAmount, double rate});
 }
 
 /// @nodoc
@@ -522,8 +508,7 @@ class __$$CompletionImplCopyWithImpl<$Res>
   $Res call({
     Object? baseAmount = null,
     Object? completedAmount = null,
-    Object? baseRate = null,
-    Object? multipliers = null,
+    Object? rate = null,
   }) {
     return _then(_$CompletionImpl(
       baseAmount: null == baseAmount
@@ -534,14 +519,10 @@ class __$$CompletionImplCopyWithImpl<$Res>
           ? _value.completedAmount
           : completedAmount // ignore: cast_nullable_to_non_nullable
               as double,
-      baseRate: null == baseRate
-          ? _value.baseRate
-          : baseRate // ignore: cast_nullable_to_non_nullable
+      rate: null == rate
+          ? _value.rate
+          : rate // ignore: cast_nullable_to_non_nullable
               as double,
-      multipliers: null == multipliers
-          ? _value._multipliers
-          : multipliers // ignore: cast_nullable_to_non_nullable
-              as List<double>,
     ));
   }
 }
@@ -552,10 +533,8 @@ class _$CompletionImpl extends _Completion {
   const _$CompletionImpl(
       {required this.baseAmount,
       required this.completedAmount,
-      required this.baseRate,
-      required final List<double> multipliers})
-      : _multipliers = multipliers,
-        super._();
+      required this.rate})
+      : super._();
 
   factory _$CompletionImpl.fromJson(Map<String, dynamic> json) =>
       _$$CompletionImplFromJson(json);
@@ -565,18 +544,11 @@ class _$CompletionImpl extends _Completion {
   @override
   final double completedAmount;
   @override
-  final double baseRate;
-  final List<double> _multipliers;
-  @override
-  List<double> get multipliers {
-    if (_multipliers is EqualUnmodifiableListView) return _multipliers;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_multipliers);
-  }
+  final double rate;
 
   @override
   String toString() {
-    return 'Completion(baseAmount: $baseAmount, completedAmount: $completedAmount, baseRate: $baseRate, multipliers: $multipliers)';
+    return 'Completion(baseAmount: $baseAmount, completedAmount: $completedAmount, rate: $rate)';
   }
 
   @override
@@ -588,16 +560,13 @@ class _$CompletionImpl extends _Completion {
                 other.baseAmount == baseAmount) &&
             (identical(other.completedAmount, completedAmount) ||
                 other.completedAmount == completedAmount) &&
-            (identical(other.baseRate, baseRate) ||
-                other.baseRate == baseRate) &&
-            const DeepCollectionEquality()
-                .equals(other._multipliers, _multipliers));
+            (identical(other.rate, rate) || other.rate == rate));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, baseAmount, completedAmount,
-      baseRate, const DeepCollectionEquality().hash(_multipliers));
+  int get hashCode =>
+      Object.hash(runtimeType, baseAmount, completedAmount, rate);
 
   /// Create a copy of Completion
   /// with the given fields replaced by the non-null parameter values.
@@ -619,8 +588,7 @@ abstract class _Completion extends Completion {
   const factory _Completion(
       {required final double baseAmount,
       required final double completedAmount,
-      required final double baseRate,
-      required final List<double> multipliers}) = _$CompletionImpl;
+      required final double rate}) = _$CompletionImpl;
   const _Completion._() : super._();
 
   factory _Completion.fromJson(Map<String, dynamic> json) =
@@ -631,9 +599,7 @@ abstract class _Completion extends Completion {
   @override
   double get completedAmount;
   @override
-  double get baseRate;
-  @override
-  List<double> get multipliers;
+  double get rate;
 
   /// Create a copy of Completion
   /// with the given fields replaced by the non-null parameter values.

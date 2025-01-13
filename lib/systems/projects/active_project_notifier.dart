@@ -6,7 +6,8 @@ import 'package:stupig_proto/systems/global_ticker.dart/global_ticker.dart';
 import 'package:stupig_proto/systems/event_bus.dart';
 import 'package:stupig_proto/systems/projects/models.dart';
 import 'package:stupig_proto/systems/projects/project_state.dart';
-import 'package:stupig_proto/utils/constants.dart';
+import 'package:stupig_proto/systems/secondary_resources/models.dart';
+import 'package:stupig_proto/systems/secondary_resources/notifiers.dart';
 
 part 'active_project_notifier.g.dart';
 
@@ -36,7 +37,11 @@ class ActiveProjectsNotifier extends _$ActiveProjectsNotifier {
     state = state.copyWith(
       activeProjects: [
         ...state.activeProjects,
-        (project, Completion.initial(kBaseCompletionTime), null),
+        (
+          project,
+          Completion.initial(ref.read(secResourcesProvider)[ResourceType.devTools]!.value),
+          null
+        ),
       ],
     );
   }
