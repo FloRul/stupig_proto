@@ -113,7 +113,7 @@ class AvailableProjectsNotifier extends _$AvailableProjectsNotifier {
       ],
       cooldowns: {
         ...state.cooldowns,
-        project.id: Completion.initial(1),
+        project.id: Completion.initial(ref.read(secResourcesProvider)[ResourceType.hardwarePower]!.value * 2),
       },
     );
   }
@@ -143,20 +143,6 @@ class AvailableProjectsNotifier extends _$AvailableProjectsNotifier {
       print('Error adding completed project: \$e');
       _pendingProjects.remove(projectId);
     }
-  }
-
-  void modifyCooldownRate(String projectId, double multiplier) {
-    if (!state.cooldowns.containsKey(projectId)) return;
-
-    final cooldown = state.cooldowns[projectId]!;
-    state = state.copyWith(
-      cooldowns: {
-        ...state.cooldowns,
-        projectId: cooldown.copyWith(
-          multipliers: [...cooldown.multipliers, multiplier],
-        ),
-      },
-    );
   }
 
   Future<void> _addNewSlot() async {

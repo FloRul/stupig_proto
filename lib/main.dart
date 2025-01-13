@@ -4,8 +4,6 @@ import 'package:stupig_proto/theme.dart';
 import 'clicker_game.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-// TODO: use newton particles
-
 void main() {
   runApp(const ProviderScope(child: MyApp()));
 }
