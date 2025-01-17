@@ -4,12 +4,14 @@ import 'dart:math';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:stupig_proto/systems/common/notifiers.dart';
 import 'package:stupig_proto/systems/game_event.dart';
 import 'package:stupig_proto/systems/global_ticker.dart/global_ticker.dart';
 import 'package:stupig_proto/systems/event_bus.dart';
 import 'package:stupig_proto/systems/projects/models.dart';
 import 'package:stupig_proto/systems/secondary_resources/models.dart';
 import 'package:stupig_proto/systems/secondary_resources/notifiers.dart';
+import 'package:stupig_proto/utils/constants.dart';
 
 part 'available_project_notifier.g.dart';
 
@@ -52,6 +54,8 @@ class AvailableProjectsNotifier extends _$AvailableProjectsNotifier {
                 if (e.type.type == ResourceType.focusPoints) _addNewSlot();
               }
             },
+            saveGame: (e) async => await _save(),
+            loadGame: (value) => retrieve(),
             orElse: () {},
           ),
         );
@@ -69,6 +73,29 @@ class AvailableProjectsNotifier extends _$AvailableProjectsNotifier {
       cooldowns: {},
       availableDecline: 3,
     );
+  }
+
+  Future<bool> _save() async {
+    final prefs = ref.read(sharedPrefsProvider).value!;
+    return prefs.setString(
+      kAvailableProjectsKey,
+      jsonEncode(
+        state.toJson(),
+      ),
+    );
+  }
+
+  void retrieve() async {
+    final stateJson = ref.read(sharedPrefsProvider).value!.getString(
+          kAvailableProjectsKey,
+        );
+    if (stateJson != null) {
+      state = AvailableProjectsState.fromJson(
+        jsonDecode(
+          stateJson,
+        ),
+      );
+    }
   }
 
   void _handleTick() {

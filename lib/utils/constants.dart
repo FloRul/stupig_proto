@@ -14,5 +14,9 @@ const int kBaseCompletionTime = 100;
 
 // Serialization
 const String kActiveProjectsKey = 'activeProjects';
+const String kAvailableProjectsKey = 'availableProjects';
+const String kXpKey = 'experience';
+const String kMoneyKey = 'money';
+const String kSecResourcesKey = 'secResources';
 
 const int kGlobalSeed = 14;

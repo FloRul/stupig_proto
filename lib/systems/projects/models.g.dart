@@ -33,6 +33,26 @@ const _$ProjectTypeEnumMap = {
   ProjectType.optimization: 'optimization',
 };
 
+_$AvailableProjectsStateImpl _$$AvailableProjectsStateImplFromJson(
+        Map<String, dynamic> json) =>
+    _$AvailableProjectsStateImpl(
+      projects: (json['projects'] as List<dynamic>)
+          .map((e) => Project.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      cooldowns: (json['cooldowns'] as Map<String, dynamic>).map(
+        (k, e) => MapEntry(k, Completion.fromJson(e as Map<String, dynamic>)),
+      ),
+      availableDecline: (json['availableDecline'] as num).toInt(),
+    );
+
+Map<String, dynamic> _$$AvailableProjectsStateImplToJson(
+        _$AvailableProjectsStateImpl instance) =>
+    <String, dynamic>{
+      'projects': instance.projects,
+      'cooldowns': instance.cooldowns,
+      'availableDecline': instance.availableDecline,
+    };
+
 _$ActiveProjectsStateImpl _$$ActiveProjectsStateImplFromJson(
         Map<String, dynamic> json) =>
     _$ActiveProjectsStateImpl(

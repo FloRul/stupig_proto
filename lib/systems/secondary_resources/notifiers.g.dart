@@ -6,7 +6,7 @@ part of 'notifiers.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$secResourcesHash() => r'f22bfed0485dc01eb73e1c313b845bde7e23c7f2';
+String _$secResourcesHash() => r'bc22845a66e390541470696e2c4be896fc9c38c8';
 
 /// See also [SecResources].
 @ProviderFor(SecResources)

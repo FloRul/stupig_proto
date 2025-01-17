@@ -281,11 +281,19 @@ abstract class _Project implements Project {
       throw _privateConstructorUsedError;
 }
 
+AvailableProjectsState _$AvailableProjectsStateFromJson(
+    Map<String, dynamic> json) {
+  return _AvailableProjectsState.fromJson(json);
+}
+
 /// @nodoc
 mixin _$AvailableProjectsState {
   List<Project> get projects => throw _privateConstructorUsedError;
   Map<String, Completion> get cooldowns => throw _privateConstructorUsedError;
   int get availableDecline => throw _privateConstructorUsedError;
+
+  /// Serializes this AvailableProjectsState to a JSON map.
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 
   /// Create a copy of AvailableProjectsState
   /// with the given fields replaced by the non-null parameter values.
@@ -395,7 +403,7 @@ class __$$AvailableProjectsStateImplCopyWithImpl<$Res>
 }
 
 /// @nodoc
-
+@JsonSerializable()
 class _$AvailableProjectsStateImpl implements _AvailableProjectsState {
   const _$AvailableProjectsStateImpl(
       {required final List<Project> projects,
@@ -403,6 +411,9 @@ class _$AvailableProjectsStateImpl implements _AvailableProjectsState {
       required this.availableDecline})
       : _projects = projects,
         _cooldowns = cooldowns;
+
+  factory _$AvailableProjectsStateImpl.fromJson(Map<String, dynamic> json) =>
+      _$$AvailableProjectsStateImplFromJson(json);
 
   final List<Project> _projects;
   @override
@@ -440,6 +451,7 @@ class _$AvailableProjectsStateImpl implements _AvailableProjectsState {
                 other.availableDecline == availableDecline));
   }
 
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -455,6 +467,13 @@ class _$AvailableProjectsStateImpl implements _AvailableProjectsState {
   _$$AvailableProjectsStateImplCopyWith<_$AvailableProjectsStateImpl>
       get copyWith => __$$AvailableProjectsStateImplCopyWithImpl<
           _$AvailableProjectsStateImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$AvailableProjectsStateImplToJson(
+      this,
+    );
+  }
 }
 
 abstract class _AvailableProjectsState implements AvailableProjectsState {
@@ -462,6 +481,9 @@ abstract class _AvailableProjectsState implements AvailableProjectsState {
       {required final List<Project> projects,
       required final Map<String, Completion> cooldowns,
       required final int availableDecline}) = _$AvailableProjectsStateImpl;
+
+  factory _AvailableProjectsState.fromJson(Map<String, dynamic> json) =
+      _$AvailableProjectsStateImpl.fromJson;
 
   @override
   List<Project> get projects;

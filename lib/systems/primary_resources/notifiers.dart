@@ -1,10 +1,13 @@
-﻿import 'dart:math';
+﻿import 'dart:convert';
+import 'dart:math';
 
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:stupig_proto/systems/common/notifiers.dart';
 import 'package:stupig_proto/systems/event_bus.dart';
 import 'package:stupig_proto/systems/game_event.dart';
 import 'package:stupig_proto/systems/primary_resources/models.dart';
 import 'package:stupig_proto/systems/secondary_resources/notifiers.dart';
+import 'package:stupig_proto/utils/constants.dart';
 part 'notifiers.g.dart';
 
 @Riverpod(keepAlive: true)
@@ -25,6 +28,8 @@ class Experience extends _$Experience {
             }
           },
           levelUp: (_) => _levelUp(),
+          saveGame: (e) async => await _save(),
+          loadGame: (value) => retrieve(),
           orElse: () {},
         ),
       );
@@ -37,6 +42,29 @@ class Experience extends _$Experience {
       level: state.level + 1,
       xp: 0,
     );
+  }
+
+  Future<bool> _save() async {
+    final prefs = ref.read(sharedPrefsProvider).value!;
+    return prefs.setString(
+      kXpKey,
+      jsonEncode(
+        state.toJson(),
+      ),
+    );
+  }
+
+  void retrieve() async {
+    final stateJson = ref.read(sharedPrefsProvider).value!.getString(
+          kXpKey,
+        );
+    if (stateJson != null) {
+      state = ExperienceState.fromJson(
+        jsonDecode(
+          stateJson,
+        ),
+      );
+    }
   }
 }
 
@@ -55,10 +83,26 @@ class Money extends _$Money {
             assert(state >= cost);
             state -= cost;
           },
+          saveGame: (e) async => await _save(),
+          loadGame: (value) => retrieve(),
           orElse: () {},
         ),
       );
     });
     return 0;
+  }
+
+  Future<bool> _save() async {
+    final prefs = ref.read(sharedPrefsProvider).value!;
+    return prefs.setInt(kMoneyKey, state);
+  }
+
+  void retrieve() async {
+    final money = ref.read(sharedPrefsProvider).value!.getInt(
+          kMoneyKey,
+        );
+    if (money != null) {
+      state = money;
+    }
   }
 }

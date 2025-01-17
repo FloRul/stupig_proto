@@ -1,8 +1,12 @@
-﻿import 'package:riverpod_annotation/riverpod_annotation.dart';
+﻿import 'dart:convert';
+
+import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:stupig_proto/systems/common/notifiers.dart';
 import 'package:stupig_proto/systems/event_bus.dart';
 import 'package:stupig_proto/systems/game_event.dart';
 import 'package:stupig_proto/systems/primary_resources/notifiers.dart';
 import 'package:stupig_proto/systems/secondary_resources/models.dart';
+import 'package:stupig_proto/utils/constants.dart';
 
 part 'notifiers.g.dart';
 
@@ -10,6 +14,19 @@ part 'notifiers.g.dart';
 class SecResources extends _$SecResources {
   @override
   Map<ResourceType, Resource> build() {
+    ref.listen(
+      eventBusProvider,
+      (previous, next) {
+        next.whenData(
+          (event) => event.maybeMap(
+            saveGame: (e) async => await _save(),
+            loadGame: (value) => retrieve(),
+            orElse: () {},
+          ),
+        );
+      },
+    );
+
     return {
       ResourceType.devTools: const Resource.multiplied(
         baseCost: 10,
@@ -45,6 +62,37 @@ class SecResources extends _$SecResources {
             ),
           ));
       state = {...state, type: state[type]!.upgrade()};
+    }
+  }
+
+  Future<bool> _save() async {
+    final prefs = ref.read(sharedPrefsProvider).value!;
+    return prefs.setString(
+      kSecResourcesKey,
+      jsonEncode(
+        Map.fromEntries(
+          state.entries.map(
+            (entry) => MapEntry(entry.key.name, entry.value.toJson()),
+          ),
+        ),
+      ),
+    );
+  }
+
+  void retrieve() async {
+    final stateRawJson = ref.read(sharedPrefsProvider).value!.getString(
+          kSecResourcesKey,
+        );
+    if (stateRawJson != null) {
+      final stateJson = jsonDecode(stateRawJson) as Map<String, dynamic>;
+      state = Map.fromEntries(
+        ResourceType.values.map(
+          (type) => MapEntry(
+            type,
+            Resource.fromJson(stateJson[type.name] as Map<String, dynamic>),
+          ),
+        ),
+      );
     }
   }
 }

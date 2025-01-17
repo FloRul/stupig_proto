@@ -24,7 +24,7 @@ final initialProjectsProvider = FutureProvider<List<Project>>.internal(
 // ignore: unused_element
 typedef InitialProjectsRef = FutureProviderRef<List<Project>>;
 String _$availableProjectsNotifierHash() =>
-    r'6149cc801f18de888573ffa58bd27c422b92e971';
+    r'359317fa19736a7b0641382df93107868f19a7af';
 
 /// See also [AvailableProjectsNotifier].
 @ProviderFor(AvailableProjectsNotifier)

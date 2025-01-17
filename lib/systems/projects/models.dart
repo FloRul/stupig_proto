@@ -94,6 +94,8 @@ class AvailableProjectsState with _$AvailableProjectsState {
     required Map<String, Completion> cooldowns,
     required int availableDecline,
   }) = _AvailableProjectsState;
+
+  factory AvailableProjectsState.fromJson(Map<String, Object?> json) => _$AvailableProjectsStateFromJson(json);
 }
 
 @freezed

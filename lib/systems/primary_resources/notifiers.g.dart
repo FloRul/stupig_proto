@@ -6,7 +6,7 @@ part of 'notifiers.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$experienceHash() => r'f9bfd6c71d8981febec52b8d2a0db315c3519004';
+String _$experienceHash() => r'20ea35eca142f0f92e2271043c0a035fb5a48ee4';
 
 /// See also [Experience].
 @ProviderFor(Experience)
@@ -21,7 +21,7 @@ final experienceProvider =
 );
 
 typedef _$Experience = Notifier<ExperienceState>;
-String _$moneyHash() => r'860f71f2c8a69a19cf5f43b37244ef24298ab071';
+String _$moneyHash() => r'48e7715858603661daa2f030afec2b06c7400e41';
 
 /// See also [Money].
 @ProviderFor(Money)
