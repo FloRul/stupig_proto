@@ -1,13 +1,15 @@
-﻿import 'dart:math';
+﻿import 'dart:convert';
+import 'dart:math';
 
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:stupig_proto/systems/common/notifiers.dart';
 import 'package:stupig_proto/systems/game_event.dart';
 import 'package:stupig_proto/systems/global_ticker.dart/global_ticker.dart';
 import 'package:stupig_proto/systems/event_bus.dart';
 import 'package:stupig_proto/systems/projects/models.dart';
-import 'package:stupig_proto/systems/projects/project_state.dart';
 import 'package:stupig_proto/systems/secondary_resources/models.dart';
 import 'package:stupig_proto/systems/secondary_resources/notifiers.dart';
+import 'package:stupig_proto/utils/constants.dart';
 
 part 'active_project_notifier.g.dart';
 
@@ -21,6 +23,8 @@ class ActiveProjectsNotifier extends _$ActiveProjectsNotifier {
         next.whenData(
           (event) => event.maybeMap(
             projectStarted: (e) => _handleStartProject(e.project),
+            saveGame: (e) async => await _save(),
+            loadGame: (value) => retrieve(),
             orElse: () {},
           ),
         );
@@ -37,11 +41,7 @@ class ActiveProjectsNotifier extends _$ActiveProjectsNotifier {
     state = state.copyWith(
       activeProjects: [
         ...state.activeProjects,
-        (
-          project,
-          Completion.initial(ref.read(secResourcesProvider)[ResourceType.devTools]!.value),
-          null
-        ),
+        (project, Completion.initial(ref.read(secResourcesProvider)[ResourceType.devTools]!.value), null),
       ],
     );
   }
@@ -68,6 +68,29 @@ class ActiveProjectsNotifier extends _$ActiveProjectsNotifier {
     }
 
     state = state.copyWith(activeProjects: updatedProjects);
+  }
+
+  Future<bool> _save() async {
+    final prefs = ref.read(sharedPrefsProvider).value!;
+    return prefs.setString(
+      kActiveProjectsKey,
+      jsonEncode(
+        state.toJson(),
+      ),
+    );
+  }
+
+  void retrieve() async {
+    final stateJson = ref.read(sharedPrefsProvider).value!.getString(
+          kActiveProjectsKey,
+        );
+    if (stateJson != null) {
+      state = ActiveProjectsState.fromJson(
+        jsonDecode(
+          stateJson,
+        ),
+      );
+    }
   }
 
   void completeProject(Project project) {

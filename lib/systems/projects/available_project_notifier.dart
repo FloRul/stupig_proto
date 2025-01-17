@@ -8,7 +8,6 @@ import 'package:stupig_proto/systems/game_event.dart';
 import 'package:stupig_proto/systems/global_ticker.dart/global_ticker.dart';
 import 'package:stupig_proto/systems/event_bus.dart';
 import 'package:stupig_proto/systems/projects/models.dart';
-import 'package:stupig_proto/systems/projects/project_state.dart';
 import 'package:stupig_proto/systems/secondary_resources/models.dart';
 import 'package:stupig_proto/systems/secondary_resources/notifiers.dart';
 

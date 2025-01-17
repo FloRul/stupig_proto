@@ -1,5 +1,5 @@
 ﻿import 'package:flutter/material.dart';
-import 'package:stupig_proto/systems/projects/project_state.dart';
+import 'package:stupig_proto/systems/projects/models.dart';
 
 class RewardWidget extends StatelessWidget {
   const RewardWidget({

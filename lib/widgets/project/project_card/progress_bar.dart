@@ -1,7 +1,7 @@
 ﻿import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:stupig_proto/systems/projects/project_state.dart';
+import 'package:stupig_proto/systems/projects/models.dart';
 import 'package:stupig_proto/utils/constants.dart';
 
 class ParticleModel {

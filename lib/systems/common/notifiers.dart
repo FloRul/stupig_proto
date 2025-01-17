@@ -4,7 +4,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 part 'notifiers.g.dart';
 
-@riverpod
+@Riverpod(keepAlive: true)
 Future<SharedPreferences> sharedPrefs(Ref ref) async {
-  return await SharedPreferences.getInstance();
+  return SharedPreferences.getInstance();
 }

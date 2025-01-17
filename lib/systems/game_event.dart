@@ -1,7 +1,6 @@
 ﻿import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:stupig_proto/systems/feature_unlock/models.dart';
 import 'package:stupig_proto/systems/projects/models.dart';
-import 'package:stupig_proto/systems/projects/project_state.dart';
 import 'package:stupig_proto/systems/secondary_resources/models.dart';
 // ignore: unused_import
 import 'package:stupig_proto/systems/secondary_resources/notifiers.dart';

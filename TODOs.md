@@ -76,6 +76,15 @@ generate 10  task names and humorous description (ex: todo app, calculator app, 
   ],
   ...
 }
+
+## Saving game state 
+ - [ ] active projects
+ - [ ] available projects
+ - [ ] current level, xp amount
+ - [ ] money
+ - [ ] secoundary resources state
+ - [X] progression
+
 ```mermaid
 graph LR
   Projects -->|rewards| Experience

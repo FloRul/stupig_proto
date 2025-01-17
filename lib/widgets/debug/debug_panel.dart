@@ -27,12 +27,12 @@ class _DebugPanelState extends ConsumerState<DebugPanel> {
           const SizedBox(width: 8),
           ElevatedButton(
             child: const Text('Save game'),
-            onPressed: () {},
+            onPressed: () => ref.read(eventBusProvider.notifier).publish(const GameEvent.saveGame()),
           ),
           const SizedBox(width: 8),
           ElevatedButton(
             child: const Text('Load game'),
-            onPressed: () {},
+            onPressed: () => ref.read(eventBusProvider.notifier).publish(const GameEvent.loadGame()),
           ),
           const SizedBox(width: 8),
           ElevatedButton(

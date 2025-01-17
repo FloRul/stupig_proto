@@ -12,4 +12,7 @@ const double kClickPowerDenominator = 20;
 const int kTickInterval = 200;
 const int kBaseCompletionTime = 100;
 
+// Serialization
+const String kActiveProjectsKey = 'activeProjects';
+
 const int kGlobalSeed = 14;
