@@ -26,6 +26,7 @@ mixin _$GameEvent {
     required TResult Function() loadGame,
     required TResult Function(Feature feature) unlockFeature,
     required TResult Function(PurchaseType type) purchase,
+    required TResult Function() resetGame,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -38,6 +39,7 @@ mixin _$GameEvent {
     TResult? Function()? loadGame,
     TResult? Function(Feature feature)? unlockFeature,
     TResult? Function(PurchaseType type)? purchase,
+    TResult? Function()? resetGame,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -50,6 +52,7 @@ mixin _$GameEvent {
     TResult Function()? loadGame,
     TResult Function(Feature feature)? unlockFeature,
     TResult Function(PurchaseType type)? purchase,
+    TResult Function()? resetGame,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -63,6 +66,7 @@ mixin _$GameEvent {
     required TResult Function(LoadGame value) loadGame,
     required TResult Function(UnlockFeature value) unlockFeature,
     required TResult Function(Purchase value) purchase,
+    required TResult Function(ResetGame value) resetGame,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -75,6 +79,7 @@ mixin _$GameEvent {
     TResult? Function(LoadGame value)? loadGame,
     TResult? Function(UnlockFeature value)? unlockFeature,
     TResult? Function(Purchase value)? purchase,
+    TResult? Function(ResetGame value)? resetGame,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -87,6 +92,7 @@ mixin _$GameEvent {
     TResult Function(LoadGame value)? loadGame,
     TResult Function(UnlockFeature value)? unlockFeature,
     TResult Function(Purchase value)? purchase,
+    TResult Function(ResetGame value)? resetGame,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -209,6 +215,7 @@ class _$ProjectCompletedImpl implements ProjectCompleted {
     required TResult Function() loadGame,
     required TResult Function(Feature feature) unlockFeature,
     required TResult Function(PurchaseType type) purchase,
+    required TResult Function() resetGame,
   }) {
     return projectCompleted(project, tag);
   }
@@ -224,6 +231,7 @@ class _$ProjectCompletedImpl implements ProjectCompleted {
     TResult? Function()? loadGame,
     TResult? Function(Feature feature)? unlockFeature,
     TResult? Function(PurchaseType type)? purchase,
+    TResult? Function()? resetGame,
   }) {
     return projectCompleted?.call(project, tag);
   }
@@ -239,6 +247,7 @@ class _$ProjectCompletedImpl implements ProjectCompleted {
     TResult Function()? loadGame,
     TResult Function(Feature feature)? unlockFeature,
     TResult Function(PurchaseType type)? purchase,
+    TResult Function()? resetGame,
     required TResult orElse(),
   }) {
     if (projectCompleted != null) {
@@ -258,6 +267,7 @@ class _$ProjectCompletedImpl implements ProjectCompleted {
     required TResult Function(LoadGame value) loadGame,
     required TResult Function(UnlockFeature value) unlockFeature,
     required TResult Function(Purchase value) purchase,
+    required TResult Function(ResetGame value) resetGame,
   }) {
     return projectCompleted(this);
   }
@@ -273,6 +283,7 @@ class _$ProjectCompletedImpl implements ProjectCompleted {
     TResult? Function(LoadGame value)? loadGame,
     TResult? Function(UnlockFeature value)? unlockFeature,
     TResult? Function(Purchase value)? purchase,
+    TResult? Function(ResetGame value)? resetGame,
   }) {
     return projectCompleted?.call(this);
   }
@@ -288,6 +299,7 @@ class _$ProjectCompletedImpl implements ProjectCompleted {
     TResult Function(LoadGame value)? loadGame,
     TResult Function(UnlockFeature value)? unlockFeature,
     TResult Function(Purchase value)? purchase,
+    TResult Function(ResetGame value)? resetGame,
     required TResult orElse(),
   }) {
     if (projectCompleted != null) {
@@ -400,6 +412,7 @@ class _$RewardEarnedImpl implements RewardEarned {
     required TResult Function() loadGame,
     required TResult Function(Feature feature) unlockFeature,
     required TResult Function(PurchaseType type) purchase,
+    required TResult Function() resetGame,
   }) {
     return rewardEarned(reward);
   }
@@ -415,6 +428,7 @@ class _$RewardEarnedImpl implements RewardEarned {
     TResult? Function()? loadGame,
     TResult? Function(Feature feature)? unlockFeature,
     TResult? Function(PurchaseType type)? purchase,
+    TResult? Function()? resetGame,
   }) {
     return rewardEarned?.call(reward);
   }
@@ -430,6 +444,7 @@ class _$RewardEarnedImpl implements RewardEarned {
     TResult Function()? loadGame,
     TResult Function(Feature feature)? unlockFeature,
     TResult Function(PurchaseType type)? purchase,
+    TResult Function()? resetGame,
     required TResult orElse(),
   }) {
     if (rewardEarned != null) {
@@ -449,6 +464,7 @@ class _$RewardEarnedImpl implements RewardEarned {
     required TResult Function(LoadGame value) loadGame,
     required TResult Function(UnlockFeature value) unlockFeature,
     required TResult Function(Purchase value) purchase,
+    required TResult Function(ResetGame value) resetGame,
   }) {
     return rewardEarned(this);
   }
@@ -464,6 +480,7 @@ class _$RewardEarnedImpl implements RewardEarned {
     TResult? Function(LoadGame value)? loadGame,
     TResult? Function(UnlockFeature value)? unlockFeature,
     TResult? Function(Purchase value)? purchase,
+    TResult? Function(ResetGame value)? resetGame,
   }) {
     return rewardEarned?.call(this);
   }
@@ -479,6 +496,7 @@ class _$RewardEarnedImpl implements RewardEarned {
     TResult Function(LoadGame value)? loadGame,
     TResult Function(UnlockFeature value)? unlockFeature,
     TResult Function(Purchase value)? purchase,
+    TResult Function(ResetGame value)? resetGame,
     required TResult orElse(),
   }) {
     if (rewardEarned != null) {
@@ -598,6 +616,7 @@ class _$ProjectStartedImpl implements ProjectStarted {
     required TResult Function() loadGame,
     required TResult Function(Feature feature) unlockFeature,
     required TResult Function(PurchaseType type) purchase,
+    required TResult Function() resetGame,
   }) {
     return projectStarted(project, tag);
   }
@@ -613,6 +632,7 @@ class _$ProjectStartedImpl implements ProjectStarted {
     TResult? Function()? loadGame,
     TResult? Function(Feature feature)? unlockFeature,
     TResult? Function(PurchaseType type)? purchase,
+    TResult? Function()? resetGame,
   }) {
     return projectStarted?.call(project, tag);
   }
@@ -628,6 +648,7 @@ class _$ProjectStartedImpl implements ProjectStarted {
     TResult Function()? loadGame,
     TResult Function(Feature feature)? unlockFeature,
     TResult Function(PurchaseType type)? purchase,
+    TResult Function()? resetGame,
     required TResult orElse(),
   }) {
     if (projectStarted != null) {
@@ -647,6 +668,7 @@ class _$ProjectStartedImpl implements ProjectStarted {
     required TResult Function(LoadGame value) loadGame,
     required TResult Function(UnlockFeature value) unlockFeature,
     required TResult Function(Purchase value) purchase,
+    required TResult Function(ResetGame value) resetGame,
   }) {
     return projectStarted(this);
   }
@@ -662,6 +684,7 @@ class _$ProjectStartedImpl implements ProjectStarted {
     TResult? Function(LoadGame value)? loadGame,
     TResult? Function(UnlockFeature value)? unlockFeature,
     TResult? Function(Purchase value)? purchase,
+    TResult? Function(ResetGame value)? resetGame,
   }) {
     return projectStarted?.call(this);
   }
@@ -677,6 +700,7 @@ class _$ProjectStartedImpl implements ProjectStarted {
     TResult Function(LoadGame value)? loadGame,
     TResult Function(UnlockFeature value)? unlockFeature,
     TResult Function(Purchase value)? purchase,
+    TResult Function(ResetGame value)? resetGame,
     required TResult orElse(),
   }) {
     if (projectStarted != null) {
@@ -777,6 +801,7 @@ class _$LevelUpImpl implements LevelUp {
     required TResult Function() loadGame,
     required TResult Function(Feature feature) unlockFeature,
     required TResult Function(PurchaseType type) purchase,
+    required TResult Function() resetGame,
   }) {
     return levelUp(tag);
   }
@@ -792,6 +817,7 @@ class _$LevelUpImpl implements LevelUp {
     TResult? Function()? loadGame,
     TResult? Function(Feature feature)? unlockFeature,
     TResult? Function(PurchaseType type)? purchase,
+    TResult? Function()? resetGame,
   }) {
     return levelUp?.call(tag);
   }
@@ -807,6 +833,7 @@ class _$LevelUpImpl implements LevelUp {
     TResult Function()? loadGame,
     TResult Function(Feature feature)? unlockFeature,
     TResult Function(PurchaseType type)? purchase,
+    TResult Function()? resetGame,
     required TResult orElse(),
   }) {
     if (levelUp != null) {
@@ -826,6 +853,7 @@ class _$LevelUpImpl implements LevelUp {
     required TResult Function(LoadGame value) loadGame,
     required TResult Function(UnlockFeature value) unlockFeature,
     required TResult Function(Purchase value) purchase,
+    required TResult Function(ResetGame value) resetGame,
   }) {
     return levelUp(this);
   }
@@ -841,6 +869,7 @@ class _$LevelUpImpl implements LevelUp {
     TResult? Function(LoadGame value)? loadGame,
     TResult? Function(UnlockFeature value)? unlockFeature,
     TResult? Function(Purchase value)? purchase,
+    TResult? Function(ResetGame value)? resetGame,
   }) {
     return levelUp?.call(this);
   }
@@ -856,6 +885,7 @@ class _$LevelUpImpl implements LevelUp {
     TResult Function(LoadGame value)? loadGame,
     TResult Function(UnlockFeature value)? unlockFeature,
     TResult Function(Purchase value)? purchase,
+    TResult Function(ResetGame value)? resetGame,
     required TResult orElse(),
   }) {
     if (levelUp != null) {
@@ -926,6 +956,7 @@ class _$SaveGameImpl implements SaveGame {
     required TResult Function() loadGame,
     required TResult Function(Feature feature) unlockFeature,
     required TResult Function(PurchaseType type) purchase,
+    required TResult Function() resetGame,
   }) {
     return saveGame();
   }
@@ -941,6 +972,7 @@ class _$SaveGameImpl implements SaveGame {
     TResult? Function()? loadGame,
     TResult? Function(Feature feature)? unlockFeature,
     TResult? Function(PurchaseType type)? purchase,
+    TResult? Function()? resetGame,
   }) {
     return saveGame?.call();
   }
@@ -956,6 +988,7 @@ class _$SaveGameImpl implements SaveGame {
     TResult Function()? loadGame,
     TResult Function(Feature feature)? unlockFeature,
     TResult Function(PurchaseType type)? purchase,
+    TResult Function()? resetGame,
     required TResult orElse(),
   }) {
     if (saveGame != null) {
@@ -975,6 +1008,7 @@ class _$SaveGameImpl implements SaveGame {
     required TResult Function(LoadGame value) loadGame,
     required TResult Function(UnlockFeature value) unlockFeature,
     required TResult Function(Purchase value) purchase,
+    required TResult Function(ResetGame value) resetGame,
   }) {
     return saveGame(this);
   }
@@ -990,6 +1024,7 @@ class _$SaveGameImpl implements SaveGame {
     TResult? Function(LoadGame value)? loadGame,
     TResult? Function(UnlockFeature value)? unlockFeature,
     TResult? Function(Purchase value)? purchase,
+    TResult? Function(ResetGame value)? resetGame,
   }) {
     return saveGame?.call(this);
   }
@@ -1005,6 +1040,7 @@ class _$SaveGameImpl implements SaveGame {
     TResult Function(LoadGame value)? loadGame,
     TResult Function(UnlockFeature value)? unlockFeature,
     TResult Function(Purchase value)? purchase,
+    TResult Function(ResetGame value)? resetGame,
     required TResult orElse(),
   }) {
     if (saveGame != null) {
@@ -1067,6 +1103,7 @@ class _$LoadGameImpl implements LoadGame {
     required TResult Function() loadGame,
     required TResult Function(Feature feature) unlockFeature,
     required TResult Function(PurchaseType type) purchase,
+    required TResult Function() resetGame,
   }) {
     return loadGame();
   }
@@ -1082,6 +1119,7 @@ class _$LoadGameImpl implements LoadGame {
     TResult? Function()? loadGame,
     TResult? Function(Feature feature)? unlockFeature,
     TResult? Function(PurchaseType type)? purchase,
+    TResult? Function()? resetGame,
   }) {
     return loadGame?.call();
   }
@@ -1097,6 +1135,7 @@ class _$LoadGameImpl implements LoadGame {
     TResult Function()? loadGame,
     TResult Function(Feature feature)? unlockFeature,
     TResult Function(PurchaseType type)? purchase,
+    TResult Function()? resetGame,
     required TResult orElse(),
   }) {
     if (loadGame != null) {
@@ -1116,6 +1155,7 @@ class _$LoadGameImpl implements LoadGame {
     required TResult Function(LoadGame value) loadGame,
     required TResult Function(UnlockFeature value) unlockFeature,
     required TResult Function(Purchase value) purchase,
+    required TResult Function(ResetGame value) resetGame,
   }) {
     return loadGame(this);
   }
@@ -1131,6 +1171,7 @@ class _$LoadGameImpl implements LoadGame {
     TResult? Function(LoadGame value)? loadGame,
     TResult? Function(UnlockFeature value)? unlockFeature,
     TResult? Function(Purchase value)? purchase,
+    TResult? Function(ResetGame value)? resetGame,
   }) {
     return loadGame?.call(this);
   }
@@ -1146,6 +1187,7 @@ class _$LoadGameImpl implements LoadGame {
     TResult Function(LoadGame value)? loadGame,
     TResult Function(UnlockFeature value)? unlockFeature,
     TResult Function(Purchase value)? purchase,
+    TResult Function(ResetGame value)? resetGame,
     required TResult orElse(),
   }) {
     if (loadGame != null) {
@@ -1235,6 +1277,7 @@ class _$UnlockFeatureImpl implements UnlockFeature {
     required TResult Function() loadGame,
     required TResult Function(Feature feature) unlockFeature,
     required TResult Function(PurchaseType type) purchase,
+    required TResult Function() resetGame,
   }) {
     return unlockFeature(feature);
   }
@@ -1250,6 +1293,7 @@ class _$UnlockFeatureImpl implements UnlockFeature {
     TResult? Function()? loadGame,
     TResult? Function(Feature feature)? unlockFeature,
     TResult? Function(PurchaseType type)? purchase,
+    TResult? Function()? resetGame,
   }) {
     return unlockFeature?.call(feature);
   }
@@ -1265,6 +1309,7 @@ class _$UnlockFeatureImpl implements UnlockFeature {
     TResult Function()? loadGame,
     TResult Function(Feature feature)? unlockFeature,
     TResult Function(PurchaseType type)? purchase,
+    TResult Function()? resetGame,
     required TResult orElse(),
   }) {
     if (unlockFeature != null) {
@@ -1284,6 +1329,7 @@ class _$UnlockFeatureImpl implements UnlockFeature {
     required TResult Function(LoadGame value) loadGame,
     required TResult Function(UnlockFeature value) unlockFeature,
     required TResult Function(Purchase value) purchase,
+    required TResult Function(ResetGame value) resetGame,
   }) {
     return unlockFeature(this);
   }
@@ -1299,6 +1345,7 @@ class _$UnlockFeatureImpl implements UnlockFeature {
     TResult? Function(LoadGame value)? loadGame,
     TResult? Function(UnlockFeature value)? unlockFeature,
     TResult? Function(Purchase value)? purchase,
+    TResult? Function(ResetGame value)? resetGame,
   }) {
     return unlockFeature?.call(this);
   }
@@ -1314,6 +1361,7 @@ class _$UnlockFeatureImpl implements UnlockFeature {
     TResult Function(LoadGame value)? loadGame,
     TResult Function(UnlockFeature value)? unlockFeature,
     TResult Function(Purchase value)? purchase,
+    TResult Function(ResetGame value)? resetGame,
     required TResult orElse(),
   }) {
     if (unlockFeature != null) {
@@ -1424,6 +1472,7 @@ class _$PurchaseImpl implements Purchase {
     required TResult Function() loadGame,
     required TResult Function(Feature feature) unlockFeature,
     required TResult Function(PurchaseType type) purchase,
+    required TResult Function() resetGame,
   }) {
     return purchase(type);
   }
@@ -1439,6 +1488,7 @@ class _$PurchaseImpl implements Purchase {
     TResult? Function()? loadGame,
     TResult? Function(Feature feature)? unlockFeature,
     TResult? Function(PurchaseType type)? purchase,
+    TResult? Function()? resetGame,
   }) {
     return purchase?.call(type);
   }
@@ -1454,6 +1504,7 @@ class _$PurchaseImpl implements Purchase {
     TResult Function()? loadGame,
     TResult Function(Feature feature)? unlockFeature,
     TResult Function(PurchaseType type)? purchase,
+    TResult Function()? resetGame,
     required TResult orElse(),
   }) {
     if (purchase != null) {
@@ -1473,6 +1524,7 @@ class _$PurchaseImpl implements Purchase {
     required TResult Function(LoadGame value) loadGame,
     required TResult Function(UnlockFeature value) unlockFeature,
     required TResult Function(Purchase value) purchase,
+    required TResult Function(ResetGame value) resetGame,
   }) {
     return purchase(this);
   }
@@ -1488,6 +1540,7 @@ class _$PurchaseImpl implements Purchase {
     TResult? Function(LoadGame value)? loadGame,
     TResult? Function(UnlockFeature value)? unlockFeature,
     TResult? Function(Purchase value)? purchase,
+    TResult? Function(ResetGame value)? resetGame,
   }) {
     return purchase?.call(this);
   }
@@ -1503,6 +1556,7 @@ class _$PurchaseImpl implements Purchase {
     TResult Function(LoadGame value)? loadGame,
     TResult Function(UnlockFeature value)? unlockFeature,
     TResult Function(Purchase value)? purchase,
+    TResult Function(ResetGame value)? resetGame,
     required TResult orElse(),
   }) {
     if (purchase != null) {
@@ -1522,6 +1576,153 @@ abstract class Purchase implements GameEvent {
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$PurchaseImplCopyWith<_$PurchaseImpl> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$ResetGameImplCopyWith<$Res> {
+  factory _$$ResetGameImplCopyWith(
+          _$ResetGameImpl value, $Res Function(_$ResetGameImpl) then) =
+      __$$ResetGameImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$ResetGameImplCopyWithImpl<$Res>
+    extends _$GameEventCopyWithImpl<$Res, _$ResetGameImpl>
+    implements _$$ResetGameImplCopyWith<$Res> {
+  __$$ResetGameImplCopyWithImpl(
+      _$ResetGameImpl _value, $Res Function(_$ResetGameImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of GameEvent
+  /// with the given fields replaced by the non-null parameter values.
+}
+
+/// @nodoc
+
+class _$ResetGameImpl implements ResetGame {
+  const _$ResetGameImpl();
+
+  @override
+  String toString() {
+    return 'GameEvent.resetGame()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$ResetGameImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(Project project, String? tag) projectCompleted,
+    required TResult Function(ProjectReward reward) rewardEarned,
+    required TResult Function(Project project, String? tag) projectStarted,
+    required TResult Function(String? tag) levelUp,
+    required TResult Function() saveGame,
+    required TResult Function() loadGame,
+    required TResult Function(Feature feature) unlockFeature,
+    required TResult Function(PurchaseType type) purchase,
+    required TResult Function() resetGame,
+  }) {
+    return resetGame();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(Project project, String? tag)? projectCompleted,
+    TResult? Function(ProjectReward reward)? rewardEarned,
+    TResult? Function(Project project, String? tag)? projectStarted,
+    TResult? Function(String? tag)? levelUp,
+    TResult? Function()? saveGame,
+    TResult? Function()? loadGame,
+    TResult? Function(Feature feature)? unlockFeature,
+    TResult? Function(PurchaseType type)? purchase,
+    TResult? Function()? resetGame,
+  }) {
+    return resetGame?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(Project project, String? tag)? projectCompleted,
+    TResult Function(ProjectReward reward)? rewardEarned,
+    TResult Function(Project project, String? tag)? projectStarted,
+    TResult Function(String? tag)? levelUp,
+    TResult Function()? saveGame,
+    TResult Function()? loadGame,
+    TResult Function(Feature feature)? unlockFeature,
+    TResult Function(PurchaseType type)? purchase,
+    TResult Function()? resetGame,
+    required TResult orElse(),
+  }) {
+    if (resetGame != null) {
+      return resetGame();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(ProjectCompleted value) projectCompleted,
+    required TResult Function(RewardEarned value) rewardEarned,
+    required TResult Function(ProjectStarted value) projectStarted,
+    required TResult Function(LevelUp value) levelUp,
+    required TResult Function(SaveGame value) saveGame,
+    required TResult Function(LoadGame value) loadGame,
+    required TResult Function(UnlockFeature value) unlockFeature,
+    required TResult Function(Purchase value) purchase,
+    required TResult Function(ResetGame value) resetGame,
+  }) {
+    return resetGame(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(ProjectCompleted value)? projectCompleted,
+    TResult? Function(RewardEarned value)? rewardEarned,
+    TResult? Function(ProjectStarted value)? projectStarted,
+    TResult? Function(LevelUp value)? levelUp,
+    TResult? Function(SaveGame value)? saveGame,
+    TResult? Function(LoadGame value)? loadGame,
+    TResult? Function(UnlockFeature value)? unlockFeature,
+    TResult? Function(Purchase value)? purchase,
+    TResult? Function(ResetGame value)? resetGame,
+  }) {
+    return resetGame?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(ProjectCompleted value)? projectCompleted,
+    TResult Function(RewardEarned value)? rewardEarned,
+    TResult Function(ProjectStarted value)? projectStarted,
+    TResult Function(LevelUp value)? levelUp,
+    TResult Function(SaveGame value)? saveGame,
+    TResult Function(LoadGame value)? loadGame,
+    TResult Function(UnlockFeature value)? unlockFeature,
+    TResult Function(Purchase value)? purchase,
+    TResult Function(ResetGame value)? resetGame,
+    required TResult orElse(),
+  }) {
+    if (resetGame != null) {
+      return resetGame(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class ResetGame implements GameEvent {
+  const factory ResetGame() = _$ResetGameImpl;
 }
 
 /// @nodoc

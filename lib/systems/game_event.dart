@@ -16,6 +16,7 @@ sealed class GameEvent with _$GameEvent {
   const factory GameEvent.loadGame() = LoadGame;
   const factory GameEvent.unlockFeature({required final Feature feature}) = UnlockFeature;
   const factory GameEvent.purchase({required final PurchaseType type}) = Purchase;
+  const factory GameEvent.resetGame() = ResetGame;
 }
 
 @freezed

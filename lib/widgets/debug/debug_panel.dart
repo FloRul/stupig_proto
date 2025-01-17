@@ -1,5 +1,6 @@
 ﻿import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:stupig_proto/systems/common/notifiers.dart';
 import 'package:stupig_proto/systems/event_bus.dart';
 import 'package:stupig_proto/systems/game_event.dart';
 import 'package:stupig_proto/systems/progression/notifiers.dart';
@@ -39,6 +40,13 @@ class _DebugPanelState extends ConsumerState<DebugPanel> {
             child: const Text('Clear save'),
             onPressed: () async {
               ref.read(progressionProvider.notifier).resetProgress();
+              ref.read(sharedPrefsProvider).value!.clear();
+            },
+          ),
+          ElevatedButton(
+            child: const Text('Reset game'),
+            onPressed: () async {
+              ref.read(eventBusProvider.notifier).publish(GameEvent.resetGame());
             },
           ),
         ],
